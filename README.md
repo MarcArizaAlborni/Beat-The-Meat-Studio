@@ -1,8 +1,9 @@
-# EL NOM QUE HEU POSAT ES UNA PORQUERIA I NO M'AGRADA
-Aixo no funciona
-## StREEEEEt Fighter 2
-## Troquelante Taladradora
+#Street Fighter 2
 
-etnardalaT arodaleuqorT
-EUSTAKIO48
+by:
+
+### Pau Pedra
+### Ángel González
+### Adrián Mirabel
+### Marc Ariza
 
