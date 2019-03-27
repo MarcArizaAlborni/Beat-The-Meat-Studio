@@ -122,22 +122,22 @@ update_status ModulePlayer::Update()
 		current_animation = &backward;
 		position.x -= speed;
 	}
-	if (App->input->keyboard[SDL_SCANCODE_Q] == 1)
+	if (App->input->keyboard[SDL_SCANCODE_K] == 1)
 	{
 		current_animation = &punch;
 		
 	}
-	if (App->input->keyboard[SDL_SCANCODE_W] == 1)
+	if (App->input->keyboard[SDL_SCANCODE_L] == 1)
 	{
 		current_animation = &kick;
 
 	}
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1)
+	if (App->input->keyboard[SDL_SCANCODE_W] == 1)
 	{
 		current_animation = &jump;
 
 	}
-	if (App->input->keyboard[SDL_SCANCODE_Z && SDL_SCANCODE_X] == 1)
+	if (App->input->keyboard[SDL_SCANCODE_Z] == 1)
 	{
 		current_animation = &special;
 
