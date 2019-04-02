@@ -59,8 +59,10 @@ bool ModuleSceneHonda::CleanUp()
 {
 	// TODO 5: Remove all memory leaks
 	LOG("Unloading honda stage");
+	//App->textures->Unload(graphics);
 	App->textures->Unload(graphics);
 	App->player->Disable();
+	//App->textures->Unload(graphics);
 
 	return true;
 }
@@ -69,12 +71,12 @@ bool ModuleSceneHonda::CleanUp()
 update_status ModuleSceneHonda::Update()
 {
 	// Draw everything --------------------------------------	
-	App->render->Blit(graphics, 0, 160, &ground);
-	App->render->Blit(graphics, 50, -15, &background, 0.75f); // back of the room
+	App->render->Blit(graphics, /*0*/-100, 160, &ground);
+	App->render->Blit(graphics, /*50*/-25, -15, &background, 0.75f); // back of the room
 	
-	App->render->Blit(graphics, 280, 125, &foreground);
-	App->render->Blit(graphics, 305, 136, &(water.GetCurrentFrame())); // water animation
-	App->render->Blit(graphics, 0, -16, &roof, 0.75f);
+	App->render->Blit(graphics, /*280*/180, 125, &foreground);
+	App->render->Blit(graphics, /*305*/205, 136, &(water.GetCurrentFrame())); // water animation
+	App->render->Blit(graphics, /*0*/-75, -16, &roof, 0.75f);
 
 	// TODO 2: make so pressing SPACE the KEN stage is loaded
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {

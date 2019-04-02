@@ -16,6 +16,7 @@ public:
 
 	bool Start();
 	update_status Update();
+	bool CleanUp();
 
 public:
 
@@ -23,6 +24,9 @@ public:
 	Animation idle;
 	Animation forward;
 	Animation backward;
+	Animation lightPunch;
+	Animation lightKick;
+	Animation jump;
 	iPoint position;
 
 };

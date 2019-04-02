@@ -9,6 +9,10 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleWelcomeScreen.h"
 #include "ModuleCongratScreen.h"
+#include "ModuleIcoinScreen.h"
+#include "ModuleStartScreen.h"
+#include "ModuleWarningScreen.h"
+#include "ModuleWinScreen.h"
 
 Application::Application()
 {
@@ -17,12 +21,15 @@ Application::Application()
 	modules[2] = input = new ModuleInput();
 	modules[3] = textures = new ModuleTextures();
 	modules[4] = welcome_screen = new ModuleWelcomeScreen();
-	modules[5] = scene_honda = new ModuleSceneHonda();
-	modules[6] = scene_ken = new ModuleSceneKen();
-	modules[7] = player = new ModulePlayer();
-	modules[8] = fade = new ModuleFadeToBlack();
-	modules[9] = congrat_screen = new ModuleCongratScreen();
-
+	modules[5] = warning_screen = new ModuleWarningScreen();
+	modules[6] = icoin_screen = new ModuleIcoinScreen();
+	modules[7] = start_screen = new ModuleStartScreen();
+	modules[8] = scene_honda = new ModuleSceneHonda();
+	modules[9] = scene_ken = new ModuleSceneKen();
+	modules[10] = win_screen = new ModuleWinScreen();
+	modules[11] = player = new ModulePlayer();
+	modules[12] = congrat_screen = new ModuleCongratScreen();
+	modules[13] = fade = new ModuleFadeToBlack();
 
 }	
 
@@ -42,6 +49,10 @@ bool Application::Init()
 	scene_honda->Disable();
 	scene_ken->Disable();
 	congrat_screen->Disable();
+	icoin_screen->Disable();
+	start_screen->Disable();
+	warning_screen->Disable();
+	win_screen->Disable();
 
 	for(int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->Init();

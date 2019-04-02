@@ -8,7 +8,7 @@
 #include "ModulePlayer.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
-#include "ModuleSceneHonda.h"
+#include "ModuleWinScreen.h"
 #include "MemLeaks.h"
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
@@ -40,10 +40,11 @@ ModuleSceneKen::ModuleSceneKen()
 	flag.speed = 0.08f;
 
 	// Girl Animation
-	girl.PushBack({624, 16, 32, 56});
-	girl.PushBack({624, 80, 32, 56});
-	girl.PushBack({624, 144, 32, 56});
-	girl.speed = 0.05f;
+	girl.PushBack({ 624, 16, 32, 54 });
+	girl.PushBack({ 624, 80, 32, 54 });
+	girl.PushBack({ 624, 144, 32, 54 });
+	girl.PushBack({ 624, 80, 32, 54 });
+	girl.speed = 0.1f;
 
 	// for moving the foreground
 	foreground_pos = 0;
@@ -69,7 +70,8 @@ bool ModuleSceneKen::CleanUp()
 {
 	LOG("Unloading ken scene");
 	App->textures->Unload(graphics);
-	App->player->Disable();
+	App->player->Disable(); 
+
 	return true;
 }
 
@@ -100,7 +102,7 @@ update_status ModuleSceneKen::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 
-		App->fade->FadeToBlack(App->scene_ken, App->scene_honda, 2.5f);
+		App->fade->FadeToBlack(App->scene_ken, App->win_screen, 2.5f);
 
 	}
 	return UPDATE_CONTINUE;
