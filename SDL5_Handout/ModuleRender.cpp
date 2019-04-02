@@ -52,6 +52,7 @@ update_status ModuleRender::Update()
 	int speed = 3;
 	int still = 0;
 
+#ifdef _DEBUG
 	if (App->input->keyboard[SDL_SCANCODE_UP] == 1)
 	{
 		if (App->welcome_screen != nullptr || App->warning_screen != nullptr || App->icoin_screen != nullptr || App->start_screen != nullptr || App->congrat_screen != nullptr)
@@ -103,7 +104,7 @@ update_status ModuleRender::Update()
 			camera.x -= speed;
 		}
 	}
-
+#endif
 	return update_status::UPDATE_CONTINUE;
 }
 
