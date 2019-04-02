@@ -107,17 +107,17 @@ update_status ModulePlayer::Update()
 		position.x -= speed;
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_Q] == 1)
+	if (App->input->keyboard[SDL_SCANCODE_U] == 1)
 	{
 		current_animation = &lightPunch;
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_E] == 1)
+	if (App->input->keyboard[SDL_SCANCODE_J] == 1)
 	{
 		current_animation = &lightKick;
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1)
+	if (App->input->keyboard[SDL_SCANCODE_W] == 1)
 	{
 		current_animation = &jump;
 	}
