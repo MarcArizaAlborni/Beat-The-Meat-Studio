@@ -35,10 +35,10 @@ ModuleAudio::ModuleAudio():Module() {
 
 ModuleAudio::~ModuleAudio() {}
 
-
+//INICIATE AUDIO MODULE
 bool ModuleAudio::Init() {
 
-//INICIATE AUDIO FOR OGG FILES
+
 	bool ret1 = true;
 
 
@@ -65,7 +65,7 @@ bool ModuleAudio::Init() {
 
 
 
-
+//CLEANUP DE AUDIO MODULE
 bool ModuleAudio::CleanUp() {
 
 
@@ -101,13 +101,13 @@ bool ModuleAudio::CleanUp() {
 }
 
 
+//LOAD MUSIC (OGG FILES)
 
-
-Mixed_Music* const ModuleAudio::LoadMus(const char *direction)
+Mix_Music* const ModuleAudio::LoadMus(const char *direction)
 {
 
 	//LOAD AUDIO MUSIC
-	Mixed_Music*  backgroundmusic = nullptr;
+	Mix_Music*  backgroundmusic = nullptr;
 	
 
 	backgroundmusic = Mix_LoadMUS(direction);
@@ -117,12 +117,12 @@ Mixed_Music* const ModuleAudio::LoadMus(const char *direction)
 }
 
 
-
-Mixed_FX* const ModuleAudio::LoadFX(const char *direction)
+//LOAD FX (WAV FILES)
+Mix_Chunk* const ModuleAudio::LoadFX(const char *direction)
 {
 
 	//LOAD AUDIO fx
-	Mixed_FX*  fx = nullptr;
+	Mix_Chunk*  fx = nullptr;
 
 
 	fx = Mix_LoadWAV(direction);
@@ -131,8 +131,8 @@ Mixed_FX* const ModuleAudio::LoadFX(const char *direction)
 
 }
 
-
-bool ModuleAudio::RemoveMusic(Mixed_Music* music) {
+//REMOVING MUSIC (OGG FILES)
+bool ModuleAudio::RemoveMusic(Mix_Music* music) {
 
 
 	bool ret1 = false;
@@ -155,8 +155,8 @@ bool ModuleAudio::RemoveMusic(Mixed_Music* music) {
 	return ret1;
 }
 
-
-bool ModuleAudio::RemoveFX(Mixed_FX* fx) {
+//REMOVING FX (WAV FILES)
+bool ModuleAudio::RemoveFX(Mix_Chunk* fx) {
 
 
 	bool ret1 = false;
