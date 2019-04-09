@@ -1,3 +1,4 @@
+#pragma once
 #ifndef __ModuleCollision_H__
 #define __ModuleCollision_H__
 

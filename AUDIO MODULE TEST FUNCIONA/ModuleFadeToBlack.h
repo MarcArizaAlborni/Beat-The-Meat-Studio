@@ -1,3 +1,4 @@
+#pragma once
 #ifndef __MODULEFADETOBLACK_H__
 #define __MODULEFADETOBLACK_H__
 

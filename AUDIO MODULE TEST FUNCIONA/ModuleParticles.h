@@ -1,3 +1,4 @@
+#pragma once
 #ifndef __MODULEPARTICLES_H__
 #define __MODULEPARTICLES_H__
 
