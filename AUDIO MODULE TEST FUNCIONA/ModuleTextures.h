@@ -1,3 +1,4 @@
+#pragma once
 #ifndef __ModuleTextures_H__
 #define __ModuleTextures_H__
 

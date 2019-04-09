@@ -20,7 +20,7 @@
 */
 
 /* $Id$ */
-
+#pragma once
 #ifndef _SDL_MIXER_H
 #define _SDL_MIXER_H
 

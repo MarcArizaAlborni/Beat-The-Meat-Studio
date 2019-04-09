@@ -1,3 +1,4 @@
+#pragma once
 #ifndef __MODULESCENEINTRO_H__
 #define __MODULESCENEINTRO_H__
 

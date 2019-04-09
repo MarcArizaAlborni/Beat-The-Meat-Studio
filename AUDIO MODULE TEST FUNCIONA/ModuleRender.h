@@ -1,3 +1,4 @@
+#pragma once
 #ifndef __ModuleRenderer_H__
 #define __ModuleRenderer_H__
 
