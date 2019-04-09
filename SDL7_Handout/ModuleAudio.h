@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef _ModuleAudio_H_
-#define _ModulesAudio_H_
+#ifndef __ModuleAudio_H__
+#define __ModuleAudio_H__
 
 #include "Module.h"
 #include "Globals.h"
@@ -38,9 +38,9 @@ public:
 
 
 	//REMOVE MUSIC AND FX
-	bool RemoveMusic(Mix_Music* music);
-	bool RemoveFX(Mix_Chunk* fx);
+	bool RemoveMusic (Mix_Music* music);
+	bool RemoveFX (Mix_Chunk* fx);
 
 
 };
-#endif //_ModuleAudio_H_
+#endif // __ModuleAudio_H__
