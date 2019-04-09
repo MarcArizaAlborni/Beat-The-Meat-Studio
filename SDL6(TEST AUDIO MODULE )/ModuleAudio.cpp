@@ -3,10 +3,6 @@
 #include "Application.h"
 #include "ModuleAudio.h"
 
-
-
-
-
 #include "SDL_Mixer/include/SDL_mixer.h"
 #include "SDL/include/SDL.h"
 #pragma comment(lib,"SDL_Mixer/SDL2_mixer.lib")

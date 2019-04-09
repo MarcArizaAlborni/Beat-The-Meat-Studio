@@ -8,6 +8,8 @@
 #include "ModulePlayer.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
+#include "ModuleParticles.h"
+#include "ModuleCollision.h"
 #include "ModuleSceneKen.h"
 #include "MemLeaks.h"
 #include "ModuleCongratScreen.h"
@@ -46,23 +48,27 @@ bool ModuleSceneHonda::Start()
 	bool ret = true;
 	graphics = App->textures->Load("honda_stage2.png");
 
-	// TODO 1: Enable (and properly disable) the player module
-
+	// TODO 5.1: Enable (and properly disable) the player module
 	App->player->Enable();
-	
+	App->particles->Enable();
+	App->collision->Enable();
 
+	// Colliders ---
+	App->collision->AddCollider({ 4, 0, 50, 400 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 340, 0, 50, 400 }, COLLIDER_WALL);
+	
 	return ret;
 }
 
 // Load assets
 bool ModuleSceneHonda::CleanUp()
 {
-	// TODO 5: Remove all memory leaks
+	// TODO 5.5: Remove all memory leaks
 	LOG("Unloading honda stage");
-	//App->textures->Unload(graphics);
 	App->textures->Unload(graphics);
 	App->player->Disable();
-	//App->textures->Unload(graphics);
+	App->collision->Disable();
+	App->particles->Disable();
 
 	return true;
 }

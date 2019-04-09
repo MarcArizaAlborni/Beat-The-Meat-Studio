@@ -8,6 +8,8 @@
 #include "ModulePlayer.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
+#include "ModuleParticles.h"
+#include "ModuleCollision.h"
 #include "ModuleWinScreen.h"
 #include "MemLeaks.h"
 
@@ -61,6 +63,12 @@ bool ModuleSceneKen::Start()
 	graphics = App->textures->Load("ken_stage.png");
 	// TODO 1: Enable (and properly disable) the player module
 	App->player->Enable();
+	App->particles->Enable();
+	App->collision->Enable();
+
+	// Colliders ---
+	App->collision->AddCollider({ 4, 0, 50, 400 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 340, 0, 50, 400 }, COLLIDER_WALL);
 
 	return true;
 }
@@ -71,6 +79,8 @@ bool ModuleSceneKen::CleanUp()
 	LOG("Unloading ken scene");
 	App->textures->Unload(graphics);
 	App->player->Disable(); 
+	App->collision->Disable();
+	App->particles->Disable();
 
 	return true;
 }

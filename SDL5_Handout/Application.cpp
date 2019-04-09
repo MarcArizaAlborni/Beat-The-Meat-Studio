@@ -5,8 +5,10 @@
 #include "ModuleTextures.h"
 #include "ModuleSceneKen.h"
 #include "ModuleSceneHonda.h"
+#include "ModuleCollision.h"
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
+#include "ModuleParticles.h"
 #include "ModuleWelcomeScreen.h"
 #include "ModuleCongratScreen.h"
 #include "ModuleIcoinScreen.h"
@@ -29,7 +31,9 @@ Application::Application()
 	modules[10] = win_screen = new ModuleWinScreen();
 	modules[11] = player = new ModulePlayer();
 	modules[12] = congrat_screen = new ModuleCongratScreen();
-	modules[13] = fade = new ModuleFadeToBlack();
+	modules[13] = particles = new ModuleParticles();
+	modules[14] = collision = new ModuleCollision();
+	modules[15] = fade = new ModuleFadeToBlack();
 
 }	
 
@@ -45,6 +49,7 @@ bool Application::Init()
 
 	// Player will be enabled on the first update of a new scene
 	player->Disable();
+	collision->Disable();
 	// Disable the map that you do not start with
 	scene_honda->Disable();
 	scene_ken->Disable();

@@ -42,7 +42,6 @@ bool ModulePlayer::Start()
 	position.y = 120;
 
 	// TODO 2: Add a collider to the player
-
 	player_collider = App->collision->AddCollider({ position.x,position.y,32,14 }, COLLIDER_PLAYER, App->player);
 
 	return true;
@@ -118,7 +117,6 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 
 		App->fade->FadeToBlack((Module*)App->scene_space, (Module*)App->scene_intro);
 	}
-	
 }
 
 
