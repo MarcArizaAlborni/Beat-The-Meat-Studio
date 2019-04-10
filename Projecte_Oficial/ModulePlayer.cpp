@@ -6,7 +6,8 @@
 #include "ModuleParticles.h"
 #include "ModulePlayer.h"
 #include "Animation.h"
-
+#include "ModuleFonts.h"
+#include <stdio.h>
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
 int speed = 1;
@@ -18,6 +19,7 @@ ModulePlayer::ModulePlayer()
 	
 	position.x = 100;
 	position.y = 220;
+	score = 0;
 
 	// idle animation (arcade sprite sheet)
 	idle.PushBack({7, 14, 60, 90});
@@ -105,6 +107,8 @@ bool ModulePlayer::Start()
 
 	// TODO 7.2: Add a collider to the player
 	player_collider = App->collision->AddCollider({ position.x, position.y - 100, 60, 93 }, COLLIDER_PLAYER, App->player);
+
+	font_score = App->fonts->Load("Fonts/font1.png", "! @,./0123456789;<&?abcdefghijklmnopqrstuvwxyz", 2);
 
 	return ret;
 }
@@ -204,7 +208,11 @@ update_status ModulePlayer::Update()
 	// Draw everything --------------------------------------
 	SDL_Rect r = current_animation->GetCurrentFrame();
 
+	sprintf_s(score_text, 10, "%7d", score);
+
 	App->render->Blit(graphics, position.x, position.y - r.h, &r);
+
+	App->fonts->BlitText(100, 100, font_score, "helloworld");
 	
 	return UPDATE_CONTINUE;
 }

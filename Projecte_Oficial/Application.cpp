@@ -15,7 +15,7 @@
 #include "ModuleStartScreen.h"
 #include "ModuleWarningScreen.h"
 #include "ModuleWinScreen.h"
-
+#include "ModuleFonts.h"
 Application::Application()
 {
 	modules[0] = window = new ModuleWindow();
@@ -34,6 +34,7 @@ Application::Application()
 	modules[13] = particles = new ModuleParticles();
 	modules[14] = collision = new ModuleCollision();
 	modules[15] = fade = new ModuleFadeToBlack();
+	modules[16] = fonts = new ModuleFonts();
 
 }	
 
