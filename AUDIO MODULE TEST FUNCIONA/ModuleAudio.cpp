@@ -3,9 +3,9 @@
 #include "Application.h"
 #include "ModuleAudio.h"
 
-#include "SDL_Mixer/include/SDL_mixer.h"
+#include "SDL_mixer/include/SDL_mixer.h"
 #include "SDL/include/SDL.h"
-#pragma comment(lib,"SDL_Mixer/SDL2_mixer.lib")
+#pragma comment(lib,"SDL_mixer/libx86/SDL2_mixer.lib")
 
 
 
@@ -80,8 +80,9 @@ bool ModuleAudio::CleanUp() {
 	for (uint i = 0; i < MAX_MUSIC; ++i) {
 
 		if (fxH[i] != nullptr) {
-
-			(fxH[i]);
+			
+			Mix_FreeChunk(fxH[i]);
+			
 			fxH[i] = nullptr;
 
 		}
@@ -99,11 +100,11 @@ bool ModuleAudio::CleanUp() {
 
 //LOAD MUSIC (OGG FILES)
 
-Mix_Music* const ModuleAudio::LoadMus(const char *direction)
+_Mix_Music* const ModuleAudio::LoadMus(const char *direction)
 {
 
 	//LOAD AUDIO MUSIC
-	Mix_Music*  backgroundmusic = nullptr;
+	 _Mix_Music*  backgroundmusic = nullptr;
 
 
 	backgroundmusic = Mix_LoadMUS(direction);
@@ -137,7 +138,7 @@ bool ModuleAudio::RemoveMusic(Mix_Music* music) {
 
 	if (music != nullptr) {
 
-		for (uint i; i < MAX_MUSIC; ++i) {
+		for (uint i=0; i < MAX_MUSIC; ++i) {
 
 			if (musicH[i] == music) {
 
@@ -161,7 +162,7 @@ bool ModuleAudio::RemoveFX(Mix_Chunk* fx) {
 
 	if (fx != nullptr) {
 
-		for (uint i; i < MAX_MUSIC; ++i) {
+		for (uint i=0; i < MAX_MUSIC; ++i) {
 
 			if (fxH[i] == fx) {
 

@@ -10,7 +10,7 @@
 #define MAX_FX 50
 
 
-struct Mix_Music;
+struct _Mix_Music;
 struct Mix_Chunk;
 
 class ModuleAudio :public Module {
@@ -22,7 +22,7 @@ public:
 	bool Init();
 	bool CleanUp();
 	//LOAD MUSIC AND FX
-	Mix_Music * const LoadMus(const char * direction);
+	_Mix_Music * const LoadMus(const char * direction);
 	Mix_Chunk *const LoadFX(const char *direction);
 
 
@@ -32,13 +32,13 @@ public:
 
 public:
 	//Create variables
-	Mix_Music* musicH[MAX_MUSIC];
+	_Mix_Music* musicH[MAX_MUSIC];
 	Mix_Chunk* fxH[MAX_FX];
 
 
 
 	//REMOVE MUSIC AND FX
-	bool RemoveMusic(Mix_Music* music);
+	bool RemoveMusic(_Mix_Music* music);
 	bool RemoveFX(Mix_Chunk* fx);
 
 
