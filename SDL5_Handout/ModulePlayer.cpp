@@ -72,11 +72,11 @@ ModulePlayer::ModulePlayer()
 
 	//Ryu jump
 	jump.PushBack({ 19, 847, 53, 85 });
-	jump.PushBack({ 100, 823, 56, 104 });
-	jump.PushBack({ 176, 805, 50, 89 });
-	jump.PushBack({ 251, 798, 54, 77 });
-	jump.PushBack({ 327, 813, 48, 70 });
-	jump.PushBack({ 397, 810, 48, 89 });
+	jump.PushBack({ 100, 823, 56, 110 });
+	jump.PushBack({ 176, 805, 50, 120 });
+	jump.PushBack({ 251, 798, 54, 130 });
+	jump.PushBack({ 327, 813, 48, 120 });
+	jump.PushBack({ 397, 810, 48,110 });
 	jump.PushBack({ 461, 819, 59, 109 });
 	jump.loop = true;
 	jump.speed = 0.1f;
