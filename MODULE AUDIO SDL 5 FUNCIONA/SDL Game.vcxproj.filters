@@ -80,9 +80,6 @@
     <ClInclude Include="ModuleCollision.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleFonts.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
     <ClInclude Include="ModuleAudio.h">
       <Filter>Modules</Filter>
     </ClInclude>
@@ -143,9 +140,6 @@
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="ModuleCollision.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleFonts.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="ModuleAudio.cpp">
