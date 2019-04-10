@@ -41,7 +41,7 @@ bool ModuleCongratScreen::CleanUp()
 // Update: draw background
 update_status ModuleCongratScreen::Update()
 {
-	App->render->Blit(graphics, 0, 0, &congrat_screen, 0.75f);
+	App->render->Blit(graphics, 0, 0, &congrat_screen, 0.75f,true);
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 
 		App->fade->FadeToBlack(App->congrat_screen, App->welcome_screen, 2.5f);

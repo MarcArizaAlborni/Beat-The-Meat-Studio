@@ -129,33 +129,44 @@ bool ModuleRender::CleanUp()
 }
 
 // Blit to screen
-bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, float speed)
+bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, float speed, bool use_camera)
 {
-	bool ret = true;
-	SDL_Rect rect;
-	rect.x = (int)(camera.x * speed) + x * SCREEN_SIZE;
-	rect.y = (int)(camera.y * speed) + y * SCREEN_SIZE;
+	
+		bool ret = true;
+		SDL_Rect rect;
 
-	if(section != NULL)
-	{
-		rect.w = section->w;
-		rect.h = section->h;
-	}
-	else
-	{
-		SDL_QueryTexture(texture, NULL, NULL, &rect.w, &rect.h);
-	}
+		if (use_camera)
+		{
+			rect.x = (int)(-camera.x * speed) + x * SCREEN_SIZE;
+			rect.y = (int)(-camera.y * speed) + y * SCREEN_SIZE;
+		}
+		else
+		{
+			rect.x = x * SCREEN_SIZE;
+			rect.y = y * SCREEN_SIZE;
+		}
 
-	rect.w *= SCREEN_SIZE;
-	rect.h *= SCREEN_SIZE;
+		if (section != NULL)
+		{
+			rect.w = section->w;
+			rect.h = section->h;
+		}
+		else
+		{
+			SDL_QueryTexture(texture, NULL, NULL, &rect.w, &rect.h);
+		}
 
-	if(SDL_RenderCopy(renderer, texture, section, &rect) != 0)
-	{
-		LOG("Cannot blit to screen. SDL_RenderCopy error: %s", SDL_GetError());
-		ret = false;
-	}
+		rect.w *= SCREEN_SIZE;
+		rect.h *= SCREEN_SIZE;
 
-	return ret;
+		if (SDL_RenderCopy(renderer, texture, section, &rect) != 0)
+		{
+			LOG("Cannot blit to screen. SDL_RenderCopy error: %s", SDL_GetError());
+			ret = false;
+		}
+
+		return ret;
+	
 }
 
 //Renders the collision quads
