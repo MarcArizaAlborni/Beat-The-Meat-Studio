@@ -122,7 +122,7 @@ bool ModulePlayer::CleanUp()
 update_status ModulePlayer::Update()
 {
 	Animation* current_animation = &idle;
-
+	//MOVE FWD
 	if(App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 	{
 		position.x += speed;
@@ -134,7 +134,7 @@ update_status ModulePlayer::Update()
 			current_animation = &forward;
 		}
 	}
-
+	//MOVE BCKWD
 	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
 	{
 		position.x -= speed;
@@ -146,8 +146,8 @@ update_status ModulePlayer::Update()
 			current_animation = &backward;
 		}
 	}
-
-	if (App->input->keyboard[SDL_SCANCODE_Q] == KEY_STATE::KEY_REPEAT)
+	//LIGHT PUNCH  I
+	if (App->input->keyboard[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT)
 	{
 		current_animation = &lightPunch;
 
@@ -169,11 +169,11 @@ update_status ModulePlayer::Update()
 		}
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_DOWN)
 	{
 		current_animation = &jump;
 
-		if (current_animation != &jump)
+		if (current_animation != &jump )
 		{
 			jump.Reset();
 			current_animation = &jump;
