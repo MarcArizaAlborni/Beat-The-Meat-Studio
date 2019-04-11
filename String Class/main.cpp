@@ -5,62 +5,62 @@ using namespace std;
 
 class String {
 private:
-	int l = 0;
-	char* buffer = nullptr;
+	int value = 0;
+	char* string2 = nullptr;
 public:
 	// Contructors and destructors
 	String() {
-		buffer = nullptr;
-		l = 0;
+		string2 = nullptr;
+		value = 0;
 	}
 	String(const char* str) {
 		
-		buffer = new char[strlen(str) +1];
-		strcpy(buffer, str);
-		l = strlen(buffer);
+		string2 = new char[strlen(str) +1];
+		strcpy(string2, str);
+		value = strlen(string2);
 	}
 	String(const String &str) {
-		buffer = new char[str.size() +1];
-		strcpy(buffer, str.rStr());
-		l = strlen(str.rStr());
+		string2 = new char[str.size() +1];
+		strcpy(string2, str.rStr());
+		value = strlen(str.rStr());
 	}
 	~String() {
-		delete[] buffer;
+		delete[] string2;
 	}
 	// Methods
 	const char* rStr() const {
-		return buffer;
+		return string2;
 	}
 	bool empty() const{
-		return (l == 0);
+		return (value == 0);
 	}
 	int size()const {
-		return l;
+		return value;
 	}
 	void clear() {
-		delete[] buffer;
-		l = 0;
+		delete[] string2;
+		value = 0;
 	}
 	// Operators
 	void operator= (const String &str) {
-		delete[] buffer; //just in case it was pointing to something already
-		buffer = new char[strlen(str.rStr()) + 1];
-		strcpy(buffer, str.rStr());
-		l = strlen(buffer);
+		delete[] string2; //just in case it was pointing to something already
+		string2 = new char[strlen(str.rStr()) + 1];
+		strcpy(string2, str.rStr());
+		value = strlen(string2);
 	}
 	void operator+= (const String &str) {
-		char* array = new char[l + str.l +1];
-		strcpy(array, buffer);
+		char* array = new char[value + str.value +1];
+		strcpy(array,string2);
 		strcat(array, str.rStr());
-		delete[] buffer;
-		buffer = array;
-		l = strlen(buffer);
+		delete[] string2;
+		string2 = array;
+		value = strlen(string2);
 	}
 	bool operator==(const String &str)const {
-		return (strcmp(buffer, str.rStr()) == 0);
+		return (strcmp(string2, str.rStr()) == 0);
 	}
 	bool operator!=(const String &str)const {
-		return (strcmp(buffer, str.rStr()) != 0);
+		return (strcmp(string2, str.rStr()) != 0);
 	}
 };
 
@@ -71,16 +71,16 @@ int main() {
 	String str2;
 	str1 = "Operator= test";
 	cout << str1.rStr() << endl;
-	str2 = "concatenations";
-	str1 = "Hellow world of ";
+	str2 = "Totoro: The Battle";
+	str1 = "PacoPepe VS ";
 	str1 += str2; //If you use "hola", it will temporarily create a String class which will use it's contructor and destructor.
-	cout << str1.rStr() << endl << "Size test: "<< str1.size() << endl;
+	cout << str1.rStr() << endl << "String Size: "<< str1.size() << endl;
 	str1.clear();
 	if (str1.empty()) {
 		cout << "String is empty" << endl;
 	}
 	else {
-		cout << "String is not empty" << endl;
+		cout << "FULL STRING" << endl;
 	}
 
 
