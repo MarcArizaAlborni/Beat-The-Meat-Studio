@@ -10,6 +10,7 @@
 #include "MemLeaks.h"
 #include "ModuleWelcomeScreen.h"
 #include "ModuleWarningScreen.h"
+#include "ModuleStartScreen.h"
 
 ModuleWelcomeScreen::ModuleWelcomeScreen()
 {
@@ -44,7 +45,7 @@ update_status ModuleWelcomeScreen::Update()
 	App->render->Blit(graphics, 0, 0, &welcome_screen, 0.75f); 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 
-		App->fade->FadeToBlack(App->welcome_screen, App->warning_screen, 2.5f);
+		App->fade->FadeToBlack(App->welcome_screen, App->start_screen,1.0f);
 
 	}
 	return UPDATE_CONTINUE;

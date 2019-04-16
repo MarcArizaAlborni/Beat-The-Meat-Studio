@@ -45,7 +45,7 @@ update_status ModuleStartScreen::Update()
 	App->render->Blit(graphics, 0, 0, &start_screen, 0.75f);
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 
-		App->fade->FadeToBlack(App->start_screen, App->scene_ken, 2.5f);
+		App->fade->FadeToBlack(App->start_screen, App->scene_ken, 1.0f);
 
 	}
 	return UPDATE_CONTINUE;

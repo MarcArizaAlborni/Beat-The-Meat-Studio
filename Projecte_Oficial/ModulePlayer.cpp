@@ -10,7 +10,7 @@
 #include <stdio.h>
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
-int speed = 1;
+int speed = 2;
 
 ModulePlayer::ModulePlayer()
 {
@@ -202,6 +202,17 @@ update_status ModulePlayer::Update()
 		App->particles->hadouken.life = 2000;
 	}
 
+	//Screen Limits super cutres pero efectius
+	if (position.x<=0) 
+	{
+		position.x = 0;
+	}
+	if (position.x >= SCREEN_WIDTH-60) { //Hardcodeado una mica, s'haura de revisar
+		position.x = SCREEN_WIDTH-60;
+	}
+
+
+
 	// TODO 7.3: Update collider position to player position
 	player_collider->SetPos(position.x, position.y - 93);
 	
@@ -212,7 +223,7 @@ update_status ModulePlayer::Update()
 
 	App->render->Blit(graphics, position.x, position.y - r.h, &r);
 
-	App->fonts->BlitText(100, 100, font_score, "helloworld");
+	//App->fonts->BlitText(100, 100, font_score, "h");
 	
 	return UPDATE_CONTINUE;
 }

@@ -54,8 +54,8 @@ bool ModuleSceneHonda::Start()
 	App->collision->Enable();
 
 	// Colliders ---
-	App->collision->AddCollider({ 4, 0, 50, 400 }, COLLIDER_WALL);
-	App->collision->AddCollider({ 340, 0, 50, 400 }, COLLIDER_WALL);
+	/*App->collision->AddCollider({ 4, 0, 50, 400 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 340, 0, 50, 400 }, COLLIDER_WALL);*/
 	
 	return ret;
 }
@@ -87,7 +87,7 @@ update_status ModuleSceneHonda::Update()
 	// TODO 2: make so pressing SPACE the KEN stage is loaded
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 
-		App->fade->FadeToBlack(App->scene_honda, App->congrat_screen, 2.5f);
+		App->fade->FadeToBlack(App->scene_honda, App->congrat_screen,1.0f);
 
 	}
 

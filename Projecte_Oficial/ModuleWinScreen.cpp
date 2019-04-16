@@ -10,7 +10,8 @@
 #include "MemLeaks.h"
 #include "ModuleSceneHonda.h"
 #include "ModuleWinScreen.h"
-
+#include "ModuleWelcomeScreen.h"
+#include "ModuleStartScreen.h"
 ModuleWinScreen::ModuleWinScreen()
 {
 	win_screen.x = 0;
@@ -44,7 +45,7 @@ update_status ModuleWinScreen::Update()
 	App->render->Blit(graphics, 0, 0, &win_screen, 0.75f);
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 
-		App->fade->FadeToBlack(App->win_screen, App->scene_honda, 2.5f);
+		App->fade->FadeToBlack(App->win_screen, App->start_screen, 1.0f);
 
 	}
 	return UPDATE_CONTINUE;

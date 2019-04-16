@@ -67,8 +67,8 @@ bool ModuleSceneKen::Start()
 	App->collision->Enable();
 
 	// Colliders ---
-	App->collision->AddCollider({ 4, 0, 50, 400 }, COLLIDER_WALL);
-	App->collision->AddCollider({ 340, 0, 50, 400 }, COLLIDER_WALL);
+	//App->collision->AddCollider({ 4, 0, 50, 400 }, COLLIDER_WALL);
+	//App->collision->AddCollider({ 340, 0, 50, 400 }, COLLIDER_WALL);
 
 	return true;
 }
@@ -108,11 +108,16 @@ update_status ModuleSceneKen::Update()
 	
 	App->render->Blit(graphics, 0, 170, &ground);
 
-	// TODO 2: make so pressing SPACE the HONDA stage is loaded
 
+
+
+
+
+
+	// TODO 2: make so pressing SPACE the HONDA stage is loaded
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 
-		App->fade->FadeToBlack(App->scene_ken, App->win_screen, 2.5f);
+		App->fade->FadeToBlack(App->scene_ken, App->win_screen, 1.0f);
 
 	}
 	return UPDATE_CONTINUE;

@@ -12,6 +12,7 @@
 #include "ModuleIcoinScreen.h"
 #include "ModuleStartScreen.h"
 #include "Animation.h"
+#include "ModuleSceneKen.h"
 
 ModuleIcoinScreen::ModuleIcoinScreen()
 {
@@ -50,7 +51,7 @@ update_status ModuleIcoinScreen::Update()
 	App->render->Blit(graphics, 0, 0, &icoin_screen, 0.75f);
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 
-		App->fade->FadeToBlack(App->icoin_screen, App->start_screen, 2.5f);
+		App->fade->FadeToBlack(App->icoin_screen, App->scene_ken, 1.0f);
 
 	}
 	return UPDATE_CONTINUE;

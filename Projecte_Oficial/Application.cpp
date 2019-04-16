@@ -56,9 +56,9 @@ bool Application::Init()
 	scene_ken->Disable();
 	congrat_screen->Disable();
 	icoin_screen->Disable();
-	start_screen->Disable();
 	warning_screen->Disable();
 	win_screen->Disable();
+	welcome_screen->Disable();
 
 	for(int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->Init();
