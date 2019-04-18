@@ -89,7 +89,7 @@ ModulePlayer::ModulePlayer()
 	hadouken.PushBack({244, 1552, 90, 83});
 	hadouken.PushBack({357, 1558, 107, 77});
 	hadouken.loop = true;
-	hadouken.speed = 0.15f;
+	hadouken.speed = 0.1f;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -184,7 +184,7 @@ update_status ModulePlayer::Update()
 		}
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_F] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keyboard[SDL_SCANCODE_R] == KEY_STATE::KEY_REPEAT)
 	{
 		current_animation = &hadouken;
 
