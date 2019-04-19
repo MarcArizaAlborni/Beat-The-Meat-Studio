@@ -203,13 +203,13 @@ update_status ModulePlayer::Update()
 	}
 
 	//Screen Limits super cutres pero efectius
-	if (position.x<=0) 
-	{
-		position.x = 0;
-	}
-	if (position.x >= SCREEN_WIDTH-60) { //Hardcodeado una mica, s'haura de revisar
-		position.x = SCREEN_WIDTH-60;
-	}
+	//if (position.x<=0) 
+	//{
+	//	position.x = 0;
+	//}
+	//if (position.x >= SCREEN_WIDTH-60) { //Hardcodeado una mica, s'haura de revisar
+	//	position.x = SCREEN_WIDTH-60;
+	//}
 
 
 
