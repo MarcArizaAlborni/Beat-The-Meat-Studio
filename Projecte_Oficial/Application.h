@@ -1,6 +1,6 @@
 #ifndef __APPLICATION_H__
 #define __APPLICATION_H__
-
+#define _DEBUG
 #include "Globals.h"
 
 #define NUM_MODULES 17

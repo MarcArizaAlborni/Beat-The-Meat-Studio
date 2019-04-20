@@ -69,7 +69,6 @@ bool ModuleSceneKen::Start()
 	// Colliders ---
 	//App->collision->AddCollider({ 4, 0, 50, 400 }, COLLIDER_WALL);
 	//App->collision->AddCollider({ 340, 0, 50, 400 }, COLLIDER_WALL);
-
 	return true;
 }
 

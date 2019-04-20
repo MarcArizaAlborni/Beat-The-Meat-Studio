@@ -1,9 +1,12 @@
+
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleRender.h"
 #include "ModuleWindow.h"
 #include "ModuleInput.h"
 #include "SDL/include/SDL.h"
+#include "ModuleSceneHonda.h"
+#include "ModuleSceneKen.h"
 
 ModuleRender::ModuleRender() : Module()
 {
@@ -52,8 +55,78 @@ update_status ModuleRender::Update()
 	int speed = 3;
 	int still = 0;
 
-#ifdef _DEBUG
-	if (App->input->keyboard[SDL_SCANCODE_UP] == 1)
+	/*if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_REPEAT) {
+		
+		camera.y += speed;
+	}
+	if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_REPEAT) {
+
+		camera.y -= speed;
+	}
+	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_REPEAT) {
+
+		camera.x += speed;
+	}
+	if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_REPEAT) {
+
+		camera.x -= speed;
+	}*/
+	
+
+//#ifdef _DEBUG
+	if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_REPEAT)
+	{
+		if (App->scene_honda->IsEnabled() || App->scene_ken->IsEnabled())
+		{
+			camera.y += speed;
+		}
+		else
+		{
+			camera.y += still;
+			
+		}
+	}
+
+	if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_REPEAT)
+	{
+		if (App->scene_honda->IsEnabled() || App->scene_ken->IsEnabled())
+		{
+			camera.y -= speed;
+		}
+		else
+		{
+			camera.y -= still;
+
+		}
+	}
+
+	if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_REPEAT)
+	{
+		if (App->scene_honda->IsEnabled() || App->scene_ken->IsEnabled())
+		{
+			camera.x -= speed;
+		}
+		else
+		{
+			camera.x -= still;
+
+		}
+	}
+
+	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_REPEAT)
+	{
+		if (App->scene_honda->IsEnabled() || App->scene_ken->IsEnabled())
+		{
+			camera.x += speed;
+		}
+		else
+		{
+			camera.x += still;
+
+		}
+	}
+
+	/*if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_REPEAT)
 	{
 		if (App->welcome_screen != nullptr || App->warning_screen != nullptr || App->icoin_screen != nullptr || App->start_screen != nullptr || App->congrat_screen != nullptr)
 		{
@@ -66,7 +139,7 @@ update_status ModuleRender::Update()
 		}
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_DOWN] == 1)
+	if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_REPEAT)
 	{
 		if (App->welcome_screen != nullptr || App->warning_screen != nullptr || App->icoin_screen != nullptr || App->start_screen != nullptr || App->congrat_screen != nullptr)
 		{
@@ -79,7 +152,7 @@ update_status ModuleRender::Update()
 		}
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_LEFT] == 1)
+	if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_REPEAT)
 	{
 		if (App->welcome_screen != nullptr || App->warning_screen != nullptr || App->icoin_screen != nullptr || App->start_screen != nullptr || App->congrat_screen != nullptr)
 		{
@@ -92,7 +165,7 @@ update_status ModuleRender::Update()
 		}
 	}
 	
-	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == 1)
+	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_REPEAT)
 	{
 		if (App->welcome_screen != nullptr || App->warning_screen != nullptr || App->icoin_screen != nullptr || App->start_screen != nullptr || App->congrat_screen != nullptr)
 		{
@@ -103,8 +176,8 @@ update_status ModuleRender::Update()
 		{
 			camera.x -= speed;
 		}
-	}
-#endif
+	}*/
+//#endif
 	return update_status::UPDATE_CONTINUE;
 }
 
