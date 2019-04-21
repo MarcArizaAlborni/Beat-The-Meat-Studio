@@ -8,6 +8,7 @@
 #include "Animation.h"
 #include "ModuleFonts.h"
 #include <stdio.h>
+
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
 int speed = 2;
@@ -61,7 +62,7 @@ ModulePlayer::ModulePlayer()
 	lightPunch.PushBack({ 108, 272, 92, 91 } );
 	lightPunch.PushBack({ 16, 272, 63, 91 });
 	lightPunch.loop = true;
-	lightPunch.speed = 0.2f;
+	lightPunch.speed = 0.1f;
 
 	//Ryu light kick
 	lightKick.PushBack({ 12, 657, 60, 94 });
@@ -125,6 +126,7 @@ bool ModulePlayer::CleanUp()
 // Update: draw background
 update_status ModulePlayer::Update()
 {
+	
 	Animation* current_animation = &idle;
 	//MOVE FWD
 	if(App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
@@ -150,18 +152,25 @@ update_status ModulePlayer::Update()
 			current_animation = &backward;
 		}
 	}
+	
+	
 	//LIGHT PUNCH  I
 	if (App->input->keyboard[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT)
 	{
+		
+		
 		current_animation = &lightPunch;
 
+		
 		if (current_animation != &lightPunch)
 		{
 			lightPunch.Reset();
 			current_animation = &lightPunch;
 		}
+	
 	}
 
+	
 	if (App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_REPEAT)
 	{
 		current_animation = &lightKick;
@@ -173,7 +182,7 @@ update_status ModulePlayer::Update()
 		}
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_DOWN)
+	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
 	{
 		current_animation = &jump;
 
@@ -183,19 +192,33 @@ update_status ModulePlayer::Update()
 			current_animation = &jump;
 		}
 	}
-
+	bool finishedhadouken = false;
 	if (App->input->keyboard[SDL_SCANCODE_R] == KEY_STATE::KEY_REPEAT)
 	{
+		
 		current_animation = &hadouken;
+
 
 		if (current_animation != &hadouken)
 		{
 			hadouken.Reset();
 			current_animation = &hadouken;
 		}
-	}
+		
 
-	if (App->input->keyboard[SDL_SCANCODE_R] == KEY_STATE::KEY_DOWN)
+	}
+	/*if (App->input->keyboard[SDL_SCANCODE_R] == KEY_STATE::KEY_UP)
+	{
+		finishedhadouken = true;
+	}*/
+
+	//if (finishedhadouken = true) {
+
+
+	//	current_animation = &hadouken;
+	//}
+
+	if (App->input->keyboard[SDL_SCANCODE_R] == KEY_STATE::KEY_UP ) // AIXO ha de ser key UP perque el projectil no apareix fins que tota l'animacio del hadouken s'ha fet.
 	{
 		App->particles->AddParticle(App->particles->hadouken, position.x + 25, position.y - 70, COLLIDER_PLAYER_SHOT);
 		App->particles->hadouken.speed.x = 5;
