@@ -156,38 +156,29 @@ update_status ModulePlayer::Update()
 	
 	int i=0;
 	//LIGHT PUNCH  I
-	if (App->input->keyboard[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keyboard[SDL_SCANCODE_I] == KEY_STATE::KEY_DOWN)
 	{
 		
 		i = 1;
-			//current_animation = &lightPunch;
+		
+		
+		current_animation = &lightPunch;
 			
 
-			/*if (current_animation != &lightPunch)
+			if (current_animation != &lightPunch)
 			{
 				lightPunch.Reset();
 				current_animation = &lightPunch;
 
-			}*/
+			}
 			
 		
+
 	}
 	
 	
-	while (i < 4 && i > 0) {
 
-		current_animation = &lightPunch;
-		++i;
-
-		if (current_animation != &lightPunch)
-		{
-			lightPunch.Reset();
-			current_animation = &lightPunch;
-
-		}
-
-		
-    }
+	
 
 	
 	
