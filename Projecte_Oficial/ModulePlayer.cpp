@@ -9,6 +9,7 @@
 #include "ModuleFonts.h"
 #include <stdio.h>
 
+
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
 int speed = 2;
@@ -61,8 +62,8 @@ ModulePlayer::ModulePlayer()
 	lightPunch.PushBack({ 16, 272, 63, 91 });
 	lightPunch.PushBack({ 108, 272, 92, 91 } );
 	lightPunch.PushBack({ 16, 272, 63, 91 });
-	lightPunch.loop = false;
-	lightPunch.speed = 0.15f;
+	lightPunch.loop = true;
+	lightPunch.speed = 0.09f;
 
 	//Ryu light kick
 	lightKick.PushBack({ 12, 657, 60, 94 });
@@ -153,28 +154,42 @@ update_status ModulePlayer::Update()
 		}
 	}
 	
-	int i = 0;
+	int i=0;
 	//LIGHT PUNCH  I
-	if (App->input->keyboard[SDL_SCANCODE_I] == KEY_STATE::KEY_DOWN)
+	if (App->input->keyboard[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT)
 	{
 		
-		
-			current_animation = &lightPunch;
-			++i;
+		i = 1;
+			//current_animation = &lightPunch;
+			
 
-			if (current_animation != &lightPunch)
+			/*if (current_animation != &lightPunch)
 			{
 				lightPunch.Reset();
 				current_animation = &lightPunch;
 
-			}
+			}*/
 			
 		
 	}
 	
 	
-	
+	while (i < 4 && i > 0) {
 
+		current_animation = &lightPunch;
+		++i;
+
+		if (current_animation != &lightPunch)
+		{
+			lightPunch.Reset();
+			current_animation = &lightPunch;
+
+		}
+
+		
+    }
+
+	
 	
 	if (App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_REPEAT)
 	{
