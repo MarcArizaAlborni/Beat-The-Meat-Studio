@@ -61,8 +61,8 @@ ModulePlayer::ModulePlayer()
 	lightPunch.PushBack({ 16, 272, 63, 91 });
 	lightPunch.PushBack({ 108, 272, 92, 91 } );
 	lightPunch.PushBack({ 16, 272, 63, 91 });
-	lightPunch.loop = true;
-	lightPunch.speed = 0.1f;
+	lightPunch.loop = false;
+	lightPunch.speed = 0.15f;
 
 	//Ryu light kick
 	lightKick.PushBack({ 12, 657, 60, 94 });
@@ -82,7 +82,7 @@ ModulePlayer::ModulePlayer()
 	jump.PushBack({ 397, 810, 48,110 });
 	jump.PushBack({ 461, 819, 59, 109 });
 	jump.loop = true;
-	jump.speed = 0.1f;
+	jump.speed = 0.15f;
 
 	//Ryu Hadouken movement
 	hadouken.PushBack({34, 1545, 74, 90});
@@ -153,22 +153,27 @@ update_status ModulePlayer::Update()
 		}
 	}
 	
-	
+	int i = 0;
 	//LIGHT PUNCH  I
-	if (App->input->keyboard[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keyboard[SDL_SCANCODE_I] == KEY_STATE::KEY_DOWN)
 	{
 		
 		
-		current_animation = &lightPunch;
-
-		
-		if (current_animation != &lightPunch)
-		{
-			lightPunch.Reset();
 			current_animation = &lightPunch;
-		}
-	
+			++i;
+
+			if (current_animation != &lightPunch)
+			{
+				lightPunch.Reset();
+				current_animation = &lightPunch;
+
+			}
+			
+		
 	}
+	
+	
+	
 
 	
 	if (App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_REPEAT)
@@ -192,7 +197,7 @@ update_status ModulePlayer::Update()
 			current_animation = &jump;
 		}
 	}
-	bool finishedhadouken = false;
+	
 	if (App->input->keyboard[SDL_SCANCODE_R] == KEY_STATE::KEY_REPEAT)
 	{
 		
