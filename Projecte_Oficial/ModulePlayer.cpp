@@ -24,12 +24,11 @@ ModulePlayer::ModulePlayer()
 	score = 0;
 
 	// idle animation (arcade sprite sheet)
-	idle.PushBack({7, 14, 60, 90});
-	idle.PushBack({95, 15, 60, 89});
-	idle.PushBack({184, 14, 60, 90});
-	idle.PushBack({276, 11, 60, 93});
-	idle.PushBack({366, 12, 60, 92});
-	idle.speed = 0.2f;
+	idle.PushBack({25, 54, 68, 100});
+	idle.PushBack({93, 54, 67, 100});
+	idle.PushBack({160, 54, 68, 100});
+	idle.PushBack({223, 54, 67, 100});
+	idle.speed = 0.15f;
 
 	// walk forward animation (arcade sprite sheet)
 	//forward.frames.PushBack({9, 136, 53, 83});
@@ -53,7 +52,6 @@ ModulePlayer::ModulePlayer()
 	backward.PushBack({ 628, 129, 59, 90 });
 	backward.PushBack({ 713, 128, 57, 91 });
 	backward.PushBack({ 797, 126, 58, 91 });
-	//backward.PushBack({ 883, 128, 58, 91 }); 
 	backward.PushBack({ 974, 129, 58, 89 });
 	backward.loop = true;
 	backward.speed = 0.1f;
@@ -102,7 +100,7 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player textures");
 	bool ret = true;
-	graphics = App->textures->Load("ryu.png"); // arcade version
+	graphics = App->textures->Load("RyuP1.png"); // JA TE LA FOTO BONA
 
 	position.x = 100;
 	position.y = 220;
