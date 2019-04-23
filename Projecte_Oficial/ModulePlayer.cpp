@@ -32,45 +32,39 @@ ModulePlayer::ModulePlayer()
 
 	// walk forward animation (arcade sprite sheet)
 	//forward.frames.PushBack({9, 136, 53, 83});
-	/*forward.PushBack({78, 131, 60, 88});
-	forward.PushBack({162, 128, 64, 92});
-	forward.PushBack({259, 128, 63, 90});
-	forward.PushBack({352, 128, 54, 91});
-	forward.PushBack({432, 131, 50, 89});
-	forward.speed = 0.1f;*/
+	
+	//Walk FORWARD Animation
+	forward.PushBack({ 27,250, 64, 92 });
+	forward.PushBack({ 92, 250, 64, 92 });
+	forward.PushBack({ 160, 248, 63, 90 });
+	forward.PushBack({ 236, 250, 64, 91 });
+	forward.PushBack({ 306, 250, 64, 89 });
+	forward.PushBack({ 369, 250, 64, 89 });
 
-	forward.PushBack({ 78, 131, 60, 88 });
-	forward.PushBack({ 162, 128, 64, 92 });
-	forward.PushBack({ 259, 128, 63, 90 });
-	forward.PushBack({ 352, 128, 54, 91 });
-	forward.PushBack({ 432, 131, 50, 89 });
 	forward.loop = true;
 	forward.speed = 0.1f;
 
 	//Walk backwards animation
-	backward.PushBack({ 542, 131, 61, 87 });
-	backward.PushBack({ 628, 129, 59, 90 });
-	backward.PushBack({ 713, 128, 57, 91 });
-	backward.PushBack({ 797, 126, 58, 91 });
-	backward.PushBack({ 974, 129, 58, 89 });
+	backward.PushBack({ 27, 155, 67, 94 });
+	backward.PushBack({ 94, 155, 67, 94 });
+	backward.PushBack({ 162, 155, 67, 94 });
+	backward.PushBack({ 236, 155, 67, 94 });
+	backward.PushBack({ 298, 155, 67, 94});
+	backward.PushBack({ 362, 155, 67, 94 });
 	backward.loop = true;
 	backward.speed = 0.1f;
 
 	//Ryu light punch
-	lightPunch.PushBack({ 16, 272, 63, 91 });
-	lightPunch.PushBack({ 108, 272, 92, 91 } );
-	lightPunch.PushBack({ 16, 272, 63, 91 });
+	lightPunch.PushBack({ 34, 1368, 70, 96 });
+	lightPunch.PushBack({ 112, 1368, 101, 96 } );
 	lightPunch.loop = true;
 	lightPunch.speed = 0.09f;
 
 	//Ryu light kick
-	lightKick.PushBack({ 12, 657, 60, 94 });
-	lightKick.PushBack({ 95, 657, 48, 94 });
-	lightKick.PushBack({ 167, 658, 80, 93 });
-	lightKick.PushBack({ 95, 657, 48, 94 });
-	lightKick.PushBack({ 12, 657, 60, 94 });
+	lightKick.PushBack({ 35, 1586, 69, 97 });
+	lightKick.PushBack({ 125, 1585, 120, 98 });
 	lightKick.loop = true;
-	lightKick.speed = 0.15f;
+	lightKick.speed = 0.05f;
 
 	//Ryu jump
 	jump.PushBack({ 19, 847, 53, 85 });
@@ -79,7 +73,6 @@ ModulePlayer::ModulePlayer()
 	jump.PushBack({ 251, 798, 54, 130 });
 	jump.PushBack({ 327, 813, 48, 120 });
 	jump.PushBack({ 397, 810, 48,110 });
-	jump.PushBack({ 461, 819, 59, 109 });
 	jump.loop = true;
 	jump.speed = 0.15f;
 
@@ -154,7 +147,7 @@ update_status ModulePlayer::Update()
 	
 	int i=0;
 	//LIGHT PUNCH  I
-	if (App->input->keyboard[SDL_SCANCODE_I] == KEY_STATE::KEY_DOWN)
+	if (App->input->keyboard[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT)
 	{
 		
 		i = 1;
