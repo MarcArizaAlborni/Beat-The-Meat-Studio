@@ -281,15 +281,6 @@ update_status ModulePlayer::PreUpdate() {
 				currentstate = idlestate;
 				jump.Reset();
 			}
-				
-				
-			
-
-				
-
-			
-
-
 		}
 
 		//// AQUEST PETA NO SE PERQUE ////
@@ -298,13 +289,11 @@ update_status ModulePlayer::PreUpdate() {
 		//if (currentstate = hadoukenstate){
 
 		//	if (current_animation->Finished()) {
-
-
-		//	currentstate = idlestate;
+		//		currentstate = idlestate;
 		//	hadouken.Reset();
 
 		//		//GENERACIO PROJECTIL 
-		//    }
+		//   }
 
 
 		//}
