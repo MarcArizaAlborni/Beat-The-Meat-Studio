@@ -77,7 +77,7 @@
     
 
 - Minimum debug functionality: god mode, collision boxes, direct win/lose.
-  - Time estimated:
+  - Time estimated: 4h
   - Time taken:
 
 

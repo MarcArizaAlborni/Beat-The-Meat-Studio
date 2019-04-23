@@ -3,7 +3,7 @@
 #define _DEBUG
 #include "Globals.h"
 
-#define NUM_MODULES 17
+#define NUM_MODULES 18
 
 class ModuleWindow;
 class ModuleInput;
@@ -21,6 +21,7 @@ class ModuleIcoinScreen;
 class ModuleStartScreen;
 class ModuleWarningScreen;
 class ModuleWinScreen;
+class ModuleLoseScreen;
 class ModuleFonts;
 
 class Module;
@@ -46,6 +47,7 @@ public:
 	ModuleIcoinScreen* icoin_screen;
 	ModuleStartScreen* start_screen;
 	ModuleWinScreen * win_screen;
+	ModuleLoseScreen * lose_screen;
 	ModuleCongratScreen * congrat_screen;
 	ModuleFonts* fonts;
 

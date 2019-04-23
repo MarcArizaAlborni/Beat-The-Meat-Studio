@@ -57,6 +57,11 @@ update_status ModuleInput::PreUpdate()
 	if (keyboard[SDL_SCANCODE_ESCAPE])
 		return update_status::UPDATE_STOP;
 
+	if (keyboard[SDL_SCANCODE_G])
+	{
+
+	}
+
 	return update_status::UPDATE_CONTINUE;
 }
 

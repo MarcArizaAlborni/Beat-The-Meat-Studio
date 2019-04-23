@@ -11,6 +11,7 @@
 #include "ModuleParticles.h"
 #include "ModuleCollision.h"
 #include "ModuleWinScreen.h"
+#include "ModuleLoseScreen.h"
 #include "MemLeaks.h"
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
@@ -114,10 +115,20 @@ update_status ModuleSceneKen::Update()
 
 
 	// TODO 2: make so pressing SPACE the HONDA stage is loaded
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
-
+	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) 
+	{
 		App->fade->FadeToBlack(App->scene_ken, App->win_screen, 1.0f);
-
 	}
+
+	if (App->input->keyboard[SDL_SCANCODE_V] == 1) //Insta-Win Input Button
+	{
+		App->fade->FadeToBlack(App->scene_ken, App->win_screen, 1.0f);
+	}
+
+	if (App->input->keyboard[SDL_SCANCODE_X] == 1) //Insta-Lose Input Button
+	{
+		App->fade->FadeToBlack(App->scene_ken, App->lose_screen, 1.0f);
+	}
+
 	return UPDATE_CONTINUE;
 }

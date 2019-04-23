@@ -16,7 +16,9 @@
 #include "ModuleStartScreen.h"
 #include "ModuleWarningScreen.h"
 #include "ModuleWinScreen.h"
+#include "ModuleLoseScreen.h"
 #include "ModuleFonts.h"
+
 Application::Application()
 {
 	modules[0] = window = new ModuleWindow();
@@ -30,12 +32,13 @@ Application::Application()
 	modules[8] = scene_honda = new ModuleSceneHonda();
 	modules[9] = scene_ken = new ModuleSceneKen();
 	modules[10] = win_screen = new ModuleWinScreen();
-	modules[11] = player = new ModulePlayer();
-	modules[12] = congrat_screen = new ModuleCongratScreen();
-	modules[13] = particles = new ModuleParticles();
-	modules[14] = collision = new ModuleCollision();
-	modules[15] = fade = new ModuleFadeToBlack();
-	modules[16] = fonts = new ModuleFonts();
+	modules[11] = lose_screen = new ModuleLoseScreen();
+	modules[12] = player = new ModulePlayer();
+	modules[13] = congrat_screen = new ModuleCongratScreen();
+	modules[14] = particles = new ModuleParticles();
+	modules[15] = collision = new ModuleCollision();
+	modules[16] = fade = new ModuleFadeToBlack();
+	modules[17] = fonts = new ModuleFonts();
 
 }	
 
@@ -60,6 +63,7 @@ bool Application::Init()
 	warning_screen->Disable();
 	win_screen->Disable();
 	welcome_screen->Disable();
+	lose_screen->Disable();
 
 	for(int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->Init();

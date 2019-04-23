@@ -9,31 +9,31 @@
 #include "ModuleFadeToBlack.h"
 #include "MemLeaks.h"
 #include "ModuleSceneHonda.h"
-#include "ModuleWinScreen.h"
+#include "ModuleLoseScreen.h"
 #include "ModuleWelcomeScreen.h"
 #include "ModuleStartScreen.h"
 
-ModuleWinScreen::ModuleWinScreen()
+ModuleLoseScreen::ModuleLoseScreen()
 {
-	win_screen.x = 0;
-	win_screen.y = 0;
-	win_screen.w = SCREEN_WIDTH;
-	win_screen.h = SCREEN_HEIGHT;
+	lose_screen.x = 0;
+	lose_screen.y = 0;
+	lose_screen.w = SCREEN_WIDTH;
+	lose_screen.h = SCREEN_HEIGHT;
 }
 
-ModuleWinScreen::~ModuleWinScreen()
+ModuleLoseScreen::~ModuleLoseScreen()
 {}
 
 // Load assets
-bool ModuleWinScreen::Start()
+bool ModuleLoseScreen::Start()
 {
 	LOG("Loading Win screen");
-	graphics = App->textures->Load("Ryu_Wins_Ken.png");
+	graphics = App->textures->Load("Ken_Wins_Ryu.png");
 	return true;
 }
 
 // UnLoad assets
-bool ModuleWinScreen::CleanUp()
+bool ModuleLoseScreen::CleanUp()
 {
 	LOG("Unloading Win Screen");
 	App->textures->Unload(graphics);
@@ -41,12 +41,12 @@ bool ModuleWinScreen::CleanUp()
 }
 
 // Update: draw background
-update_status ModuleWinScreen::Update()
+update_status ModuleLoseScreen::Update()
 {
-	App->render->Blit(graphics, 0, 0, &win_screen, 0.75f);
+	App->render->Blit(graphics, 0, 0, &lose_screen, 0.75f);
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 
-		App->fade->FadeToBlack(App->win_screen, App->start_screen, 1.0f);
+		App->fade->FadeToBlack(App->lose_screen, App->start_screen, 1.0f);
 
 	}
 	return UPDATE_CONTINUE;

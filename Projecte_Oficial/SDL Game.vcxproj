@@ -82,6 +82,7 @@
     <ClInclude Include="ModuleFonts.h" />
     <ClInclude Include="ModuleIcoinScreen.h" />
     <ClInclude Include="ModuleInput.h" />
+    <ClInclude Include="ModuleLoseScreen.h" />
     <ClInclude Include="ModuleParticles.h" />
     <ClInclude Include="ModulePlayer.h" />
     <ClInclude Include="ModuleRender.h" />
@@ -106,6 +107,7 @@
     <ClCompile Include="ModuleFonts.cpp" />
     <ClCompile Include="ModuleIcoinScreen.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
+    <ClCompile Include="ModuleLoseScreen.cpp" />
     <ClCompile Include="ModuleParticles.cpp" />
     <ClCompile Include="ModulePlayer.cpp" />
     <ClCompile Include="ModuleRender.cpp" />
