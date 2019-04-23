@@ -82,7 +82,7 @@ ModulePlayer::ModulePlayer()
 	hadouken.PushBack({190, 875, 97, 95});
 	hadouken.PushBack({290, 875, 110, 95});
 	hadouken.loop = true;
-	hadouken.speed = 0.1f;
+	hadouken.speed = 0.01f;
 }
 
 ModulePlayer::~ModulePlayer()
