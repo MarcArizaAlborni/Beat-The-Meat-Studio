@@ -41,7 +41,7 @@ ModulePlayer::ModulePlayer()
 	forward.PushBack({ 306, 250, 64, 89 });
 	forward.PushBack({ 369, 250, 64, 89 });
 
-	forward.loop = false;
+	forward.loop = true;
 	forward.speed = 0.1f;
 
 	//Walk backwards animation
@@ -51,7 +51,7 @@ ModulePlayer::ModulePlayer()
 	backward.PushBack({ 236, 155, 67, 94 });
 	backward.PushBack({ 298, 155, 67, 94});
 	backward.PushBack({ 362, 155, 67, 94 });
-	backward.loop = false;
+	backward.loop = true;
 	backward.speed = 0.1f;
 
 	//Ryu light punch
@@ -315,6 +315,13 @@ update_status ModulePlayer::Update()
 
 		break;
 
+
+	case backwardstate:
+		current_animation = &backward;
+		position.x -= speed;
+		break;
+
+
 	case forwardstate:
 
 		current_animation = &forward;
@@ -322,10 +329,7 @@ update_status ModulePlayer::Update()
 		break;
 
 
-	case backwardstate:
-		current_animation = &backward;
-		position.x -= speed;
-		break;
+	
 
 	case jumpstate:
 
