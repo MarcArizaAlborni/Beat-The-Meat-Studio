@@ -106,6 +106,7 @@ bool ModulePlayer::Start()
 	return ret;
 }
 
+
 bool ModulePlayer::CleanUp()
 {
 	LOG("Unloading Player");
@@ -115,10 +116,161 @@ bool ModulePlayer::CleanUp()
 	return true;
 }
 
+
+update_status ModulePlayer::PreUpdate() {
+
+	
+
+
+	inputplayer1.A_active = App->input->keyboard[SDL_SCANCODE_A] == KEY_REPEAT;
+	inputplayer1.D_active = App->input->keyboard[SDL_SCANCODE_D] == KEY_REPEAT;
+	inputplayer1.S_active = App->input->keyboard[SDL_SCANCODE_S] == KEY_REPEAT;
+	inputplayer1.W_active = App->input->keyboard[SDL_SCANCODE_W] == KEY_REPEAT;
+	inputplayer1.E_active = App->input->keyboard[SDL_SCANCODE_E] == KEY_REPEAT;
+	inputplayer1.I_active = App->input->keyboard[SDL_SCANCODE_I] == KEY_REPEAT;
+	inputplayer1.R_active = App->input->keyboard[SDL_SCANCODE_R] == KEY_REPEAT;
+
+
+
+
+
+	if (currentstate == idlestate) {
+
+
+		if (inputplayer1.A_active) {
+
+			current_animation = &backward;
+
+		}
+
+		if (inputplayer1.D_active) {
+
+			current_animation = &forward;
+
+		}
+
+		/*if (InputP1.S_active) {
+
+			current_animation = &crouch;
+
+		}*/
+
+		if (inputplayer1.E_active) {
+
+			current_animation = &lightKick;
+
+		}
+
+		if (inputplayer1.I_active) {
+
+			current_animation = &lightPunch;
+
+		}
+
+		if (inputplayer1.R_active) {
+
+			current_animation = &hadouken;
+
+		}
+
+
+	}
+
+	if (currentstate == forwardstate) {
+
+
+		if (inputplayer1.A_active) {
+
+			current_animation = &backward;
+
+		}
+
+
+
+		/*if (inputplayer1.S_active) {
+
+			current_animation = &crouch;
+
+		}*/
+
+		if (inputplayer1.E_active) {
+
+			current_animation = &lightKick;
+
+		}
+
+		if (inputplayer1.I_active) {
+
+			current_animation = &lightPunch;
+
+		}
+
+		if (inputplayer1.R_active) {
+
+			current_animation = &hadouken;
+
+		}
+
+
+	}
+
+	if (currentstate == punchlight) {
+		if (current_animation->Finished()) {
+
+			currentstate = idlestate;
+			lightPunch.Reset();
+
+		}
+	}
+	
+	return UPDATE_CONTINUE;
+
+}
 // Update: draw background
 update_status ModulePlayer::Update()
 {
 	
+
+	switch (currentstate) {
+
+	case idlestate: 
+
+		current_animation = &idle;
+
+		break;
+
+	case forwardstate:
+
+		current_animation = &forward;
+
+
+	case backwardstate:
+		current_animation = &backward;
+
+	case jumpstate:
+
+		current_animation = &jump;
+
+	case punchlight:
+
+		current_animation = &lightPunch;
+		break;
+
+	case kicklight:
+		
+		current_animation = &lightKick;
+
+	/*case crouch :
+
+		current_animation = &crouch;*/
+
+	case hadoukenstate:
+		current_animation = &hadouken;
+
+	}
+
+
+
 	Animation* current_animation = &idle;
 	//MOVE FWD
 	if(App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
@@ -145,9 +297,9 @@ update_status ModulePlayer::Update()
 		}
 	}
 	
-	int i=0;
+	
 	//LIGHT PUNCH  I
-	if (App->input->keyboard[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT)
+	/*if (App->input->keyboard[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT)
 	{
 		
 		i = 1;
@@ -165,7 +317,7 @@ update_status ModulePlayer::Update()
 			
 		
 
-	}
+	}*/
 	
 	
 
@@ -173,7 +325,7 @@ update_status ModulePlayer::Update()
 
 	
 	
-	if (App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_REPEAT)
+	/*if (App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_REPEAT)
 	{
 		current_animation = &lightKick;
 
@@ -182,9 +334,9 @@ update_status ModulePlayer::Update()
 			lightKick.Reset();
 			current_animation = &lightKick;
 		}
-	}
+	}*/
 
-	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
+	/*if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
 	{
 		current_animation = &jump;
 
@@ -210,7 +362,7 @@ update_status ModulePlayer::Update()
 		}
 		
 
-	}
+	}*/
 	/*if (App->input->keyboard[SDL_SCANCODE_R] == KEY_STATE::KEY_UP)
 	{
 		finishedhadouken = true;

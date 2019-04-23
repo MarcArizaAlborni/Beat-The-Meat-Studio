@@ -4,10 +4,37 @@
 #include "Module.h"
 #include "Animation.h"
 #include "p2Point.h"
+#include "Globals.h"
+#include "ModuleParticles.h"
+#include "ModuleAudio.h"
 //#include "ModuleCollision.h"
 
 struct SDL_Texture;
 struct Collider;
+
+enum STATE {
+
+	backwardstate,
+	forwardstate,
+	idlestate,
+	crouchstate,
+	punchlight,
+	kicklight,
+	jumpstate,
+	hadoukenstate
+
+};
+struct InputP1 {
+	// Poseu aqui un nou bool per algun input que no he posat.
+
+	bool A_active;
+	bool D_active;
+	bool W_active;
+	bool S_active;
+	bool E_active;
+	bool I_active;
+	bool R_active;
+};
 
 class ModulePlayer : public Module
 {
@@ -19,6 +46,8 @@ public:
 	update_status Update();
 	bool CleanUp();
 
+	update_status PreUpdate();
+
 public:
 
 	SDL_Texture* graphics = nullptr;
@@ -26,6 +55,7 @@ public:
 	int font_score = -1;
 	char score_text[10];
 	uint score = 0;
+	STATE currentstate;
 	Animation idle;
 	Animation forward;
 	Animation backward;
@@ -34,9 +64,13 @@ public:
 	Animation jump;
 	Animation hadouken;
 	iPoint position;
+	InputP1 inputplayer1;
 	Collider * player_collider = nullptr;
 	void OnCollision(Collider* c1, Collider* c2);
 
+
 };
+
+
 
 #endif
