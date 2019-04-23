@@ -253,8 +253,9 @@ update_status ModulePlayer::PreUpdate() {
 
 				currentstate = idlestate;
 				lightKick.Reset();
-
+				
 			}
+			else currentstate = kicklight;
 
 
 		}
