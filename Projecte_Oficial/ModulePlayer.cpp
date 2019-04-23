@@ -121,16 +121,20 @@ update_status ModulePlayer::PreUpdate() {
 
 	
 
-
+	//MOVE BACKWARD
 	inputplayer1.A_active = App->input->keyboard[SDL_SCANCODE_A] == KEY_REPEAT;
+	//MOVE FORWARD
 	inputplayer1.D_active = App->input->keyboard[SDL_SCANCODE_D] == KEY_REPEAT;
+	//CROUCH
 	inputplayer1.S_active = App->input->keyboard[SDL_SCANCODE_S] == KEY_REPEAT;
+	//JUMP
 	inputplayer1.W_active = App->input->keyboard[SDL_SCANCODE_W] == KEY_DOWN;
-	inputplayer1.E_active = App->input->keyboard[SDL_SCANCODE_E] == KEY_DOWN;
+	//LIGHT KICK
+	inputplayer1.E_active = App->input->keyboard[SDL_SCANCODE_O] == KEY_DOWN;
+	//LIGHT PUNCH
 	inputplayer1.I_active = App->input->keyboard[SDL_SCANCODE_I] == KEY_DOWN;
+	//HADOKEN
 	inputplayer1.R_active = App->input->keyboard[SDL_SCANCODE_R] == KEY_DOWN;
-
-	
 
 	{
 		
@@ -140,7 +144,7 @@ update_status ModulePlayer::PreUpdate() {
 			if (inputplayer1.A_active) {
 
 				currentstate = backwardstate;
-
+				
 			}
 
 			if (inputplayer1.D_active) {
