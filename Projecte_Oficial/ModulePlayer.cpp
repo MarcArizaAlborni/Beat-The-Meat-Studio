@@ -185,7 +185,11 @@ update_status ModulePlayer::PreUpdate() {
 
 		if (currentstate == backwardstate) {
 
+			if (!inputplayer1.A_active) {
 
+				currentstate = idlestate;
+
+			}
 			
 
 			if (inputplayer1.I_active) {
@@ -220,11 +224,7 @@ update_status ModulePlayer::PreUpdate() {
 
 				currentstate = idlestate;
 			}
-
-
-
-
-
+			
 			if (inputplayer1.E_active) {
 
 				currentstate = kicklight;
