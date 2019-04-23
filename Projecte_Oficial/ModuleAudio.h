@@ -1,46 +1,38 @@
 #pragma once
-
-#ifndef _ModuleAudio_H_
-#define _ModulesAudio_H_
+#ifndef __MODULEAUDIO_H__
+#define __MODULEAUDIO_H__
 
 #include "Module.h"
 #include "Globals.h"
+#include "SDL_mixer/include/SDL_mixer.h"
 
 #define MAX_MUSIC 50
 #define MAX_FX 50
 
 
-struct _Mix_Music;
-struct Mix_Chunk;
-
-class ModuleAudio :public Module {
+class ModuleAudio : public Module {
 public:
-	//inicialitzar 
+
 	ModuleAudio();
 	~ModuleAudio();
 
 	bool Init();
 	bool CleanUp();
 	//LOAD MUSIC AND FX
-	_Mix_Music * const LoadMus(const char * direction);
-	Mix_Chunk *const LoadFX(const char *direction);
-
-
-
-
-
+	Mix_Music * const LoadMus(const char * path);
+	bool PlayMusic(Mix_Music *music, uint time);
+	bool FinishMusic(uint time);
+	Mix_Chunk *const LoadFx(const char *path);
+	bool PlayFx(Mix_Chunk* chunk);
+	//REMOVE MUSIC AND FX
+	bool UnLoadMusic(Mix_Music* music);
+	bool UnLoadFX(Mix_Chunk* chunk);
 
 public:
 	//Create variables
-	_Mix_Music* musicH[MAX_MUSIC];
-	Mix_Chunk* fxH[MAX_FX];
-
-
-
-	//REMOVE MUSIC AND FX
-	bool RemoveMusic(_Mix_Music* music);
-	bool RemoveFX(Mix_Chunk* fx);
-
+	Mix_Music* Music[MAX_MUSIC];
+	Mix_Chunk* Fx[MAX_FX];
 
 };
-#endif //_ModuleAudio_H_
+
+#endif // __MODULEAUDIO_H__

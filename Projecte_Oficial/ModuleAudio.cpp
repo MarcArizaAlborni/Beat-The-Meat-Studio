@@ -5,47 +5,35 @@
 #include "SDL/include/SDL.h"
 #pragma comment(lib,"SDL_mixer/libx86/SDL2_mixer.lib")
 
-
-
-ModuleAudio::ModuleAudio() :Module() {
-
-	for (uint i = 0; i < MAX_MUSIC; ++i) {
-
-		musicH[i] = nullptr;
-	}
-
-	for (uint i = 0; i < MAX_FX; ++i) {
-
-		fxH[i] = nullptr;
-	}
-}
+ModuleAudio::ModuleAudio() :Module() {}
 
 ModuleAudio::~ModuleAudio() {}
 
 //INICIATE AUDIO MODULE
 bool ModuleAudio::Init() {
 
-
-	bool ret1 = true;
-
-
 	int flags = MIX_INIT_OGG;
+	Mix_Init(SDL_INIT_AUDIO);
 
 	int initiate = Mix_Init(flags);
 
 	if (initiate != flags) {
 
 
-		SDL_Log("Mix_Initiation failed (OGG FILES");
-		ret1 = false;
+		LOG("Mix_Init failed", Mix_GetError());
+
+		return false;
+
 	}
 
-	//AIXO NO SE QUINS VALORS S'HAURIEN DE POSAR, JO POSO ELS D'INTERNET
-	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
+	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024) == -1) {
 
+		LOG("Mix_OpenAudio failed", Mix_GetError());
 
-	return ret1;
+		return false;
+	}
 
+	return true;
 }
 
 
@@ -53,116 +41,141 @@ bool ModuleAudio::Init() {
 //CLEANUP DE AUDIO MODULE
 bool ModuleAudio::CleanUp() {
 
-
 	for (uint i = 0; i < MAX_MUSIC; ++i) {
 
-		if (musicH[i] != nullptr) {
-
-			Mix_FreeMusic(musicH[i]);
-			musicH[i] = nullptr;
-
+		if (Music[i] != nullptr) {
+			Music[i] = nullptr;
 		}
-
-
 	}
 
 	for (uint i = 0; i < MAX_MUSIC; ++i) {
 
-		if (fxH[i] != nullptr) {
-
-			Mix_FreeChunk(fxH[i]);
-
-			fxH[i] = nullptr;
-
+		if (Fx[i] != nullptr) {
+			Fx[i] = nullptr;
 		}
-
-
 	}
 	Mix_CloseAudio();
 	Mix_Quit();
 	return true;
-
-
-
 }
 
 
 //LOAD MUSIC (OGG FILES)
 
-_Mix_Music* const ModuleAudio::LoadMus(const char *direction)
+Mix_Music* const ModuleAudio::LoadMus(const char *path)
 {
-
 	//LOAD AUDIO MUSIC
-	_Mix_Music*  backgroundmusic = nullptr;
+	Mix_Music*  backgroundmusic = nullptr;
 
+	backgroundmusic = Mix_LoadMUS(path);
 
-	backgroundmusic = Mix_LoadMUS(direction);
+	if (!backgroundmusic) {
+		LOG("Mix_LoadMUS failed", Mix_GetError());
+	}
+	for (uint i = 0; i < MAX_MUSIC; i++) {
+
+		if (Music[i] == nullptr)
+		{
+			Music[i] = backgroundmusic;
+
+		}
+	}
 
 	return  backgroundmusic;
-
 }
 
 
 //LOAD FX (WAV FILES)
-Mix_Chunk* const ModuleAudio::LoadFX(const char *direction)
+Mix_Chunk* const ModuleAudio::LoadFx(const char *path)
 {
 
 	//LOAD AUDIO fx
-	Mix_Chunk*  fx = nullptr;
+	Mix_Chunk*  effects = nullptr;
 
+	effects = Mix_LoadWAV(path);
 
-	fx = Mix_LoadWAV(direction);
+	if (!effects) {
+		LOG("Mix_LoadWAV failed", Mix_GetError());
+	}
 
-	return fx;
+	for (uint i = 0; i < MAX_FX; i++) {
+
+		if (Fx[i] == nullptr)
+		{
+			Fx[i] = effects;
+		}
+	}
+
+	return effects;
+
+}
+
+bool ModuleAudio::PlayMusic(Mix_Music* music, uint time) {
+
+	if (Mix_FadeInMusic(music, -1, time) == -1) {
+		LOG("Mix_PlayMusic failed", Mix_GetError());
+		return false;
+	}
+
+	return true;
+}
+
+bool ModuleAudio::PlayFx(Mix_Chunk* chunk) {
+
+	if (Mix_PlayChannel(-1, chunk, 0) == -1) {
+		LOG("Mix:PlayChannel failed", Mix_GetError());
+		return false;
+	}
+
+	return true;
+}
+
+bool ModuleAudio::FinishMusic(uint time) {
+
+	while (!Mix_FadeOutMusic(time)) {
+		// wait for any fades to complete
+		SDL_Delay(100);
+		return true;
+	}
 
 }
 
 //REMOVING MUSIC (OGG FILES)
-bool ModuleAudio::RemoveMusic(Mix_Music* music) {
-
-
-	bool ret1 = false;
-
-
+bool ModuleAudio::UnLoadMusic(Mix_Music* music) {
 
 	if (music != nullptr) {
 
 		for (uint i = 0; i < MAX_MUSIC; ++i) {
 
-			if (musicH[i] == music) {
+			if (Music[i] == music) {
 
 				Mix_FreeMusic(music);
-				musicH[i] = nullptr;
-				ret1 = true;
+				Music[i] = nullptr;
+				return false;
 				break;
 			}
 		}
 	}
-	return ret1;
+	return true;
 }
 
 //REMOVING FX (WAV FILES)
-bool ModuleAudio::RemoveFX(Mix_Chunk* fx) {
-
-
-	bool ret1 = false;
-
-
+bool ModuleAudio::UnLoadFX(Mix_Chunk* fx) {
 
 	if (fx != nullptr) {
 
 		for (uint i = 0; i < MAX_MUSIC; ++i) {
 
-			if (fxH[i] == fx) {
+			if (Fx[i] == fx) {
 
 				Mix_FreeChunk(fx);
-				fxH[i] = nullptr;
-				ret1 = true;
+				Fx[i] = nullptr;
+				return false;
 				break;
 
 			}
 		}
 	}
-	return ret1;
+	return true;
 
 }
