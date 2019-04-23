@@ -34,23 +34,23 @@ ModulePlayer::ModulePlayer()
 	//forward.frames.PushBack({9, 136, 53, 83});
 	
 	//Walk FORWARD Animation
-	forward.PushBack({ 27,250, 64, 92 });
-	forward.PushBack({ 92, 250, 64, 92 });
-	forward.PushBack({ 160, 248, 63, 90 });
-	forward.PushBack({ 236, 250, 64, 91 });
-	forward.PushBack({ 306, 250, 64, 89 });
-	forward.PushBack({ 369, 250, 64, 89 });
+	forward.PushBack({ 27,250, 66, 100 });
+	forward.PushBack({ 92, 250, 66, 100 });
+	forward.PushBack({ 160, 248, 70, 100 });
+	forward.PushBack({ 236, 250, 67, 100});
+	forward.PushBack({ 306, 250, 67, 100 });
+	forward.PushBack({ 369, 250, 67, 100 });
 
 	forward.loop = true;
 	forward.speed = 0.1f;
 
 	//Walk backwards animation
-	backward.PushBack({ 27, 155, 67, 94 });
-	backward.PushBack({ 94, 155, 67, 94 });
-	backward.PushBack({ 162, 155, 67, 94 });
-	backward.PushBack({ 236, 155, 67, 94 });
-	backward.PushBack({ 298, 155, 67, 94});
-	backward.PushBack({ 362, 155, 67, 94 });
+	backward.PushBack({ 27, 155, 67, 100 });
+	backward.PushBack({ 27, 155, 67, 100 });
+	backward.PushBack({ 171, 155, 67, 100 });
+	backward.PushBack({ 233, 155, 67, 100 });
+	backward.PushBack({ 300, 155, 63, 100 });
+	backward.PushBack({ 362, 155, 67, 102 });
 	backward.loop = true;
 	backward.speed = 0.1f;
 
