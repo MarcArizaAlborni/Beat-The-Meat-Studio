@@ -67,20 +67,20 @@ ModulePlayer::ModulePlayer()
 	lightKick.speed = 0.05f;
 
 	//Ryu jump
-	jump.PushBack({ 19, 847, 53, 85 });
-	jump.PushBack({ 100, 823, 56, 110 });
-	jump.PushBack({ 176, 805, 50, 120 });
-	jump.PushBack({ 251, 798, 54, 130 });
-	jump.PushBack({ 327, 813, 48, 120 });
-	jump.PushBack({ 397, 810, 48,110 });
+	jump.PushBack({ 17, 600, 63, 89 });
+	jump.PushBack({ 80, 600, 62, 107 });
+	jump.PushBack({ 149, 600, 54, 93 });
+	jump.PushBack({ 207, 600, 61, 81 });
+	jump.PushBack({ 282, 600, 56, 81 });
+	jump.PushBack({ 343, 600, 61,114 });
 	jump.loop = true;
-	jump.speed = 0.15f;
+	jump.speed = 0.015f;
 
 	//Ryu Hadouken movement
-	hadouken.PushBack({34, 1545, 74, 90});
-	hadouken.PushBack({135, 1551, 85, 84});
-	hadouken.PushBack({244, 1552, 90, 83});
-	hadouken.PushBack({357, 1558, 107, 77});
+	hadouken.PushBack({18, 875, 80, 95});
+	hadouken.PushBack({100, 875, 90, 95});
+	hadouken.PushBack({190, 875, 97, 95});
+	hadouken.PushBack({290, 875, 110, 95});
 	hadouken.loop = true;
 	hadouken.speed = 0.1f;
 }
@@ -193,6 +193,8 @@ update_status ModulePlayer::Update()
 			jump.Reset();
 			current_animation = &jump;
 		}
+	
+		
 	}
 	
 	if (App->input->keyboard[SDL_SCANCODE_R] == KEY_STATE::KEY_REPEAT)
