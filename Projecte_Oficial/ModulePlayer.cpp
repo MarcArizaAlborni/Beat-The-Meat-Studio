@@ -133,7 +133,7 @@ update_status ModulePlayer::PreUpdate() {
 	
 
 	{
-		currentstate = idlestate;
+		
 		if (currentstate == idlestate) {
 
 
