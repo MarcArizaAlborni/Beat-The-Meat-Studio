@@ -469,12 +469,12 @@ update_status ModulePlayer::Update()
 	}
 
 	//Screen Limits super cutres pero efectius
-	if (position.x<=0 + App->render->camera.x)
+	if (position.x <= App->render->camera.x / SCREEN_SIZE)
 	{
-		position.x = 0 + App->render->camera.x;
+		position.x = App->render->camera.x / SCREEN_SIZE;
 	}
-	if (position.x >= SCREEN_WIDTH-60 + App->render->camera.x) { //Hardcodeado una mica, s'haura de revisar
-		position.x = SCREEN_WIDTH-60 + App->render->camera.x;
+	if (position.x >= SCREEN_WIDTH - 60 + App->render->camera.x / SCREEN_SIZE) { //Hardcodeado una mica, s'haura de revisar
+		position.x = SCREEN_WIDTH - 60 + App->render->camera.x / SCREEN_SIZE;
 	}
 
 
