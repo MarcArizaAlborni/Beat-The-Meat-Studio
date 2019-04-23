@@ -41,7 +41,7 @@ ModulePlayer::ModulePlayer()
 	forward.PushBack({ 306, 250, 64, 89 });
 	forward.PushBack({ 369, 250, 64, 89 });
 
-	forward.loop = true;
+	forward.loop = false;
 	forward.speed = 0.1f;
 
 	//Walk backwards animation
@@ -51,20 +51,20 @@ ModulePlayer::ModulePlayer()
 	backward.PushBack({ 236, 155, 67, 94 });
 	backward.PushBack({ 298, 155, 67, 94});
 	backward.PushBack({ 362, 155, 67, 94 });
-	backward.loop = true;
+	backward.loop = false;
 	backward.speed = 0.1f;
 
 	//Ryu light punch
 	lightPunch.PushBack({ 34, 1368, 70, 96 });
 	lightPunch.PushBack({ 112, 1368, 101, 96 } );
-	lightPunch.loop = true;
-	lightPunch.speed = 0.09f;
+	lightPunch.loop = false;
+	lightPunch.speed = 0.1f;
 
 	//Ryu light kick
 	lightKick.PushBack({ 35, 1586, 69, 97 });
 	lightKick.PushBack({ 125, 1585, 120, 98 });
-	lightKick.loop = true;
-	lightKick.speed = 0.05f;
+	lightKick.loop = false;
+	lightKick.speed = 0.1f;
 
 	//Ryu jump
 	jump.PushBack({ 17, 600, 63, 89 });
@@ -73,16 +73,16 @@ ModulePlayer::ModulePlayer()
 	jump.PushBack({ 207, 600, 61, 81 });
 	jump.PushBack({ 282, 600, 56, 81 });
 	jump.PushBack({ 343, 600, 61,114 });
-	jump.loop = true;
-	jump.speed = 0.015f;
+	jump.loop = false;
+	jump.speed = 0.15f;
 
 	//Ryu Hadouken movement
 	hadouken.PushBack({18, 875, 80, 95});
 	hadouken.PushBack({100, 875, 90, 95});
 	hadouken.PushBack({190, 875, 97, 95});
 	hadouken.PushBack({290, 875, 110, 95});
-	hadouken.loop = true;
-	hadouken.speed = 0.01f;
+	hadouken.loop = false;
+	hadouken.speed = 0.1f;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -125,110 +125,186 @@ update_status ModulePlayer::PreUpdate() {
 	inputplayer1.A_active = App->input->keyboard[SDL_SCANCODE_A] == KEY_REPEAT;
 	inputplayer1.D_active = App->input->keyboard[SDL_SCANCODE_D] == KEY_REPEAT;
 	inputplayer1.S_active = App->input->keyboard[SDL_SCANCODE_S] == KEY_REPEAT;
-	inputplayer1.W_active = App->input->keyboard[SDL_SCANCODE_W] == KEY_REPEAT;
-	inputplayer1.E_active = App->input->keyboard[SDL_SCANCODE_E] == KEY_REPEAT;
-	inputplayer1.I_active = App->input->keyboard[SDL_SCANCODE_I] == KEY_REPEAT;
-	inputplayer1.R_active = App->input->keyboard[SDL_SCANCODE_R] == KEY_REPEAT;
+	inputplayer1.W_active = App->input->keyboard[SDL_SCANCODE_W] == KEY_DOWN;
+	inputplayer1.E_active = App->input->keyboard[SDL_SCANCODE_E] == KEY_DOWN;
+	inputplayer1.I_active = App->input->keyboard[SDL_SCANCODE_I] == KEY_DOWN;
+	inputplayer1.R_active = App->input->keyboard[SDL_SCANCODE_R] == KEY_DOWN;
 
 
 
+	{
+
+		if (currentstate == idlestate) {
 
 
-	if (currentstate == idlestate) {
+			if (inputplayer1.A_active) {
+
+				currentstate = backwardstate;
+
+			}
+
+			if (inputplayer1.D_active) {
+
+				currentstate = forwardstate;
+
+			}
+
+			/*if (InputP1.S_active) {
+
+				current_animation = &crouch;
+
+			}*/
+
+			if (inputplayer1.E_active) {
+
+				currentstate = kicklight;
 
 
-		if (inputplayer1.A_active) {
+			}
 
-			current_animation = &backward;
+			if (inputplayer1.I_active) {
+
+				currentstate = punchlight;
+
+			}
+
+			if (inputplayer1.R_active) {
+
+				currentstate = hadoukenstate;
+
+			}
+
 
 		}
 
-		if (inputplayer1.D_active) {
+		if (currentstate == backwardstate) {
 
-			current_animation = &forward;
+
+			if (!inputplayer1.A_active) {
+
+
+				currentstate = backwardstate;
+			}
+
+			if (inputplayer1.I_active) {
+
+
+				currentstate = punchlight;
+
+
+			}
+
+			if (inputplayer1.W_active) {
+
+
+				currentstate = jumpstate; /// AQUEST HAURIA DE SER JUMP BACKWARD PERO NO TE POSADA L'ANIMACIO
+			}
+
+			if (inputplayer1.E_active) {
+
+
+				currentstate = kicklight;
+
+			}
+
 
 		}
 
-		/*if (InputP1.S_active) {
+		if (currentstate == forwardstate) {
 
-			current_animation = &crouch;
 
-		}*/
+			if (!inputplayer1.D_active) {
 
-		if (inputplayer1.E_active) {
 
-			current_animation = &lightKick;
+				currentstate = idlestate;
+			}
+
+
+
+
+
+			if (inputplayer1.E_active) {
+
+				currentstate = kicklight;
+
+			}
+
+			if (inputplayer1.I_active) {
+
+				currentstate = punchlight;
+
+			}
+
+			if (inputplayer1.W_active) {
+
+				currentstate = jumpstate; /// Aquest hauria de ser jump FORWARD pero no tenim l'animacio posada encara
+
+
+			}
+
 
 		}
 
-		if (inputplayer1.I_active) {
+		if (currentstate == kicklight) {
 
-			current_animation = &lightPunch;
+			if (current_animation->Finished()) {
+
+				currentstate = idlestate;
+				lightKick.Reset();
+
+			}
+
 
 		}
 
-		if (inputplayer1.R_active) {
 
-			current_animation = &hadouken;
+		if (currentstate == punchlight) {
+			if (current_animation->Finished()) {
+
+				currentstate = idlestate;
+				lightPunch.Reset();
+
+			}
+		}
+
+		if (currentstate == jumpstate) {
+
+			if (current_animation->Finished()) {
+
+				jump.Reset();
+				currentstate = idlestate;
+
+				
+
+			}
+
 
 		}
 
+		//// AQUEST PETA NO SE PERQUE ////
 
+
+		//if (currentstate = hadoukenstate){
+
+		//	if (current_animation->Finished()) {
+
+
+		//	currentstate = idlestate;
+		//	hadouken.Reset();
+
+		//		//GENERACIO PROJECTIL 
+		//    }
+
+
+		//}
 	}
-
-	if (currentstate == forwardstate) {
-
-
-		if (inputplayer1.A_active) {
-
-			current_animation = &backward;
-
-		}
-
-
-
-		/*if (inputplayer1.S_active) {
-
-			current_animation = &crouch;
-
-		}*/
-
-		if (inputplayer1.E_active) {
-
-			current_animation = &lightKick;
-
-		}
-
-		if (inputplayer1.I_active) {
-
-			current_animation = &lightPunch;
-
-		}
-
-		if (inputplayer1.R_active) {
-
-			current_animation = &hadouken;
-
-		}
-
-
-	}
-
-	if (currentstate == punchlight) {
-		if (current_animation->Finished()) {
-
-			currentstate = idlestate;
-			lightPunch.Reset();
-
-		}
-	}
-	
 	return UPDATE_CONTINUE;
 
 }
 // Update: draw background
 update_status ModulePlayer::Update()
 {
+	
 	
 
 	switch (currentstate) {
@@ -242,14 +318,19 @@ update_status ModulePlayer::Update()
 	case forwardstate:
 
 		current_animation = &forward;
+		position.x += speed;
+		break;
 
 
 	case backwardstate:
 		current_animation = &backward;
+		position.x -= speed;
+		break;
 
 	case jumpstate:
 
 		current_animation = &jump;
+		break;
 
 	case punchlight:
 
@@ -259,6 +340,7 @@ update_status ModulePlayer::Update()
 	case kicklight:
 		
 		current_animation = &lightKick;
+		break;
 
 	/*case crouch :
 
@@ -266,14 +348,15 @@ update_status ModulePlayer::Update()
 
 	case hadoukenstate:
 		current_animation = &hadouken;
+		break;
 
 	}
 
 
 
-	Animation* current_animation = &idle;
+	
 	//MOVE FWD
-	if(App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
+	/*if(App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 	{
 		position.x += speed;
 		current_animation = &forward;
@@ -283,9 +366,9 @@ update_status ModulePlayer::Update()
 			forward.Reset();
 			current_animation = &forward;
 		}
-	}
+	}*/
 	//MOVE BCKWD
-	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
+	/*if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
 	{
 		position.x -= speed;
 		current_animation = &backward;
@@ -296,7 +379,7 @@ update_status ModulePlayer::Update()
 			current_animation = &backward;
 		}
 	}
-	
+	*/
 	
 	//LIGHT PUNCH  I
 	/*if (App->input->keyboard[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT)
