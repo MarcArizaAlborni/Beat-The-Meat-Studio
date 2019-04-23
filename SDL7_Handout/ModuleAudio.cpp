@@ -43,7 +43,7 @@ bool ModuleAudio::Init() {
 	}
 
 	//AIXO NO SE QUINS VALORS S'HAURIEN DE POSAR, JO POSO ELS D'INTERNET
-	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
+	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024);
 
 
 	return ret1;
@@ -121,10 +121,7 @@ Mix_Chunk* const ModuleAudio::LoadFX(const char *path)
 //REMOVING MUSIC (OGG FILES)
 bool ModuleAudio::RemoveMusic(Mix_Music* music) {
 
-
 	bool ret1 = false;
-
-
 
 	if (music != nullptr) {
 
