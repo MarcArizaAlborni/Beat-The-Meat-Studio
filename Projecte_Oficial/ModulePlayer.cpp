@@ -272,14 +272,18 @@ update_status ModulePlayer::PreUpdate() {
 
 		if (currentstate == jumpstate) {
 
+			
 			if (current_animation->Finished()) {
 				currentstate = idlestate;
 				jump.Reset();
+			}
+				
+				
 			
 
 				
 
-			}
+			
 
 
 		}
