@@ -130,10 +130,10 @@ update_status ModulePlayer::PreUpdate() {
 	inputplayer1.I_active = App->input->keyboard[SDL_SCANCODE_I] == KEY_DOWN;
 	inputplayer1.R_active = App->input->keyboard[SDL_SCANCODE_R] == KEY_DOWN;
 
-
+	
 
 	{
-
+		currentstate = idlestate;
 		if (currentstate == idlestate) {
 
 
@@ -174,17 +174,19 @@ update_status ModulePlayer::PreUpdate() {
 
 			}
 
+			if (inputplayer1.W_active) {
+
+
+				currentstate = jumpstate;
+			}
+
 
 		}
 
 		if (currentstate == backwardstate) {
 
 
-			if (!inputplayer1.A_active) {
-
-
-				currentstate = backwardstate;
-			}
+			
 
 			if (inputplayer1.I_active) {
 
@@ -270,9 +272,9 @@ update_status ModulePlayer::PreUpdate() {
 		if (currentstate == jumpstate) {
 
 			if (current_animation->Finished()) {
-
-				jump.Reset();
 				currentstate = idlestate;
+				jump.Reset();
+			
 
 				
 
