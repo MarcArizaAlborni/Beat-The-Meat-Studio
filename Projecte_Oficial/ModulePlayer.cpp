@@ -30,6 +30,24 @@ ModulePlayer::ModulePlayer()
 	idle.PushBack({223, 54, 67, 100});
 	idle.speed = 0.15f;
 
+	//Crouch Animation
+
+
+
+	//punchcrouch Animation
+
+	//kickcrouch Animation
+
+	// forward Jump Animation
+
+	//Backward Jump Animation
+
+	//punch jump Animation
+
+	// kick jump Animation
+
+	//Damaged Animation
+
 	// walk forward animation (arcade sprite sheet)
 	//forward.frames.PushBack({9, 136, 53, 83});
 	
@@ -68,12 +86,12 @@ ModulePlayer::ModulePlayer()
 	lightKick.speed = 0.05f;
 
 	//Ryu jump
-	jump.PushBack({ 17, 600, 63, 89 });
-	jump.PushBack({ 80, 600, 62, 107 });
-	jump.PushBack({ 149, 600, 54, 93 });
-	jump.PushBack({ 207, 600, 61, 81 });
-	jump.PushBack({ 282, 600, 56, 81 });
-	jump.PushBack({ 343, 600, 61,114 });
+	jump.PushBack({ 17, 580, 63,105 });
+	jump.PushBack({ 80, 580, 62, 115 });
+	jump.PushBack({ 149, 580, 54, 100 });
+	jump.PushBack({ 207, 580, 61, 100 });
+	jump.PushBack({ 282, 580, 56,100 });
+	jump.PushBack({ 343, 580, 61,120 });
 	jump.loop = false;
 	jump.speed = 0.10f;
 
