@@ -83,7 +83,7 @@ public:
 	
 	iPoint position;
 	InputP1 inputplayer1;
-	Collider * player_collider = nullptr;
+	Collider* player_collider = nullptr;
 	void OnCollision(Collider* c1, Collider* c2);
 
 

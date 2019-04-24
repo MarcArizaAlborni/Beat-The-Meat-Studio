@@ -32,7 +32,7 @@ ModulePlayer::ModulePlayer()
 
 	//Crouch Animation
 	crouch.PushBack({ 668,171,73,108 });
-	crouch.PushBack({741,171,73,108 });
+	crouch.PushBack({ 741,171,73,108 });
 	crouch.PushBack({ 820,171,73,108 });
 	crouch.speed = 0.15f;
 	crouch.loop = false;
@@ -481,8 +481,6 @@ update_status ModulePlayer::Update()
 		break;
 
 
-	
-
 	case jumpstate:
 
 		current_animation = &jump;
@@ -490,8 +488,7 @@ update_status ModulePlayer::Update()
 		position.y -= speed * gravity;
 		
 
-		if (position.y <= 150
-			)
+		if (position.y <= 150)
 		{
 			gravity = -1;
 			
@@ -511,13 +508,13 @@ update_status ModulePlayer::Update()
 		LOG("PUNCH ANIMATION ACTIVE");
 		break;
 
-	case  kicklight:
+	case kicklight:
 		
 		current_animation = &lightKick;
 		LOG("KICK ANIMATION ACTIVE");
 		break;
 
-	case crouched :
+	case crouched:
 
 		current_animation = &crouch;
 		LOG("CROUCHED ANIMATION ACTIVE");
@@ -561,6 +558,7 @@ update_status ModulePlayer::Update()
 //TODO 7.4: Detect collision with a wall. If so, go back to intro screen.
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
+	//THIS IS USELESS
 	if (c2->type == COLLIDER_WALL) 
 	{
 			if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
