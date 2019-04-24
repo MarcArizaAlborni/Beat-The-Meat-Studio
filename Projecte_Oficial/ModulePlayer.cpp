@@ -307,7 +307,13 @@ update_status ModulePlayer::PreUpdate() {
 // Update: draw background
 update_status ModulePlayer::Update()
 {
-	
+	if (currentstate == kicklight) {
+		current_animation = &lightKick;
+		LOG("KICK ANIMATION ACTIVE IF VERSSION");
+		
+		
+	}
+
 	switch (currentstate) {
 
 	case idlestate: 
@@ -346,7 +352,7 @@ update_status ModulePlayer::Update()
 		LOG("PUNCH ANIMATION ACTIVE");
 		break;
 
-	case kicklight:
+	case  kicklight:
 		
 		current_animation = &lightKick;
 		LOG("KICK ANIMATION ACTIVE");
