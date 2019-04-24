@@ -115,13 +115,13 @@ ModulePlayer::ModulePlayer()
 	lightPunch.PushBack({ 112, 1368, 101, 96 } );
 	lightPunch.PushBack({ 34, 1368, 70, 96 });
 	lightPunch.loop = true;
-	lightPunch.speed = 0.05f;
+	lightPunch.speed = 0.1f;
 
 	//Ryu light kick
 	lightKick.PushBack({ 35, 1586, 69, 97 });
 	lightKick.PushBack({ 125, 1585, 120, 98 });
 	lightKick.loop = false;
-	lightKick.speed = 0.05f;
+	lightKick.speed = 0.1f;
 
 	//Ryu jump
 	jump.PushBack({ 17, 580, 63,105 });
