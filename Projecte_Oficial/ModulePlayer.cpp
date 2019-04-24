@@ -74,7 +74,7 @@ ModulePlayer::ModulePlayer()
 	jump.PushBack({ 282, 600, 56, 81 });
 	jump.PushBack({ 343, 600, 61,114 });
 	jump.loop = false;
-	jump.speed = 0.15f;
+	jump.speed = 2.0f;
 
 	//Ryu Hadouken movement
 	hadouken.PushBack({18, 875, 80, 95});
@@ -144,13 +144,13 @@ update_status ModulePlayer::PreUpdate() {
 			if (inputplayer1.A_active) {
 
 				currentstate = backwardstate;
-				
+				LOG("IDLE TO BACK");
 			}
 
 			if (inputplayer1.D_active) {
 
 				currentstate = forwardstate;
-
+				LOG("IDLE TO forward");
 			}
 
 			/*if (InputP1.S_active) {
@@ -162,26 +162,27 @@ update_status ModulePlayer::PreUpdate() {
 			if (inputplayer1.K_active) {
 
 				currentstate = kicklight;
-
+				LOG("IDLE TO kick");
 
 			}
 
 			if (inputplayer1.I_active) {
 
 				currentstate = punchlight;
-
+				LOG("IDLE TO punch");
 			}
 
 			if (inputplayer1.R_active) {
 
 				currentstate = hadoukenstate;
-
+				LOG("IDLE TO hadouken");
 			}
 
 			if (inputplayer1.W_active) {
 
-
 				currentstate = jumpstate;
+				LOG("IDLE TO jump");
+				current_animation = &jump;
 			}
 
 
@@ -192,7 +193,7 @@ update_status ModulePlayer::PreUpdate() {
 			if (!inputplayer1.A_active) {
 
 				currentstate = idlestate;
-
+				LOG("BACK TO IDLE");
 			}
 			
 
@@ -200,21 +201,23 @@ update_status ModulePlayer::PreUpdate() {
 
 
 				currentstate = punchlight;
-
+				LOG("BACK TO PUNCH");
 
 			}
 
 			if (inputplayer1.W_active) {
 
 
-				currentstate = jumpstate; /// AQUEST HAURIA DE SER JUMP BACKWARD PERO NO TE POSADA L'ANIMACIO
+				currentstate = jumpstate;
+				LOG("BACK TO JUMP");
+				/// AQUEST HAURIA DE SER JUMP BACKWARD PERO NO TE POSADA L'ANIMACIO
 			}
 
 			if (inputplayer1.K_active) {
 
 
 				currentstate = kicklight;
-
+				LOG("BACK TO KICK");
 			}
 
 
@@ -224,7 +227,7 @@ update_status ModulePlayer::PreUpdate() {
 
 
 			if (!inputplayer1.D_active) {
-
+				LOG("FORWARD TO IDLE");
 
 				currentstate = idlestate;
 			}
@@ -232,20 +235,20 @@ update_status ModulePlayer::PreUpdate() {
 			if (inputplayer1.K_active) {
 
 				currentstate = kicklight;
-
+				LOG("FORWARD TO KICK");
 			}
 
 			if (inputplayer1.I_active) {
 
 				currentstate = punchlight;
-
+				LOG("FORWARD TO PUNCH");
 			}
 
 			if (inputplayer1.W_active) {
 
 				currentstate = jumpstate; /// Aquest hauria de ser jump FORWARD pero no tenim l'animacio posada encara
 
-
+				LOG("FORWARD TO JUMP");
 			}
 
 
@@ -257,9 +260,9 @@ update_status ModulePlayer::PreUpdate() {
 
 				currentstate = idlestate;
 				lightKick.Reset();
-				
+				LOG("KICK TO IDLE");
 			}
-			else currentstate = kicklight;
+			
 
 
 		}
@@ -270,16 +273,16 @@ update_status ModulePlayer::PreUpdate() {
 
 				currentstate = idlestate;
 				lightPunch.Reset();
-
+				LOG("PUNCH TO IDLE");
 			}
 		}
 
 		if (currentstate == jumpstate) {
 
-			
 			if (current_animation->Finished()) {
 				currentstate = idlestate;
 				jump.Reset();
+				LOG("JUMP TO IDLE");
 			}
 		}
 
@@ -288,12 +291,12 @@ update_status ModulePlayer::PreUpdate() {
 
 		//if (currentstate = hadoukenstate){
 
-		//	if (current_animation->Finished()) {
-		//		currentstate = idlestate;
-		//	hadouken.Reset();
+			//if (current_animation->Finished()) {
+			//currentstate = idlestate;
+			//hadouken.Reset();
 
-		//		//GENERACIO PROJECTIL 
-		//   }
+				//GENERACIO PROJECTIL 
+		  //}
 
 
 		//}
@@ -310,12 +313,14 @@ update_status ModulePlayer::Update()
 	case idlestate: 
 
 		current_animation = &idle;
+		LOG("IDLE ANIMATION ACTIVE");
 		break;
 
 
 	case backwardstate:
 		current_animation = &backward;
 		position.x -= speed;
+		LOG("BACKWARD ANIMATION ACTIVE");
 		break;
 
 
@@ -323,6 +328,7 @@ update_status ModulePlayer::Update()
 
 		current_animation = &forward;
 		position.x += speed;
+		LOG("FORWARD ANIMATION ACTIVE");
 		break;
 
 
@@ -331,16 +337,19 @@ update_status ModulePlayer::Update()
 	case jumpstate:
 
 		current_animation = &jump;
+		LOG("JUMP ANIMATION ACTIVE");
 		break;
 
 	case punchlight:
 
 		current_animation = &lightPunch;
+		LOG("PUNCH ANIMATION ACTIVE");
 		break;
 
 	case kicklight:
 		
 		current_animation = &lightKick;
+		LOG("KICK ANIMATION ACTIVE");
 		break;
 
 	/*case crouch :
@@ -349,6 +358,7 @@ update_status ModulePlayer::Update()
 
 	case hadoukenstate:
 		current_animation = &hadouken;
+		LOG("KADOUKEN ANIMATION ACTIVE");
 		break;
 
 	}
