@@ -221,241 +221,166 @@ update_status ModulePlayer::PreUpdate() {
 
 		}
 
-
-
-
 		if (currentstate == jumpstate) {
 
 			if (inputplayer1.I_active) {
-
 				currentstate = punchjump;
 			}
 			if (inputplayer1.K_active){
 				currentstate = kickjump;
-
 			}
-			if (current_animation->Finished()) {
+			/*if (current_animation->Finished()) {
 				jump.Reset();
 				currentstate = idlestate;
 
 				LOG("JUMP TO IDLE");
-			}
+			}*/
 		}
 		if (currentstate == hadoukenstate) {
 
 			if (current_animation->Finished()) {
+				App->particles->hadouken.speed.x = 5;
+				App->particles->hadouken.life = 2000;
+				App->particles->AddParticle(App->particles->hadouken, position.x + 25, position.y - 70, COLLIDER_PLAYER_SHOT);
 			currentstate = idlestate;
 				hadouken.Reset();
-			
-				//GENERACIO PROJECTIL 
 			}
-
-
 		}
 		
 		if (currentstate == idlestate) {
 
-
 			if (inputplayer1.A_active) {
-
 				currentstate = backwardstate;
 				LOG("IDLE TO BACK");
 			}
-
 			if (inputplayer1.D_active) {
-
 				currentstate = forwardstate;
 				LOG("IDLE TO forward");
 			}
-
 			if (inputplayer1.S_active) {
-
 				currentstate = crouched;
 				LOG("IDLE to CROUCH");
-
 			}
-
 			if (inputplayer1.K_active) {
-
 				currentstate = kicklight;
 				LOG("IDLE TO kick");
-
 			}
-
 			if (inputplayer1.I_active) {
-
 				currentstate = punchlight;
 				LOG("IDLE TO punch");
-
 			}
-
 			if (inputplayer1.R_active) {
-
 				currentstate = hadoukenstate;
 				LOG("IDLE TO hadouken");
 			}
-
 			if (inputplayer1.W_active) {
-
 				currentstate = jumpstate;
 				LOG("IDLE TO jump");
 				current_animation = &jump;
 			}
-
-
 		}
 
 		if (currentstate == backwardstate) {
 
 			if (!inputplayer1.A_active) {
-
 				currentstate = idlestate;
 				LOG("BACK TO IDLE");
 			}
-			
-
-			if (inputplayer1.I_active) {
-
-
+			if (inputplayer1.I_active){
 				currentstate = punchlight;
 				LOG("BACK TO PUNCH");
-
 			}
-
 			if (inputplayer1.W_active) {
-
-
 				currentstate =jumpbackward;
 				LOG("BACK TO JUMP");
-				/// AQUEST HAURIA DE SER JUMP BACKWARD PERO NO TE POSADA L'ANIMACIO
 			}
-
 			if (inputplayer1.K_active) {
-
-
 				currentstate = kicklight;
 				LOG("BACK TO KICK");
 			}
-
-
 		}
 
 		if (currentstate == forwardstate) {
-
-
 			if (!inputplayer1.D_active) {
 				LOG("FORWARD TO IDLE");
-
 				currentstate = idlestate;
 			}
-			
 			if (inputplayer1.K_active) {
-
 				currentstate = kicklight;
 				LOG("FORWARD TO KICK");
 			}
-
 			if (inputplayer1.I_active) {
-
 				currentstate = punchlight;
 				LOG("FORWARD TO PUNCH");
 			}
-
 			if (inputplayer1.W_active) {
-
-				currentstate = jumpforward; /// Aquest hauria de ser jump FORWARD pero no tenim l'animacio posada encara
-
+				currentstate = jumpforward; // Aquest hauria de ser jump FORWARD pero no tenim l'animacio posada encara
 				LOG("FORWARD TO JUMP");
 			}
-
-
 		}
 		if (currentstate == jumpbackward) {
 			LOG("BACKWARDJUMP TO IDLE");
 			if (current_animation->Finished()) {
 				currentstate = idlestate;
 				backwardjump.Reset();
-
 			}
 		}
 		if (currentstate == jumpforward) {
 			LOG("FORWARDJUMP TO IDLE");
-			if (current_animation->Finished()) {
+			/*if (current_animation->Finished()) {
 				currentstate = idlestate;
 				forwardjump.Reset();
-
-			}
+			}*/
 		}
-
 		if (currentstate == punchcrouch) {
-
 			LOG("CROUCH TO CROUCHPUNCH");
-			if (current_animation->Finished()) {
+			/*if (current_animation->Finished()) {
 				currentstate = crouched;
 				crouchpunch.Reset();
-			}
+			}*/
 		}
+
 		if (currentstate == kickcrouch) {
 			LOG("CROUCH TO KICKCROUCH");
 			if (current_animation->Finished()) {
-
 				currentstate = crouched;
 				crouchkick.Reset();
 			}
 		}
 		
 		if (currentstate == crouched) {
-
-
 			if (inputplayer1.I_active) {
-
 				currentstate = punchcrouch;
-
 			}
 
 			if (inputplayer1.K_active) {
-
 				currentstate = kickcrouch;
-
 			}
 
 			if (!inputplayer1.S_active) {
-
 				currentstate = idlestate;
 				LOG("CROUCH TO IDLE");
-
 			}
-
 		}
 		if (currentstate == kickjump) {
 			LOG("KICKJUMP TO IDLE");
 			if (current_animation->Finished()) {
 				currentstate = idlestate;
 				jumpkick.Reset();
-
 			}
-
 		}
 		if (currentstate == punchjump) {
 			LOG("PUNCHJUMP TO IDLE");
 			if (current_animation->Finished()) {
 				currentstate = idlestate;
 				jumppunch.Reset();
-
 			}
-
 		}
-
-		
-
-		//// AQUEST PETA NO SE PERQUE ////
-
-
-		
 	}
 	return UPDATE_CONTINUE;
 
 }
+float gravity = 1;
 // Update: draw background
 update_status ModulePlayer::Update()
 {
@@ -471,16 +396,40 @@ update_status ModulePlayer::Update()
 
 	case jumpforward:
 
+		
+		position.x += 3;
+		position.y -= speed * gravity;
+		if (position.y <= 150)
+		{
+			gravity = -1;
+		}
+		else if (position.y == 220) {
+			jump.Reset();
+			currentstate = idlestate;
+			gravity = 1;
+		}
 		current_animation = &forwardjump;
 		LOG("FORWARD JUMP ANIMATION ACTIVE");
-		position.x += 3;
+		
 		break;
 
 	case jumpbackward:
 
 		current_animation = &backwardjump;
-		LOG("backward JUMP ANIMATION ACTIVE");
 		position.x -= 3;
+		position.y -= speed * gravity;
+		if (position.y <= 150)
+		{
+			gravity = -1;
+
+		}
+		else if (position.y == 220) {
+			jump.Reset();
+			currentstate = idlestate;
+			gravity = 1;
+		}
+		LOG("backward JUMP ANIMATION ACTIVE");
+		
 		break;
 	case punchcrouch:
 
@@ -535,6 +484,22 @@ update_status ModulePlayer::Update()
 	case jumpstate:
 
 		current_animation = &jump;
+		
+		position.y -= speed * gravity;
+		
+
+		if (position.y <= 150
+			)
+		{
+			gravity = -1;
+			
+		}
+
+		else if(position.y == 220) {
+			jump.Reset();
+			currentstate = idlestate;
+			gravity = 1;
+		}
 		LOG("JUMP ANIMATION ACTIVE");
 		break;
 
@@ -562,119 +527,10 @@ update_status ModulePlayer::Update()
 		break;
 
 	}
-
-
-
-	
-	//MOVE FWD
-	/*if(App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
-	{
-		position.x += speed;
-		current_animation = &forward;
-
-		if (current_animation != &forward)
-		{
-			forward.Reset();
-			current_animation = &forward;
-		}
-	}*/
-	//MOVE BCKWD
-	/*if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
-	{
-		position.x -= speed;
-		current_animation = &backward;
-		
-		if (current_animation != &backward)
-		{
-			backward.Reset();
-			current_animation = &backward;
-		}
-	}
-	*/
-	
-	//LIGHT PUNCH  I
-	/*if (App->input->keyboard[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT)
-	{
-		
-		i = 1;
-		
-		
-		current_animation = &lightPunch;
-			
-
-			if (current_animation != &lightPunch)
-			{
-				lightPunch.Reset();
-				current_animation = &lightPunch;
-
-			}
-			
-		
-
-	}*/
-	
-	
-
-	
-
-	
-	
-	/*if (App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_REPEAT)
-	{
-		current_animation = &lightKick;
-
-		if (current_animation != &lightKick)
-		{
-			lightKick.Reset();
-			current_animation = &lightKick;
-		}
-	}*/
-
-	/*if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
-	{
-		current_animation = &jump;
-
-		if (current_animation != &jump )
-		{
-			jump.Reset();
-			current_animation = &jump;
-		}
 	
 		
-	}
+		
 	
-	if (App->input->keyboard[SDL_SCANCODE_R] == KEY_STATE::KEY_REPEAT)
-	{
-		
-		current_animation = &hadouken;
-
-
-		if (current_animation != &hadouken)
-		{
-			hadouken.Reset();
-			current_animation = &hadouken;
-		}
-		
-
-	}*/
-	/*if (App->input->keyboard[SDL_SCANCODE_R] == KEY_STATE::KEY_UP)
-	{
-		finishedhadouken = true;
-	}*/
-
-	//if (finishedhadouken = true) {
-
-
-	//	current_animation = &hadouken;
-	//}
-
-	if (App->input->keyboard[SDL_SCANCODE_R] == KEY_STATE::KEY_UP ) // AIXO ha de ser key UP perque el projectil no apareix fins que tota l'animacio del hadouken s'ha fet.
-	{
-		
-		App->particles->hadouken.speed.x = 5;
-		App->particles->hadouken.life = 2000;
-		App->particles->AddParticle(App->particles->hadouken, position.x + 25, position.y - 70, COLLIDER_PLAYER_SHOT);
-	}
 
 	//Screen Limits super cutres pero efectius
 	if (position.x <= App->render->camera.x / SCREEN_SIZE)
@@ -684,8 +540,6 @@ update_status ModulePlayer::Update()
 	if (position.x >= SCREEN_WIDTH - 60 + App->render->camera.x / SCREEN_SIZE) { //Hardcodeado una mica, s'haura de revisar
 		position.x = SCREEN_WIDTH - 60 + App->render->camera.x / SCREEN_SIZE;
 	}
-
-
 
 	// TODO 7.3: Update collider position to player position
 	player_collider->SetPos(position.x - App->render->camera.x, position.y - 93- App->render->camera.y);
