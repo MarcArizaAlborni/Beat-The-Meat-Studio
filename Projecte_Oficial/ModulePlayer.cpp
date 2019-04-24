@@ -128,12 +128,12 @@ update_status ModulePlayer::PreUpdate() {
 	//CROUCH
 	inputplayer1.S_active = App->input->keyboard[SDL_SCANCODE_S] == KEY_REPEAT;
 	//JUMP
-	inputplayer1.W_active = App->input->keyboard[SDL_SCANCODE_W] == KEY_DOWN;
-	//LIGHT KICK
-	inputplayer1.E_active = App->input->keyboard[SDL_SCANCODE_O] == KEY_DOWN;
+	inputplayer1.W_active = App->input->keyboard[SDL_SCANCODE_W] == KEY_REPEAT;
 	//LIGHT PUNCH
 	inputplayer1.I_active = App->input->keyboard[SDL_SCANCODE_I] == KEY_DOWN;
-	//HADOKEN
+	//LIGHT KICK
+	inputplayer1.K_active = App->input->keyboard[SDL_SCANCODE_K] == KEY_DOWN;
+	//HADOKENo
 	inputplayer1.R_active = App->input->keyboard[SDL_SCANCODE_R] == KEY_DOWN;
 
 	{
@@ -159,7 +159,7 @@ update_status ModulePlayer::PreUpdate() {
 
 			}*/
 
-			if (inputplayer1.E_active) {
+			if (inputplayer1.K_active) {
 
 				currentstate = kicklight;
 
@@ -210,7 +210,7 @@ update_status ModulePlayer::PreUpdate() {
 				currentstate = jumpstate; /// AQUEST HAURIA DE SER JUMP BACKWARD PERO NO TE POSADA L'ANIMACIO
 			}
 
-			if (inputplayer1.E_active) {
+			if (inputplayer1.K_active) {
 
 
 				currentstate = kicklight;
@@ -229,7 +229,7 @@ update_status ModulePlayer::PreUpdate() {
 				currentstate = idlestate;
 			}
 			
-			if (inputplayer1.E_active) {
+			if (inputplayer1.K_active) {
 
 				currentstate = kicklight;
 
@@ -305,14 +305,11 @@ update_status ModulePlayer::PreUpdate() {
 update_status ModulePlayer::Update()
 {
 	
-	
-
 	switch (currentstate) {
 
 	case idlestate: 
 
 		current_animation = &idle;
-
 		break;
 
 
