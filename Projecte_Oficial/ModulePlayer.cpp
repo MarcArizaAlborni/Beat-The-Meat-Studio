@@ -320,10 +320,10 @@ update_status ModulePlayer::PreUpdate() {
 		}
 		if (currentstate == jumpbackward) {
 			LOG("BACKWARDJUMP TO IDLE");
-			if (current_animation->Finished()) {
+			/*if (current_animation->Finished()) {
 				currentstate = idlestate;
 				backwardjump.Reset();
-			}
+			}*/
 		}
 		if (currentstate == jumpforward) {
 			LOG("FORWARDJUMP TO IDLE");
@@ -406,6 +406,7 @@ update_status ModulePlayer::Update()
 		else if (position.y == 220) {
 			jump.Reset();
 			currentstate = idlestate;
+			forwardjump.Reset();
 			gravity = 1;
 		}
 		current_animation = &forwardjump;
@@ -427,6 +428,7 @@ update_status ModulePlayer::Update()
 			jump.Reset();
 			currentstate = idlestate;
 			gravity = 1;
+			backwardjump.Reset();
 		}
 		LOG("backward JUMP ANIMATION ACTIVE");
 		
