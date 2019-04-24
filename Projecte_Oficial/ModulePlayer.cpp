@@ -31,20 +31,58 @@ ModulePlayer::ModulePlayer()
 	idle.speed = 0.15f;
 
 	//Crouch Animation
-
+	crouch.PushBack({ 668,171,73,108 });
+	crouch.PushBack({741,171,73,108 });
+	crouch.PushBack({ 820,171,73,108 });
+	crouch.speed = 0.15f;
+	crouch.loop = false;
 
 
 	//punchcrouch Animation
+	crouchpunch.PushBack({ 21,2038,86,72 });
+	crouchpunch.PushBack({106,2037,100,73});
+
+	crouchpunch.speed = 0.15f;
+	crouchpunch.loop = false;
 
 	//kickcrouch Animation
 
+	crouchkick.PushBack({32,2288,76,70});
+	crouchkick.PushBack({ 109,2287,123,72});
+
+	crouchkick.speed = 0.15f;
+	crouchkick.loop = false;
 	// forward Jump Animation
+	forwardjump.PushBack({ 13,716,62,111  });
+	forwardjump.PushBack({ 75,716,65,91 });
+	forwardjump.PushBack({ 140,716,112,49 });
+	forwardjump.PushBack({ 420,695,58,85 });
+	forwardjump.PushBack({ 140,777,129,51 });
+	forwardjump.PushBack({ 328,767,77,93 });
 
+	forwardjump.speed = 0.1f;
+	forwardjump.loop = false;
 	//Backward Jump Animation
-
+	backwardjump.PushBack({ 328,767,77,93 });
+	backwardjump.PushBack({ 140,777,129,51 });
+	backwardjump.PushBack({ 420,695,58,85 });
+	backwardjump.PushBack({ 140,716,112,49 });
+	backwardjump.PushBack({ 75,716,65,91 });
+	backwardjump.PushBack({ 13,716,62,111 });
+	backwardjump.speed = 0.1f;
+	backwardjump.loop = false;
 	//punch jump Animation
+	jumppunch.PushBack({259,1693,83,91});
+	jumppunch.PushBack({ 353,1693,200,78 });
+	jumppunch.speed = 0.1f;
+	jumppunch.loop = false;
 
 	// kick jump Animation
+
+	jumpkick.PushBack({ 242,1791,68,124 });
+	jumpkick.PushBack({ 331,1791,110,123 });
+	jumpkick.speed = 0.1f;
+	jumpkick.loop = false;
 
 	//Damaged Animation
 
@@ -188,6 +226,14 @@ update_status ModulePlayer::PreUpdate() {
 
 		if (currentstate == jumpstate) {
 
+			if (inputplayer1.I_active) {
+
+				currentstate = punchjump;
+			}
+			if (inputplayer1.K_active){
+				currentstate = kickjump;
+
+			}
 			if (current_animation->Finished()) {
 				jump.Reset();
 				currentstate = idlestate;
@@ -195,17 +241,17 @@ update_status ModulePlayer::PreUpdate() {
 				LOG("JUMP TO IDLE");
 			}
 		}
-		//if (currentstate = hadoukenstate) {
+		if (currentstate == hadoukenstate) {
 
-			//if (current_animation->Finished()) {
-			//currentstate = idlestate;
-				//hadouken.Reset();
+			if (current_animation->Finished()) {
+			currentstate = idlestate;
+				hadouken.Reset();
 			
 				//GENERACIO PROJECTIL 
-			//}
+			}
 
 
-		//}
+		}
 		
 		if (currentstate == idlestate) {
 
@@ -324,23 +370,39 @@ update_status ModulePlayer::PreUpdate() {
 
 
 		}
+		if (currentstate == jumpbackward) {
+			LOG("BACKWARDJUMP TO IDLE");
+			if (current_animation->Finished()) {
+				currentstate = idlestate;
+				backwardjump.Reset();
 
-		/*if (currentstate == punchcrouch) {
+			}
+		}
+		if (currentstate == jumpforward) {
+			LOG("FORWARDJUMP TO IDLE");
+			if (current_animation->Finished()) {
+				currentstate = idlestate;
+				forwardjump.Reset();
+
+			}
+		}
+
+		if (currentstate == punchcrouch) {
 
 			LOG("CROUCH TO CROUCHPUNCH");
 			if (current_animation->Finished()) {
-				currentstate = idlestate;
+				currentstate = crouched;
 				crouchpunch.Reset();
 			}
 		}
-		if (currentstate = kickcrouch) {
+		if (currentstate == kickcrouch) {
 			LOG("CROUCH TO KICKCROUCH");
 			if (current_animation->Finished()) {
 
-				currentstate = idlestate;
+				currentstate = crouched;
 				crouchkick.Reset();
 			}
-		}*/
+		}
 		
 		if (currentstate == crouched) {
 
@@ -361,6 +423,24 @@ update_status ModulePlayer::PreUpdate() {
 
 				currentstate = idlestate;
 				LOG("CROUCH TO IDLE");
+
+			}
+
+		}
+		if (currentstate == kickjump) {
+			LOG("KICKJUMP TO IDLE");
+			if (current_animation->Finished()) {
+				currentstate = idlestate;
+				jumpkick.Reset();
+
+			}
+
+		}
+		if (currentstate == punchjump) {
+			LOG("PUNCHJUMP TO IDLE");
+			if (current_animation->Finished()) {
+				currentstate = idlestate;
+				jumppunch.Reset();
 
 			}
 
