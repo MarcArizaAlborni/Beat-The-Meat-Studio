@@ -75,14 +75,14 @@ ModulePlayer::ModulePlayer()
 	jump.PushBack({ 282, 600, 56, 81 });
 	jump.PushBack({ 343, 600, 61,114 });
 	jump.loop = false;
-	jump.speed = 2.0f;
+	jump.speed = 0.10f;
 
 	//Ryu Hadouken movement
 	hadouken.PushBack({18, 875, 80, 95});
 	hadouken.PushBack({100, 875, 90, 95});
 	hadouken.PushBack({190, 875, 97, 95});
 	hadouken.PushBack({290, 875, 110, 95});
-	hadouken.loop = true;
+	hadouken.loop = false;
 	hadouken.speed = 0.1f;
 }
 
