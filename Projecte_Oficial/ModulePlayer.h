@@ -21,7 +21,15 @@ enum STATE {
 	punchlight,
 	kicklight,
 	jumpstate,
-	hadoukenstate
+	hadoukenstate,
+	punchcrouch,
+	punchjump,
+	kickjump,
+	kickcrouch,
+	jumpforward,
+	jumpbackward,
+	damaged
+
 
 };
 struct InputP1 {
@@ -63,6 +71,14 @@ public:
 	Animation lightKick;
 	Animation jump;
 	Animation hadouken;
+	Animation crouchpunch;
+	Animation crouchkick;
+	Animation jumppunch;
+	Animation jumpkick;
+	Animation damaged;
+	Animation forwardjump;
+	Animation backwardjump;
+	
 	iPoint position;
 	InputP1 inputplayer1;
 	Collider * player_collider = nullptr;
