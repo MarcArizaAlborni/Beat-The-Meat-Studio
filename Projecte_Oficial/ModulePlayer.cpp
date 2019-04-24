@@ -488,9 +488,9 @@ update_status ModulePlayer::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_R] == KEY_STATE::KEY_UP ) // AIXO ha de ser key UP perque el projectil no apareix fins que tota l'animacio del hadouken s'ha fet.
 	{
-		App->particles->AddParticle(App->particles->hadouken, position.x + 25, position.y - 70, COLLIDER_PLAYER_SHOT);
 		App->particles->hadouken.speed.x = 5;
 		App->particles->hadouken.life = 2000;
+		App->particles->AddParticle(App->particles->hadouken, position.x + 25, position.y - 70, COLLIDER_PLAYER_SHOT);
 	}
 
 	//Screen Limits super cutres pero efectius
