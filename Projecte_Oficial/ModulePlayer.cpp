@@ -279,7 +279,7 @@ update_status ModulePlayer::PreUpdate() {
 			if (inputplayer1.W_active) {
 
 
-				currentstate = jumpstate;
+				currentstate =jumpbackward;
 				LOG("BACK TO JUMP");
 				/// AQUEST HAURIA DE SER JUMP BACKWARD PERO NO TE POSADA L'ANIMACIO
 			}
@@ -317,16 +317,45 @@ update_status ModulePlayer::PreUpdate() {
 
 			if (inputplayer1.W_active) {
 
-				currentstate = jumpstate; /// Aquest hauria de ser jump FORWARD pero no tenim l'animacio posada encara
+				currentstate = jumpforward; /// Aquest hauria de ser jump FORWARD pero no tenim l'animacio posada encara
 
 				LOG("FORWARD TO JUMP");
 			}
 
 
 		}
+
+		/*if (currentstate == punchcrouch) {
+
+			LOG("CROUCH TO CROUCHPUNCH");
+			if (current_animation->Finished()) {
+				currentstate = idlestate;
+				crouchpunch.Reset();
+			}
+		}
+		if (currentstate = kickcrouch) {
+			LOG("CROUCH TO KICKCROUCH");
+			if (current_animation->Finished()) {
+
+				currentstate = idlestate;
+				crouchkick.Reset();
+			}
+		}*/
 		
 		if (currentstate == crouched) {
 
+
+			if (inputplayer1.I_active) {
+
+				currentstate = punchcrouch;
+
+			}
+
+			if (inputplayer1.K_active) {
+
+				currentstate = kickcrouch;
+
+			}
 
 			if (!inputplayer1.S_active) {
 
@@ -336,6 +365,8 @@ update_status ModulePlayer::PreUpdate() {
 			}
 
 		}
+
+		
 
 		//// AQUEST PETA NO SE PERQUE ////
 
@@ -348,14 +379,54 @@ update_status ModulePlayer::PreUpdate() {
 // Update: draw background
 update_status ModulePlayer::Update()
 {
-	/*if (currentstate == kicklight) {
-		current_animation = &lightKick;
-		LOG("KICK ANIMATION ACTIVE IF VERSSION");
-		
-		
-	}*/
+	
 
 	switch (currentstate) {
+
+	case damagedstate:
+
+		current_animation = &damaged;
+		LOG("DAMAGED ANIMATION ACTIVE");
+		break;
+
+	case jumpforward:
+
+		current_animation = &forwardjump;
+		LOG("FORWARD JUMP ANIMATION ACTIVE");
+		position.x += 3;
+		break;
+
+	case jumpbackward:
+
+		current_animation = &backwardjump;
+		LOG("backward JUMP ANIMATION ACTIVE");
+		position.x -= 3;
+		break;
+	case punchcrouch:
+
+
+		current_animation = &crouchpunch;
+		LOG("CROUCH PUNCH ANIMATION ACTIVE")
+			break;
+
+
+	case kickcrouch:
+
+		current_animation = &crouchkick;
+		LOG("CROUCH KICK ANIMATION ACTIVE");
+		break;
+
+	case kickjump:
+
+			current_animation = &jumpkick;
+			LOG("JUMP KICK ANIMATION ACTIVE");
+			break;
+
+	case punchjump:
+		
+		current_animation = &jumppunch;
+		LOG("JUMP PUNCH ANIMATION ACTIVE");
+		break;
 
 	case idlestate: 
 

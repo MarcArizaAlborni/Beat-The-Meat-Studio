@@ -28,7 +28,7 @@ enum STATE {
 	kickcrouch,
 	jumpforward,
 	jumpbackward,
-	damaged,
+	damagedstate,
 	crouched
 
 
