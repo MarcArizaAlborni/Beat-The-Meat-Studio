@@ -57,14 +57,15 @@ ModulePlayer::ModulePlayer()
 	//Ryu light punch
 	lightPunch.PushBack({ 34, 1368, 70, 96 });
 	lightPunch.PushBack({ 112, 1368, 101, 96 } );
-	lightPunch.loop = false;
-	lightPunch.speed = 0.1f;
+	lightPunch.PushBack({ 34, 1368, 70, 96 });
+	lightPunch.loop = true;
+	lightPunch.speed = 0.05f;
 
 	//Ryu light kick
 	lightKick.PushBack({ 35, 1586, 69, 97 });
 	lightKick.PushBack({ 125, 1585, 120, 98 });
 	lightKick.loop = false;
-	lightKick.speed = 0.1f;
+	lightKick.speed = 0.05f;
 
 	//Ryu jump
 	jump.PushBack({ 17, 600, 63, 89 });
@@ -81,7 +82,7 @@ ModulePlayer::ModulePlayer()
 	hadouken.PushBack({100, 875, 90, 95});
 	hadouken.PushBack({190, 875, 97, 95});
 	hadouken.PushBack({290, 875, 110, 95});
-	hadouken.loop = false;
+	hadouken.loop = true;
 	hadouken.speed = 0.1f;
 }
 
@@ -137,6 +138,56 @@ update_status ModulePlayer::PreUpdate() {
 	inputplayer1.R_active = App->input->keyboard[SDL_SCANCODE_R] == KEY_DOWN;
 
 	{
+		if (currentstate == punchlight) {
+
+			if (current_animation->Finished()) {
+
+				currentstate = idlestate;
+				lightPunch.Reset();
+				//lightPunch.Reset();
+				LOG("PUNCH TO IDLE");
+
+			}
+
+			LOG("PUNCH");
+		}
+
+		if (currentstate == kicklight) {
+
+			if (current_animation->Finished()) {
+
+				currentstate = idlestate;
+				lightKick.Reset();
+				LOG("KICK TO IDLE");
+			}
+
+
+
+		}
+
+
+
+
+		if (currentstate == jumpstate) {
+
+			if (current_animation->Finished()) {
+				jump.Reset();
+				currentstate = idlestate;
+
+				LOG("JUMP TO IDLE");
+			}
+		}
+		//if (currentstate = hadoukenstate) {
+
+		//	if (current_animation->Finished()) {
+		//		currentstate = idlestate;
+		//		hadouken.Reset();
+		//	
+		//		//GENERACIO PROJECTIL 
+		//	}
+
+
+		//}
 		
 		if (currentstate == idlestate) {
 
@@ -170,6 +221,7 @@ update_status ModulePlayer::PreUpdate() {
 
 				currentstate = punchlight;
 				LOG("IDLE TO punch");
+
 			}
 
 			if (inputplayer1.R_active) {
@@ -253,53 +305,13 @@ update_status ModulePlayer::PreUpdate() {
 
 
 		}
-
-		if (currentstate == kicklight) {
-
-			if (current_animation->Finished()) {
-
-				currentstate = idlestate;
-				lightKick.Reset();
-				LOG("KICK TO IDLE");
-			}
-			
-
-
-		}
-
-
-		if (currentstate == punchlight) {
-			if (current_animation->Finished()) {
-
-				currentstate = idlestate;
-				lightPunch.Reset();
-				LOG("PUNCH TO IDLE");
-			}
-		}
-
-		if (currentstate == jumpstate) {
-
-			if (current_animation->Finished()) {
-				currentstate = idlestate;
-				jump.Reset();
-				LOG("JUMP TO IDLE");
-			}
-		}
+		
+		
 
 		//// AQUEST PETA NO SE PERQUE ////
 
 
-		//if (currentstate = hadoukenstate){
-
-			//if (current_animation->Finished()) {
-			//currentstate = idlestate;
-			//hadouken.Reset();
-
-				//GENERACIO PROJECTIL 
-		  //}
-
-
-		//}
+		
 	}
 	return UPDATE_CONTINUE;
 
@@ -307,12 +319,12 @@ update_status ModulePlayer::PreUpdate() {
 // Update: draw background
 update_status ModulePlayer::Update()
 {
-	if (currentstate == kicklight) {
+	/*if (currentstate == kicklight) {
 		current_animation = &lightKick;
 		LOG("KICK ANIMATION ACTIVE IF VERSSION");
 		
 		
-	}
+	}*/
 
 	switch (currentstate) {
 
