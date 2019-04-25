@@ -39,10 +39,10 @@ ModulePlayer::ModulePlayer()
 	idle.speed = 0.15f;
 
 	//Crouch Animation
-	crouch.PushBack({ 668,171,73,108 });
-	crouch.PushBack({ 741,171,73,108 });
-	crouch.PushBack({ 820,171,73,108 });
-	crouch.speed = 0.15f;
+	crouch.PushBack({ 519,156,67,95 });
+	crouch.PushBack({ 587,156,68,95 });
+	crouch.PushBack({ 654,156,68,95 });
+	crouch.speed = 0.1f;
 	crouch.loop = false;
 
 
@@ -328,24 +328,24 @@ update_status ModulePlayer::PreUpdate() {
 		}
 		if (currentstate == jumpbackward) {
 			LOG("BACKWARDJUMP TO IDLE");
-			/*if (current_animation->Finished()) {
+			/*if (current_animation->Finished()) { // Aquest d'aqui no el poseu perque per ara trenca el jumpbackward.
 				currentstate = idlestate;
 				backwardjump.Reset();
 			}*/
 		}
 		if (currentstate == jumpforward) {
 			LOG("FORWARDJUMP TO IDLE");
-			/*if (current_animation->Finished()) {
+			/*if (current_animation->Finished()) {  // Aquest d'aqui no el poseu perque per ara trenca el jumpforward.
 				currentstate = idlestate;
 				forwardjump.Reset();
 			}*/
 		}
 		if (currentstate == punchcrouch) {
 			LOG("CROUCH TO CROUCHPUNCH");
-			/*if (current_animation->Finished()) {
+			if (current_animation->Finished()) {
 				currentstate = crouched;
 				crouchpunch.Reset();
-			}*/
+			}
 		}
 
 		if (currentstate == kickcrouch) {
