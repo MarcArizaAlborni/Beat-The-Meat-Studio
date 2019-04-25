@@ -26,7 +26,7 @@ bool ModuleAudio::Init() {
 
 	}
 
-	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024) == -1) {
+	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 1024) == -1) {
 
 		LOG("Mix_OpenAudio failed", Mix_GetError());
 

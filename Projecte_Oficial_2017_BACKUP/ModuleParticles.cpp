@@ -25,11 +25,12 @@ bool ModuleParticles::Start()
 	//Hadouken Particle
 	hadouken.anim.PushBack({ 493, 1563, 43, 32 });
 	hadouken.anim.PushBack({ 550, 1565, 56, 28 });
-	hadouken.anim.PushBack({ 614, 1569, 26, 20 });
-	hadouken.anim.PushBack({ 652, 1566, 15, 25 });
-	hadouken.anim.PushBack({ 677, 1565, 28, 28 });
+	//ESTAS TRES SON PARA EL IMPACTO
+	//hadouken.anim.PushBack({ 614, 1569, 26, 20 });
+	//hadouken.anim.PushBack({ 652, 1566, 15, 25 });
+	//hadouken.anim.PushBack({ 677, 1565, 28, 28 });
 	hadouken.anim.loop = true;
-	hadouken.anim.speed = 0.25f;
+	hadouken.anim.speed = 0.1f;
 
 	// TODO 2: Create the template for a new particle "laser"
 	/*laser.anim.PushBack({ 200, 121, 32, 10 });

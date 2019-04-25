@@ -7,11 +7,11 @@
 
 struct SDL_Texture;
 
-class ModuleSceneKen : public Module
+class ModuleSceneRyu : public Module
 {
 public:
-	ModuleSceneKen();
-	~ModuleSceneKen();
+	ModuleSceneRyu();
+	~ModuleSceneRyu();
 
 	bool Start();
 	update_status Update();
@@ -23,8 +23,8 @@ public:
 	SDL_Rect ground;
 	SDL_Rect foreground;
 	SDL_Rect background;
-	Animation flag;
-	Animation girl;
+	SDL_Rect castle;
+	Animation cartel;
 
 	float foreground_pos;
 	bool forward;

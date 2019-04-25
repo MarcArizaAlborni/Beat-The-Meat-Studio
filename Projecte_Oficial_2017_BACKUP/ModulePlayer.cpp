@@ -142,7 +142,7 @@ ModulePlayer::ModulePlayer()
 	jump.speed = 0.10f;
 
 	//Ryu Hadouken movement
-	hadouken.PushBack({18, 875, 80, 95});
+	hadouken.PushBack({18, 870, 80, 95});
 	hadouken.PushBack({100, 875, 90, 95});
 	hadouken.PushBack({190, 875, 97, 95});
 	hadouken.PushBack({290, 875, 110, 95});
@@ -186,6 +186,8 @@ bool ModulePlayer::Start()
 	LOG("Loading player textures");
 	bool ret = true;
 	graphics = App->textures->Load("RyuP1.png"); // JA TE LA FOTO BONA
+	LP = App->audio->LoadFx("");
+	Hadoken_Sound = App->audio->LoadFx("Audios/Voices/Ryu&Ken hadouken.wav");
 
 	position.x = 100;
 	position.y = 220;
@@ -204,6 +206,8 @@ bool ModulePlayer::CleanUp()
 	LOG("Unloading Player");
 
 	App->textures->Unload(graphics);
+	App->audio->UnLoadFX(LP);
+	App->audio->UnLoadFX(Hadoken_Sound);
 
 	return true;
 }
@@ -230,7 +234,7 @@ update_status ModulePlayer::PreUpdate() {
 
 	{
 		if (currentstate == punchlight) {
-
+			
 			if (current_animation->Finished()) {
 
 				currentstate = idlestate;
@@ -239,7 +243,6 @@ update_status ModulePlayer::PreUpdate() {
 				LOG("PUNCH TO IDLE");
 
 			}
-
 			LOG("PUNCH");
 		}
 
@@ -251,12 +254,7 @@ update_status ModulePlayer::PreUpdate() {
 				lightKick.Reset();
 				LOG("KICK TO IDLE");
 			}
-
-
-
 		}
-
-
 
 		if (currentstate == jumpstate) {
 
@@ -693,7 +691,6 @@ update_status ModulePlayer::Update()
 		break;
 
 	case punchlight:
-
 		current_animation = &lightPunch;
 		LOG("PUNCH ANIMATION ACTIVE");
 		break;
@@ -711,6 +708,7 @@ update_status ModulePlayer::Update()
 		break;
 
 	case hadoukenstate:
+		App->audio->PlayFx(Hadoken_Sound);
 		current_animation = &hadouken;
 		LOG("KADOUKEN ANIMATION ACTIVE");
 		break;

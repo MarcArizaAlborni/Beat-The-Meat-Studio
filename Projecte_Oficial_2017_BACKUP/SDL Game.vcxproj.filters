@@ -53,9 +53,6 @@
     <ClInclude Include="ModuleSceneHonda.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleSceneKen.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
     <ClInclude Include="ModuleWelcomeScreen.h">
       <Filter>Modules</Filter>
     </ClInclude>
@@ -87,6 +84,9 @@
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="ModuleLoseScreen.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleSceneRyu.h">
       <Filter>Modules</Filter>
     </ClInclude>
   </ItemGroup>
@@ -121,9 +121,6 @@
     <ClCompile Include="ModuleSceneHonda.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleSceneKen.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
     <ClCompile Include="ModuleWelcomeScreen.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
@@ -155,6 +152,9 @@
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="ModuleLoseScreen.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleSceneRyu.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>

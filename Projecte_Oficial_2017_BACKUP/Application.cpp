@@ -4,7 +4,7 @@
 #include "ModuleRender.h"
 #include "ModuleInput.h"
 #include "ModuleTextures.h"
-#include "ModuleSceneKen.h"
+#include "ModuleSceneRyu.h"
 #include "ModuleSceneHonda.h"
 #include "ModuleCollision.h"
 #include "ModulePlayer.h"
@@ -31,7 +31,7 @@ Application::Application()
 	modules[6] = icoin_screen = new ModuleIcoinScreen();
 	modules[7] = start_screen = new ModuleStartScreen();
 	modules[8] = scene_honda = new ModuleSceneHonda();
-	modules[9] = scene_ken = new ModuleSceneKen();
+	modules[9] = scene_ryu = new ModuleSceneRyu();
 	modules[10] = win_screen = new ModuleWinScreen();
 	modules[11] = lose_screen = new ModuleLoseScreen();
 	modules[12] = player = new ModulePlayer();
@@ -59,7 +59,7 @@ bool Application::Init()
 	collision->Disable();
 	// Disable the map that you do not start with
 	scene_honda->Disable();
-	scene_ken->Disable();
+	scene_ryu->Disable();
 	congrat_screen->Disable();
 	icoin_screen->Disable();
 	warning_screen->Disable();

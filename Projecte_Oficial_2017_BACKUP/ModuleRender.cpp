@@ -6,7 +6,7 @@
 #include "ModuleInput.h"
 #include "SDL/include/SDL.h"
 #include "ModuleSceneHonda.h"
-#include "ModuleSceneKen.h"
+#include "ModuleSceneryu.h"
 
 ModuleRender::ModuleRender() : Module()
 {
@@ -76,7 +76,7 @@ update_status ModuleRender::Update()
 //#ifdef _DEBUG
 	if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_REPEAT)
 	{
-		if (App->scene_honda->IsEnabled() || App->scene_ken->IsEnabled())
+		if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled())
 		{
 			camera.y += speed;
 		}
@@ -89,7 +89,7 @@ update_status ModuleRender::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_REPEAT)
 	{
-		if (App->scene_honda->IsEnabled() || App->scene_ken->IsEnabled())
+		if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled())
 		{
 			camera.y -= speed;
 		}
@@ -102,7 +102,7 @@ update_status ModuleRender::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_REPEAT)
 	{
-		if (App->scene_honda->IsEnabled() || App->scene_ken->IsEnabled())
+		if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled())
 		{
 			camera.x -= speed;
 		}
@@ -115,7 +115,7 @@ update_status ModuleRender::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_REPEAT)
 	{
-		if (App->scene_honda->IsEnabled() || App->scene_ken->IsEnabled())
+		if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled())
 		{
 			camera.x += speed;
 		}

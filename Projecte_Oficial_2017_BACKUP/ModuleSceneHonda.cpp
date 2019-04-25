@@ -10,7 +10,7 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleParticles.h"
 #include "ModuleCollision.h"
-#include "ModuleSceneKen.h"
+#include "ModuleSceneRyu.h"
 #include "MemLeaks.h"
 #include "ModuleCongratScreen.h"
 

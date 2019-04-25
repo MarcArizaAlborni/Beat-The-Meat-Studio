@@ -9,7 +9,7 @@ class ModuleInput;
 class ModuleTextures;
 class ModuleRender;
 class ModuleParticles;
-class ModuleSceneKen;
+class ModuleSceneRyu;
 class ModuleSceneHonda;
 class ModulePlayer;
 class ModuleFadeToBlack;
@@ -36,7 +36,7 @@ public:
 	ModuleRender* render;
 	ModuleInput* input;
 	ModuleTextures* textures;
-	ModuleSceneKen* scene_ken;
+	ModuleSceneRyu* scene_ryu;
 	ModuleSceneHonda* scene_honda;
 	ModuleCollision* collision;
 	ModulePlayer* player;
