@@ -279,7 +279,7 @@ update_status ModulePlayer::PreUpdate() {
 				App->particles->hadouken.speed.x = 5;
 				App->particles->hadouken.life = 2000;
 				App->particles->AddParticle(App->particles->hadouken, position.x + 25, position.y - 70, COLLIDER_PLAYER_SHOT);
-			currentstate = idlestate;
+				currentstate = idlestate;
 				hadouken.Reset();
 			}
 		}

@@ -18,6 +18,7 @@
 #include "ModuleWinScreen.h"
 #include "ModuleLoseScreen.h"
 #include "ModuleFonts.h"
+#include "ModuleAudio.h"
 
 Application::Application()
 {
@@ -39,6 +40,7 @@ Application::Application()
 	modules[15] = collision = new ModuleCollision();
 	modules[16] = fade = new ModuleFadeToBlack();
 	modules[17] = fonts = new ModuleFonts();
+	modules[18] = audio = new ModuleAudio();
 
 }	
 

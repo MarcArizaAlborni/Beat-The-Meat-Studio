@@ -1,9 +1,8 @@
 #ifndef __APPLICATION_H__
 #define __APPLICATION_H__
-#define _DEBUG
 #include "Globals.h"
 
-#define NUM_MODULES 18
+#define NUM_MODULES 19
 
 class ModuleWindow;
 class ModuleInput;
@@ -23,6 +22,7 @@ class ModuleWarningScreen;
 class ModuleWinScreen;
 class ModuleLoseScreen;
 class ModuleFonts;
+class ModuleAudio;
 
 class Module;
 
@@ -50,6 +50,7 @@ public:
 	ModuleLoseScreen * lose_screen;
 	ModuleCongratScreen * congrat_screen;
 	ModuleFonts* fonts;
+	ModuleAudio* audio;
 
 public:
 

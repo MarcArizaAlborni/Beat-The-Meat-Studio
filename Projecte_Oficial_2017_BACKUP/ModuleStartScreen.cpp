@@ -11,6 +11,7 @@
 #include "ModuleWelcomeScreen.h"
 #include "ModuleSceneKen.h"
 #include "ModuleStartScreen.h"
+#include "ModuleAudio.h"
 
 ModuleStartScreen::ModuleStartScreen()
 {
@@ -28,6 +29,7 @@ bool ModuleStartScreen::Start()
 {
 	LOG("Loading Welcome screen");
 	graphics = App->textures->Load("Start_Game.png");
+
 	return true;
 }
 
