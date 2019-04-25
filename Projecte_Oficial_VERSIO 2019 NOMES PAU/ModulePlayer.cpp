@@ -636,17 +636,17 @@ update_status ModulePlayer::Update()
 		LOG("CROUCH KICK ANIMATION ACTIVE");
 		break;
 
-	case kickjump:
+	/*case kickjump:
 
 		current_animation = &jumpkick;
 		LOG("JUMP KICK ANIMATION ACTIVE");
-		break;
+		break;*/
 
-	case punchjump:
+	/*case punchjump:
 
 		current_animation = &jumppunch;
 		LOG("JUMP PUNCH ANIMATION ACTIVE");
-		break;
+		break;*/
 
 	case idlestate:
 
@@ -717,7 +717,7 @@ update_status ModulePlayer::Update()
 
 	case jumpkickstate:
 
-		current_animation = &jumpbackkick;
+		current_animation = &jumpkick;
 		position.y -= speed * gravity;
 		if (position.y <= 150)
 		{
