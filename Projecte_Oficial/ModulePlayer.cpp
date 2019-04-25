@@ -13,6 +13,7 @@
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
 int speed = 2;
+Uint8 alphaka= 255;
 
 ModulePlayer::ModulePlayer()
 {
@@ -22,6 +23,13 @@ ModulePlayer::ModulePlayer()
 	position.x = 100;
 	position.y = 220;
 	score = 0;
+
+	health.x = 100;
+	health.y = 400; 
+	health.w = 200;
+	health.h = 20;
+	
+	//App->render->DrawQuad(health, 255, 0, 0, alphaka);
 
 	// idle animation (arcade sprite sheet)
 	idle.PushBack({25, 54, 68, 100});

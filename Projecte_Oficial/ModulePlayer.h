@@ -59,6 +59,7 @@ public:
 
 public:
 
+	SDL_Rect health;
 	SDL_Texture* graphics = nullptr;
 	Animation * current_animation = nullptr;
 	int font_score = -1;
