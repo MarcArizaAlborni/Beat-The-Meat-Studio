@@ -47,16 +47,16 @@ ModulePlayer::ModulePlayer()
 
 
 	//punchcrouch Animation
-	crouchpunch.PushBack({ 21,2038,86,72 });
-	crouchpunch.PushBack({106,2037,100,73});
+	crouchpunch.PushBack({ 34,2038,86,72 });
+	crouchpunch.PushBack({120,2037,100,73});
 
 	crouchpunch.speed = 0.15f;
 	crouchpunch.loop = false;
 
 	//kickcrouch Animation
 
-	crouchkick.PushBack({32,2288,76,70});
-	crouchkick.PushBack({ 109,2287,123,72});
+	crouchkick.PushBack({32,2296,80,70});
+	crouchkick.PushBack({ 109,2296,121,70});
 
 	crouchkick.speed = 0.15f;
 	crouchkick.loop = false;
@@ -88,7 +88,7 @@ ModulePlayer::ModulePlayer()
 	// kick jump Animation
 
 	jumpkick.PushBack({ 242,1791,68,124 });
-	jumpkick.PushBack({ 331,1791,110,123 });
+	jumpkick.PushBack({ 331,1791,110,115 });
 	jumpkick.speed = 0.1f;
 	jumpkick.loop = false;
 
