@@ -44,6 +44,22 @@ ModuleSceneRyu::ModuleSceneRyu()
 	castle.w = 504.3;
 	castle.h = 212.3;
 
+	//Healthbar & health
+	healthbar.x = 188;
+	healthbar.y = 254;
+	healthbar.w = 322;
+	healthbar.h = 14;
+
+	health.x = 189;
+	health.y = 274;
+	health.w = 144;
+	health.h = 9;
+
+	health2.x = 365;
+	health2.y = 274;
+	health2.w = 144;
+	health2.h = 9;
+
 	
 }	
 
@@ -55,6 +71,8 @@ bool ModuleSceneRyu::Start()
 {
 	LOG("Loading Ryu scene");
 	graphics = App->textures->Load("ryu_stage.png");
+	graphics2 = App->textures->Load("UI_Spritesheet.png");
+
 	// TODO 1: Enable (and properly disable) the player module
 	App->player->Enable();
 	App->particles->Enable();
@@ -68,6 +86,7 @@ bool ModuleSceneRyu::CleanUp()
 {
 	LOG("Unloading ken scene");
 	App->textures->Unload(graphics);
+	App->textures->Unload(graphics2);
 	App->player->Disable(); 
 	App->collision->Disable();
 	App->particles->Disable();
@@ -85,6 +104,11 @@ update_status ModuleSceneRyu::Update()
 	App->render->Blit(graphics, 0, 0, &castle);
 
 	//App->render->Blit(graphics, 0, 1, &foreground);
+
+	App->render->Blit(graphics2, 30, 20, &healthbar); //healthbar
+	App->render->Blit(graphics2, 31, 23, &health); //health
+	App->render->Blit(graphics2, 207, 23, &health2); //health
+
 	
 	App->render->Blit(graphics, 0, 177, &ground);
 
@@ -95,14 +119,42 @@ update_status ModuleSceneRyu::Update()
 		App->fade->FadeToBlack(App->scene_ryu, App->win_screen, 1.0f);
 	}
 
+	if (App->input->keyboard[SDL_SCANCODE_H] == 1) //Health-substracting button
+	{
+		health.x -= 10;
+
+		if (health.x < 40) //40 instead of 0 because it doesnt exactly fit. If the duel ends then reset the healthbars
+		{
+			App->fade->FadeToBlack(App->scene_ryu, App->lose_screen, 1.0f);
+			health.x = 189;
+			health2.w = 144;
+		}
+	}
+
+	if (App->input->keyboard[SDL_SCANCODE_J] == 1) //Health-substracting button
+	{
+		health2.w -= 10;
+
+		if (health2.w < 0) //If the duel ends then reset the healthbars
+		{
+			App->fade->FadeToBlack(App->scene_ryu, App->win_screen, 1.0f);
+			health2.w = 144;
+			health.x = 189;
+		}
+	}
+
 	if (App->input->keyboard[SDL_SCANCODE_V] == 1) //Insta-Win Input Button
 	{
 		App->fade->FadeToBlack(App->scene_ryu, App->win_screen, 1.0f);
+		health2.w = 144;
+		health.x = 189;
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_X] == 1) //Insta-Lose Input Button
 	{
 		App->fade->FadeToBlack(App->scene_ryu, App->lose_screen, 1.0f);
+		health.x = 189;
+		health2.w = 144;
 	}
 
 	return UPDATE_CONTINUE;

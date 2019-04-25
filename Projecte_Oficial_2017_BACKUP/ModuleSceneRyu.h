@@ -20,10 +20,14 @@ public:
 public:
 	
 	SDL_Texture* graphics = nullptr;
+	SDL_Texture* graphics2 = nullptr;
 	SDL_Rect ground;
 	SDL_Rect foreground;
 	SDL_Rect background;
 	SDL_Rect castle;
+	SDL_Rect healthbar;
+	SDL_Rect health;
+	SDL_Rect health2;
 	Animation cartel;
 
 	float foreground_pos;
