@@ -33,7 +33,9 @@ enum STATE {
 	jumpbackwardkick,
 	jumpbackwardpunch,
 	jumpforwardkick,
-	jumpforwardpunch
+	jumpforwardpunch,
+	jumpkickstate,
+	jumppunchstate
 
 
 
