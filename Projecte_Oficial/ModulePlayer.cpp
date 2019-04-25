@@ -148,6 +148,33 @@ ModulePlayer::ModulePlayer()
 	hadouken.PushBack({290, 875, 110, 95});
 	hadouken.loop = false;
 	hadouken.speed = 0.1f;
+
+
+	//Jumpbackkick Animation
+	jumpbackkick.PushBack({347,1925,80,91});
+	jumpbackkick.PushBack({ 427,1925,135,91 });
+	jumpbackkick.loop = false;
+	jumpbackkick.speed = 0.1f;
+	
+	
+	// jumpbackpunch Animation
+	jumpbackpunch.PushBack({ 23,1689,74,91 });
+	jumpbackpunch.PushBack({ 99,1689,104,92 });
+	jumpbackpunch.loop = false;
+	jumpbackpunch.speed = 0.1f;
+
+	//jumpfrontkick Animation
+	jumpfrontkick.PushBack({ 347,1925,80,91 });
+	jumpfrontkick.PushBack({ 427,1925,135,91 });
+	jumpfrontkick.loop = false;
+	jumpfrontkick.speed = 0.1f;
+	
+	// jumpfrontpunch Animation 
+
+	jumpfrontpunch.PushBack({23,1689,74,91});
+	jumpfrontpunch.PushBack({ 99,1689,104,92 });
+	jumpfrontpunch.loop = false;
+	jumpfrontpunch.speed = 0.1f;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -228,6 +255,8 @@ update_status ModulePlayer::PreUpdate() {
 
 
 		}
+
+
 
 		if (currentstate == jumpstate) {
 
@@ -328,6 +357,19 @@ update_status ModulePlayer::PreUpdate() {
 		}
 		if (currentstate == jumpbackward) {
 			LOG("BACKWARDJUMP TO IDLE");
+
+			if (inputplayer1.I_active) {
+
+				currentstate = jumpbackwardpunch;
+				LOG("BACKWARDJUMP TO BACKWARDJUMPPUNCH");
+			}
+			if (inputplayer1.K_active) {
+
+
+				currentstate = jumpbackwardkick;
+				LOG("BACKWARDJUMP TO BACKWARDJUMPKICK");
+
+			}
 			/*if (current_animation->Finished()) { // Aquest d'aqui no el poseu perque per ara trenca el jumpbackward.
 				currentstate = idlestate;
 				backwardjump.Reset();
@@ -335,10 +377,61 @@ update_status ModulePlayer::PreUpdate() {
 		}
 		if (currentstate == jumpforward) {
 			LOG("FORWARDJUMP TO IDLE");
+
+			if (inputplayer1.I_active) {
+
+				currentstate = jumpforwardpunch;
+				LOG("FORWARDJUMP TO FORWARDJUMPPUNCH");
+
+			}
+			if (inputplayer1.K_active) {
+
+				currentstate = jumpforwardkick;
+				LOG("FORWARDJUMP TO FORWARDJUMPKICK");
+
+			}
 			/*if (current_animation->Finished()) {  // Aquest d'aqui no el poseu perque per ara trenca el jumpforward.
 				currentstate = idlestate;
 				forwardjump.Reset();
 			}*/
+		}
+		if (currentstate == jumpbackwardkick) {
+
+			LOG("BACKWARDJUMPKICK TO JUMP");
+			if (current_animation->Finished()) {
+				currentstate = jumpstate;
+				jumpbackkick.Reset();
+
+			}
+		}
+		if (currentstate == jumpbackwardpunch) {
+
+			LOG("BACKWARDJUMPPUNCH TO JUMP");
+			if (current_animation->Finished()) {
+				currentstate = jumpstate;
+				jumpbackpunch.Reset();
+			}
+		}
+		if (currentstate == jumpforwardkick){
+
+			LOG("FORWARDJUMPKICK TO JUMPFORWARD")
+				if (current_animation->Finished()) {
+
+					currentstate = jumpstate;
+					jumpfrontkick.Reset();
+				}
+
+			}
+
+		if (currentstate == jumpforwardpunch) {
+
+			LOG("FORWARDJUMPPUNCH TO JUMPFORWARD");
+			if (current_animation->Finished()) {
+				currentstate =jumpstate;
+				jumpfrontpunch.Reset();
+			}
+
+
 		}
 		if (currentstate == punchcrouch) {
 			LOG("CROUCH TO CROUCHPUNCH");
@@ -395,6 +488,30 @@ update_status ModulePlayer::Update()
 	
 
 	switch (currentstate) {
+	case jumpbackwardkick:
+		
+		current_animation = &jumpbackkick;
+		LOG("JUMPBACKKICK ANIMATION ACTIVE");
+		break;
+
+	case jumpbackwardpunch:
+
+		current_animation = &jumpbackpunch;
+		LOG("JUMPBACKPUNCH ANIMATION ACTIVE");
+		break;
+
+
+	case jumpforwardkick:
+		current_animation = &jumpfrontkick;
+		LOG("JUMPFRONTKICK ANIMATION ACTIVE");
+		break;
+
+	case  jumpforwardpunch:
+
+		current_animation = &jumpfrontpunch;
+		LOG("JUMPFRONTPUNCH ANIMATION ACTIVE");
+		break;
+
 
 	case damagedstate:
 
@@ -414,10 +531,12 @@ update_status ModulePlayer::Update()
 		else if (position.y == 220) {
 			jump.Reset();
 			currentstate = idlestate;
-			forwardjump.Reset();
+			
 			gravity = 1;
+			forwardjump.Reset();
 		}
 		current_animation = &forwardjump;
+		
 		LOG("FORWARD JUMP ANIMATION ACTIVE");
 		
 		break;
@@ -438,6 +557,7 @@ update_status ModulePlayer::Update()
 			gravity = 1;
 			backwardjump.Reset();
 		}
+		
 		LOG("backward JUMP ANIMATION ACTIVE");
 		
 		break;

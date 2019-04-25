@@ -29,7 +29,12 @@ enum STATE {
 	jumpforward,
 	jumpbackward,
 	damagedstate,
-	crouched
+	crouched,
+	jumpbackwardkick,
+	jumpbackwardpunch,
+	jumpforwardkick,
+	jumpforwardpunch
+
 
 
 };
@@ -81,6 +86,10 @@ public:
 	Animation forwardjump;
 	Animation backwardjump;
 	Animation crouch;
+	Animation jumpbackkick;
+	Animation jumpbackpunch;
+	Animation jumpfrontkick;
+	Animation jumpfrontpunch;
 	
 	iPoint position;
 	InputP1 inputplayer1;
