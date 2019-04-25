@@ -198,7 +198,7 @@ update_status ModulePlayer::PreUpdate() {
 	inputplayer1.I_active = App->input->keyboard[SDL_SCANCODE_I] == KEY_DOWN;
 	//LIGHT KICK
 	inputplayer1.K_active = App->input->keyboard[SDL_SCANCODE_K] == KEY_DOWN;
-	//HADOKENo
+	//HADOKEN
 	inputplayer1.R_active = App->input->keyboard[SDL_SCANCODE_R] == KEY_DOWN;
 
 	{
@@ -443,7 +443,6 @@ update_status ModulePlayer::Update()
 		break;
 	case punchcrouch:
 
-
 		current_animation = &crouchpunch;
 		LOG("CROUCH PUNCH ANIMATION ACTIVE")
 			break;
@@ -469,12 +468,14 @@ update_status ModulePlayer::Update()
 
 	case idlestate: 
 
+		player_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
 		current_animation = &idle;
 		LOG("IDLE ANIMATION ACTIVE");
 		break;
 
 
 	case backwardstate:
+		player_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
 		current_animation = &backward;
 		position.x -= speed;
 		LOG("BACKWARD ANIMATION ACTIVE");
@@ -482,7 +483,7 @@ update_status ModulePlayer::Update()
 
 
 	case forwardstate:
-
+		player_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
 		current_animation = &forward;
 		position.x += speed;
 		LOG("FORWARD ANIMATION ACTIVE");
@@ -499,7 +500,6 @@ update_status ModulePlayer::Update()
 		if (position.y <= 150)
 		{
 			gravity = -1;
-			
 		}
 
 		else if(position.y == 220) {
@@ -549,7 +549,8 @@ update_status ModulePlayer::Update()
 	}
 
 	// TODO 7.3: Update collider position to player position
-	player_collider->SetPos(position.x - App->render->camera.x, position.y - 93- App->render->camera.y);
+	//PONER LOS COLLIDERS  DENTRO DE LOS STATES
+	//player_collider->SetPos(position.x - App->render->camera.x, position.y - 93- App->render->camera.y);
 	
 	// Draw everything --------------------------------------
 	SDL_Rect r = current_animation->GetCurrentFrame();
