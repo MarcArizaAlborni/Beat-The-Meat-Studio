@@ -28,6 +28,10 @@ public:
 	SDL_Rect healthbar;
 	SDL_Rect health;
 	SDL_Rect health2;
+	SDL_Rect name;
+	SDL_Rect name2;
+	SDL_Rect score;
+	SDL_Rect timer;
 	Animation cartel;
 
 	float foreground_pos;

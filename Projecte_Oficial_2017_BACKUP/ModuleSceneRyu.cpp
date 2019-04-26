@@ -60,7 +60,28 @@ ModuleSceneRyu::ModuleSceneRyu()
 	health2.w = 144;
 	health2.h = 9;
 
-	
+	//Names
+	name.x = 226;
+	name.y = 292;
+	name.w = 28;
+	name.h = 9;
+
+	name2.x = 226;
+	name2.y = 292;
+	name2.w = 28;
+	name2.h = 9;
+
+	//Score
+	score.x = 226;
+	score.y = 313;
+	score.w = 241;
+	score.h = 10;
+
+	//Timer
+	timer.x = 340;
+	timer.y = 292;
+	timer.w = 28;
+	timer.h = 15;
 }	
 
 ModuleSceneRyu::~ModuleSceneRyu()
@@ -109,6 +130,10 @@ update_status ModuleSceneRyu::Update()
 	App->render->Blit(graphics2, 31, 23, &health, 1.0f, false); //health
 	App->render->Blit(graphics2, 207, 23, &health2, 1.0f, false); //health
 
+	App->render->Blit(graphics2, 32, 34, &name, 1.0f, false); //name p1
+	App->render->Blit(graphics2, 322, 34, &name2, 1.0f, false); //name p2
+	App->render->Blit(graphics2, 6, 1, &score, 1.0f, false); //score
+	App->render->Blit(graphics2, 178, 34, &timer, 1.0f, false); //timer
 	
 	App->render->Blit(graphics, 0, 177, &ground);
 
