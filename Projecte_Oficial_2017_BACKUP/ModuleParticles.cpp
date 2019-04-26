@@ -4,6 +4,8 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleParticles.h"
+#include "ModulePlayer.h"
+#include "ModuleSceneRyu.h"
 
 #include "SDL/include/SDL_timer.h"
 
@@ -113,6 +115,11 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 {
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
+		//Before it's destroyed we decrese player 2 health
+		if (active[i] != nullptr && active[i]->collider == c1 && c2 == App->player->player2_collider)
+		{
+			App->scene_ryu->health2.w -= 10;
+		}
 		// Always destroy particles that collide
 		if (active[i] != nullptr && active[i]->collider == c1)
 		{
@@ -120,6 +127,7 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 			active[i] = nullptr;
 			break;
 		}
+		
 	}
 }
 

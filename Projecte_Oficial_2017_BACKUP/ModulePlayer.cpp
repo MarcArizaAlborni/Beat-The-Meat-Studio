@@ -807,9 +807,10 @@ update_status ModulePlayer::Update()
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
 	//App->particles->hadouken.collider
-	if (c1 == player_collider &&  c2 == player2_collider){
+	/*if (  c1->type == COLLIDER_PLAYER_SHOT) {
+
 		App->scene_ryu->health2.w -= 10;
-	}
+	}*/
 
 
 }
