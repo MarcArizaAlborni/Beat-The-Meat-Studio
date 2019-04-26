@@ -154,11 +154,12 @@ bool Particle::Update()
 			ret = false;
 
 	//rect.x = (int)(-camera.x * speed) + x * SCREEN_SIZE;
-	position.x += speed.x; //(App->render->camera.x * speed.x) + position.x *SCREEN_SIZE;
+	//(App->render->camera.x * speed.x) + position.x *SCREEN_SIZE;
+	position.x +=  speed.x ; // speed.x ; 
 	position.y += speed.y;
 
 	if (collider != nullptr)
-		collider->SetPos( position.x , position.y);
+		collider->SetPos( position.x - App->render->camera.x , position.y);
 
 	return ret;
 }
