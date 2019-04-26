@@ -34,7 +34,7 @@ public:
 	SDL_Rect timer;
 	Animation cartel;
 
-	float foreground_pos;
+	float background_pos;
 	bool forward;
 };
 

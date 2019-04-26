@@ -19,18 +19,12 @@
 
 ModuleSceneRyu::ModuleSceneRyu()
 {
+	//313.3
 	// ground
-	//ESTA MAL
-	ground.x = 44;
-	ground.y = 605.3;
+	ground.x = 45;
+	ground.y = 298;
 	ground.w = 620;
-	ground.h = 47.7;
-
-	// foreground
-	foreground.x = 49;
-	foreground.y = 372;
-	foreground.w = 620;
-	foreground.h = 176.3;
+	ground.h = 237.3;
 
 	// Sky
 	background.x = 49;
@@ -38,12 +32,14 @@ ModuleSceneRyu::ModuleSceneRyu()
 	background.w = 1409,8;
 	background.h = 176.3;
 
-	//Castle
+	background_pos = 0;
+	forward = true;
 
-	castle.x = 398;
-	castle.y = 270;
-	castle.w = 504.3;
-	castle.h = 212.3;
+	//Castle
+	castle.x = 1477;
+	castle.y = 10;
+	castle.w = 504;
+	castle.h = 182;
 
 	//Healthbar & health
 	healthbar.x = 188;
@@ -123,11 +119,17 @@ update_status ModuleSceneRyu::Update()
 {
 
 	// Draw everything --------------------------------------
-	App->render->Blit(graphics, 0, 0, &background, 0.75f); //sky
+	if (background_pos > 1000.0f)
+	forward = true;
 
-	App->render->Blit(graphics, 0, 0, &castle);
+	if (forward)
+		background_pos -= 0.30f;
 
-	//App->render->Blit(graphics, 0, 1, &foreground);
+	App->render->Blit(graphics, -77 + (int)background_pos, 0, &background); //sky
+
+	App->render->Blit(graphics, 0, -3.25, &castle); //castle
+
+	App->render->Blit(graphics, -115, -13, &ground); //ground
 
 	App->render->Blit(graphics2, 30, 20, &healthbar,1.0f,false); //healthbar
 	App->render->Blit(graphics2, 31, 23, &health, 1.0f, false); //health
@@ -137,8 +139,6 @@ update_status ModuleSceneRyu::Update()
 	App->render->Blit(graphics2, 322, 34, &name2, 1.0f, false); //name p2
 	App->render->Blit(graphics2, 6, 1, &score, 1.0f, false); //score
 	App->render->Blit(graphics2, 178, 34, &timer, 1.0f, false); //timer
-	
-	App->render->Blit(graphics, 0, 177, &ground);
 
 
 	// TODO 2: make so pressing SPACE the HONDA stage is loaded
