@@ -128,58 +128,7 @@ update_status ModuleRender::Update()
 			}
 		}
 	}
-	/*if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_REPEAT)
-	{
-		if (App->welcome_screen != nullptr || App->warning_screen != nullptr || App->icoin_screen != nullptr || App->start_screen != nullptr || App->congrat_screen != nullptr)
-		{
-			camera.y += still;
-		}
-
-		else if (App->scene_ken != nullptr || App->scene_honda != nullptr)
-		{
-			camera.y += speed;
-		}
-	}
-
-	if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_REPEAT)
-	{
-		if (App->welcome_screen != nullptr || App->warning_screen != nullptr || App->icoin_screen != nullptr || App->start_screen != nullptr || App->congrat_screen != nullptr)
-		{
-			camera.y -= still;
-		}
-
-		else if (App->scene_ken != nullptr || App->scene_honda != nullptr)
-		{
-			camera.y -= speed;
-		}
-	}
-
-	if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_REPEAT)
-	{
-		if (App->welcome_screen != nullptr || App->warning_screen != nullptr || App->icoin_screen != nullptr || App->start_screen != nullptr || App->congrat_screen != nullptr)
-		{
-			camera.x += still;
-		}
-
-		else if (App->scene_ken != nullptr || App->scene_honda != nullptr)
-		{
-			camera.x += speed;
-		}
-	}
 	
-	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_REPEAT)
-	{
-		if (App->welcome_screen != nullptr || App->warning_screen != nullptr || App->icoin_screen != nullptr || App->start_screen != nullptr || App->congrat_screen != nullptr)
-		{
-			camera.x -= still;
-		}
-
-		else if (App->scene_ken != nullptr || App->scene_honda != nullptr)
-		{
-			camera.x -= speed;
-		}
-	}*/
-//#endif
 	return update_status::UPDATE_CONTINUE;
 }
 
