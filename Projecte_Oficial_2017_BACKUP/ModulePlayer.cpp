@@ -17,6 +17,8 @@
 int speed = 2;
 Uint8 alphaka= 255;
 
+bool airkick = true;
+
 ModulePlayer::ModulePlayer()
 {
 	graphics = NULL;
@@ -262,12 +264,14 @@ update_status ModulePlayer::PreUpdate() {
 		}
 
 		if (currentstate == jumpstate) {
-
+			if (airkick) {
 			if (inputplayer1.I_active) {
 				currentstate =jumppunchstate;
 			}
-			if (inputplayer1.K_active){
-				currentstate = jumpkickstate;
+			
+				if (inputplayer1.K_active) {
+					currentstate = jumpkickstate;
+				}
 			}
 			/*if (current_animation->Finished()) {
 				jump.Reset();
@@ -359,20 +363,22 @@ update_status ModulePlayer::PreUpdate() {
 				LOG("FORWARD TO JUMP");
 			}
 		}
+
 		if (currentstate == jumpbackward) {
 			LOG("BACKWARDJUMP TO IDLE");
-
+			if (airkick) {
 			if (inputplayer1.I_active) {
 
 				currentstate = jumpbackwardpunch;
 				LOG("BACKWARDJUMP TO BACKWARDJUMPPUNCH");
 			}
-			if (inputplayer1.K_active) {
+			
+				if (inputplayer1.K_active) {
 
 
-				currentstate = jumpbackwardkick;
-				LOG("BACKWARDJUMP TO BACKWARDJUMPKICK");
-
+					currentstate = jumpbackwardkick;
+					LOG("BACKWARDJUMP TO BACKWARDJUMPKICK");
+				}
 			}
 			/*if (current_animation->Finished()) { // Aquest d'aqui no el poseu perque per ara trenca el jumpbackward.
 				currentstate = idlestate;
@@ -381,39 +387,53 @@ update_status ModulePlayer::PreUpdate() {
 		}
 		if (currentstate == jumpforward) {
 			LOG("FORWARDJUMP TO IDLE");
-
+			if (airkick) {
 			if (inputplayer1.I_active) {
 
 				currentstate = jumpforwardpunch;
 				LOG("FORWARDJUMP TO FORWARDJUMPPUNCH");
 
 			}
+			
 			if (inputplayer1.K_active) {
-
-				currentstate = jumpforwardkick;
-				LOG("FORWARDJUMP TO FORWARDJUMPKICK");
-
+				
+					currentstate = jumpforwardkick;
+					LOG("FORWARDJUMP TO FORWARDJUMPKICK");
+				}
 			}
 			/*if (current_animation->Finished()) {  // Aquest d'aqui no el poseu perque per ara trenca el jumpforward.
 				currentstate = idlestate;
 				forwardjump.Reset();
 			}*/
 		}
-		if (currentstate == jumpbackwardkick) {
+		
+			if (currentstate == jumpbackwardkick) {
+				
+					
+				LOG("BACKWARDJUMPKICK TO JUMP");
+				if (jumpbackkick.Finished()) {
 
-			LOG("BACKWARDJUMPKICK TO JUMP");
-			
-		}
+					currentstate = jumpbackward;
+					airkick = false;
+					jumpbackkick.Reset();
+				}
+					
+			}
+		
 		if (currentstate == jumpbackwardpunch) {
 
 			LOG("BACKWARDJUMPPUNCH TO JUMP");
 			
 		}
-		if (currentstate == jumpforwardkick){
-
-			LOG("FORWARDJUMPKICK TO JUMPFORWARD")
-			
+		if (airkick) {
+			if (currentstate == jumpforwardkick) {
+				if (jumpfrontkick.Finished()) {
+					LOG("FORWARDJUMPKICK TO JUMPFORWARD")
+					currentstate = jumpforward;
+					airkick = false;
+				}
 			}
+		}
 
 		if (currentstate == jumpforwardpunch) {
 
@@ -452,13 +472,19 @@ update_status ModulePlayer::PreUpdate() {
 				LOG("CROUCH TO IDLE");
 			}
 		}
-		if (currentstate == jumpkickstate) {
-			LOG("KICKJUMP TO IDLE");
-			if (current_animation->Finished()&& (position.y == 220)) {
-				currentstate = jumpstate;//-----------------------------------------------
-				jumpkick.Reset();
+		
+			if (currentstate == jumpkickstate) {
+				LOG("KICKJUMP TO IDLE");
+				//if (current_animation->Finished()&& (position.y == 220)) {
+				//	currentstate = jumpstate;//-----------------------------------------------
+				//	jumpkick.Reset();
+				//}
+				if (jumpkick.Finished()) {
+					currentstate = jumpstate;
+					airkick = false;
+				}
 			}
-		}
+		
 		if (currentstate == jumppunchstate) {
 			LOG("PUNCHJUMP ACTIVE");
 			if (current_animation->Finished()&& (position.y == 220)) {
@@ -501,6 +527,7 @@ update_status ModulePlayer::Update()
 
 		else if (position.y == 220) {
 			jump.Reset();
+			airkick = true;
 			currentstate = idlestate;
 			gravity = 1;
 		}
@@ -521,6 +548,9 @@ update_status ModulePlayer::Update()
 
 		else if (position.y == 220) {
 			jump.Reset();
+			jumpbackkick.Reset();
+			backwardjump.Reset();
+			airkick = true;
 			currentstate = idlestate;
 			gravity = 1;
 		}
@@ -541,6 +571,7 @@ update_status ModulePlayer::Update()
 
 		else if (position.y == 220) {
 			jump.Reset();
+			airkick = true;
 			jumpbackpunch.Reset();
 			currentstate = idlestate;
 			gravity = 1;
@@ -565,8 +596,11 @@ update_status ModulePlayer::Update()
 
 		else if (position.y == 220) {
 			jump.Reset();
+			airkick = true;
+			jumpfrontkick.Reset();
 			currentstate = idlestate;
 			gravity = 1;
+			forwardjump.Reset();
 		}
 		LOG("JUMPFRONTKICK ANIMATION ACTIVE");
 		break;
@@ -586,6 +620,7 @@ update_status ModulePlayer::Update()
 		else if (position.y == 220) {
 			jumpfrontpunch.Reset();
 			jump.Reset();
+			airkick = true;
 			currentstate = idlestate;
 			gravity = 1;
 		}
@@ -600,8 +635,6 @@ update_status ModulePlayer::Update()
 		break;
 
 	case jumpforward:
-
-
 		position.x += speed;
 		position.y -= speed * gravity;
 		if (position.y <= 150)
@@ -610,8 +643,9 @@ update_status ModulePlayer::Update()
 		}
 		else if (position.y == 220) {
 			jump.Reset();
+			airkick = true;
 			currentstate = idlestate;
-
+			jumpfrontkick.Reset();
 			gravity = 1;
 			forwardjump.Reset();
 		}
@@ -633,8 +667,10 @@ update_status ModulePlayer::Update()
 		}
 		else if (position.y == 220) {
 			jump.Reset();
+			airkick = true;
 			currentstate = idlestate;
 			gravity = 1;
+			jumpbackkick.Reset();
 			backwardjump.Reset();
 		}
 
@@ -704,6 +740,9 @@ update_status ModulePlayer::Update()
 
 		else if (position.y == 220) {
 			jump.Reset();
+
+ 			airkick = true;
+			jumpkick.Reset();
 			currentstate = idlestate;
 			gravity = 1;
 		}
@@ -745,6 +784,7 @@ update_status ModulePlayer::Update()
 		}
 		else if (position.y == 220) {
 			jump.Reset();
+			airkick = true;
 			currentstate = idlestate;
 			gravity = 1;
 			backwardjump.Reset();
@@ -762,6 +802,7 @@ update_status ModulePlayer::Update()
 		}
 		else if (position.y == 220) {
 			jump.Reset();
+			airkick = true;
 			currentstate = idlestate;
 			gravity = 1;
 			backwardjump.Reset();

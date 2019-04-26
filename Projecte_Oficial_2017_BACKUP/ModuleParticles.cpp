@@ -66,6 +66,7 @@ bool ModuleParticles::CleanUp()
 // Update: draw background
 update_status ModuleParticles::Update()
 {
+	
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
 		Particle* p = active[i];
