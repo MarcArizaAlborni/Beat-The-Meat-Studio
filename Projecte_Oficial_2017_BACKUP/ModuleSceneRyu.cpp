@@ -6,6 +6,7 @@
 #include "ModuleRender.h"
 #include "ModuleSceneRyu.h"
 #include "ModulePlayer.h"
+#include "ModulePlayerII.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleParticles.h"
@@ -96,6 +97,7 @@ bool ModuleSceneRyu::Start()
 
 	// TODO 1: Enable (and properly disable) the player module
 	App->player->Enable();
+	App->player2->Enable();
 	App->particles->Enable();
 	App->collision->Enable();
 
@@ -108,7 +110,8 @@ bool ModuleSceneRyu::CleanUp()
 	LOG("Unloading ken scene");
 	App->textures->Unload(graphics);
 	App->textures->Unload(graphics2);
-	App->player->Disable(); 
+	App->player->Disable();
+	App->player2->Disable();
 	App->collision->Disable();
 	App->particles->Disable();
 

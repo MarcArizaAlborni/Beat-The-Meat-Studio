@@ -85,6 +85,7 @@
     <ClInclude Include="ModuleLoseScreen.h" />
     <ClInclude Include="ModuleParticles.h" />
     <ClInclude Include="ModulePlayer.h" />
+    <ClInclude Include="ModulePlayerII.h" />
     <ClInclude Include="ModuleRender.h" />
     <ClInclude Include="ModuleSceneHonda.h" />
     <ClInclude Include="ModuleSceneRyu.h" />
@@ -110,6 +111,7 @@
     <ClCompile Include="ModuleLoseScreen.cpp" />
     <ClCompile Include="ModuleParticles.cpp" />
     <ClCompile Include="ModulePlayer.cpp" />
+    <ClCompile Include="ModulePlayerII.cpp" />
     <ClCompile Include="ModuleRender.cpp" />
     <ClCompile Include="ModuleSceneHonda.cpp" />
     <ClCompile Include="ModuleSceneRyu.cpp" />

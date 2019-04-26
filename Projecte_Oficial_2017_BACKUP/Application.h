@@ -2,7 +2,7 @@
 #define __APPLICATION_H__
 #include "Globals.h"
 
-#define NUM_MODULES 19
+#define NUM_MODULES 20
 
 class ModuleWindow;
 class ModuleInput;
@@ -12,6 +12,7 @@ class ModuleParticles;
 class ModuleSceneRyu;
 class ModuleSceneHonda;
 class ModulePlayer;
+class ModulePlayer2;
 class ModuleFadeToBlack;
 class ModuleCollision;
 class ModuleWelcomeScreen;
@@ -40,6 +41,7 @@ public:
 	ModuleSceneHonda* scene_honda;
 	ModuleCollision* collision;
 	ModulePlayer* player;
+	ModulePlayer2* player2;
 	ModuleFadeToBlack* fade;
 	ModuleParticles* particles;
 	ModuleWelcomeScreen* welcome_screen;

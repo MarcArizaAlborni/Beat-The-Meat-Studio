@@ -1,6 +1,7 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleInput.h"
+#include "ModuleCollision.h"
 #include "SDL/include/SDL.h"
 
 ModuleInput::ModuleInput() : Module()
@@ -59,7 +60,7 @@ update_status ModuleInput::PreUpdate()
 
 	if (keyboard[SDL_SCANCODE_G]) //God Mode
 	{
-
+		//App->collision->Disable();
 	}
 
 	return update_status::UPDATE_CONTINUE;
