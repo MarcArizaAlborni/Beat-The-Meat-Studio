@@ -306,6 +306,7 @@ update_status ModulePlayer::PreUpdate() {
 			}
 			if (inputplayer1.R_active) {
 				currentstate = hadoukenstate;
+				App->audio->PlayFx(Hadoken_Sound);
 				LOG("IDLE TO hadouken");
 			}
 			if (inputplayer1.W_active) {
@@ -708,7 +709,7 @@ update_status ModulePlayer::Update()
 		break;
 
 	case hadoukenstate:
-		App->audio->PlayFx(Hadoken_Sound);
+		
 		current_animation = &hadouken;
 		LOG("KADOUKEN ANIMATION ACTIVE");
 		break;
