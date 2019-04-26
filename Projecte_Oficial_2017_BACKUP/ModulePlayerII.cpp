@@ -37,34 +37,32 @@ ModulePlayer2::ModulePlayer2()
 	//App->render->DrawQuad(health, 255, 0, 0, alphaka);
 
 	// idle animation (arcade sprite sheet)
-	idle.PushBack({ 996, 61, 59, 90 });
-	idle.PushBack({ 931, 59, 58, 92 });
-	idle.PushBack({ 867, 58, 55, 93 });
-	idle.PushBack({ 798, 62, 60, 89 });
+	idle.PushBack({ 2332, 61, 59, 90 });
+	idle.PushBack({ 2267, 59, 58, 92 });
+	idle.PushBack({ 2203 , 58, 55, 93 });
+	idle.PushBack({ 2134, 62, 60, 89 });
 	idle.speed = 0.15f;
 
 	//Crouch Animation
-	crouch.PushBack({ 502, 162, 53, 87 });
-	crouch.PushBack({ 435, 178, 57, 69 });
-	crouch.PushBack({ 366, 186, 61, 61 });
+	crouch.PushBack({ 1838 , 162, 53, 87 });
+	crouch.PushBack({ 1771, 178, 57, 69 });
+	crouch.PushBack({ 1702, 186, 61, 61 });
 	crouch.speed = 0.5f;
 	crouch.loop = false;
 
 
 	//punchcrouch Animation
-	crouchpunch.PushBack({ 979, 2046, 69, 61 });
-	crouchpunch.PushBack({ 865, 2046, 95, 61 });
-
+	crouchpunch.PushBack({ 2315, 2046, 69, 61 });
+	crouchpunch.PushBack({ 2201, 2046, 95, 61 });
 	crouchpunch.speed = 0.15f;
 	crouchpunch.loop = false;
 
 	//kickcrouch Animation
-
-	crouchkick.PushBack({ 32,2296,80,70 });
-	crouchkick.PushBack({ 109,2296,121,70 });
-
+	crouchkick.PushBack({ 2316, 2299, 70, 64 });
+	crouchkick.PushBack({ 2197, 2299, 112, 64  });
 	crouchkick.speed = 0.15f;
 	crouchkick.loop = false;
+
 	// forward Jump Animation
 	forwardjump.PushBack({ 13,716,62,111 });
 	forwardjump.PushBack({ 75,716,65,91 });
@@ -72,9 +70,9 @@ ModulePlayer2::ModulePlayer2()
 	forwardjump.PushBack({ 420,695,58,85 });
 	forwardjump.PushBack({ 140,777,129,51 });
 	forwardjump.PushBack({ 328,767,77,93 });
-
 	forwardjump.speed = 0.1f;
 	forwardjump.loop = false;
+
 	//Backward Jump Animation
 	backwardjump.PushBack({ 328,767,77,93 });
 	backwardjump.PushBack({ 140,777,129,51 });
@@ -84,6 +82,7 @@ ModulePlayer2::ModulePlayer2()
 	backwardjump.PushBack({ 13,716,62,111 });
 	backwardjump.speed = 0.1f;
 	backwardjump.loop = false;
+
 	//punch jump Animation
 	jumppunch.PushBack({ 259,1693,83,91 });
 	jumppunch.PushBack({ 353,1693,200,78 });
@@ -91,22 +90,21 @@ ModulePlayer2::ModulePlayer2()
 	jumppunch.loop = false;
 
 	// kick jump Animation
-
 	jumpkick.PushBack({ 242,1791,68,124 });
 	jumpkick.PushBack({ 331,1791,110,115 });
 	jumpkick.speed = 0.1f;
 	jumpkick.loop = false;
-
+	 
 	//Damaged Animation
 
 	// walk forward animation (arcade sprite sheet)
 	//forward.frames.PushBack({9, 136, 53, 83});
 
-	//Walk FORWARD Animation
-	forward.PushBack({ 27,250, 66, 100 });
-	forward.PushBack({ 92, 250, 66, 100 });
-	forward.PushBack({ 160, 248, 70, 100 });
-	forward.PushBack({ 236, 250, 67, 100 });
+	//Walk FORWARD Animation 
+	forward.PushBack({ 2338, 264, 53, 83 }); //Cal repetir les posicions d'aquests.
+	forward.PushBack({ 2266, 259, 60 , 88 });
+	forward.PushBack({ 2199, 259, 59, 92  });
+	forward.PushBack({ 2119, 260 , 67, 100 });
 	forward.PushBack({ 306, 250, 67, 100 });
 	forward.PushBack({ 369, 250, 67, 100 });
 
@@ -190,7 +188,7 @@ bool ModulePlayer2::Start()
 {
 	LOG("Loading player textures");
 	bool ret = true;
-	graphics = App->textures->Load("RyuP1_Inv.png"); // JA TE LA FOTO BONA
+	graphics = App->textures->Load("RyuP1_Def.png"); // JA TE LA FOTO BONA
 	LP = App->audio->LoadFx("");
 	Hadoken_Sound = App->audio->LoadFx("Audios/Voices/Ryu&Ken hadouken.wav");
 
