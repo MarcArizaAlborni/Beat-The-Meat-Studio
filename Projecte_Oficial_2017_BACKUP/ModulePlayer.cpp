@@ -7,6 +7,8 @@
 #include "ModulePlayer.h"
 #include "Animation.h"
 #include "ModuleFonts.h"
+#include "ModuleCollision.h"
+#include "ModuleSceneRyu.h"
 #include <stdio.h>
 
 
@@ -194,8 +196,11 @@ bool ModulePlayer::Start()
 
 	// TODO 7.2: Add a collider to the player
 	player_collider = App->collision->AddCollider({ position.x, position.y - 100, 60, 93 }, COLLIDER_PLAYER, App->player);
+	//Player 2 stest collider
 
-	font_score = App->fonts->Load("Fonts/font1.png", "! @,./0123456789;<&?abcdefghijklmnopqrstuvwxyz", 2);
+	player2_collider = App->collision->AddCollider({ position.x+100,position.y-100,60,93 }, COLLIDER_PLAYER2,App->player);
+
+	
 
 	return ret;
 }
@@ -753,10 +758,10 @@ update_status ModulePlayer::Update()
 
 
 		
-		
+	
 	
 
-	//Screen Limits super cutres pero efectius
+	//Limits ben fets
 	if (position.x <= App->render->camera.x / SCREEN_SIZE)
 	{
 		position.x = App->render->camera.x / SCREEN_SIZE;
@@ -776,7 +781,7 @@ update_status ModulePlayer::Update()
 
 	App->render->Blit(graphics, position.x, position.y - r.h, &r);
 
-	//App->fonts->BlitText(100, 100, font_score, "h");
+	
 	
 	return UPDATE_CONTINUE;
 }
@@ -784,18 +789,9 @@ update_status ModulePlayer::Update()
 //TODO 7.4: Detect collision with a wall. If so, go back to intro screen.
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
-	//THIS IS USELESS
-	if (c2->type == COLLIDER_WALL) 
-	{
-			if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
-			{
-				speed = 0;
-			}
-
-			else
-			{
-				speed = 1;
-			}
+	//App->particles->hadouken.collider
+	if (c1 == player_collider &&  c2 == player2_collider){
+		App->scene_ryu->health2.w -= 10;
 	}
 
 

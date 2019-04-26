@@ -122,27 +122,28 @@ update_status ModuleSceneRyu::Update()
 	if (App->input->keyboard[SDL_SCANCODE_H] == 1) //Health-substracting button
 	{
 		health.x -= 10;
-
-		if (health.x < 40) //40 instead of 0 because it doesnt exactly fit. If the duel ends then reset the healthbars
+		 
+		if (health.x <= 40) //40 instead of 0 because it doesnt exactly fit. If the duel ends then reset the healthbars
 		{
 			App->fade->FadeToBlack(App->scene_ryu, App->lose_screen, 1.0f);
 			health.x = 189;
 			health2.w = 144;
 		}
+		
 	}
-
+	
 	if (App->input->keyboard[SDL_SCANCODE_J] == 1) //Health-substracting button
 	{
 		health2.w -= 10;
 
-		if (health2.w < 0) //If the duel ends then reset the healthbars
-		{
-			App->fade->FadeToBlack(App->scene_ryu, App->win_screen, 1.0f);
-			health2.w = 144;
-			health.x = 189;
-		}
+		
 	}
-
+	if (health2.w <= 0) //If the duel ends then reset the healthbars
+	{
+		App->fade->FadeToBlack(App->scene_ryu, App->win_screen, 1.0f);
+		health2.w = 144;
+		health.x = 189;
+	}
 	if (App->input->keyboard[SDL_SCANCODE_V] == 1) //Insta-Win Input Button
 	{
 		App->fade->FadeToBlack(App->scene_ryu, App->win_screen, 1.0f);
