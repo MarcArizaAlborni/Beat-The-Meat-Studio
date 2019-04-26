@@ -42,7 +42,7 @@ ModulePlayer::ModulePlayer()
 	crouch.PushBack({ 519,156,67,95 });
 	crouch.PushBack({ 587,156,68,95 });
 	crouch.PushBack({ 654,156,68,95 });
-	crouch.speed = 0.1f;
+	crouch.speed = 0.5f;
 	crouch.loop = false;
 
 
@@ -463,12 +463,9 @@ update_status ModulePlayer::PreUpdate() {
 				jumpkick.Reset();
 			}
 		}
-		if (currentstate == punchjump) {
-			LOG("PUNCHJUMP TO IDLE");
-			if (current_animation->Finished()) {
-				currentstate = idlestate;
-				jumppunch.Reset();
-			}
+		if (currentstate == jumppunchstate) {
+			LOG("PUNCHJUMP ACTIVE");
+			 
 		}
 		if (currentstate==jumpkickstate) {
 			if (current_animation->Finished()) {
@@ -648,7 +645,7 @@ update_status ModulePlayer::Update()
 		break;*/
 
 	case idlestate:
-
+		crouch.Reset();
 		player_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
 		current_animation = &idle;
 		LOG("IDLE ANIMATION ACTIVE");
@@ -705,6 +702,7 @@ update_status ModulePlayer::Update()
 	case crouched:
 
 		current_animation = &crouch;
+
 		LOG("CROUCHED ANIMATION ACTIVE");
 		break;
 
