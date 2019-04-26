@@ -52,12 +52,12 @@ public:
 
 	Collider* AddCollider(SDL_Rect rect, COLLIDER_TYPE type, Module* callback = nullptr);
 	void DebugDraw();
-
+	bool debug = true;
 private:
 
 	Collider* colliders[MAX_COLLIDERS];
 	bool matrix[COLLIDER_MAX][COLLIDER_MAX];
-	bool debug = true;
+	
 };
 
 #endif // __ModuleCollision_H__

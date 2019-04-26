@@ -105,9 +105,9 @@ update_status ModuleSceneRyu::Update()
 
 	//App->render->Blit(graphics, 0, 1, &foreground);
 
-	App->render->Blit(graphics2, 30, 20, &healthbar); //healthbar
-	App->render->Blit(graphics2, 31, 23, &health); //health
-	App->render->Blit(graphics2, 207, 23, &health2); //health
+	App->render->Blit(graphics2, 30, 20, &healthbar,1.0f,false); //healthbar
+	App->render->Blit(graphics2, 31, 23, &health, 1.0f, false); //health
+	App->render->Blit(graphics2, 207, 23, &health2, 1.0f, false); //health
 
 	
 	App->render->Blit(graphics, 0, 177, &ground);

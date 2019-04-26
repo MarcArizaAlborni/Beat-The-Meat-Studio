@@ -7,6 +7,7 @@
 #include "SDL/include/SDL.h"
 #include "ModuleSceneHonda.h"
 #include "ModuleSceneryu.h"
+#include "ModuleCollision.h"
 
 ModuleRender::ModuleRender() : Module()
 {
@@ -74,58 +75,59 @@ update_status ModuleRender::Update()
 	
 
 //#ifdef _DEBUG
-	if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_REPEAT)
-	{
-		if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled())
+	if (App->collision->debug) {
+		if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_REPEAT)
 		{
-			camera.y += speed;
+			if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled())
+			{
+				camera.y += speed;
+			}
+			else
+			{
+				camera.y += still;
+
+			}
 		}
-		else
+
+		if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_REPEAT)
 		{
-			camera.y += still;
-			
+			if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled())
+			{
+				camera.y -= speed;
+			}
+			else
+			{
+				camera.y -= still;
+
+			}
+		}
+
+		if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_REPEAT)
+		{
+			if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled())
+			{
+				camera.x -= speed;
+			}
+			else
+			{
+				camera.x -= still;
+
+			}
+		}
+
+		if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_REPEAT)
+		{
+			if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled())
+			{
+				camera.x += speed;
+			}
+			else
+			{
+				camera.x += still;
+
+			}
 		}
 	}
-
-	if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_REPEAT)
-	{
-		if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled())
-		{
-			camera.y -= speed;
-		}
-		else
-		{
-			camera.y -= still;
-
-		}
-	}
-
-	if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_REPEAT)
-	{
-		if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled())
-		{
-			camera.x -= speed;
-		}
-		else
-		{
-			camera.x -= still;
-
-		}
-	}
-
-	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_REPEAT)
-	{
-		if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled())
-		{
-			camera.x += speed;
-		}
-		else
-		{
-			camera.x += still;
-
-		}
-	}
-
 	/*if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_REPEAT)
 	{
 		if (App->welcome_screen != nullptr || App->warning_screen != nullptr || App->icoin_screen != nullptr || App->start_screen != nullptr || App->congrat_screen != nullptr)
