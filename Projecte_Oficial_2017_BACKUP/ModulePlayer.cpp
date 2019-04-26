@@ -456,10 +456,10 @@ update_status ModulePlayer::PreUpdate() {
 				LOG("CROUCH TO IDLE");
 			}
 		}
-		if (currentstate == kickjump) {
+		if (currentstate == jumpkickstate) {
 			LOG("KICKJUMP TO IDLE");
 			if (current_animation->Finished()) {
-				currentstate = idlestate;
+				currentstate = jumpstate;
 				jumpkick.Reset();
 			}
 		}
