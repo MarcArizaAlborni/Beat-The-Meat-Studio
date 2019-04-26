@@ -35,7 +35,8 @@ enum STATE {
 	jumpforwardkick,
 	jumpforwardpunch,
 	jumpkickstate,
-	jumppunchstate
+	jumppunchstate,
+	jumpfalling
 
 
 
@@ -92,6 +93,7 @@ public:
 	Animation jumpbackpunch;
 	Animation jumpfrontkick;
 	Animation jumpfrontpunch;
+	
 	
 	iPoint position;
 	InputP1 inputplayer1;

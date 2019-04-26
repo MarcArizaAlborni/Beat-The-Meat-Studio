@@ -397,11 +397,7 @@ update_status ModulePlayer::PreUpdate() {
 		if (currentstate == jumpbackwardkick) {
 
 			LOG("BACKWARDJUMPKICK TO JUMP");
-			if (current_animation->Finished()) {
-				currentstate = jumpbackward;
-				jumpbackkick.Reset();
-
-			}
+			
 		}
 		if (currentstate == jumpbackwardpunch) {
 
@@ -411,12 +407,7 @@ update_status ModulePlayer::PreUpdate() {
 		if (currentstate == jumpforwardkick){
 
 			LOG("FORWARDJUMPKICK TO JUMPFORWARD")
-				if (current_animation->Finished()) {
-
-					currentstate = jumpforward;
-					jumpfrontkick.Reset();
-				}
-
+			
 			}
 
 		if (currentstate == jumpforwardpunch) {
@@ -458,22 +449,28 @@ update_status ModulePlayer::PreUpdate() {
 		}
 		if (currentstate == jumpkickstate) {
 			LOG("KICKJUMP TO IDLE");
-			if (current_animation->Finished()) {
-				currentstate = jumpstate;
+			if (current_animation->Finished()&& (position.y == 220)) {
+				currentstate = jumpstate;//-----------------------------------------------
 				jumpkick.Reset();
 			}
 		}
 		if (currentstate == jumppunchstate) {
 			LOG("PUNCHJUMP ACTIVE");
-			 
-		}
-		if (currentstate==jumpkickstate) {
-			if (current_animation->Finished()) {
-				currentstate = jumpstate;
-				jumpbackkick.Reset();
+			if (current_animation->Finished()&& (position.y == 220)) {
+				currentstate = jumpstate;//-----------------------------------------------
+				jumpbackpunch.Reset();
 			}
 		}
 		
+		
+		if (currentstate == jumpfalling) {
+
+			if (current_animation->Finished()); {
+
+				currentstate = idlestate; //----------------------------------------------
+				jump.Reset();
+			}
+		}
 	}
 	return UPDATE_CONTINUE;
 
@@ -485,6 +482,26 @@ update_status ModulePlayer::Update()
 
 
 	switch (currentstate) {
+	case jumpfalling:
+
+		current_animation = &jump;
+
+		position.y -= speed * gravity;
+
+
+		if (position.y <= 150)
+		{
+			gravity = -1;
+		}
+
+		else if (position.y == 220) {
+			jump.Reset();
+			currentstate = idlestate;
+			gravity = 1;
+		}
+		LOG("JUMPFALLING ANIMATION ACTIVE");
+		break;
+
 	case jumpbackwardkick:
 
 		current_animation = &jumpbackkick;
