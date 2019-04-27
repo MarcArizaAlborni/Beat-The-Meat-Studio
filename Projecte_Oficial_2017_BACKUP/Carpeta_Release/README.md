@@ -19,11 +19,11 @@ The game consists in a 1 vs 1 duel between two characters, each with the same mo
 
 **Movement input Keys:** D Key (Go Right), A Key (Go Left), W Key (Jump), S Key (Crouch).
 
-**Punch Input Button:** R Key
+**Punch Input Button:** C Key
 
-**Kick Input Button:** T Key
+**Kick Input Button:** V Key
 
-**Special Attack Input Button:** Y Key 
+**Special Attack Input Button:** B Key 
 
 
 
@@ -31,11 +31,11 @@ The game consists in a 1 vs 1 duel between two characters, each with the same mo
 
 **Movement input Keys:** LEFT Key (Go Left), RIGHT Key (Go Right), UP key (Jump), DOWN Key (Crouch).
 
-**Punch Input Button:** Ñ Key
+**Punch Input Button:** P Key
 
-**Kick Input Button:** ´ (Right Accent /  Acento Cerrado) Key
+**Kick Input Button:** O (Right Accent /  Acento Cerrado) Key
 
-**Special Attack Input Button:**  Ç Key
+**Special Attack Input Button:**  I Key
 
 
 
@@ -49,18 +49,22 @@ The game consists in a 1 vs 1 duel between two characters, each with the same mo
 
 **Insta-Lose Input Button:** F4 Key
 
+**Input to reduce reduce Player 1's health:** F5 Key
+
+**Input to reduce Player 2's health:** F6 Key
+
 
 
 ## Changelist:
 
 **v0.1:** 
 
-- Implemented the possibility of scrolling an empty background. (Not Done: Module Audio Creation)
+- Implemented the possibility of scrolling an empty background.
 
 **v0.2:** 
 
 * Added a Welcome Screen, the First and Second level scenes and a Congratulation Screen. 
-* Added a scene cycle functionality so the congratulation screen transitions into the welcome screen. (Not Done: Module Audio with the correct music for each scene.) 
+* Added a scene cycle functionality so the congratulation screen transitions into the welcome screen.
 
 **v0.3:** 
 
@@ -72,6 +76,7 @@ The game consists in a 1 vs 1 duel between two characters, each with the same mo
 
 - Added colliders to the player(Ryu) and its particles(Hadouken) 
 - Players can now collide with something in the environment. (Not done: Camera limits and God mode when pressing F5)
+- Implemented the Audio Module.
 
 **v.0.5(current version):**  
 
@@ -83,13 +88,13 @@ The game consists in a 1 vs 1 duel between two characters, each with the same mo
 
 - Implemented the pertaining music for each screen along with the pertaining sound effects for each movement and interaction.
 
-- Added minimum debug functionalities such as God Mode (grants invincibility to the player), Collision Boxes Mode (shows the collision boxes on screen), and both direct win and lose inputs.
+- Added minimum debug functionalities such as God Mode (grants invincibility to the player), Collision Boxes Mode (shows the collision boxes on screen), both direct win and lose inputs as well as reducing both player's health.
 
 - Implemented fully functional Health bars.
 
 - Implemented Jump, one Kick and one Punch and one Special Attack.  (as state machine driven mechanics)
 
-- Added the Ryu stage art (Different backgrounds + Parallax)  with Ryu vs Ryu.
+- Added the Ryu stage art with Ryu vs Ryu.
 
     
 
