@@ -91,9 +91,8 @@ ModulePlayer::ModulePlayer()
 
 	// kick jump Animation
 
-	jumpkick.PushBack({ 242,1791,68,124 });
-	jumpkick.PushBack({ 331,1791,110,115 });
-	jumpkick.speed = 0.1f;
+	jumpkick.PushBack({ 33, 1802, 82, 95 });
+	jumpkick.speed = 0.05f;
 	jumpkick.loop = false;
 
 	//Damaged Animation
@@ -114,13 +113,13 @@ ModulePlayer::ModulePlayer()
 
 	//Walk backwards animation
 	backward.PushBack({ 27, 155, 67, 100 });
-	backward.PushBack({ 27, 155, 67, 100 });
+	backward.PushBack({ 97, 155, 67, 100 });
 	backward.PushBack({ 171, 155, 67, 100 });
-	backward.PushBack({ 233, 155, 67, 100 });
+	backward.PushBack({ 239, 155, 60, 94 });
 	backward.PushBack({ 300, 155, 63, 100 });
-	backward.PushBack({ 362, 155, 67, 102 });
+	backward.PushBack({ 362, 155, 67, 94 });
 	backward.loop = true;
-	backward.speed = 0.1f;
+	backward.speed = 0.01f;
 
 	//Ryu light punch
 	lightPunch.PushBack({ 34, 1368, 70, 96 });

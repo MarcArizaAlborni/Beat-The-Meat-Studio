@@ -45,13 +45,13 @@ enum STATE2 {
 struct InputP2 {
 	// Poseu aqui un nou bool per algun input que no he posat.
 
-	bool A_active;
-	bool D_active;
-	bool W_active;
-	bool S_active;
-	bool I_active;
-	bool K_active;
-	bool R_active;
+	bool Right_active;//A_active
+	bool Left_active; //D_active
+	bool Up_active; //W_active
+	bool Down_active; //S_active
+	bool Kp7_active; //I_active
+	bool Kp4_active; //K_active
+	bool R_active; //R_active
 };
 
 class ModulePlayer2 : public Module

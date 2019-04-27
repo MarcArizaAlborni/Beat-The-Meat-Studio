@@ -32,27 +32,27 @@ ModulePlayer2::ModulePlayer2()
 	health.x = 100;
 	health.y = 400;
 	health.w = 200;
-	health.h = 20;
+	health.h = 20; 
 
 	//App->render->DrawQuad(health, 255, 0, 0, alphaka);
 
 	// idle animation (arcade sprite sheet)
-	idle.PushBack({ 2332, 61, 59, 90 });
+	idle.PushBack({ 2330, 61, 59, 90});
 	idle.PushBack({ 2267, 59, 58, 92 });
-	idle.PushBack({ 2203 , 58, 55, 93 });
+	idle.PushBack({ 2203 , 58, 55, 94 });
 	idle.PushBack({ 2134, 62, 60, 89 });
 	idle.speed = 0.15f;
 
 	//Crouch Animation
-	crouch.PushBack({ 1838 , 162, 53, 87 });
-	crouch.PushBack({ 1771, 178, 57, 69 });
-	crouch.PushBack({ 1702, 186, 61, 61 });
+	crouch.PushBack({ 1840,766,67,95 });
+	crouch.PushBack({ 587,156,68,95 });
+	crouch.PushBack({ 654,156,68,95 });
 	crouch.speed = 0.5f;
 	crouch.loop = false;
 
 
 	//punchcrouch Animation
-	crouchpunch.PushBack({ 2315, 2046, 69, 61 });
+	crouchpunch.PushBack({ 2315, 2046, 70, 61 });
 	crouchpunch.PushBack({ 2201, 2046, 95, 61 });
 	crouchpunch.speed = 0.15f;
 	crouchpunch.loop = false;
@@ -90,9 +90,8 @@ ModulePlayer2::ModulePlayer2()
 	jumppunch.loop = false;
 
 	// kick jump Animation
-	jumpkick.PushBack({ 242,1791,68,124 });
-	jumpkick.PushBack({ 331,1791,110,115 });
-	jumpkick.speed = 0.1f;
+	jumpkick.PushBack({ 33, 1802, 82, 95 });
+	jumpkick.speed = 0.05f;
 	jumpkick.loop = false;
 	 
 	//Damaged Animation
@@ -101,30 +100,30 @@ ModulePlayer2::ModulePlayer2()
 	//forward.frames.PushBack({9, 136, 53, 83});
 
 	//Walk FORWARD Animation 
-	forward.PushBack({ 2338, 264, 53, 83 }); //Cal repetir les posicions d'aquests.
-	forward.PushBack({ 2266, 259, 60 , 88 });
-	forward.PushBack({ 2199, 259, 59, 92  });
-	forward.PushBack({ 2119, 260 , 67, 100 });
-	forward.PushBack({ 306, 250, 67, 100 });
-	forward.PushBack({ 369, 250, 67, 100 });
+	forward.PushBack({ 2336,263, 56, 86 }); //Cal repetir les posicions d'aquests.
+	forward.PushBack({ 2265, 258, 63, 91 });
+	forward.PushBack({ 2192, 254, 68, 95 });
+	forward.PushBack({ 2118, 254, 65, 95 });
+	forward.PushBack({ 2055, 254, 57, 95 });
+	forward.PushBack({ 1998, 254, 52, 95 });
 
 	forward.loop = true;
 	forward.speed = 0.1f;
 
 	//Walk backwards animation
-	backward.PushBack({ 27, 155, 67, 100 });
-	backward.PushBack({ 27, 155, 67, 100 });
-	backward.PushBack({ 171, 155, 67, 100 });
-	backward.PushBack({ 233, 155, 67, 100 });
-	backward.PushBack({ 300, 155, 63, 100 });
-	backward.PushBack({ 362, 155, 67, 102 });
+	backward.PushBack({ 2329, 160, 63, 90  });
+	backward.PushBack({ 2261, 160 , 63, 90 });
+	backward.PushBack({ 2188, 156, 63, 94 });
+	backward.PushBack({ 2125, 155, 63, 94 });
+	backward.PushBack({ 2062, 155, 63, 94 });
+	backward.PushBack({ 1998, 155, 63, 94 });
 	backward.loop = true;
 	backward.speed = 0.1f;
 
 	//Ryu light punch
-	lightPunch.PushBack({ 34, 1368, 70, 96 });
-	lightPunch.PushBack({ 112, 1368, 101, 96 });
-	lightPunch.PushBack({ 34, 1368, 70, 96 });
+	lightPunch.PushBack({ 2319, 1369, 70, 96 });
+	lightPunch.PushBack({ 2212, 1369, 101, 96 });
+	lightPunch.PushBack({ 2319, 1369, 70, 96 });
 	lightPunch.loop = true;
 	lightPunch.speed = 0.1f;
 
@@ -224,17 +223,17 @@ update_status ModulePlayer2::PreUpdate() {
 
 
 	//MOVE BACKWARD
-	inputplayer2.A_active = App->input->keyboard[SDL_SCANCODE_A] == KEY_REPEAT;
+	inputplayer2.Right_active = App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_REPEAT;
 	//MOVE FORWARD
-	inputplayer2.D_active = App->input->keyboard[SDL_SCANCODE_D] == KEY_REPEAT;
-	//CROUCH
-	inputplayer2.S_active = App->input->keyboard[SDL_SCANCODE_S] == KEY_REPEAT;
+	inputplayer2.Left_active = App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_REPEAT;
 	//JUMP
-	inputplayer2.W_active = App->input->keyboard[SDL_SCANCODE_W] == KEY_REPEAT;
+	inputplayer2.Up_active = App->input->keyboard[SDL_SCANCODE_UP] == KEY_REPEAT;
+	//CROUCHzzz
+	inputplayer2.Down_active = App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_REPEAT;
 	//LIGHT PUNCH
-	inputplayer2.I_active = App->input->keyboard[SDL_SCANCODE_I] == KEY_DOWN;
+	inputplayer2.Kp7_active = App->input->keyboard[SDL_SCANCODE_KP_7] == KEY_DOWN;
 	//LIGHT KICK
-	inputplayer2.K_active = App->input->keyboard[SDL_SCANCODE_K] == KEY_DOWN;
+	inputplayer2.Kp4_active = App->input->keyboard[SDL_SCANCODE_KP_4] == KEY_DOWN;
 	//HADOKEN
 	inputplayer2.R_active = App->input->keyboard[SDL_SCANCODE_R] == KEY_DOWN;
 
@@ -264,11 +263,11 @@ update_status ModulePlayer2::PreUpdate() {
 
 		if (currentstate == jumpstate2) {
 			if (airkickII) {
-				if (inputplayer2.I_active) {
+				if (inputplayer2.Kp7_active) {
 					currentstate = jumppunchstate2;
 				}
 
-				if (inputplayer2.K_active) {
+				if (inputplayer2.Kp4_active) {
 					currentstate = jumpkickstate2;
 				}
 			}
@@ -292,23 +291,23 @@ update_status ModulePlayer2::PreUpdate() {
 
 		if (currentstate == idlestate2) {
 
-			if (inputplayer2.A_active) {
+			if (inputplayer2.Right_active) {
 				currentstate = backwardstate2;
 				LOG("IDLE TO BACK");
 			}
-			if (inputplayer2.D_active) {
+			if (inputplayer2.Left_active) {
 				currentstate = forwardstate2;
 				LOG("IDLE TO forward");
 			}
-			if (inputplayer2.S_active) {
+			if (inputplayer2.Down_active) {
 				currentstate = crouched2;
 				LOG("IDLE to CROUCH");
 			}
-			if (inputplayer2.K_active) {
+			if (inputplayer2.Kp4_active) {
 				currentstate = kicklight2;
 				LOG("IDLE TO kick");
 			}
-			if (inputplayer2.I_active) {
+			if (inputplayer2.Kp7_active) {
 				currentstate = punchlight2;
 				LOG("IDLE TO punch");
 			}
@@ -317,7 +316,7 @@ update_status ModulePlayer2::PreUpdate() {
 				App->audio->PlayFx(Hadoken_Sound);
 				LOG("IDLE TO hadouken");
 			}
-			if (inputplayer2.W_active) {
+			if (inputplayer2.Up_active) {
 				currentstate = jumpstate2;
 				LOG("IDLE TO jump");
 				current_animation = &jump;
@@ -326,38 +325,38 @@ update_status ModulePlayer2::PreUpdate() {
 
 		if (currentstate == backwardstate2) {
 
-			if (!inputplayer2.A_active) {
+			if (!inputplayer2.Right_active) {
 				currentstate = idlestate2;
 				LOG("BACK TO IDLE");
 			}
-			if (inputplayer2.I_active) {
+			if (inputplayer2.Kp7_active) {
 				currentstate = punchlight2;
 				LOG("BACK TO PUNCH");
 			}
-			if (inputplayer2.W_active) {
+			if (inputplayer2.Up_active) {
 				currentstate = jumpbackward2;
 				LOG("BACK TO JUMP");
 			}
-			if (inputplayer2.K_active) {
+			if (inputplayer2.Kp4_active) {
 				currentstate = kicklight2;
 				LOG("BACK TO KICK");
 			}
 		}
 
 		if (currentstate == forwardstate2) {
-			if (!inputplayer2.D_active) {
+			if (!inputplayer2.Left_active) {
 				LOG("FORWARD TO IDLE");
 				currentstate = idlestate2;
 			}
-			if (inputplayer2.K_active) {
+			if (inputplayer2.Kp4_active) {
 				currentstate = kicklight2;
 				LOG("FORWARD TO KICK");
 			}
-			if (inputplayer2.I_active) {
+			if (inputplayer2.Kp7_active) {
 				currentstate = punchlight2;
 				LOG("FORWARD TO PUNCH");
 			}
-			if (inputplayer2.W_active) {
+			if (inputplayer2.Up_active) {
 				currentstate = jumpforward2; // Aquest hauria de ser jump FORWARD pero no tenim l'animacio posada encara
 				LOG("FORWARD TO JUMP");
 			}
@@ -366,13 +365,13 @@ update_status ModulePlayer2::PreUpdate() {
 		if (currentstate == jumpbackward2) {
 			LOG("BACKWARDJUMP TO IDLE");
 			if (airkickII) {
-				if (inputplayer2.I_active) {
+				if (inputplayer2.Kp7_active) {
 
 					currentstate = jumpbackwardpunch2;
 					LOG("BACKWARDJUMP TO BACKWARDJUMPPUNCH");
 				}
 
-				if (inputplayer2.K_active) {
+				if (inputplayer2.Kp4_active) {
 
 
 					currentstate = jumpbackwardkick2;
@@ -387,14 +386,14 @@ update_status ModulePlayer2::PreUpdate() {
 		if (currentstate == jumpforward2) {
 			LOG("FORWARDJUMP TO IDLE");
 			if (airkickII) {
-				if (inputplayer2.I_active) {
+				if (inputplayer2.Kp7_active) {
 
 					currentstate = jumpforwardpunch2;
 					LOG("FORWARDJUMP TO FORWARDJUMPPUNCH");
 
 				}
 
-				if (inputplayer2.K_active) {
+				if (inputplayer2.Kp4_active) {
 
 					currentstate = jumpforwardkick2;
 					LOG("FORWARDJUMP TO FORWARDJUMPKICK");
@@ -458,15 +457,15 @@ update_status ModulePlayer2::PreUpdate() {
 		}
 
 		if (currentstate == crouched2) {
-			if (inputplayer2.I_active) {
+			if (inputplayer2.Kp7_active) {
 				currentstate = punchcrouch2;
 			}
 
-			if (inputplayer2.K_active) {
+			if (inputplayer2.Kp4_active) {
 				currentstate = kickcrouch2;
 			}
 
-			if (!inputplayer2.S_active) {
+			if (!inputplayer2.Down_active) {
 				currentstate = idlestate2;
 				LOG("CROUCH TO IDLE");
 			}
@@ -634,7 +633,7 @@ update_status ModulePlayer2::Update()
 		break;
 
 	case jumpforward2:
-		position.x += speedII;
+		position.x -= speedII;
 		position.y -= speedII * gravityII;
 		if (position.y <= 150)
 		{
@@ -657,7 +656,7 @@ update_status ModulePlayer2::Update()
 	case jumpbackward2:
 
 		current_animation = &backwardjump;
-		position.x -= speedII;
+		position.x += speedII;
 		position.y -= speedII * gravityII;
 		if (position.y <= 150)
 		{
@@ -712,7 +711,7 @@ update_status ModulePlayer2::Update()
 	case backwardstate2:
 		player_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
 		current_animation = &backward;
-		position.x -= speedII;
+		position.x += speedII;
 		LOG("BACKWARD ANIMATION ACTIVE");
 		break;
 
@@ -720,7 +719,7 @@ update_status ModulePlayer2::Update()
 	case forwardstate2:
 		player_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
 		current_animation = &forward;
-		position.x += speedII;
+		position.x -= speedII;
 		LOG("FORWARD ANIMATION ACTIVE");
 		break;
 
