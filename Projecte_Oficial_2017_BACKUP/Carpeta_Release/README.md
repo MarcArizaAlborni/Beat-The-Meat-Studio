@@ -19,35 +19,35 @@ The game consists in a 1 vs 1 duel between two characters, each with the same mo
 
 **Movement input Keys:** D Key (Go Right), A Key (Go Left), W Key (Jump), S Key (Crouch).
 
-**Punch Input Button:** Q Key
+**Punch Input Button:** R Key
 
-**Kick Input Button:** E Key
+**Kick Input Button:** T Key
 
-**Special Attack Input Button:** F Key 
+**Special Attack Input Button:** Y Key 
 
 
 
 ### Player Two (Right):
 
-**Movement input Keys:** K Key (Go Left), Ñ key (Go Right), O key (Jump), L key (Crouch).
+**Movement input Keys:** LEFT Key (Go Left), RIGHT Key (Go Right), UP key (Jump), DOWN Key (Crouch).
 
-**Punch Input Button:** P Key
+**Punch Input Button:** Ñ Key
 
-**Kick Input Button:** I Key
+**Kick Input Button:** ´ (Right Accent /  Acento Cerrado) Key
 
-**Special Attack Input Button:**  J Key
+**Special Attack Input Button:**  Ç Key
 
 
 
 ## Game Debug Keys:
 
-**God Mode(player becomes invincible):** G Key
+**God Mode(player becomes invincible):** F1 Key
 
-**Show Collider Boxes Mode:** C Key
+**Show Collider Boxes Mode:** F2 Key
 
-**Insta-Win Input Button:** V Key
+**Insta-Win Input Button:** F3 Key
 
-**Insta-Lose Input Button:** X Key
+**Insta-Lose Input Button:** F4 Key
 
 
 
