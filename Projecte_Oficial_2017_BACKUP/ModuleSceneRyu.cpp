@@ -15,6 +15,10 @@
 #include "ModuleLoseScreen.h"
 #include "MemLeaks.h"
 
+
+Uint32 start_timeScene = 0;
+bool healthIsNotEqual = false;
+
 ModuleSceneRyu::ModuleSceneRyu()
 {
 	//313.3
@@ -95,6 +99,8 @@ bool ModuleSceneRyu::Start()
 	App->particles->Enable();
 	App->collision->Enable();
 
+
+
 	return true;
 }
 
@@ -108,6 +114,13 @@ bool ModuleSceneRyu::CleanUp()
 	App->player2->Disable();
 	App->collision->Disable();
 	App->particles->Disable();
+
+	//Resets the healthbars at the end of the duel / scene.
+	health.x = 189;
+	health2.w = 144;
+
+	//Resets the timer
+	start_timeScene = 0;
 
 	return true;
 }
@@ -142,11 +155,9 @@ update_status ModuleSceneRyu::Update()
 	{
 		health.x -= 10;
 	}
-	if (health.x <= 40) //40 instead of 0 because it doesnt exactly fit. If the duel ends then reset the healthbars
+	if (health.x <= 45) //45 instead of 0 because it doesnt exactly fit. If the duel ends then reset the healthbars
 	{
 		App->fade->FadeToBlack(App->scene_ryu, App->lose_screen, 1.0f);
-		health.x = 189;
-		health2.w = 144;
 	}
 	if (App->input->keyboard[SDL_SCANCODE_F6] == 1) //Health-substracting button
 	{
@@ -155,21 +166,40 @@ update_status ModuleSceneRyu::Update()
 	if (health2.w <= 0) //If the duel ends then reset the healthbars
 	{
 		App->fade->FadeToBlack(App->scene_ryu, App->win_screen, 1.0f);
-		health2.w = 144;
-		health.x = 189;
 	}
 	if (App->input->keyboard[SDL_SCANCODE_F3] == 1) //Insta-Win Input Button
 	{
 		App->fade->FadeToBlack(App->scene_ryu, App->win_screen, 1.0f);
-		health2.w = 144;
-		health.x = 189;
 	}
 	 
 	if (App->input->keyboard[SDL_SCANCODE_F4] == 1) //Insta-Lose Input Button
 	{
 		App->fade->FadeToBlack(App->scene_ryu, App->lose_screen, 1.0f);
-		health.x = 189;
-		health2.w = 144;
+	}
+
+	
+	//Win/lose condition using time:
+	start_timeScene = SDL_GetTicks(); //GetTicks counts the amount of milliseconds that have elapsed since the SDL_library has been executed.
+
+	if (start_timeScene >= 99000)
+	{
+		if (health.x == health2.w + 45)
+		{
+			App->fade->FadeToBlack(App->scene_ryu, App->win_screen, 1.0f);
+		}
+		
+		if (health.x - 45 != health2.w) //p1 and p2 have the same amount of hp.
+		{
+			if (health.x > health2.w + 45) //p1 has more  health than p2
+			{
+				App->fade->FadeToBlack(App->scene_ryu, App->win_screen, 1.0f);
+			}
+
+			if (health.x < health2.w + 45)//p2 has more  health than p1
+			{
+				App->fade->FadeToBlack(App->scene_ryu, App->lose_screen, 1.0f);
+			}
+		}
 	}
 
 	return UPDATE_CONTINUE;

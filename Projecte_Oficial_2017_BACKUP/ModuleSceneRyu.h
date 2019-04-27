@@ -34,6 +34,12 @@ public:
 	SDL_Rect timer;
 	Animation cartel;
 
+	//void healthReset()
+	//{
+	//	health.x = 189;
+	//	health.y = 144;
+	//}
+
 	float background_pos;
 	bool forward;
 };
