@@ -221,8 +221,7 @@ bool ModulePlayer::CleanUp()
 
 update_status ModulePlayer::PreUpdate() {
 
-	
-
+	  
 	//MOVE BACKWARD
 	inputplayer1.A_active = App->input->keyboard[SDL_SCANCODE_A] == KEY_REPEAT;
 	//MOVE FORWARD
@@ -302,6 +301,7 @@ update_status ModulePlayer::PreUpdate() {
 			}
 			if (inputplayer1.S_active) {
 				currentstate = crouched;
+
 				LOG("IDLE to CROUCH");
 			}
 			if (inputplayer1.K_active) {
@@ -364,7 +364,8 @@ update_status ModulePlayer::PreUpdate() {
 		}
 
 		if (currentstate == jumpbackward) {
-			LOG("BACKWARDJUMP TO IDLE");
+			LOG("BACKWARDJUMP TO IDLE"); 
+
 			if (airkick) {
 			if (inputplayer1.I_active) {
 
@@ -379,10 +380,6 @@ update_status ModulePlayer::PreUpdate() {
 					LOG("BACKWARDJUMP TO BACKWARDJUMPKICK");
 				}
 			}
-			/*if (current_animation->Finished()) { // Aquest d'aqui no el poseu perque per ara trenca el jumpbackward.
-				currentstate = idlestate;
-				backwardjump.Reset();
-			}*/
 		}
 		if (currentstate == jumpforward) {
 			LOG("FORWARDJUMP TO IDLE");
@@ -420,9 +417,7 @@ update_status ModulePlayer::PreUpdate() {
 			}
 		
 		if (currentstate == jumpbackwardpunch) {
-
 			LOG("BACKWARDJUMPPUNCH TO JUMP");
-			
 		}
 		if (airkick) {
 			if (currentstate == jumpforwardkick) {
@@ -492,7 +487,6 @@ update_status ModulePlayer::PreUpdate() {
 			}
 		}
 		
-		
 		if (currentstate == jumpfalling) {
 
 			if (current_animation->Finished()); {
@@ -503,7 +497,6 @@ update_status ModulePlayer::PreUpdate() {
 		}
 	}
 	return UPDATE_CONTINUE;
-
 }
 float gravity = 1;
 // Update: draw background
@@ -517,6 +510,7 @@ update_status ModulePlayer::Update()
 		current_animation = &jump;
 
 		position.y -= speed * gravity;
+		player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
 
 
 		if (position.y <= 150)
@@ -526,6 +520,7 @@ update_status ModulePlayer::Update()
 
 		else if (position.y == 220) {
 			jump.Reset();
+
 			airkick = true;
 			currentstate = idlestate;
 			gravity = 1;
@@ -536,6 +531,7 @@ update_status ModulePlayer::Update()
 	case jumpbackwardkick:
 
 		current_animation = &jumpbackkick;
+		player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
 		position.x -= speed;
 		position.y -= speed * gravity;
 
@@ -559,6 +555,7 @@ update_status ModulePlayer::Update()
 	case jumpbackwardpunch:
 
 		current_animation = &jumpbackpunch;
+		player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
 		position.x -= speed;
 		position.y -= speed * gravity;
 
@@ -582,6 +579,7 @@ update_status ModulePlayer::Update()
 	case jumpforwardkick:
 
 		current_animation = &jumpfrontkick;
+		player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
 
 		position.x += speed;
 
@@ -607,6 +605,7 @@ update_status ModulePlayer::Update()
 	case  jumpforwardpunch:
 
 		current_animation = &jumpfrontpunch;
+		player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
 		position.x += speed;
 		position.y -= speed * gravity;
 
@@ -636,6 +635,7 @@ update_status ModulePlayer::Update()
 	case jumpforward:
 		position.x += speed;
 		position.y -= speed * gravity;
+		player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
 		if (position.y <= 150)
 		{
 			gravity = -1;
@@ -657,6 +657,7 @@ update_status ModulePlayer::Update()
 	case jumpbackward:
 
 		current_animation = &backwardjump;
+		player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
 		position.x -= speed;
 		position.y -= speed * gravity;
 		if (position.y <= 150)
@@ -689,28 +690,17 @@ update_status ModulePlayer::Update()
 		LOG("CROUCH KICK ANIMATION ACTIVE");
 		break;
 
-	/*case kickjump:
-
-		current_animation = &jumpkick;
-		LOG("JUMP KICK ANIMATION ACTIVE");
-		break;*/
-
-	/*case punchjump:
-
-		current_animation = &jumppunch;
-		LOG("JUMP PUNCH ANIMATION ACTIVE");
-		break;*/
-
 	case idlestate:
 		crouch.Reset();
-		player_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
+		player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
+
 		current_animation = &idle;
 		LOG("IDLE ANIMATION ACTIVE");
 		break;
 
 
 	case backwardstate:
-		player_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
+		player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
 		current_animation = &backward;
 		position.x -= speed;
 		LOG("BACKWARD ANIMATION ACTIVE");
@@ -718,7 +708,7 @@ update_status ModulePlayer::Update()
 
 
 	case forwardstate:
-		player_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
+		player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
 		current_animation = &forward;
 		position.x += speed;
 		LOG("FORWARD ANIMATION ACTIVE");
@@ -728,7 +718,7 @@ update_status ModulePlayer::Update()
 	case jumpstate:
 
 		current_animation = &jump;
-
+		player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
 		position.y -= speed * gravity;
 
 
@@ -762,6 +752,8 @@ update_status ModulePlayer::Update()
 	case crouched:
 
 		current_animation = &crouch;
+		player_collider->rect.h = 65;
+		player_collider->SetPos(position.x - App->render->camera.x +5, position.y - 68 - App->render->camera.y);
 
 		LOG("CROUCHED ANIMATION ACTIVE");
 		break;
@@ -775,6 +767,7 @@ update_status ModulePlayer::Update()
 	case jumpkickstate:
 
 		current_animation = &jumpkick;
+		player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
 		position.y -= speed * gravity;
 		if (position.y <= 150)
 		{
@@ -793,6 +786,7 @@ update_status ModulePlayer::Update()
 
 	case jumppunchstate:
 		current_animation = &jumpbackpunch;
+		player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
 		position.y -= speed * gravity;
 		if (position.y <= 150)
 		{
@@ -810,13 +804,6 @@ update_status ModulePlayer::Update()
 		break;
 
 	}
-	
-	
-
-
-		
-	
-	
 
 	//Limits ben fets
 	if (position.x <= App->render->camera.x / SCREEN_SIZE)
