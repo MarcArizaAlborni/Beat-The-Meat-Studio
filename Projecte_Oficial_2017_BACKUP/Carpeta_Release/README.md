@@ -31,11 +31,11 @@ The game consists in a 1 vs 1 duel between two characters, each with the same mo
 
 **Movement input Keys:** LEFT Key (Go Left), RIGHT Key (Go Right), UP key (Jump), DOWN Key (Crouch).
 
-**Punch Input Button:** Ñ Key
+**Punch Input Button:** Ç Key
 
 **Kick Input Button:** ´ (Right Accent /  Acento Cerrado) Key
 
-**Special Attack Input Button:**  Ç Key
+**Special Attack Input Button:**  Ñ Key
 
 
 
@@ -55,12 +55,12 @@ The game consists in a 1 vs 1 duel between two characters, each with the same mo
 
 **v0.1:** 
 
-- Implemented the possibility of scrolling an empty background. (Not Done: Module Audio Creation)
+- Implemented the possibility of scrolling an empty background.
 
 **v0.2:** 
 
 * Added a Welcome Screen, the First and Second level scenes and a Congratulation Screen. 
-* Added a scene cycle functionality so the congratulation screen transitions into the welcome screen. (Not Done: Module Audio with the correct music for each scene.) 
+* Added a scene cycle functionality so the congratulation screen transitions into the welcome screen.
 
 **v0.3:** 
 
@@ -72,6 +72,7 @@ The game consists in a 1 vs 1 duel between two characters, each with the same mo
 
 - Added colliders to the player(Ryu) and its particles(Hadouken) 
 - Players can now collide with something in the environment. (Not done: Camera limits and God mode when pressing F5)
+- Implemented the Audio Module.
 
 **v.0.5(current version):**  
 
@@ -89,7 +90,7 @@ The game consists in a 1 vs 1 duel between two characters, each with the same mo
 
 - Implemented Jump, one Kick and one Punch and one Special Attack.  (as state machine driven mechanics)
 
-- Added the Ryu stage art (Different backgrounds + Parallax)  with Ryu vs Ryu.
+- Added the Ryu stage art with Ryu vs Ryu.
 
     
 
