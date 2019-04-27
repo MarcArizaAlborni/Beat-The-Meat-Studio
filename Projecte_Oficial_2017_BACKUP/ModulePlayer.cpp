@@ -42,73 +42,15 @@ ModulePlayer::ModulePlayer()
 	idle.PushBack({160, 54, 68, 98});
 	idle.PushBack({223, 54, 67, 98});
 	idle.speed = 0.15f;
+	idle.loop = true;
 
-	//Crouch Animation
-	crouch.PushBack({ 519,156,67,95 });
-	crouch.PushBack({ 587,156,68,95 });
-	crouch.PushBack({ 654,156,68,95 });
-	crouch.speed = 0.5f;
-	crouch.loop = false;
-
-
-	//punchcrouch Animation
-	crouchpunch.PushBack({ 34,2038,86,72 });
-	crouchpunch.PushBack({120,2037,100,73});
-
-	crouchpunch.speed = 0.15f;
-	crouchpunch.loop = false;
-
-	//kickcrouch Animation
-
-	crouchkick.PushBack({32,2296,80,70});
-	crouchkick.PushBack({ 109,2296,121,70});
-
-	crouchkick.speed = 0.15f;
-	crouchkick.loop = false;
-	// forward Jump Animation
-	forwardjump.PushBack({ 13,716,62,111  });
-	forwardjump.PushBack({ 75,716,65,91 });
-	forwardjump.PushBack({ 140,716,112,49 });
-	forwardjump.PushBack({ 420,695,58,85 });
-	forwardjump.PushBack({ 140,777,129,51 });
-	forwardjump.PushBack({ 328,767,77,93 });
-
-	forwardjump.speed = 0.1f;
-	forwardjump.loop = false;
-	//Backward Jump Animation
-	backwardjump.PushBack({ 328,767,77,93 });
-	backwardjump.PushBack({ 140,777,129,51 });
-	backwardjump.PushBack({ 420,695,58,85 });
-	backwardjump.PushBack({ 140,716,112,49 });
-	backwardjump.PushBack({ 75,716,65,91 });
-	backwardjump.PushBack({ 13,716,62,111 });
-	backwardjump.speed = 0.1f;
-	backwardjump.loop = false;
-	//punch jump Animation
-	jumppunch.PushBack({259,1693,83,91});
-	jumppunch.PushBack({ 353,1693,200,78 });
-	jumppunch.speed = 0.1f;
-	jumppunch.loop = false;
-
-	// kick jump Animation
-
-	jumpkick.PushBack({ 33, 1802, 82, 95 });
-	jumpkick.speed = 0.05f;
-	jumpkick.loop = false;
-
-	//Damaged Animation
-
-	// walk forward animation (arcade sprite sheet)
-	//forward.frames.PushBack({9, 136, 53, 83});
-	
 	//Walk FORWARD Animation
 	forward.PushBack({ 27,250, 66, 100 });
 	forward.PushBack({ 92, 250, 66, 100 });
 	forward.PushBack({ 160, 248, 70, 100 });
-	forward.PushBack({ 236, 250, 67, 100});
+	forward.PushBack({ 236, 250, 67, 100 });
 	forward.PushBack({ 306, 250, 67, 100 });
 	forward.PushBack({ 369, 250, 67, 100 });
-
 	forward.loop = true;
 	forward.speed = 0.1f;
 
@@ -121,6 +63,54 @@ ModulePlayer::ModulePlayer()
 	backward.PushBack({ 362, 155, 67, 94 });
 	backward.loop = true;
 	backward.speed = 0.1f;
+
+	//Crouch Animation
+	crouch.PushBack({ 519,156,67,95 });
+	crouch.PushBack({ 587,156,68,95 });
+	crouch.PushBack({ 654,156,68,95 });
+	crouch.speed = 0.5f;
+	crouch.loop = false;
+
+	//Ryu jump
+	jump.PushBack({ 17, 580, 63,105 });
+	jump.PushBack({ 80, 580, 62, 115 });
+	jump.PushBack({ 149, 580, 54, 100 });
+	jump.PushBack({ 207, 580, 61, 100 });
+	jump.PushBack({ 282, 580, 56,100 });
+	jump.PushBack({ 343, 580, 61,120 });
+	jump.loop = false;
+	jump.speed = 0.10f;
+
+	// forward Jump Animation
+	forwardjump.PushBack({ 13,716,62,111  });
+	forwardjump.PushBack({ 75,716,65,91 });
+	forwardjump.PushBack({ 140,716,112,49 });
+	forwardjump.PushBack({ 420,695,58,85 });
+	forwardjump.PushBack({ 140,777,129,51 });
+	forwardjump.PushBack({ 328,767,77,93 });
+	forwardjump.speed = 0.1f;
+	forwardjump.loop = false;
+
+	//Backward Jump Animation
+	backwardjump.PushBack({ 328,767,77,93 });
+	backwardjump.PushBack({ 140,777,129,51 });
+	backwardjump.PushBack({ 420,695,58,85 });
+	backwardjump.PushBack({ 140,716,112,49 });
+	backwardjump.PushBack({ 75,716,65,91 });
+	backwardjump.PushBack({ 13,716,62,111 });
+	backwardjump.speed = 0.1f;
+	backwardjump.loop = false;
+
+	//Ryu Hadouken movement
+	hadouken.PushBack({ 18, 870, 80, 95 });
+	hadouken.PushBack({ 100, 875, 90, 95 });
+	hadouken.PushBack({ 190, 875, 97, 95 });
+	hadouken.PushBack({ 290, 875, 110, 95 });
+	hadouken.loop = false;
+	hadouken.speed = 0.1f;
+
+
+	//Damaged Animation
 
 	//Ryu light punch
 	lightPunch.PushBack({ 34, 1368, 70, 96 });
@@ -135,24 +125,28 @@ ModulePlayer::ModulePlayer()
 	lightKick.loop = false;
 	lightKick.speed = 0.1f;
 
-	//Ryu jump
-	jump.PushBack({ 17, 580, 63,105 });
-	jump.PushBack({ 80, 580, 62, 115 });
-	jump.PushBack({ 149, 580, 54, 100 });
-	jump.PushBack({ 207, 580, 61, 100 });
-	jump.PushBack({ 282, 580, 56,100 });
-	jump.PushBack({ 343, 580, 61,120 });
-	jump.loop = false;
-	jump.speed = 0.10f;
+	//punchcrouch Animation
+	crouchpunch.PushBack({ 34,2038,86,72 });
+	crouchpunch.PushBack({ 120,2037,100,73 });
+	crouchpunch.speed = 0.15f;
+	crouchpunch.loop = false;
 
-	//Ryu Hadouken movement
-	hadouken.PushBack({18, 870, 80, 95});
-	hadouken.PushBack({100, 875, 90, 95});
-	hadouken.PushBack({190, 875, 97, 95});
-	hadouken.PushBack({290, 875, 110, 95});
-	hadouken.loop = false;
-	hadouken.speed = 0.1f;
+	//kickcrouch Animation
+	crouchkick.PushBack({ 32,2296,80,70 });
+	crouchkick.PushBack({ 109,2296,121,70 });
+	crouchkick.speed = 0.15f;
+	crouchkick.loop = false;
 
+	//Neutral punch jump Animation
+	jumppunch.PushBack({ 259,1693,83,91 });
+	jumppunch.PushBack({ 353,1693,200,78 });
+	jumppunch.speed = 0.1f;
+	jumppunch.loop = false;
+
+	//Neutral kick jump Animation
+	jumpkick.PushBack({ 33, 1802, 82, 95 });
+	jumpkick.speed = 0.05f;
+	jumpkick.loop = false;
 
 	//Jumpbackkick Animation
 	jumpbackkick.PushBack({347,1925,80,91});
@@ -161,7 +155,7 @@ ModulePlayer::ModulePlayer()
 	jumpbackkick.speed = 0.08f;
 	
 	
-	// jumpbackpunch Animation
+	//jumpbackpunch Animation
 	jumpbackpunch.PushBack({ 23,1689,74,91 });
 	jumpbackpunch.PushBack({ 99,1689,104,92 });
 	jumpbackpunch.loop = false;
@@ -174,7 +168,6 @@ ModulePlayer::ModulePlayer()
 	jumpfrontkick.speed = 0.08f;
 	
 	// jumpfrontpunch Animation 
-
 	jumpfrontpunch.PushBack({23,1689,74,91});
 	jumpfrontpunch.PushBack({ 99,1689,104,92 });
 	jumpfrontpunch.loop = false;
