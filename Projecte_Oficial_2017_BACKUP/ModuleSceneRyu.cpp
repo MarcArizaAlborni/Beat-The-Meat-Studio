@@ -16,7 +16,8 @@
 #include "MemLeaks.h"
 
 
-Uint32 start_timeScene = 0;
+Uint32 timeLimit = 0;
+Uint32 deltaTime = 0;
 bool healthIsNotEqual = false;
 
 ModuleSceneRyu::ModuleSceneRyu()
@@ -120,7 +121,7 @@ bool ModuleSceneRyu::CleanUp()
 	health2.w = 144;
 
 	//Resets the timer
-	start_timeScene = 0;
+	timeLimit = -99;
 
 	return true;
 }
@@ -179,9 +180,10 @@ update_status ModuleSceneRyu::Update()
 
 	
 	//Win/lose condition using time:
-	start_timeScene = SDL_GetTicks(); //GetTicks counts the amount of milliseconds that have elapsed since the SDL_library has been executed.
+	deltaTime = SDL_GetTicks() / 1000; //GetTicks counts the amount of milliseconds that have elapsed since the SDL_library has been executed. Milliseconds to seconds.
+	timeLimit = deltaTime;
 
-	if (start_timeScene >= 99000)
+	if (timeLimit >= 99)
 	{
 		if (health.x == health2.w + 45)
 		{
