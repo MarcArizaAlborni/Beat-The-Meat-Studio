@@ -25,7 +25,7 @@ ModulePlayer::ModulePlayer()
 	current_animation = NULL;
 	
 	position.x = 100;
-	position.y = 220;
+	position.y = 205;
 	score = 0;
 
 	health.x = 100;
@@ -192,8 +192,8 @@ bool ModulePlayer::Start()
 	LP = App->audio->LoadFx("");
 	Hadoken_Sound = App->audio->LoadFx("Audios/Voices/Ryu&Ken hadouken.wav");
 
-	position.x = 100;
-	position.y = 220;
+	position.x = 75;
+	position.y = 205;
 
 
 	//Player 2 stest collider

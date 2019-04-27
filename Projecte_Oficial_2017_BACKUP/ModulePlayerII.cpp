@@ -191,8 +191,8 @@ bool ModulePlayer2::Start()
 	LP = App->audio->LoadFx("");
 	Hadoken_Sound = App->audio->LoadFx("Audios/Voices/Ryu&Ken hadouken.wav");
 
-	position.x = 400;
-	position.y = 220;
+	position.x = 250;
+	position.y = 205;
 
 	//Player 2 stest collider
 	player2_collider = App->collision->AddCollider({ position.x, position.y - 100,60,93 }, COLLIDER_PLAYER2, App->player2);
