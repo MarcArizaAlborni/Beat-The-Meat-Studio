@@ -119,7 +119,7 @@ ModulePlayer::ModulePlayer()
 	backward.PushBack({ 300, 155, 63, 100 });
 	backward.PushBack({ 362, 155, 67, 94 });
 	backward.loop = true;
-	backward.speed = 0.01f;
+	backward.speed = 0.1f;
 
 	//Ryu light punch
 	lightPunch.PushBack({ 34, 1368, 70, 96 });
