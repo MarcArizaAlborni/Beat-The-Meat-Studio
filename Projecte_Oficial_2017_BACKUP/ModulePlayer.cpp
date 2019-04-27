@@ -16,7 +16,7 @@
 
 int speed = 2;
 Uint8 alphaka= 255;
-
+int groundLevel = 205;
 bool airkick = true;
 
 ModulePlayer::ModulePlayer()
@@ -453,7 +453,7 @@ update_status ModulePlayer::PreUpdate() {
 	
 		if (currentstate == jumppunchstate) {
 			LOG("PUNCHJUMP ACTIVE");
-			if (current_animation->Finished()&& (position.y == 220)) {
+			if (current_animation->Finished()&& (position.y == groundLevel)) {
 				currentstate = jumpstate;
 				jumpbackpunch.Reset();
 			}
@@ -485,7 +485,7 @@ update_status ModulePlayer::Update()
 			gravity = -1;
 		}
 
-		else if (position.y == 220) {
+		else if (position.y == groundLevel) {
 			jump.Reset();
 			airkick = true;
 			currentstate = idlestate;
@@ -506,7 +506,7 @@ update_status ModulePlayer::Update()
 			gravity = -1;
 		}
 
-		else if (position.y == 220) {
+		else if (position.y == groundLevel) {
 			jump.Reset();
 			jumpbackkick.Reset();
 			backwardjump.Reset();
@@ -529,7 +529,7 @@ update_status ModulePlayer::Update()
 			gravity = -1;
 		}
 
-		else if (position.y == 220) {
+		else if (position.y == groundLevel) {
 			jump.Reset();
 			airkick = true;
 			jumpbackpunch.Reset();
@@ -552,7 +552,7 @@ update_status ModulePlayer::Update()
 			gravity = -1;
 		}
 
-		else if (position.y == 220) {
+		else if (position.y == groundLevel) {
 			jump.Reset();
 			airkick = true;
 			jumpfrontkick.Reset();
@@ -575,7 +575,7 @@ update_status ModulePlayer::Update()
 			gravity = -1;
 		}
 
-		else if (position.y == 220) {
+		else if (position.y == groundLevel) {
 			jumpfrontpunch.Reset();
 			jump.Reset();
 			forwardjump.Reset();
@@ -601,7 +601,7 @@ update_status ModulePlayer::Update()
 		{
 			gravity = -1;
 		}
-		else if (position.y == 220) {
+		else if (position.y == groundLevel) {
 			jump.Reset();
 			airkick = true;
 			currentstate = idlestate;
@@ -622,7 +622,7 @@ update_status ModulePlayer::Update()
 		{
 			gravity = -1;
 		}
-		else if (position.y == 220) {
+		else if (position.y == groundLevel) {
 			jump.Reset();
 			airkick = true;
 			currentstate = idlestate;
@@ -679,7 +679,7 @@ update_status ModulePlayer::Update()
 			gravity = -1;
 		}
 
-		else if (position.y == 220) {
+		else if (position.y == groundLevel) {
 			jump.Reset();
  			airkick = true;
 			jumpkick.Reset();
@@ -724,7 +724,7 @@ update_status ModulePlayer::Update()
 			gravity = -1;
 
 		}
-		else if (position.y == 220) {
+		else if (position.y == groundLevel) {
 			jump.Reset();
 			airkick = true;
 			currentstate = idlestate;
@@ -743,7 +743,7 @@ update_status ModulePlayer::Update()
 		{
 			gravity = -1;
 		}
-		else if (position.y == 220) {
+		else if (position.y == groundLevel) {
 			jump.Reset();
 			airkick = true;
 			currentstate = idlestate;
