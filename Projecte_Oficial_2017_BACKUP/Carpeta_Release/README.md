@@ -19,11 +19,11 @@ The game consists in a 1 vs 1 duel between two characters, each with the same mo
 
 **Movement input Keys:** D Key (Go Right), A Key (Go Left), W Key (Jump), S Key (Crouch).
 
-**Punch Input Button:** R Key
+**Punch Input Button:** C Key
 
-**Kick Input Button:** T Key
+**Kick Input Button:** V Key
 
-**Special Attack Input Button:** Y Key 
+**Special Attack Input Button:** B Key 
 
 
 
@@ -31,11 +31,11 @@ The game consists in a 1 vs 1 duel between two characters, each with the same mo
 
 **Movement input Keys:** LEFT Key (Go Left), RIGHT Key (Go Right), UP key (Jump), DOWN Key (Crouch).
 
-**Punch Input Button:** Ç Key
+**Punch Input Button:** P Key
 
-**Kick Input Button:** ´ (Right Accent /  Acento Cerrado) Key
+**Kick Input Button:** O (Right Accent /  Acento Cerrado) Key
 
-**Special Attack Input Button:**  Ñ Key
+**Special Attack Input Button:**  I Key
 
 
 
@@ -48,6 +48,10 @@ The game consists in a 1 vs 1 duel between two characters, each with the same mo
 **Insta-Win Input Button:** F3 Key
 
 **Insta-Lose Input Button:** F4 Key
+
+**Input to reduce reduce Player 1's health:** F5 Key
+
+**Input to reduce Player 2's health:** F6 Key
 
 
 
@@ -84,7 +88,7 @@ The game consists in a 1 vs 1 duel between two characters, each with the same mo
 
 - Implemented the pertaining music for each screen along with the pertaining sound effects for each movement and interaction.
 
-- Added minimum debug functionalities such as God Mode (grants invincibility to the player), Collision Boxes Mode (shows the collision boxes on screen), and both direct win and lose inputs.
+- Added minimum debug functionalities such as God Mode (grants invincibility to the player), Collision Boxes Mode (shows the collision boxes on screen), both direct win and lose inputs as well as reducing both player's health.
 
 - Implemented fully functional Health bars.
 
