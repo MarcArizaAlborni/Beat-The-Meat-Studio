@@ -194,10 +194,7 @@ bool ModulePlayer2::Start()
 	position.x = 400;
 	position.y = 220;
 
-	// TODO 7.2: Add a collider to the player
-	player_collider = App->collision->AddCollider({ position.x, position.y - 100, 60, 93 }, COLLIDER_PLAYER, App->player2);
 	//Player 2 stest collider
-
 	player2_collider = App->collision->AddCollider({ position.x, position.y - 100,60,93 }, COLLIDER_PLAYER2, App->player2);
 
 
@@ -235,7 +232,7 @@ update_status ModulePlayer2::PreUpdate() {
 	//LIGHT KICK
 	inputplayer2.Kp4_active = App->input->keyboard[SDL_SCANCODE_KP_4] == KEY_DOWN;
 	//HADOKEN
-	inputplayer2.R_active = App->input->keyboard[SDL_SCANCODE_R] == KEY_DOWN;
+	inputplayer2.R_active = App->input->keyboard[SDL_SCANCODE_P] == KEY_DOWN;
 
 	{
 		if (currentstate == punchlight2) {
@@ -283,7 +280,7 @@ update_status ModulePlayer2::PreUpdate() {
 			if (current_animation->Finished()) {
 				App->particles->hadouken.speed.x = 5;
 				App->particles->hadouken.life = 2000;
-				App->particles->AddParticle(App->particles->hadouken, position.x + 25, position.y - 70, COLLIDER_PLAYER_SHOT);
+				App->particles->AddParticle(App->particles->hadouken, position.x + 25, position.y - 70, COLLIDER_PLAYER2_SHOT);
 				currentstate = idlestate2;
 				hadouken.Reset();
 			}
@@ -702,14 +699,14 @@ update_status ModulePlayer2::Update()
 
 	case idlestate2:
 		crouch.Reset();
-		player_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
+		player2_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
 		current_animation = &idle;
 		LOG("IDLE ANIMATION ACTIVE");
 		break;
 
 
 	case backwardstate2:
-		player_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
+		player2_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
 		current_animation = &backward;
 		position.x += speedII;
 		LOG("BACKWARD ANIMATION ACTIVE");
@@ -717,7 +714,7 @@ update_status ModulePlayer2::Update()
 
 
 	case forwardstate2:
-		player_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
+		player2_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
 		current_animation = &forward;
 		position.x -= speedII;
 		LOG("FORWARD ANIMATION ACTIVE");

@@ -99,9 +99,6 @@ public:
 	InputP1 inputplayer1;
 	Collider* player_collider = nullptr;
 	void OnCollision(Collider* c1, Collider* c2);
-
-	//Player2 Test collider
-	Collider* player2_collider = nullptr;
 	Mix_Chunk* LP;
 	Mix_Chunk* LK;
 	Mix_Chunk* Hadoken_Sound;

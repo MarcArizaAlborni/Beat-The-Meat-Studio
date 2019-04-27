@@ -195,11 +195,12 @@ bool ModulePlayer::Start()
 	position.x = 100;
 	position.y = 220;
 
-	// TODO 7.2: Add a collider to the player
-	player_collider = App->collision->AddCollider({ position.x, position.y - 100, 60, 93 }, COLLIDER_PLAYER, App->player);
-	//Player 2 stest collider
 
-	player2_collider = App->collision->AddCollider({ position.x+100,position.y-100,60,93 }, COLLIDER_PLAYER2,App->player);
+	//Player 2 stest collider
+	player_collider = App->collision->AddCollider({ position.x, position.y - 100, 60, 93 }, COLLIDER_PLAYER, App->player);
+	
+
+	
 
 	
 
