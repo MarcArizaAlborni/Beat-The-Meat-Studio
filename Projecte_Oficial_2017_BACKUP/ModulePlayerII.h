@@ -49,9 +49,9 @@ struct InputP2 {
 	bool Left_active; //D_active
 	bool Up_active; //W_active
 	bool Down_active; //S_active
-	bool Kp7_active; //I_active
-	bool Kp4_active; //K_active
-	bool R_active; //R_active
+	bool Punch2_active; //I_active
+	bool Kick2_active; //K_active
+	bool Special2_active; //R_active
 };
 
 class ModulePlayer2 : public Module

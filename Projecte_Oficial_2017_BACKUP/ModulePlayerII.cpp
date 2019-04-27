@@ -228,11 +228,11 @@ update_status ModulePlayer2::PreUpdate() {
 	//CROUCHzzz
 	inputplayer2.Down_active = App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_REPEAT;
 	//LIGHT PUNCH
-	inputplayer2.Kp7_active = App->input->keyboard[SDL_SCANCODE_KP_7] == KEY_DOWN;
+	inputplayer2.Punch2_active = App->input->keyboard[SDL_SCANCODE_P] == KEY_DOWN;
 	//LIGHT KICK
-	inputplayer2.Kp4_active = App->input->keyboard[SDL_SCANCODE_KP_4] == KEY_DOWN;
-	//HADOKEN
-	inputplayer2.R_active = App->input->keyboard[SDL_SCANCODE_P] == KEY_DOWN;
+	inputplayer2.Kick2_active = App->input->keyboard[SDL_SCANCODE_O] == KEY_DOWN;
+	//HADOKEN 
+	inputplayer2.Special2_active = App->input->keyboard[SDL_SCANCODE_I ] == KEY_DOWN;
 
 	{
 		if (currentstate == punchlight2) {
@@ -260,11 +260,11 @@ update_status ModulePlayer2::PreUpdate() {
 
 		if (currentstate == jumpstate2) {
 			if (airkickII) {
-				if (inputplayer2.Kp7_active) {
+				if (inputplayer2.Punch2_active) {
 					currentstate = jumppunchstate2;
 				}
 
-				if (inputplayer2.Kp4_active) {
+				if (inputplayer2.Kick2_active) {
 					currentstate = jumpkickstate2;
 				}
 			}
@@ -278,7 +278,7 @@ update_status ModulePlayer2::PreUpdate() {
 		if (currentstate == hadoukenstate2) {
 
 			if (current_animation->Finished()) {
-				App->particles->hadouken.speed.x = 5;
+				App->particles->hadouken.speed.x = -5;
 				App->particles->hadouken.life = 2000;
 				App->particles->AddParticle(App->particles->hadouken, position.x + 25, position.y - 70, COLLIDER_PLAYER2_SHOT);
 				currentstate = idlestate2;
@@ -300,15 +300,15 @@ update_status ModulePlayer2::PreUpdate() {
 				currentstate = crouched2;
 				LOG("IDLE to CROUCH");
 			}
-			if (inputplayer2.Kp4_active) {
+			if (inputplayer2.Kick2_active) {
 				currentstate = kicklight2;
 				LOG("IDLE TO kick");
 			}
-			if (inputplayer2.Kp7_active) {
+			if (inputplayer2.Punch2_active) {
 				currentstate = punchlight2;
 				LOG("IDLE TO punch");
 			}
-			if (inputplayer2.R_active) {
+			if (inputplayer2.Special2_active) {
 				currentstate = hadoukenstate2;
 				App->audio->PlayFx(Hadoken_Sound);
 				LOG("IDLE TO hadouken");
@@ -326,7 +326,7 @@ update_status ModulePlayer2::PreUpdate() {
 				currentstate = idlestate2;
 				LOG("BACK TO IDLE");
 			}
-			if (inputplayer2.Kp7_active) {
+			if (inputplayer2.Punch2_active) {
 				currentstate = punchlight2;
 				LOG("BACK TO PUNCH");
 			}
@@ -334,7 +334,7 @@ update_status ModulePlayer2::PreUpdate() {
 				currentstate = jumpbackward2;
 				LOG("BACK TO JUMP");
 			}
-			if (inputplayer2.Kp4_active) {
+			if (inputplayer2.Kick2_active) {
 				currentstate = kicklight2;
 				LOG("BACK TO KICK");
 			}
@@ -345,11 +345,11 @@ update_status ModulePlayer2::PreUpdate() {
 				LOG("FORWARD TO IDLE");
 				currentstate = idlestate2;
 			}
-			if (inputplayer2.Kp4_active) {
+			if (inputplayer2.Kick2_active) {
 				currentstate = kicklight2;
 				LOG("FORWARD TO KICK");
 			}
-			if (inputplayer2.Kp7_active) {
+			if (inputplayer2.Punch2_active) {
 				currentstate = punchlight2;
 				LOG("FORWARD TO PUNCH");
 			}
@@ -362,13 +362,13 @@ update_status ModulePlayer2::PreUpdate() {
 		if (currentstate == jumpbackward2) {
 			LOG("BACKWARDJUMP TO IDLE");
 			if (airkickII) {
-				if (inputplayer2.Kp7_active) {
+				if (inputplayer2.Punch2_active) {
 
 					currentstate = jumpbackwardpunch2;
 					LOG("BACKWARDJUMP TO BACKWARDJUMPPUNCH");
 				}
 
-				if (inputplayer2.Kp4_active) {
+				if (inputplayer2.Kick2_active) {
 
 
 					currentstate = jumpbackwardkick2;
@@ -383,14 +383,14 @@ update_status ModulePlayer2::PreUpdate() {
 		if (currentstate == jumpforward2) {
 			LOG("FORWARDJUMP TO IDLE");
 			if (airkickII) {
-				if (inputplayer2.Kp7_active) {
+				if (inputplayer2.Punch2_active) {
 
 					currentstate = jumpforwardpunch2;
 					LOG("FORWARDJUMP TO FORWARDJUMPPUNCH");
 
 				}
 
-				if (inputplayer2.Kp4_active) {
+				if (inputplayer2.Kick2_active) {
 
 					currentstate = jumpforwardkick2;
 					LOG("FORWARDJUMP TO FORWARDJUMPKICK");
@@ -454,11 +454,11 @@ update_status ModulePlayer2::PreUpdate() {
 		}
 
 		if (currentstate == crouched2) {
-			if (inputplayer2.Kp7_active) {
+			if (inputplayer2.Punch2_active) {
 				currentstate = punchcrouch2;
 			}
 
-			if (inputplayer2.Kp4_active) {
+			if (inputplayer2.Kick2_active) {
 				currentstate = kickcrouch2;
 			}
 
@@ -511,7 +511,7 @@ update_status ModulePlayer2::Update()
 	case jumpfalling2:
 
 		current_animation = &jump;
-
+		player2_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
 		position.y -= speedII * gravityII;
 
 
@@ -532,6 +532,7 @@ update_status ModulePlayer2::Update()
 	case jumpbackwardkick2:
 
 		current_animation = &jumpbackkick;
+		player2_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
 		position.x -= speedII;
 		position.y -= speedII * gravityII;
 
@@ -555,6 +556,7 @@ update_status ModulePlayer2::Update()
 	case jumpbackwardpunch2:
 
 		current_animation = &jumpbackpunch;
+		player2_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
 		position.x -= speedII;
 		position.y -= speedII * gravityII;
 
@@ -578,7 +580,7 @@ update_status ModulePlayer2::Update()
 	case jumpforwardkick2:
 
 		current_animation = &jumpfrontkick;
-
+		player2_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
 		position.x += speedII;
 
 		position.y -= speedII * gravityII;
@@ -603,6 +605,7 @@ update_status ModulePlayer2::Update()
 	case  jumpforwardpunch2:
 
 		current_animation = &jumpfrontpunch;
+		player2_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
 		position.x += speedII;
 		position.y -= speedII * gravityII;
 
@@ -632,6 +635,7 @@ update_status ModulePlayer2::Update()
 	case jumpforward2:
 		position.x -= speedII;
 		position.y -= speedII * gravityII;
+		player2_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
 		if (position.y <= 150)
 		{
 			gravityII = -1;
@@ -655,6 +659,7 @@ update_status ModulePlayer2::Update()
 		current_animation = &backwardjump;
 		position.x += speedII;
 		position.y -= speedII * gravityII;
+		player2_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
 		if (position.y <= 150)
 		{
 			gravityII = -1;
@@ -699,6 +704,7 @@ update_status ModulePlayer2::Update()
 
 	case idlestate2:
 		crouch.Reset();
+		player2_collider->rect.h = 93;
 		player2_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
 		current_animation = &idle;
 		LOG("IDLE ANIMATION ACTIVE");
@@ -724,7 +730,8 @@ update_status ModulePlayer2::Update()
 	case jumpstate2:
 
 		current_animation = &jump;
-
+		
+		player2_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
 		position.y -= speedII * gravityII;
 
 
@@ -758,7 +765,8 @@ update_status ModulePlayer2::Update()
 	case crouched2:
 
 		current_animation = &crouch;
-
+		player2_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 68 - App->render->camera.y);
+		player2_collider->rect.h = 65;
 		LOG("CROUCHED ANIMATION ACTIVE");
 		break;
 
@@ -771,6 +779,7 @@ update_status ModulePlayer2::Update()
 	case jumpkickstate2:
 
 		current_animation = &jumpkick;
+		player2_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
 		position.y -= speedII * gravityII;
 		if (position.y <= 150)
 		{
@@ -789,6 +798,7 @@ update_status ModulePlayer2::Update()
 
 	case jumppunchstate2:
 		current_animation = &jumpbackpunch;
+		player2_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
 		position.y -= speedII * gravityII;
 		if (position.y <= 150)
 		{
@@ -806,13 +816,6 @@ update_status ModulePlayer2::Update()
 		break;
 
 	}
-
-
-
-
-
-
-
 
 	//Limits ben fets
 	if (position.x <= App->render->camera.x / SCREEN_SIZE)

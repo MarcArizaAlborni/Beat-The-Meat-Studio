@@ -55,27 +55,7 @@ update_status ModuleRender::Update()
 {
 	int speed = 2;
 	int still = 0;
-
-	/*if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_REPEAT) {
-		
-		camera.y += speed;
-	}
-	if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_REPEAT) {
-
-		camera.y -= speed;
-	}
-	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_REPEAT) {
-
-		camera.x += speed;
-	}
-	if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_REPEAT) {
-
-		camera.x -= speed;
-	}*/
-	
-
-//#ifdef _DEBUG
-	if (App->collision->debug) {
+	/*if (App->collision->debug) {
 		if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_REPEAT)
 		{
 			if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled())
@@ -85,7 +65,6 @@ update_status ModuleRender::Update()
 			else
 			{
 				camera.y += still;
-
 			}
 		}
 
@@ -98,7 +77,6 @@ update_status ModuleRender::Update()
 			else
 			{
 				camera.y -= still;
-
 			}
 		}
 
@@ -111,7 +89,6 @@ update_status ModuleRender::Update()
 			else
 			{
 				camera.x -= still;
-
 			}
 		}
 
@@ -124,11 +101,18 @@ update_status ModuleRender::Update()
 			else
 			{
 				camera.x += still;
-
 			}
 		}
-	} 
+	} */
 	
+
+
+
+
+
+
+
+
 	return update_status::UPDATE_CONTINUE;
 }
 
@@ -142,8 +126,6 @@ update_status ModuleRender::PostUpdate()
 bool ModuleRender::CleanUp()
 {
 	LOG("Destroying renderer");
-
-	//Destroy window
 	if(renderer != NULL)
 	{
 		SDL_DestroyRenderer(renderer);

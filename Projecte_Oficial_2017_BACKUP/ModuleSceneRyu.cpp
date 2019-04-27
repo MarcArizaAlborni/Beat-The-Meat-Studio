@@ -15,8 +15,6 @@
 #include "ModuleLoseScreen.h"
 #include "MemLeaks.h"
 
-// Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
-
 ModuleSceneRyu::ModuleSceneRyu()
 {
 	//313.3
@@ -123,7 +121,7 @@ update_status ModuleSceneRyu::Update()
 	forward = true;
 
 	if (forward)
-		background_pos -= 0.30f;
+		background_pos -= 0.15f;
 
 	App->render->Blit(graphics, -77 + (int)background_pos, 0, &background); //sky
 
@@ -140,31 +138,19 @@ update_status ModuleSceneRyu::Update()
 	App->render->Blit(graphics2, 6, 1, &score, 1.0f, false); //score
 	App->render->Blit(graphics2, 178, 34, &timer, 1.0f, false); //timer
 
-
-	// TODO 2: make so pressing SPACE the HONDA stage is loaded
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) 
-	{
-		App->fade->FadeToBlack(App->scene_ryu, App->win_screen, 1.0f);
-	}
-
-	if (App->input->keyboard[SDL_SCANCODE_H] == 1) //Health-substracting button
+	if (App->input->keyboard[SDL_SCANCODE_F5] == 1) //Health-substracting button
 	{
 		health.x -= 10;
-		 
-		if (health.x <= 40) //40 instead of 0 because it doesnt exactly fit. If the duel ends then reset the healthbars
-		{
-			App->fade->FadeToBlack(App->scene_ryu, App->lose_screen, 1.0f);
-			health.x = 189;
-			health2.w = 144;
-		}
-		
 	}
-	
-	if (App->input->keyboard[SDL_SCANCODE_J] == 1) //Health-substracting button
+	if (health.x <= 40) //40 instead of 0 because it doesnt exactly fit. If the duel ends then reset the healthbars
+	{
+		App->fade->FadeToBlack(App->scene_ryu, App->lose_screen, 1.0f);
+		health.x = 189;
+		health2.w = 144;
+	}
+	if (App->input->keyboard[SDL_SCANCODE_F6] == 1) //Health-substracting button
 	{
 		health2.w -= 10;
-
-		
 	}
 	if (health2.w <= 0) //If the duel ends then reset the healthbars
 	{
@@ -172,14 +158,14 @@ update_status ModuleSceneRyu::Update()
 		health2.w = 144;
 		health.x = 189;
 	}
-	if (App->input->keyboard[SDL_SCANCODE_V] == 1) //Insta-Win Input Button
+	if (App->input->keyboard[SDL_SCANCODE_F3] == 1) //Insta-Win Input Button
 	{
 		App->fade->FadeToBlack(App->scene_ryu, App->win_screen, 1.0f);
 		health2.w = 144;
 		health.x = 189;
 	}
-
-	if (App->input->keyboard[SDL_SCANCODE_X] == 1) //Insta-Lose Input Button
+	 
+	if (App->input->keyboard[SDL_SCANCODE_F4] == 1) //Insta-Lose Input Button
 	{
 		App->fade->FadeToBlack(App->scene_ryu, App->lose_screen, 1.0f);
 		health.x = 189;

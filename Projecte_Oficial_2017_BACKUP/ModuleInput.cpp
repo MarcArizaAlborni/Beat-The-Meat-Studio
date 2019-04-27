@@ -58,7 +58,7 @@ update_status ModuleInput::PreUpdate()
 	if (keyboard[SDL_SCANCODE_ESCAPE])
 		return update_status::UPDATE_STOP;
 
-	if (keyboard[SDL_SCANCODE_G]) //God Mode
+	if (keyboard[SDL_SCANCODE_F1]) //God Mode
 	{
 		//App->collision->Disable();
 	}

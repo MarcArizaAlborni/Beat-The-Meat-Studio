@@ -8,6 +8,7 @@
 #include "ModuleSceneRyu.h"
 #include "ModulePlayerII.h"
 #include "SDL/include/SDL_timer.h"
+#include "ModulePlayer.h"
 
 ModuleParticles::ModuleParticles()
 {
@@ -121,6 +122,12 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 		{
 			App->scene_ryu->health2.w -= 10;
 		}
+
+		if (active[i] != nullptr && active[i]->collider == c1 && c2 == App->player->player_collider)
+		{
+			App->scene_ryu->health.x -= 10;
+		}
+
 		// Always destroy particles that collide
 		if (active[i] != nullptr && active[i]->collider == c1)
 		{

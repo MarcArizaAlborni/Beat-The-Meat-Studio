@@ -48,9 +48,9 @@ struct InputP1 {
 	bool D_active;
 	bool W_active;
 	bool S_active;
-	bool I_active;
-	bool K_active;
-	bool R_active;
+	bool Punch1_active;
+	bool Kick1_active;
+	bool Special1_active;
 };
 
 class ModulePlayer : public Module
