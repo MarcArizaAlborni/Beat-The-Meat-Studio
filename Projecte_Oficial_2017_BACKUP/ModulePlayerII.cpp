@@ -17,7 +17,8 @@
 int speedII = 2;
 Uint8 alphakaII = 255;
 float gravityII = 1;
-
+int groundLevelII = 205;
+int maxHeightII = 120;
 bool airkickII = true;
 
 ModulePlayer2::ModulePlayer2()
@@ -26,7 +27,7 @@ ModulePlayer2::ModulePlayer2()
 	current_animation = NULL;
 
 	position.x = 100;
-	position.y = 220;
+	position.y = 205;
 	score = 0;
 
 	health.x = 100;
@@ -39,7 +40,7 @@ ModulePlayer2::ModulePlayer2()
 	// idle animation (arcade sprite sheet)
 	idle.PushBack({ 2330, 61, 59, 90});
 	idle.PushBack({ 2267, 59, 58, 92 });
-	idle.PushBack({ 2203 , 58, 55, 94 });
+	idle.PushBack({ 2203, 58, 55, 94 });
 	idle.PushBack({ 2134, 62, 60, 89 });
 	idle.speed = 0.15f;
 
@@ -470,7 +471,7 @@ update_status ModulePlayer2::PreUpdate() {
 
 		if (currentstate == jumpkickstate2) {
 			LOG("KICKJUMP TO IDLE");
-			//if (current_animation->Finished()&& (position.y == 220)) {
+			//if (current_animation->Finished()&& (position.y == groundLevelII)) {
 			//	currentstate = jumpstate;//-----------------------------------------------
 			//	jumpkick.Reset();
 			//}
@@ -482,7 +483,7 @@ update_status ModulePlayer2::PreUpdate() {
 
 		if (currentstate == jumppunchstate2) {
 			LOG("PUNCHJUMP ACTIVE");
-			if (current_animation->Finished() && (position.y == 220)) {
+			if (current_animation->Finished() && (position.y == groundLevelII)) {
 				currentstate = jumpstate2;//-----------------------------------------------
 				jumpbackpunch.Reset();
 			}
@@ -515,12 +516,12 @@ update_status ModulePlayer2::Update()
 		position.y -= speedII * gravityII;
 
 
-		if (position.y <= 150)
+		if (position.y <= maxHeightII)
 		{
 			gravityII = -1;
 		}
 
-		else if (position.y == 220) {
+		else if (position.y == groundLevelII) {
 			jump.Reset();
 			airkickII = true;
 			currentstate = idlestate2;
@@ -537,12 +538,12 @@ update_status ModulePlayer2::Update()
 		position.y -= speedII * gravityII;
 
 
-		if (position.y <= 150)
+		if (position.y <= maxHeightII)
 		{
 			gravityII = -1;
 		}
 
-		else if (position.y == 220) {
+		else if (position.y == groundLevelII) {
 			jump.Reset();
 			jumpbackkick.Reset();
 			backwardjump.Reset();
@@ -561,12 +562,12 @@ update_status ModulePlayer2::Update()
 		position.y -= speedII * gravityII;
 
 
-		if (position.y <= 150)
+		if (position.y <= maxHeightII)
 		{
 			gravityII = -1;
 		}
 
-		else if (position.y == 220) {
+		else if (position.y == groundLevelII) {
 			jump.Reset();
 			airkickII = true;
 			jumpbackpunch.Reset();
@@ -586,12 +587,12 @@ update_status ModulePlayer2::Update()
 		position.y -= speedII * gravityII;
 
 
-		if (position.y <= 150)
+		if (position.y <= maxHeightII)
 		{
 			gravityII = -1;
 		}
 
-		else if (position.y == 220) {
+		else if (position.y == groundLevelII) {
 			jump.Reset();
 			airkickII = true;
 			jumpfrontkick.Reset();
@@ -610,12 +611,12 @@ update_status ModulePlayer2::Update()
 		position.y -= speedII * gravityII;
 
 
-		if (position.y <= 150)
+		if (position.y <= maxHeightII)
 		{
 			gravityII = -1;
 		}
 
-		else if (position.y == 220) {
+		else if (position.y == groundLevelII) {
 			jumpfrontpunch.Reset();
 			jump.Reset();
 			airkickII = true;
@@ -636,11 +637,11 @@ update_status ModulePlayer2::Update()
 		position.x -= speedII;
 		position.y -= speedII * gravityII;
 		player2_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
-		if (position.y <= 150)
+		if (position.y <= maxHeightII)
 		{
 			gravityII = -1;
 		}
-		else if (position.y == 220) {
+		else if (position.y == groundLevelII) {
 			jump.Reset();
 			airkickII = true;
 			currentstate = idlestate2;
@@ -660,12 +661,12 @@ update_status ModulePlayer2::Update()
 		position.x += speedII;
 		position.y -= speedII * gravityII;
 		player2_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
-		if (position.y <= 150)
+		if (position.y <= maxHeightII)
 		{
 			gravityII = -1;
 
 		}
-		else if (position.y == 220) {
+		else if (position.y == groundLevelII) {
 			jump.Reset();
 			airkickII = true;
 			currentstate = idlestate2;
@@ -735,12 +736,12 @@ update_status ModulePlayer2::Update()
 		position.y -= speedII * gravityII;
 
 
-		if (position.y <= 150)
+		if (position.y <= maxHeightII)
 		{
 			gravityII = -1;
 		}
 
-		else if (position.y == 220) {
+		else if (position.y == groundLevelII) {
 			jump.Reset();
 
 			airkickII = true;
@@ -781,12 +782,12 @@ update_status ModulePlayer2::Update()
 		current_animation = &jumpkick;
 		player2_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
 		position.y -= speedII * gravityII;
-		if (position.y <= 150)
+		if (position.y <= maxHeightII)
 		{
 			gravityII = -1;
 
 		}
-		else if (position.y == 220) {
+		else if (position.y == groundLevelII) {
 			jump.Reset();
 			airkickII = true;
 			currentstate = idlestate2;
@@ -800,12 +801,12 @@ update_status ModulePlayer2::Update()
 		current_animation = &jumpbackpunch;
 		player2_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
 		position.y -= speedII * gravityII;
-		if (position.y <= 150)
+		if (position.y <= maxHeightII)
 		{
 			gravityII = -1;
 
 		}
-		else if (position.y == 220) {
+		else if (position.y == groundLevelII) {
 			jump.Reset();
 			airkickII = true;
 			currentstate = idlestate2;

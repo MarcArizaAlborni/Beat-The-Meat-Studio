@@ -17,6 +17,7 @@
 int speed = 2;
 Uint8 alphaka= 255;
 int groundLevel = 205;
+int maxHeight = 120; 
 bool airkick = true;
 
 ModulePlayer::ModulePlayer()
@@ -36,10 +37,10 @@ ModulePlayer::ModulePlayer()
 	//App->render->DrawQuad(health, 255, 0, 0, alphaka);
 
 	// idle animation (arcade sprite sheet)
-	idle.PushBack({25, 54, 68, 100});
-	idle.PushBack({93, 54, 67, 100});
-	idle.PushBack({160, 54, 68, 100});
-	idle.PushBack({223, 54, 67, 100});
+	idle.PushBack({25, 54, 68, 98});
+	idle.PushBack({93, 54, 67, 98});
+	idle.PushBack({160, 54, 68, 98});
+	idle.PushBack({223, 54, 67, 98});
 	idle.speed = 0.15f;
 
 	//Crouch Animation
@@ -480,7 +481,7 @@ update_status ModulePlayer::Update()
 		position.y -= speed * gravity;
 		player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
 
-		if (position.y <= 150)
+		if (position.y <= maxHeight)
 		{
 			gravity = -1;
 		}
@@ -501,7 +502,7 @@ update_status ModulePlayer::Update()
 		position.x -= speed;
 		position.y -= speed * gravity;
 
-		if (position.y <= 150)
+		if (position.y <= maxHeight)
 		{
 			gravity = -1;
 		}
@@ -524,7 +525,7 @@ update_status ModulePlayer::Update()
 		position.x -= speed;
 		position.y -= speed * gravity;
 
-		if (position.y <= 150)
+		if (position.y <= maxHeight)
 		{
 			gravity = -1;
 		}
@@ -547,7 +548,7 @@ update_status ModulePlayer::Update()
 		position.x += speed;
 		position.y -= speed * gravity;
 
-		if (position.y <= 150)
+		if (position.y <= maxHeight)
 		{
 			gravity = -1;
 		}
@@ -570,7 +571,7 @@ update_status ModulePlayer::Update()
 		position.x += speed;
 		position.y -= speed * gravity;
 
-		if (position.y <= 150)
+		if (position.y <= maxHeight)
 		{
 			gravity = -1;
 		}
@@ -597,7 +598,7 @@ update_status ModulePlayer::Update()
 		position.y -= speed * gravity;
 		current_animation = &forwardjump;
 		player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
-		if (position.y <= 150)
+		if (position.y <= maxHeight)
 		{
 			gravity = -1;
 		}
@@ -618,7 +619,7 @@ update_status ModulePlayer::Update()
 		player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
 		position.x -= speed;
 		position.y -= speed * gravity;
-		if (position.y <= 150)
+		if (position.y <= maxHeight)
 		{
 			gravity = -1;
 		}
@@ -674,7 +675,7 @@ update_status ModulePlayer::Update()
 		player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
 		position.y -= speed * gravity;
 
-		if (position.y <= 150)
+		if (position.y <= maxHeight)
 		{
 			gravity = -1;
 		}
@@ -719,7 +720,7 @@ update_status ModulePlayer::Update()
 		current_animation = &jumpkick;
 		player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
 		position.y -= speed * gravity;
-		if (position.y <= 150)
+		if (position.y <= maxHeight)
 		{
 			gravity = -1;
 
@@ -739,7 +740,7 @@ update_status ModulePlayer::Update()
 		player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
 		position.y -= speed * gravity;
 
-		if (position.y <= 150)
+		if (position.y <= maxHeight)
 		{
 			gravity = -1;
 		}
