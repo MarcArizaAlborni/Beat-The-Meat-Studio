@@ -43,6 +43,7 @@ bool ModuleLoseScreen::CleanUp()
 // Update: draw background
 update_status ModuleLoseScreen::Update()
 {
+	App->render->camera.x = 0;
 	App->render->Blit(graphics, 0, 0, &lose_screen, 0.75f);
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 

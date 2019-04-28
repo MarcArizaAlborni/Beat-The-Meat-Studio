@@ -1093,12 +1093,13 @@ update_status ModulePlayer::Update()
 
 
 	//Limits ben fets
-	if (position.x <= App->render->camera.x - 10 / SCREEN_SIZE)
+	if (position.x <= (App->render->camera.x-10) /SCREEN_SIZE)
 	{
-		position.x = App->render->camera.x - 10/ SCREEN_SIZE;
+		position.x = (App->render->camera.x -10) / SCREEN_SIZE;
 	}
-	if (position.x >= SCREEN_WIDTH - 60 + App->render->camera.x -10/ SCREEN_SIZE) { //Hardcodeado una mica, s'haura de revisar
-		position.x = SCREEN_WIDTH - 60 + App->render->camera.x -10/ SCREEN_SIZE;
+	if (position.x >= (SCREEN_WIDTH +App->render->camera.x ) / SCREEN_SIZE +127) 
+	{ 
+		position.x = (SCREEN_WIDTH +App->render->camera.x ) / SCREEN_SIZE +127;
 	}
 	if (position.x > App->player2->position.x ) {
 		flip = true;

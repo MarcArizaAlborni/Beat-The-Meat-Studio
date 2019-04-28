@@ -187,6 +187,7 @@ update_status ModuleSceneRyu::Update()
 	if (App->input->keyboard[SDL_SCANCODE_F3] == 1) //Insta-Win Input Button
 	{
 		App->fade->FadeToBlack(App->scene_ryu, App->win_screen, 1.0f);
+		
 		App->audio->FinishMusic(1000);
 	}
 	 

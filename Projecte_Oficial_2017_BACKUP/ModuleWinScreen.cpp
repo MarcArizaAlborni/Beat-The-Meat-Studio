@@ -15,6 +15,7 @@
 
 ModuleWinScreen::ModuleWinScreen()
 {
+
 	win_screen.x = 0;
 	win_screen.y = 0;
 	win_screen.w = SCREEN_WIDTH;
@@ -43,6 +44,7 @@ bool ModuleWinScreen::CleanUp()
 // Update: draw background
 update_status ModuleWinScreen::Update()
 {
+	App->render->camera.x = 0;
 	App->render->Blit(graphics, 0, 0, &win_screen, 0.75f);
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 

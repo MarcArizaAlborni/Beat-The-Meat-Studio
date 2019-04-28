@@ -1141,14 +1141,14 @@ update_status ModulePlayer2::Update()
 			break;
 		}
 	}
-
+	 
 	//Limits ben fets
-	if (position.x <= App->render->camera.x - 230 / SCREEN_SIZE)
+	if (position.x <= (App->render->camera.x ) / SCREEN_SIZE -90)
 	{
-		position.x = App->render->camera.x - 230 / SCREEN_SIZE;
+		position.x = (App->render->camera.x ) / SCREEN_SIZE -90 ;
 	}
-	if (position.x >= SCREEN_WIDTH - 60 + App->render->camera.x - 180 / SCREEN_SIZE) { //Hardcodeado una mica, s'haura de revisar
-		position.x = SCREEN_WIDTH - 60 + App->render->camera.x - 180/ SCREEN_SIZE;
+	if (position.x >= (SCREEN_WIDTH   + App->render->camera.x) / SCREEN_SIZE +42) { //Hardcodeado una mica, s'haura de revisar
+		position.x = (SCREEN_WIDTH  + App->render->camera.x) / SCREEN_SIZE +42;
 	}
 
 	SDL_Rect r = current_animation->GetCurrentFrame();
