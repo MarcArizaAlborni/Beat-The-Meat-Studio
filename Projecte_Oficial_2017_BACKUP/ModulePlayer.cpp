@@ -314,7 +314,7 @@ update_status ModulePlayer::PreUpdate() {
 					currentstate =jumppunchstate;
 				}
 				if (inputplayer1.Kick1_active) {
-					attack_collider = App->collision->AddCollider({ position.x + 65 ,position.y - 80 ,35 ,40 }, COLLIDER_PLAYER_ATTACK, App->player);
+					attack_collider = App->collision->AddCollider({ position.x + 65 ,position.y - 90 ,35 ,40 }, COLLIDER_PLAYER_ATTACK, App->player);
 					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
 					currentstate = jumpkickstate;
 				}
@@ -494,13 +494,13 @@ update_status ModulePlayer::PreUpdate() {
 
 			if (airkick) {
 			if (inputplayer1.Punch1_active) {
-				attack_collider = App->collision->AddCollider({ position.x + 65 ,position.y - 80 ,35 ,20 }, COLLIDER_PLAYER_ATTACK, App->player);
+				attack_collider = App->collision->AddCollider({ position.x + 65 ,position.y - 65 ,35 ,30 }, COLLIDER_PLAYER_ATTACK, App->player);
 				App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
 				currentstate = jumpbackwardpunch;
 				LOG("BACKWARDJUMP TO BACKWARDJUMPPUNCH");
 			}
 				if (inputplayer1.Kick1_active) {
-					attack_collider = App->collision->AddCollider({ position.x + 65 ,position.y - 80 ,35 ,20 }, COLLIDER_PLAYER_ATTACK, App->player);
+					attack_collider = App->collision->AddCollider({ position.x + 65 ,position.y - 50 ,60 ,30 }, COLLIDER_PLAYER_ATTACK, App->player);
 					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS 
 					currentstate = jumpbackwardkick;
 					LOG("BACKWARDJUMP TO BACKWARDJUMPKICK");
@@ -511,13 +511,13 @@ update_status ModulePlayer::PreUpdate() {
 			LOG("FORWARDJUMP TO IDLE");
 			if (airkick) {
 			if (inputplayer1.Punch1_active) {
-				attack_collider = App->collision->AddCollider({ position.x + 65 ,position.y - 80 ,35 ,20 }, COLLIDER_PLAYER_ATTACK, App->player);
+				attack_collider = App->collision->AddCollider({ position.x + 65 ,position.y - 65 ,35 ,30 }, COLLIDER_PLAYER_ATTACK, App->player);
 				App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
 				currentstate = jumpforwardpunch;
 				LOG("FORWARDJUMP TO FORWARDJUMPPUNCH");
 			}
 			if (inputplayer1.Kick1_active) {
-				attack_collider = App->collision->AddCollider({ position.x + 65 ,position.y - 80 ,35 ,20 }, COLLIDER_PLAYER_ATTACK, App->player);
+				attack_collider = App->collision->AddCollider({ position.x + 65 ,position.y - 50 ,60 ,30 }, COLLIDER_PLAYER_ATTACK, App->player);
 					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
 					currentstate = jumpforwardkick;
 					LOG("FORWARDJUMP TO FORWARDJUMPKICK");
@@ -569,6 +569,7 @@ update_status ModulePlayer::PreUpdate() {
 		if (currentstate == punchcrouch) {
 			LOG("CROUCH TO CROUCHPUNCH");
 			if (current_animation->Finished()) {
+				attack_collider->to_delete = true;
 				currentstate = crouched;
 				App->player2->crouchpunch2.Reset();
 				crouchpunch.Reset();
@@ -578,6 +579,7 @@ update_status ModulePlayer::PreUpdate() {
 		if (currentstate == kickcrouch) {
 			LOG("CROUCH TO KICKCROUCH");
 			if (current_animation->Finished()) {
+				attack_collider->to_delete = true;
 				currentstate = crouched;
 				crouchkick.Reset();
 				App->player2->crouchkick2.Reset();
@@ -587,12 +589,12 @@ update_status ModulePlayer::PreUpdate() {
 		if (currentstate == crouched) {
 
 			if (inputplayer1.Punch1_active) {
-				attack_collider = App->collision->AddCollider({ position.x + 65 ,position.y - 80 ,35 ,20 }, COLLIDER_PLAYER_ATTACK, App->player);
+				attack_collider = App->collision->AddCollider({ position.x + 65 ,position.y - 60 ,38 ,20 }, COLLIDER_PLAYER_ATTACK, App->player);
 				App->audio->PlayFx(LightDamage_Sound);
 				currentstate = punchcrouch;
 			}
 			if (inputplayer1.Kick1_active) {
-				attack_collider = App->collision->AddCollider({ position.x + 65 ,position.y - 80 ,35 ,20 }, COLLIDER_PLAYER_ATTACK, App->player);
+				attack_collider = App->collision->AddCollider({ position.x + 65 ,position.y -24 ,50 ,25 }, COLLIDER_PLAYER_ATTACK, App->player);
 				App->audio->PlayFx(LightDamage_Sound);
 				currentstate = kickcrouch;
 			}
@@ -677,8 +679,8 @@ update_status ModulePlayer::Update()
 			player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
 			position.x -= speed;
 			position.y -= speed * gravity;
-			attack_collider->rect.y = position.y;
-			attack_collider->rect.x = position.x;
+			attack_collider->rect.y = position.y-50;
+			attack_collider->rect.x = position.x - App->render->camera.x+65;
 
 			if (position.y <= maxHeight)
 			{
@@ -704,8 +706,8 @@ update_status ModulePlayer::Update()
 			player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
 			position.x -= speed;
 			position.y -= speed * gravity;
-			attack_collider->rect.y -= speed * gravity;
-			attack_collider->rect.x -= speed;
+			attack_collider->rect.y = position.y - 65;
+			attack_collider->rect.x =  65 - App->render->camera.x + position.x;
 
 			if (position.y <= maxHeight)
 			{
@@ -731,8 +733,8 @@ update_status ModulePlayer::Update()
 			player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
 			position.x += speed;
 			position.y -= speed * gravity;
-			attack_collider->rect.y = position.y -80;
-			attack_collider->rect.x = position.x +65;
+			attack_collider->rect.y = position.y -50;
+			attack_collider->rect.x = position.x +65 - App->render->camera.x;
 
 			if (position.y <= maxHeight)
 			{
@@ -802,7 +804,9 @@ update_status ModulePlayer::Update()
 				jumpfrontkick.Reset();
 				gravity = 1;
 				forwardjump.Reset();
-				attack_collider->to_delete = true;
+				if (attack_collider != nullptr){
+					attack_collider->to_delete = true;
+				}
 			}
 			LOG("FORWARD JUMP ANIMATION ACTIVE");
 			break;
@@ -825,8 +829,9 @@ update_status ModulePlayer::Update()
 				gravity = 1;
 				jumpbackkick.Reset();
 				backwardjump.Reset();
-				
-				
+				if (attack_collider != nullptr) {
+					attack_collider->to_delete = true;
+				}
 			}
 			LOG("backward JUMP ANIMATION ACTIVE");
 			break;
@@ -834,6 +839,8 @@ update_status ModulePlayer::Update()
 		case punchcrouch:
 
 			current_animation = &crouchpunch;
+			
+
 			LOG("CROUCH PUNCH ANIMATION ACTIVE")
 				break;
 
@@ -922,6 +929,7 @@ update_status ModulePlayer::Update()
 			player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
 			position.y -= speed * gravity;
 			attack_collider->rect.y -= speed * gravity;
+
 			if (position.y <= maxHeight)
 			{
 				gravity = -1;
@@ -1281,6 +1289,7 @@ update_status ModulePlayer::Update()
 		}
 	}
 
+	
 
 	//Limits ben fets
 	if (position.x <= (App->render->camera.x-10) /SCREEN_SIZE)
