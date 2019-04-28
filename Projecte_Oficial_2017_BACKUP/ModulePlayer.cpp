@@ -1399,9 +1399,6 @@ update_status ModulePlayer::Update()
 			break;
 		}
 	}
-
-	
-
 	//Limits ben fets
 	if (position.x <= (App->render->camera.x-10) /SCREEN_SIZE)
 	{
@@ -1447,5 +1444,8 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			alreadyHit = true;
 		}
 	}
+
+
+
 
 }
