@@ -263,45 +263,49 @@ update_status ModulePlayer::PreUpdate() {
 		//}
 
 		if (currentstate == punchlight) {
-			
-			if (current_animation->Finished()) {
-				
-				attack_collider->to_delete = true;
-				currentstate = idlestate;
-				alreadyHit = false;
-				lightPunch.Reset();
-				LOG("PUNCH TO IDLE");
+			if(!App->player->flip){
+				if (current_animation->Finished()) {
 
+					attack_collider->to_delete = true;
+					currentstate = idlestate;
+					alreadyHit = false;
+					lightPunch.Reset();
+					LOG("PUNCH TO IDLE");
+				}
 			}
-			if (App->player2->lightPunch2.Finished()) {
+			if(App->player->flip){
+				if (App->player2->lightPunch2.Finished()) {
 
-				attack_collider->to_delete = true;
-				currentstate = idlestate;
-				alreadyHit = false;
-				App->player2->lightPunch2.Reset();
-				LOG("PUNCH TO IDLE");
-
+					attack_collider->to_delete = true;
+					currentstate = idlestate;
+					alreadyHit = false;
+					App->player2->lightPunch2.Reset();
+					LOG("PUNCH TO IDLE");
+				}
 			}
 			LOG("PUNCH");
 		}
 
 		if (currentstate == kicklight) {
-
-			if (current_animation->Finished()) {
-				currentstate = idlestate;
-				attack_collider->to_delete = true;
-				alreadyHit = false;
-				lightKick.Reset();
-				LOG("KICK TO IDLE");
+			if (!App->player->flip) {
+				if (current_animation->Finished()) {
+					currentstate = idlestate;
+					attack_collider->to_delete = true;
+					alreadyHit = false;
+					lightKick.Reset();
+					LOG("KICK TO IDLE");
+				}
 			}
-			if (App->player2->lightKick2.Finished()) {
+			if (App->player->flip) {
+				if (App->player2->lightKick2.Finished()) {
 
-				attack_collider->to_delete = true;
-				currentstate = idlestate;
-				alreadyHit = false;
-				App->player2->lightKick2.Reset();
-				LOG("PUNCH TO IDLE");
+					attack_collider->to_delete = true;
+					currentstate = idlestate;
+					alreadyHit = false;
+					App->player2->lightKick2.Reset();
+					LOG("PUNCH TO IDLE");
 
+				}
 			}
 		}
 

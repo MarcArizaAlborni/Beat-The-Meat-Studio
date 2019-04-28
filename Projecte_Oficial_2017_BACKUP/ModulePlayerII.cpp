@@ -237,7 +237,18 @@ update_status ModulePlayer2::PreUpdate() {
 
 	{
 		if (currentstate == punchlight2) {
-			
+
+			if (!App->player->flip){
+				if (current_animation->Finished()) {
+					attack_collider2->to_delete = true;
+					currentstate = idlestate2;
+					lightPunch2.Reset();
+					alreadyHit2 = false;
+					//lightPunch.Reset();
+					LOG("PUNCH TO IDLE");
+				}
+		}
+			if (App->player->flip) {
 				if (current_animation->Finished()) {
 					attack_collider2->to_delete = true;
 					currentstate = idlestate2;
@@ -246,21 +257,34 @@ update_status ModulePlayer2::PreUpdate() {
 					//lightPunch.Reset();
 					LOG("PUNCH TO IDLE");
 				}
-			
+			}
 			
 			LOG("PUNCH");
 		}
 
 		if (currentstate == kicklight2) {
+			
+			if (App->player->flip) {
+				if (current_animation->Finished()) {
+					attack_collider2->to_delete = true;
+					currentstate = idlestate2;
+					alreadyHit2 = false;
+					App->player->lightKick.Reset();
 
-			if (current_animation->Finished()) {
-				attack_collider2->to_delete = true;
-				currentstate = idlestate2;
-				alreadyHit2 = false;
-				App->player->lightKick.Reset();
-				
-				LOG("KICK TO IDLE");
+					LOG("KICK TO IDLE");
+				}
 			}
+			if (!App->player->flip) {
+				if (current_animation->Finished()) {
+					attack_collider2->to_delete = true;
+					currentstate = idlestate2;
+					alreadyHit2 = false;
+					lightKick2.Reset();
+
+					LOG("KICK TO IDLE");
+				}
+			}
+
 		}
 
 		if (currentstate == jumpstate2) {
@@ -681,12 +705,15 @@ update_status ModulePlayer2::Update()
 			}
 
 			else if (position.y == groundLevelII) {
-				jump2.Reset();
+				
 				airkickII = true;
-				jumpfrontkick2.Reset();
+				
 				currentstate = idlestate2;
 				gravityII = 1;
+				jumpfrontkick2.Reset();
 				forwardjump2.Reset();
+				backwardjump2.Reset();
+				jump2.Reset();
 			}
 			LOG("JUMPFRONTKICK ANIMATION ACTIVE");
 			break;
@@ -711,6 +738,7 @@ update_status ModulePlayer2::Update()
 				airkickII = true;
 				currentstate = idlestate2;
 				gravityII = 1;
+				alreadyHit2 = false;
 				if (attack_collider2 != nullptr) {
 					attack_collider2->to_delete = true;
 				}
@@ -734,12 +762,15 @@ update_status ModulePlayer2::Update()
 				gravityII = -1;
 			}
 			else if (position.y == groundLevelII) {
-				jump2.Reset();
+				
 				airkickII = true;
 				currentstate = idlestate2;
-				jumpfrontkick2.Reset();
+				
 				gravityII = 1;
+				jump2.Reset();
 				forwardjump2.Reset();
+				backwardjump2.Reset();
+				jumpfrontkick2.Reset();
 			}
 			current_animation = &forwardjump2;
 
@@ -759,11 +790,13 @@ update_status ModulePlayer2::Update()
 
 			}
 			else if (position.y == groundLevelII) {
-				jump2.Reset();
+				
 				airkickII = true;
 				currentstate = idlestate2;
 				gravityII = 1;
+				jump2.Reset();
 				jumpbackkick2.Reset();
+				forwardjump2.Reset();
 				backwardjump2.Reset();
 			}
 
