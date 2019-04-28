@@ -44,16 +44,21 @@
 
 - Mechanics: Jump, one kick, one punch, one special attack (e.g. hadoken). (Date of Compliment: 26/04/2019) 
 
-  - Time estimated: 
+  - Time estimated:10 hours.
 
-  - Time taken:
+  - Time taken:30 hours.
 
 - Deploying the Players (Ryu vs Ryu).
 
-  - Time estimated:  (I have done Animations player1)
+  - Time estimated: 5 hours.
 
-  - Time taken: 
+  - Time taken: 10 hours.
+  
+- Audio Module : Have the Audio module correctly structured to then just implement play audio functions.(Date of Compliment: 22/04/2019)
 
+   -Time estimated: 3 hours.
+   
+   -Time Taken: 7 hours.
  
 
 ## Pau Pedra: 
