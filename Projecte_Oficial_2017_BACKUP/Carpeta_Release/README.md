@@ -33,7 +33,7 @@ The game consists in a 1 vs 1 duel between two characters, each with the same mo
 
 **Punch Input Button:** P Key
 
-**Kick Input Button:** O (Right Accent /  Acento Cerrado) Key
+**Kick Input Button:** O Key
 
 **Special Attack Input Button:**  I Key
 
