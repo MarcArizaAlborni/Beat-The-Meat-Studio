@@ -359,6 +359,7 @@ update_status ModulePlayer::PreUpdate() {
 				currentstate = crouched;
 				LOG("IDLE to CROUCH");
 			}
+
 			if (!flip) {
 				if (inputplayer1.Punch1_active) {
 					currentstate = punchlight;
@@ -531,12 +532,14 @@ update_status ModulePlayer::PreUpdate() {
 				attack_collider->to_delete = true;
 				currentstate = jumpbackward;
 				airkick = false;
-
+				alreadyHit = false;
 				jumpbackkick.Reset();
 			}
 			if (App->player2->jumpfrontkick2.Finished()) {
 				currentstate = jumpbackward;
 				airkick = false;
+				alreadyHit = false;
+
 				App->player2->jumpfrontkick2.Reset();
 			}
 		}
@@ -553,12 +556,15 @@ update_status ModulePlayer::PreUpdate() {
 					App->player2->jump2.Reset();
 					currentstate = jumpforward;
 					airkick = false;
+					alreadyHit = false;
 				}
 				if (App->player2->jumpbackkick2.Finished()) {
 					LOG("FORWARDJUMPKICK TO JUMPFORWARD")
 					App->player2->jump2.Reset();
 					currentstate = jumpforward;
 					airkick = false;
+					alreadyHit = false;
+
 				}
 			}
 		}
@@ -571,6 +577,7 @@ update_status ModulePlayer::PreUpdate() {
 			if (current_animation->Finished()) {
 				attack_collider->to_delete = true;
 				currentstate = crouched;
+				alreadyHit = false;
 				App->player2->crouchpunch2.Reset();
 				crouchpunch.Reset();
 			}
@@ -580,6 +587,7 @@ update_status ModulePlayer::PreUpdate() {
 			LOG("CROUCH TO KICKCROUCH");
 			if (current_animation->Finished()) {
 				attack_collider->to_delete = true;
+				alreadyHit = false;
 				currentstate = crouched;
 				crouchkick.Reset();
 				App->player2->crouchkick2.Reset();
@@ -1330,11 +1338,11 @@ update_status ModulePlayer::Update()
 //TODO 7.4: Detect collision with a wall. If so, go back to intro screen.
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
-	/*if (!alreadyHit) {
+	if (!alreadyHit) {
 		if (c1->type==COLLIDER_PLAYER_ATTACK) {
 			App->scene_ryu->health2.w -= App->scene_ryu->damage;
 			alreadyHit = true;
 		}
-	}*/
+	}
 
 }

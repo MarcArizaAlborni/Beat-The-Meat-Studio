@@ -240,6 +240,7 @@ update_status ModulePlayer2::PreUpdate() {
 				attack_collider2->to_delete = true;
 				currentstate = idlestate2;
 				lightPunch2.Reset();
+				alreadyHit2 = false;
 				//lightPunch.Reset();
 				LOG("PUNCH TO IDLE");
 
@@ -252,6 +253,7 @@ update_status ModulePlayer2::PreUpdate() {
 			if (current_animation->Finished()) {
 				attack_collider2->to_delete = true;
 				currentstate = idlestate2;
+				alreadyHit2 = false;
 				lightKick2.Reset();
 				LOG("KICK TO IDLE");
 			}
@@ -260,13 +262,13 @@ update_status ModulePlayer2::PreUpdate() {
 		if (currentstate == jumpstate2) {
 			if (airkickII) {
 				if (inputplayer2.Punch2_active) {
-					attack_collider2 = App->collision->AddCollider({ position.x + 65 ,position.y - 80 ,35 ,40 }, COLLIDER_PLAYER_ATTACK, App->player);
+					attack_collider2 = App->collision->AddCollider({ position.x + 65 ,position.y - 80 ,35 ,40 }, COLLIDER_PLAYER2_ATTACK, App->player2);
 					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
 					currentstate = jumppunchstate2;
 				}
 
 				if (inputplayer2.Kick2_active) {
-					attack_collider2 = App->collision->AddCollider({ position.x + 65 ,position.y - 90 ,35 ,40 }, COLLIDER_PLAYER_ATTACK, App->player);
+					attack_collider2 = App->collision->AddCollider({ position.x + 65 ,position.y - 90 ,35 ,40 }, COLLIDER_PLAYER2_ATTACK, App->player2);
 					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
 					currentstate = jumpkickstate2;
 				}
@@ -305,13 +307,13 @@ update_status ModulePlayer2::PreUpdate() {
 				LOG("IDLE to CROUCH");
 			}
 			if (inputplayer2.Kick2_active) {
-				attack_collider2 = App->collision->AddCollider({ position.x +40,position.y - 100 ,50 ,50 }, COLLIDER_PLAYER_ATTACK, App->player);
+				attack_collider2 = App->collision->AddCollider({ position.x +40,position.y - 100 ,50 ,50 }, COLLIDER_PLAYER2_ATTACK, App->player2);
 				App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
 				currentstate = kicklight2;
 				LOG("IDLE TO kick");
 			}
 			if (inputplayer2.Punch2_active) {
-				attack_collider2 = App->collision->AddCollider({ position.x +50,position.y - 80 ,35 ,20 }, COLLIDER_PLAYER_ATTACK, App->player);
+				attack_collider2 = App->collision->AddCollider({ position.x +50,position.y - 80 ,35 ,20 }, COLLIDER_PLAYER2_ATTACK, App->player2);
 				App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
 				currentstate = punchlight2;
 				LOG("IDLE TO punch");
@@ -335,7 +337,7 @@ update_status ModulePlayer2::PreUpdate() {
 				LOG("BACK TO IDLE");
 			}
 			if (inputplayer2.Punch2_active) {
-				attack_collider2 = App->collision->AddCollider({ position.x + 50,position.y - 80 ,35 ,20 }, COLLIDER_PLAYER_ATTACK, App->player);
+				attack_collider2 = App->collision->AddCollider({ position.x + 50,position.y - 80 ,35 ,20 }, COLLIDER_PLAYER2_ATTACK, App->player2);
 				App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
 				currentstate = punchlight2;
 				LOG("BACK TO PUNCH");
@@ -345,7 +347,7 @@ update_status ModulePlayer2::PreUpdate() {
 				LOG("BACK TO JUMP");
 			}
 			if (inputplayer2.Kick2_active) {
-				attack_collider2 = App->collision->AddCollider({ position.x + 40,position.y - 100 ,50 ,50 }, COLLIDER_PLAYER_ATTACK, App->player);
+				attack_collider2 = App->collision->AddCollider({ position.x + 40,position.y - 100 ,50 ,50 }, COLLIDER_PLAYER2_ATTACK, App->player2);
 				App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
 				currentstate = kicklight2;
 				LOG("BACK TO KICK");
@@ -362,13 +364,13 @@ update_status ModulePlayer2::PreUpdate() {
 				currentstate = idlestate2;
 			}
 			if (inputplayer2.Kick2_active) {
-				attack_collider2 = App->collision->AddCollider({ position.x + 40,position.y - 100 ,50 ,50 }, COLLIDER_PLAYER_ATTACK, App->player);
+				attack_collider2 = App->collision->AddCollider({ position.x + 40,position.y - 100 ,50 ,50 }, COLLIDER_PLAYER2_ATTACK, App->player2);
 				App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
 				currentstate = kicklight2;
 				LOG("FORWARD TO KICK");
 			}
 			if (inputplayer2.Punch2_active) {
-				attack_collider2 = App->collision->AddCollider({ position.x + 50,position.y - 80 ,35 ,20 }, COLLIDER_PLAYER_ATTACK, App->player);
+				attack_collider2 = App->collision->AddCollider({ position.x + 50,position.y - 80 ,35 ,20 }, COLLIDER_PLAYER2_ATTACK, App->player2);
 				App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
 				currentstate = punchlight2;
 				LOG("FORWARD TO PUNCH");
@@ -387,12 +389,14 @@ update_status ModulePlayer2::PreUpdate() {
 			LOG("BACKWARDJUMP TO IDLE");
 			if (airkickII) {
 				if (inputplayer2.Punch2_active) {
+					attack_collider2 = App->collision->AddCollider({ position.x + 65 ,position.y - 70 ,35 ,30 }, COLLIDER_PLAYER2_ATTACK, App->player2);
 					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
 					currentstate = jumpbackwardpunch2;
 					LOG("BACKWARDJUMP TO BACKWARDJUMPPUNCH");
 				}
 
 				if (inputplayer2.Kick2_active) {
+					attack_collider2 = App->collision->AddCollider({ position.x + 25 ,position.y - 70 ,60 ,30 }, COLLIDER_PLAYER2_ATTACK, App->player2);
 					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
 					currentstate = jumpbackwardkick2;
 					LOG("BACKWARDJUMP TO BACKWARDJUMPKICK");
@@ -405,8 +409,10 @@ update_status ModulePlayer2::PreUpdate() {
 		}
 		if (currentstate == jumpforward2) {
 			LOG("FORWARDJUMP TO IDLE");
+
 			if (airkickII) {
 				if (inputplayer2.Punch2_active) {
+					attack_collider2 = App->collision->AddCollider({ position.x + 65 ,position.y - 70 ,35 ,30 }, COLLIDER_PLAYER2_ATTACK, App->player2);
 					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
 					currentstate = jumpforwardpunch2;
 					LOG("FORWARDJUMP TO FORWARDJUMPPUNCH");
@@ -414,6 +420,7 @@ update_status ModulePlayer2::PreUpdate() {
 				}
 
 				if (inputplayer2.Kick2_active) {
+					attack_collider2 = App->collision->AddCollider({ position.x +25 ,position.y - 70 ,60 ,30 }, COLLIDER_PLAYER2_ATTACK, App->player2);
 					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
 					currentstate = jumpforwardkick2;
 					LOG("FORWARDJUMP TO FORWARDJUMPKICK");
@@ -430,7 +437,7 @@ update_status ModulePlayer2::PreUpdate() {
 
 			LOG("BACKWARDJUMPKICK TO JUMP");
 			if (jumpbackkick2.Finished()) {
-
+				attack_collider2->to_delete = true;
 				currentstate = jumpbackward2;
 				airkickII = false;
 				jumpbackkick2.Reset();
@@ -443,11 +450,13 @@ update_status ModulePlayer2::PreUpdate() {
 			LOG("BACKWARDJUMPPUNCH TO JUMP");
 
 		}
+
 		if (airkickII) {
 			if (currentstate == jumpforwardkick2) {
 				if (jumpfrontkick2.Finished()) {
 					LOG("FORWARDJUMPKICK TO JUMPFORWARD")
-						currentstate = jumpforward2;
+					attack_collider2->to_delete = true;
+					currentstate = jumpforward2;
 					airkickII = false;
 				}
 			}
@@ -457,12 +466,12 @@ update_status ModulePlayer2::PreUpdate() {
 
 			LOG("FORWARDJUMPPUNCH TO JUMPFORWARD");
 
-
-
 		}
+
 		if (currentstate == punchcrouch2) {
 			LOG("CROUCH TO CROUCHPUNCH");
 			if (current_animation->Finished()) {
+				attack_collider2->to_delete = true;
 				currentstate = crouched2;
 				crouchpunch2.Reset();
 			}
@@ -471,6 +480,7 @@ update_status ModulePlayer2::PreUpdate() {
 		if (currentstate == kickcrouch2) {
 			LOG("CROUCH TO KICKCROUCH");
 			if (current_animation->Finished()) {
+				attack_collider2->to_delete = true;
 				currentstate = crouched2;
 				crouchkick2.Reset();
 			}
@@ -478,11 +488,14 @@ update_status ModulePlayer2::PreUpdate() {
 
 		if (currentstate == crouched2) {
 			if (inputplayer2.Punch2_active) {
+
+				attack_collider2 = App->collision->AddCollider({ position.x + 60 ,position.y - 60 ,38 ,20 }, COLLIDER_PLAYER2_ATTACK, App->player2);
 				App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
 				currentstate = punchcrouch2;
 			}
 
 			if (inputplayer2.Kick2_active) {
+				attack_collider2 = App->collision->AddCollider({ position.x + 45 ,position.y - 24 ,50 ,25 }, COLLIDER_PLAYER2_ATTACK, App->player2);
 				App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
 				currentstate = kickcrouch2;
 			}
@@ -561,7 +574,8 @@ update_status ModulePlayer2::Update()
 			player2_collider->SetPos(position.x + 90 - App->render->camera.x, position.y - 93 - App->render->camera.y);
 			position.x += speedII;
 			position.y -= speedII * gravityII;
-
+			attack_collider2->rect.x = position.x + 35 - App->render->camera.x;
+			attack_collider2->rect.y = position.y - 45;
 
 			if (position.y <= maxHeightII)
 			{
@@ -586,7 +600,8 @@ update_status ModulePlayer2::Update()
 			position.x += speedII;
 			position.y -= speedII * gravityII;
 
-
+			attack_collider2->rect.x = position.x + 70 - App->render->camera.x;
+			attack_collider2->rect.y = position.y - 65;
 			if (position.y <= maxHeightII)
 			{
 				gravityII = -1;
@@ -598,6 +613,9 @@ update_status ModulePlayer2::Update()
 				jumpbackpunch2.Reset();
 				currentstate = idlestate2;
 				gravityII = 1;
+				if (attack_collider2 != nullptr) {
+					attack_collider2->to_delete = true;
+				}
 			}
 			LOG("JUMPBACKPUNCH ANIMATION ACTIVE");
 			break;
@@ -610,7 +628,8 @@ update_status ModulePlayer2::Update()
 			position.x -= speedII;
 
 			position.y -= speedII * gravityII;
-
+			attack_collider2->rect.x = position.x + 35 - App->render->camera.x;
+			attack_collider2->rect.y = position.y -45 ;
 
 			if (position.y <= maxHeightII)
 			{
@@ -634,7 +653,8 @@ update_status ModulePlayer2::Update()
 			player2_collider->SetPos(position.x + 90 - App->render->camera.x, position.y - 93 - App->render->camera.y);
 			position.x -= speedII;
 			position.y -= speedII * gravityII;
-
+			attack_collider2->rect.x = position.x + 70 - App->render->camera.x;
+			attack_collider2->rect.y = position.y - 65;
 
 			if (position.y <= maxHeightII)
 			{
@@ -647,6 +667,9 @@ update_status ModulePlayer2::Update()
 				airkickII = true;
 				currentstate = idlestate2;
 				gravityII = 1;
+				if (attack_collider2 != nullptr) {
+					attack_collider2->to_delete = true;
+				}
 			}
 			LOG("JUMPFRONTPUNCH ANIMATION ACTIVE");
 			break;
@@ -898,6 +921,9 @@ update_status ModulePlayer2::Update()
 				airkickII = true;
 				currentstate = idlestate2;
 				gravityII = 1;
+				if (attack_collider2 != nullptr) {
+					attack_collider2->to_delete = true;
+				}
 			}
 			LOG("JUMPBACKKICK ANIMATION ACTIVE");
 			break;
@@ -921,6 +947,9 @@ update_status ModulePlayer2::Update()
 				jumpbackpunch2.Reset();
 				currentstate = idlestate2;
 				gravityII = 1;
+				if (attack_collider2 != nullptr) {
+					attack_collider2->to_delete = true;
+				}
 			}
 			LOG("JUMPBACKPUNCH ANIMATION ACTIVE");
 			break;
@@ -947,6 +976,9 @@ update_status ModulePlayer2::Update()
 				currentstate = idlestate2;
 				gravityII = 1;
 				forwardjump2.Reset();
+				if (attack_collider2 != nullptr) {
+					attack_collider2->to_delete = true;
+				}
 			}
 			LOG("JUMPFRONTKICK ANIMATION ACTIVE");
 			break;
@@ -970,6 +1002,9 @@ update_status ModulePlayer2::Update()
 				airkickII = true;
 				currentstate = idlestate2;
 				gravityII = 1;
+				if (attack_collider2 != nullptr) {
+					attack_collider2->to_delete = true;
+				}
 			}
 			LOG("JUMPFRONTPUNCH ANIMATION ACTIVE");
 			break;
@@ -1030,6 +1065,7 @@ update_status ModulePlayer2::Update()
 		case punchcrouch2:
 
 			current_animation = &crouchpunch2;
+			
 			LOG("CROUCH PUNCH ANIMATION ACTIVE")
 				break;
 
@@ -1207,8 +1243,8 @@ update_status ModulePlayer2::Update()
 void ModulePlayer2::OnCollision(Collider* c1, Collider* c2)
 {
 	if (!alreadyHit2) {
-		if (c1->type == COLLIDER_PLAYER_ATTACK) {
-			App->scene_ryu->health2.w -= App->scene_ryu->damage;
+		if (c1->type == COLLIDER_PLAYER2_ATTACK) {
+			App->scene_ryu->health.x -= App->scene_ryu->damage;
 			alreadyHit2 = true;
 		}
 	}
