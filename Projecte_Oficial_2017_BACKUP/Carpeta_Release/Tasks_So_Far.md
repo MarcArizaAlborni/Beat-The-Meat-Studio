@@ -37,12 +37,13 @@
   - Time estimated: 20hours (I have done Animations player2)
 
   - Time taken: 5hours (Animations player2 and correcting player1)
+  
 
     
 
 ## Marc Ariza:
 
-- Mechanics: Jump, one kick, one punch, one special attack (e.g. hadoken). (Date of Compliment: 26/04/2019) 
+- Mechanics: Jump, one kick, one punch, one special attack, (And implementing all states and animations) (e.g. hadoken). (Date of Compliment: 26/04/2019) 
 
   - Time estimated:10 hours.
 
@@ -59,6 +60,14 @@
    -Time estimated: 3 hours.
    
    -Time Taken: 7 hours.
+   
+   
+ -Fixing SpriteSheet Player 1: Making sure all sprites are correctly implemented and animations work.
+ 
+ 
+    -Time estimated: 2 hours.
+    
+    -Time Taken: 4 hours.
  
 
 ## Pau Pedra: 
