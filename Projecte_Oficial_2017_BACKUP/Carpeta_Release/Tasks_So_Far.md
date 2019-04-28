@@ -4,122 +4,159 @@
 
   - Time estimated: 1hours 
 
-  - Time taken: 30min ( I could be less but some buggs apeared in the last moment)
+  - Time taken: 30 min (Could be less but had to solve some bugs)
 
     
 
-- Different music for each screen. Music must be in ogg format. (Date of Compliment: 28/04/2019) Because I wanted all the Fx perfects
+- Different music for each screen. Music must be in ogg format. (Date of Completion: 28/04/2019) (Wanted all the Fx perfectly implemented)
 
-  - Time estimated: 5min
+  - Time estimated: 5 min
 
-  - Time taken: 20min (Making the music fadeout)
+  - Time taken: 20 min (Implemented the music fadeout)
 
     
 
-- Mechanics: Jump, one kick, one punch, one special attack (e.g. hadoken). (Date of Compliment: ) 
+- Mechanics: Jump, one kick, one punch, one special attack (e.g. hadouken). (Date of Completion: 28/04/2019) 
 
-  - Time estimated: 
+  - Time estimated:  5 hours
   
-  - Time taken:
+  - Time taken: 10 hours
   
     
   
-- Implementation of the Ryu Scene/Background. (Date of Compliment: 26/04/2019) 
+- Implementation of the Ryu Scene/Background. (Date of Completion: 26/04/2019) 
 
-  - Time estimated: 1hours
+  - Time estimated: 1 hours
 
-  - Time taken: 2hours
+  - Time taken: 2 hours
 
     
 
-- Deploying the Players (Ryu vs Ryu).
+- Deploying the Players (Ryu vs Ryu).  (Date of Completion: 28/04/2019)
 
-  - Time estimated: 20hours (I have done Animations player2)
+  - Time estimated: 3 hours (Animations player2)
 
-  - Time taken: 5hours (Animations player2 and correcting player1)
+  - Time taken: 7 hours (Animations player2 and correcting player1)
   
 
-    
+  
 
 ## Marc Ariza:
 
-- Mechanics: Jump, one kick, one punch, one special attack, (And implementing all states and animations) (e.g. hadoken). (Date of Compliment: 26/04/2019) 
+- Mechanics: Jump, one kick, one punch, one special attack, (And implementing all states and animations) (e.g. hadouken). (Date of Completion: 28/04/2019) 
 
-  - Time estimated:10 hours.
+  - Time estimated: 10 hours.
 
-  - Time taken:30 hours.
+  - Time taken: 15 hours.
 
-- Deploying the Players (Ryu vs Ryu).
+    
+
+- Deploying the Players (Ryu vs Ryu). (Date of Completion: 28/04/2019)
 
   - Time estimated: 5 hours.
 
-  - Time taken: 10 hours.
+  - Time taken: 15 hours. 
   
-- Audio Module : Have the Audio module correctly structured to then just implement play audio functions.(Date of Compliment: 22/04/2019)
-
-   -Time estimated: 3 hours.
-   
-   -Time Taken: 7 hours.
-   
-   
- - Fixing SpriteSheet Player 1: Making sure all sprites are correctly implemented and animations work.
- 
- 
-    -Time estimated: 2 hours.
     
-    -Time Taken: 4 hours.
- 
+  
+- Audio Module : Have the Audio module correctly structured to then just implement play audio functions.(Date of Completion: 22/04/2019)
+
+   - Time estimated: 3 hours.
+   
+   - Time Taken: 7 hours.
+
+
+
+
+
 
 ## Pau Pedra: 
 
-- Camera limits: player cannot move out of camera.
+- Camera limits: player cannot move out of camera. (Date of Completion: 28/04/2019)
 
-  - Time estimated:
+  - Time estimated: 10 min
 
-  - Time taken:
+  - Time taken: 1 hour and 30 min.
 
     
 
-- Win/Lose condition.
+- Mechanics: Jump, one kick, one punch, one special attack (e.g. hadouken). (Date of Completion: 28/04/2019)
+  - Time estimated: 5 hours
+  
+  - Time taken: 15 hours
+  
+    
 
-  - Time estimated:
+- Deploying the Players (Ryu vs Ryu). (Date of Completion: 28/04/2019)
+  - Time estimated: 5 hours.
 
-  - Time taken:
+  - Time taken: 15 hours. 
 
-- Mechanics: Jump, one kick, one punch, one special attack (e.g. hadoken).
-  - Time estimated:
-  - Time taken:
-
+    
 
 ## Angel Gonzalez:
 
-- Win/Lose condition. (Date of completion: 24/04/2019) 
-  - Time estimated: 2h
+- Creating and writing the Read Me file/markdown: (Date of completion: 27/04/2019)
   
-- Time taken: 3h 
+  - Time estimated: 1 hour
+    
+  - Time taken: 2 hours  (Finished in 30 minutes but had to edit multiple times)
+    
+    
+  
+- Creating and writing the Tasks so far file/pdf: (Date of Completion: 28/04/2019)
+  
+  - Time estimated: 1 hours
+    
+  - Time taken: 2 hours and 30 min  (Finished in 30 minutes but had to edit multiple times)
+    
+    
+  
+- Win/Lose condition. (Date of completion: 27/04/2019) 
+  
+  - Time estimated: 2 hours
+  
+  - Time taken: 3 hours  (Implemented health is 0 and time is over win/lose conditions)
   
     
   
 - Minimum UI for the score (health bars only). (Date of Completion 25/04/2019)
-  - Time estimated: 2h
   
-- Time taken: 2h
+  - Time estimated: 2 hours 
+  
+  - Time taken: 2 hours 
   
     
   
 - Minimum debug functionality: god mode, collision boxes, direct win/lose. (Date of Completion: 28/04/2019)
-  - Time estimated: 2h
   
-- Time taken: 4h
+  - Time estimated: 2 hours 
+  - Time taken: 4 hours 
   
     
   
 - Welcome Screen -> Game Screen -> Win/Lose Screen -> Back to welcome screen. (Date of Completion: 24/04/2019)
-  -Time estimated: 1h
-  -Time taken: 45min
+  -Time estimated: 1 hour 
+  -Time taken: 45 min
   
   
 
+- Deploying the Players (Ryu vs Ryu). (Date of Completion: 28/04/2019)
+  - Time estimated: 5 hours 
+  - Time taken: 8 hours  (Implementing animations and the 2nd player)
+
+
+
+
+
+## Tasks that required cooperation:
+
+- Mechanics: Jump, one kick, one punch, one special attack (e.g. hadouken).
+  - Collective Time Estimation: 20 hours
+  - Collective Time Taken: 40 hours
+
+  
+
 - Deploying the Players (Ryu vs Ryu).
-  - Time estimated: 20h
-  - Time taken: 2h (My part)
+  - Collective Time Estimation: 18 hours  
+  - Collective Time Taken: 45 hours
