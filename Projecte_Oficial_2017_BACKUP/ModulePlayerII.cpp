@@ -1147,7 +1147,7 @@ update_status ModulePlayer2::Update()
 	{
 		position.x = (App->render->camera.x ) / SCREEN_SIZE -90 ;
 	}
-	if (position.x >= (SCREEN_WIDTH   + App->render->camera.x) / SCREEN_SIZE +42) { //Hardcodeado una mica, s'haura de revisar
+	if (position.x >= (SCREEN_WIDTH   + App->render->camera.x) / SCREEN_SIZE +42) { 
 		position.x = (SCREEN_WIDTH  + App->render->camera.x) / SCREEN_SIZE +42;
 	}
 

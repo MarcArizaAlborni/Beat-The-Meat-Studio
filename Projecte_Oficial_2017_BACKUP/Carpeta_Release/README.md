@@ -43,7 +43,7 @@ The game consists in a 1 vs 1 duel between two characters, each with the same mo
 
 **God Mode(player becomes invincible):** F1 Key
 
-**Show Collider Boxes Mode:** F2 Key
+**Debug mode:** F2 Key
 
 **Insta-Win Input Button:** F3 Key
 
