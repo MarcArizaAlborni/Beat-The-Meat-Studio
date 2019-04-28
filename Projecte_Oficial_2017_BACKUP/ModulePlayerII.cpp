@@ -297,6 +297,7 @@ update_status ModulePlayer2::PreUpdate() {
 				LOG("IDLE TO forward");
 			}
 			if (inputplayer2.Down_active) {
+				crouch2.Reset();
 				currentstate = crouched2;
 				LOG("IDLE to CROUCH");
 			}
@@ -478,6 +479,7 @@ update_status ModulePlayer2::PreUpdate() {
 			}
 
 			if (!inputplayer2.Down_active) {
+				crouch2.Reset();
 				currentstate = idlestate2;
 				LOG("CROUCH TO IDLE");
 			}
@@ -717,7 +719,6 @@ update_status ModulePlayer2::Update()
 					break;*/
 
 		case idlestate2:
-			crouch2.Reset();
 			player2_collider->rect.h = 93;
 			player2_collider->SetPos(position.x + 90 - App->render->camera.x, position.y - 93 - App->render->camera.y);
 			current_animation = &idle2;
@@ -779,6 +780,7 @@ update_status ModulePlayer2::Update()
 		case crouched2:
 
 			current_animation = &crouch2;
+
 			player2_collider->SetPos(position.x + 90 - App->render->camera.x + 5, position.y - 68 - App->render->camera.y);
 			player2_collider->rect.h = 65;
 			LOG("CROUCHED ANIMATION ACTIVE");
@@ -1028,7 +1030,7 @@ update_status ModulePlayer2::Update()
 					break;*/
 
 		case idlestate2:
-			crouch2.Reset();
+			
 			player2_collider->rect.h = 93;
 			player2_collider->SetPos(position.x + 90 - App->render->camera.x, position.y - 93 - App->render->camera.y);
 			current_animation = &App->player->idle ;
