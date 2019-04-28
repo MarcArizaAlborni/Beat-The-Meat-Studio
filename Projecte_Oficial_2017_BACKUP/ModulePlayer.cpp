@@ -252,7 +252,7 @@ update_status ModulePlayer::PreUpdate() {
 
 
 
-		if (currentstate = damagedstate) {
+		/*if (currentstate = damagedstate) {
 
 
 
@@ -260,7 +260,7 @@ update_status ModulePlayer::PreUpdate() {
 
 
 
-		}
+		}*/
 
 		if (currentstate == punchlight) {
 			

@@ -834,7 +834,7 @@ update_status ModulePlayer2::Update()
 		switch (currentstate) {
 		case jumpfalling2:
 
-			current_animation = &jump2;
+			current_animation = &App->player->jump;
 			player2_collider->SetPos(position.x + 90 - App->render->camera.x, position.y - 93 - App->render->camera.y);
 			position.y -= speedII * gravityII;
 
@@ -855,7 +855,7 @@ update_status ModulePlayer2::Update()
 
 		case jumpbackwardkick2:
 
-			current_animation = &jumpbackkick2;
+			current_animation = &App->player->backwardjump;
 			player2_collider->SetPos(position.x + 90 - App->render->camera.x, position.y - 93 - App->render->camera.y);
 			position.x += speedII;
 			position.y -= speedII * gravityII;
@@ -879,7 +879,7 @@ update_status ModulePlayer2::Update()
 
 		case jumpbackwardpunch2:
 
-			current_animation = &jumpbackpunch2;
+			current_animation = &App->player->jumpbackpunch;
 			player2_collider->SetPos(position.x + 90 - App->render->camera.x, position.y - 93 - App->render->camera.y);
 			position.x += speedII;
 			position.y -= speedII * gravityII;
@@ -903,7 +903,7 @@ update_status ModulePlayer2::Update()
 
 		case jumpforwardkick2:
 
-			current_animation = &jumpfrontkick2;
+			current_animation = &App->player->jumpbackkick;
 			player2_collider->SetPos(position.x + 90 - App->render->camera.x, position.y - 93 - App->render->camera.y);
 			position.x -= speedII;
 
@@ -928,7 +928,7 @@ update_status ModulePlayer2::Update()
 
 		case  jumpforwardpunch2:
 
-			current_animation = &jumpfrontpunch2;
+			current_animation = &App->player->jumpfrontpunch;
 			player2_collider->SetPos(position.x + 90 - App->render->camera.x, position.y - 93 - App->render->camera.y);
 			position.x -= speedII;
 			position.y -= speedII * gravityII;
@@ -952,13 +952,14 @@ update_status ModulePlayer2::Update()
 
 		case damagedstate2:
 
-			current_animation = &damaged2;
+			//current_animation = &App->player->damaged;
 			LOG("DAMAGED ANIMATION ACTIVE");
 			break;
 
 		case jumpforward2:
 			position.x -= speedII;
 			position.y -= speedII * gravityII;
+			current_animation = &App->player->backwardjump;
 			player2_collider->SetPos(position.x + 90 - App->render->camera.x, position.y - 93 - App->render->camera.y);
 			if (position.y <= maxHeightII)
 			{
@@ -972,7 +973,7 @@ update_status ModulePlayer2::Update()
 				gravityII = 1;
 				forwardjump2.Reset();
 			}
-			current_animation = &forwardjump2;
+			
 
 			LOG("FORWARD JUMP ANIMATION ACTIVE");
 
@@ -980,7 +981,7 @@ update_status ModulePlayer2::Update()
 
 		case jumpbackward2:
 
-			current_animation = &backwardjump2;
+			current_animation = &App->player->forwardjump;
 			position.x += speedII;
 			position.y -= speedII * gravityII;
 			player2_collider->SetPos(position.x + 90 - App->render->camera.x, position.y - 93 - App->render->camera.y);
@@ -1037,7 +1038,7 @@ update_status ModulePlayer2::Update()
 
 		case backwardstate2:
 			player2_collider->SetPos(position.x + 90 - App->render->camera.x, position.y - 93 - App->render->camera.y);
-			current_animation = &backward2;
+			current_animation = &App->player->forward;
 			position.x += speedII;
 			LOG("BACKWARD ANIMATION ACTIVE");
 			break;
@@ -1045,7 +1046,7 @@ update_status ModulePlayer2::Update()
 
 		case forwardstate2:
 			player2_collider->SetPos(position.x + 90 - App->render->camera.x, position.y - 93 - App->render->camera.y);
-			current_animation = &forward2;
+			current_animation = &App->player->backward;
 			position.x -= speedII;
 			LOG("FORWARD ANIMATION ACTIVE");
 			break;
@@ -1142,15 +1143,16 @@ update_status ModulePlayer2::Update()
 	}
 
 	//Limits ben fets
-	if (position.x <= App->render->camera.x - 180 / SCREEN_SIZE)
+	if (position.x <= App->render->camera.x - 230 / SCREEN_SIZE)
 	{
-		position.x = App->render->camera.x - 180 / SCREEN_SIZE;
+		position.x = App->render->camera.x - 230 / SCREEN_SIZE;
 	}
 	if (position.x >= SCREEN_WIDTH - 60 + App->render->camera.x - 180 / SCREEN_SIZE) { //Hardcodeado una mica, s'haura de revisar
 		position.x = SCREEN_WIDTH - 60 + App->render->camera.x - 180/ SCREEN_SIZE;
 	}
 
 	SDL_Rect r = current_animation->GetCurrentFrame();
+	
 	if (!App->player->flip) {
 		App->render->Blit(graphics, position.x, position.y - r.h, &r);
 
