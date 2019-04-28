@@ -107,6 +107,8 @@ bool ModuleSceneRyu::Start()
 	deltaTime = SDL_GetTicks() / 1000;
 	startTime = deltaTime;
 
+	background_pos = 0.0f;
+
 	return true;
 }
 
@@ -124,6 +126,8 @@ bool ModuleSceneRyu::CleanUp()
 	//Resets the healthbars at the end of the duel / scene.
 	health.x = 189;
 	health2.w = 144;
+
+
 
 	//Resets the timer
 	//currentTime += deltaTime;
