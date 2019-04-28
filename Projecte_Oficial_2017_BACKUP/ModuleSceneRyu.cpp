@@ -22,6 +22,7 @@ Uint32 startTime = 0;
 
 bool healthIsNotEqual = false;
 
+
 ModuleSceneRyu::ModuleSceneRyu()
 {
 	//313.3
@@ -206,6 +207,24 @@ update_status ModuleSceneRyu::Update()
 				App->fade->FadeToBlack(App->scene_ryu, App->lose_screen, 1.0f);
 			}
 		}
+	}
+
+	if (App->input->keyboard[SDL_SCANCODE_F1]) //God Mode
+	{
+		bool off = true;
+
+		if (off)
+		{
+			damage += 10;
+			off = false;
+		}
+
+		if (!off)
+		{
+			damage = 0;
+			off = true;
+		}
+
 	}
 
 	return UPDATE_CONTINUE;
