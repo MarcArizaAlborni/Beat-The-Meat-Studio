@@ -99,8 +99,7 @@ public:
 	InputP1 inputplayer1;
 	Collider* player_collider = nullptr;
 	void OnCollision(Collider* c1, Collider* c2);
-	Mix_Chunk* LP;
-	Mix_Chunk* LK;
+	Mix_Chunk* LightDamage_Sound;;
 	Mix_Chunk* Hadoken_Sound;
 
 	//test attacks

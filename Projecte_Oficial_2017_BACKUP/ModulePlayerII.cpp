@@ -184,7 +184,7 @@ bool ModulePlayer2::Start()
 	LOG("Loading player textures");
 	bool ret = true;
 	graphics = App->textures->Load("RyuP1_Inv.png"); // JA TE LA FOTO BONA
-	LP = App->audio->LoadFx("");
+	LightDamage_Sound = App->audio->LoadFx("Audios/FX/25H.wav");
 	Hadoken_Sound = App->audio->LoadFx("Audios/Voices/Ryu&Ken hadouken.wav");
 
 	position.x = 180;
@@ -204,7 +204,7 @@ bool ModulePlayer2::CleanUp()
 	LOG("Unloading Player");
 
 	App->textures->Unload(graphics);
-	App->audio->UnLoadFX(LP);
+	App->audio->UnLoadFX(LightDamage_Sound);
 	App->audio->UnLoadFX(Hadoken_Sound);
 
 	return true;
@@ -257,10 +257,12 @@ update_status ModulePlayer2::PreUpdate() {
 		if (currentstate == jumpstate2) {
 			if (airkickII) {
 				if (inputplayer2.Punch2_active) {
+					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
 					currentstate = jumppunchstate2;
 				}
 
 				if (inputplayer2.Kick2_active) {
+					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
 					currentstate = jumpkickstate2;
 				}
 			}
@@ -297,16 +299,18 @@ update_status ModulePlayer2::PreUpdate() {
 				LOG("IDLE to CROUCH");
 			}
 			if (inputplayer2.Kick2_active) {
+				App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
 				currentstate = kicklight2;
 				LOG("IDLE TO kick");
 			}
 			if (inputplayer2.Punch2_active) {
+				App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
 				currentstate = punchlight2;
 				LOG("IDLE TO punch");
 			}
 			if (inputplayer2.Special2_active) {
 				currentstate = hadoukenstate2;
-				App->audio->PlayFx(Hadoken_Sound);
+				App->audio->PlayFx(Hadoken_Sound);  //PONER HADOUKEN SOUNDS
 				LOG("IDLE TO hadouken");
 			}
 			if (inputplayer2.Up_active) {
@@ -323,6 +327,7 @@ update_status ModulePlayer2::PreUpdate() {
 				LOG("BACK TO IDLE");
 			}
 			if (inputplayer2.Punch2_active) {
+				App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
 				currentstate = punchlight2;
 				LOG("BACK TO PUNCH");
 			}
@@ -331,6 +336,7 @@ update_status ModulePlayer2::PreUpdate() {
 				LOG("BACK TO JUMP");
 			}
 			if (inputplayer2.Kick2_active) {
+				App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
 				currentstate = kicklight2;
 				LOG("BACK TO KICK");
 			}
@@ -346,10 +352,12 @@ update_status ModulePlayer2::PreUpdate() {
 				currentstate = idlestate2;
 			}
 			if (inputplayer2.Kick2_active) {
+				App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
 				currentstate = kicklight2;
 				LOG("FORWARD TO KICK");
 			}
 			if (inputplayer2.Punch2_active) {
+				App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
 				currentstate = punchlight2;
 				LOG("FORWARD TO PUNCH");
 			}
@@ -367,14 +375,13 @@ update_status ModulePlayer2::PreUpdate() {
 			LOG("BACKWARDJUMP TO IDLE");
 			if (airkickII) {
 				if (inputplayer2.Punch2_active) {
-
+					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
 					currentstate = jumpbackwardpunch2;
 					LOG("BACKWARDJUMP TO BACKWARDJUMPPUNCH");
 				}
 
 				if (inputplayer2.Kick2_active) {
-
-
+					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
 					currentstate = jumpbackwardkick2;
 					LOG("BACKWARDJUMP TO BACKWARDJUMPKICK");
 				}
@@ -388,14 +395,14 @@ update_status ModulePlayer2::PreUpdate() {
 			LOG("FORWARDJUMP TO IDLE");
 			if (airkickII) {
 				if (inputplayer2.Punch2_active) {
-
+					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
 					currentstate = jumpforwardpunch2;
 					LOG("FORWARDJUMP TO FORWARDJUMPPUNCH");
 
 				}
 
 				if (inputplayer2.Kick2_active) {
-
+					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
 					currentstate = jumpforwardkick2;
 					LOG("FORWARDJUMP TO FORWARDJUMPKICK");
 				}
@@ -459,10 +466,12 @@ update_status ModulePlayer2::PreUpdate() {
 
 		if (currentstate == crouched2) {
 			if (inputplayer2.Punch2_active) {
+				App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
 				currentstate = punchcrouch2;
 			}
 
 			if (inputplayer2.Kick2_active) {
+				App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
 				currentstate = kickcrouch2;
 			}
 

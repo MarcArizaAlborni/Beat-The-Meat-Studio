@@ -103,8 +103,7 @@ public:
 
 	//Player2 Test collider
 	Collider* player2_collider = nullptr;
-	Mix_Chunk* LP;
-	Mix_Chunk* LK;
+	Mix_Chunk* LightDamage_Sound;
 	Mix_Chunk* Hadoken_Sound;
 
 
