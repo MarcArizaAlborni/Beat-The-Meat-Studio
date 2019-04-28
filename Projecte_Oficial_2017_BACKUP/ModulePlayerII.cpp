@@ -344,7 +344,6 @@ update_status ModulePlayer2::PreUpdate() {
 				currentstate = crouched2;
 				LOG("IDLE to CROUCH");
 			}
-				LOG("IDLE TO kick");
 			if (!App->player->flip) {
 				if (inputplayer2.Kick2_active) {
 					attack_collider2 = App->collision->AddCollider({ position.x + 40,position.y - 100 ,50 ,50 }, COLLIDER_PLAYER2_ATTACK, App->player2);
