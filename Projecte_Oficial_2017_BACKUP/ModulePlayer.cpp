@@ -606,10 +606,19 @@ update_status ModulePlayer::PreUpdate() {
 				App->audio->PlayFx(LightDamage_Sound);
 				currentstate = kickcrouch;
 			}
-			if (!inputplayer1.S_active) {
-				App->player2->crouch2.Reset();
-				currentstate = idlestate;
-				LOG("CROUCH TO IDLE");
+			if (!flip) {
+				if (!inputplayer1.S_active) {
+					crouch.Reset();
+					currentstate = idlestate;
+					LOG("CROUCH TO IDLE");
+				}
+			}
+			if (flip) {
+				if (!inputplayer1.S_active) {
+					App->player2->crouch2.Reset();
+					currentstate = idlestate;
+					LOG("CROUCH TO IDLE");
+				}
 			}
 		}
 	
@@ -859,9 +868,6 @@ update_status ModulePlayer::Update()
 			break;
 
 		case idlestate:
-
-			crouch.Reset();
-			
 			player_collider->rect.h = 93;
 			player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
 			current_animation = &idle;
@@ -966,6 +972,7 @@ update_status ModulePlayer::Update()
 			}
 			else if (position.y == groundLevel) {
 				jump.Reset();
+				jumppunch.Reset();
 				airkick = true;
 				currentstate = idlestate;
 				gravity = 1;
@@ -1179,7 +1186,7 @@ update_status ModulePlayer::Update()
 
 		case idlestate:
 			
-			crouch.Reset();
+			
 			player_collider->rect.h = 93;
 			player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
 
