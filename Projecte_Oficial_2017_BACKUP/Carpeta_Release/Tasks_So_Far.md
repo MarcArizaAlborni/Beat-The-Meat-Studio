@@ -62,7 +62,7 @@
    -Time Taken: 7 hours.
    
    
- -Fixing SpriteSheet Player 1: Making sure all sprites are correctly implemented and animations work.
+ - Fixing SpriteSheet Player 1: Making sure all sprites are correctly implemented and animations work.
  
  
     -Time estimated: 2 hours.
