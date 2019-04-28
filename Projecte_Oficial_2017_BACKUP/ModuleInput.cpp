@@ -61,18 +61,14 @@ update_status ModuleInput::PreUpdate()
 
 	//if (keyboard[SDL_SCANCODE_F1]) //God Mode
 	//{
-	//	bool on = false;
-
-	//	if (!on)
+	//	if (App->scene_ryu->damage != 0)
 	//	{
 	//		App->scene_ryu->damage = 0;
-	//		on = true;
 	//	}
 
-	//	if (on)
+	//	else
 	//	{
 	//		App->scene_ryu->damage = 10;
-	//		on = false;
 	//	}
 	//}
 

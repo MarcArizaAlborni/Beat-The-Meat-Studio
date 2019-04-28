@@ -795,10 +795,8 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
 	if (!alreadyHit) {
 		if (c1->type==COLLIDER_PLAYER_ATTACK) {
-			App->scene_ryu->health2.w -= 10;
+			App->scene_ryu->health2.w -= App->scene_ryu->damage;
 			alreadyHit = true;
 		}
 	}
-
-
 }

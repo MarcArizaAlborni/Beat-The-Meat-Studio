@@ -20,7 +20,7 @@ Uint32 timeLimit = 0;
 Uint32 deltaTime = SDL_GetTicks() / 1000;;
 Uint32 startTime = 0;
 
-bool healthIsNotEqual = false;
+bool godOn = false;
 
 
 ModuleSceneRyu::ModuleSceneRyu()
@@ -211,20 +211,17 @@ update_status ModuleSceneRyu::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_F1]) //God Mode
 	{
-		bool off = true;
-
-		if (off)
-		{
-			damage += 10;
-			off = false;
-		}
-
-		if (!off)
+		if (!godOn)
 		{
 			damage = 0;
-			off = true;
+			godOn = true;
 		}
 
+		else
+		{
+			damage = 10;
+			godOn = false;
+		}
 	}
 
 	return UPDATE_CONTINUE;

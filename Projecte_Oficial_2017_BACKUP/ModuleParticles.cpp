@@ -126,12 +126,12 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 		//Before it's destroyed we decrese player 2 health
 		if (active[i] != nullptr && active[i]->collider == c1 && c2 == App->player2->player2_collider)
 		{
-			App->scene_ryu->health2.w -= 10;
+			App->scene_ryu->health2.w -= App->scene_ryu->damage;
 		}
 
 		if (active[i] != nullptr && active[i]->collider == c1 && c2 == App->player->player_collider)
 		{
-			App->scene_ryu->health.x -= 10;
+			App->scene_ryu->health.x -= App->scene_ryu->damage;
 		}
 
 		// Always destroy particles that collide
