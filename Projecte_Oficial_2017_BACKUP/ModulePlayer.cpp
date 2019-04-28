@@ -309,13 +309,14 @@ update_status ModulePlayer::PreUpdate() {
 
 			if (airkick) {
 				if (inputplayer1.Punch1_active) {
+					attack_collider = App->collision->AddCollider({ position.x + 65 ,position.y - 80 ,35 ,40 }, COLLIDER_PLAYER_ATTACK, App->player);
 					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
 					currentstate =jumppunchstate;
 				}
-					if (inputplayer1.Kick1_active) {
-						App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
-						currentstate = jumpkickstate;
-					}
+				if (inputplayer1.Kick1_active) {
+					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
+					currentstate = jumpkickstate;
+				}
 			}
 		}
 
@@ -489,6 +490,7 @@ update_status ModulePlayer::PreUpdate() {
 
 		if (currentstate == jumpbackward) {
 			LOG("BACKWARDJUMP TO IDLE"); 
+
 			if (airkick) {
 			if (inputplayer1.Punch1_active) {
 				App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
@@ -649,6 +651,7 @@ update_status ModulePlayer::Update()
 				airkick = true;
 				currentstate = idlestate;
 				gravity = 1;
+				attack_collider->to_delete = true;
 			}
 			LOG("JUMPFALLING ANIMATION ACTIVE");
 			break;
@@ -672,6 +675,7 @@ update_status ModulePlayer::Update()
 				airkick = true;
 				currentstate = idlestate;
 				gravity = 1;
+				attack_collider->to_delete = true;
 			}
 			LOG("JUMPBACKKICK ANIMATION ACTIVE");
 			break;
@@ -695,6 +699,7 @@ update_status ModulePlayer::Update()
 				backwardjump.Reset();
 				currentstate = idlestate;
 				gravity = 1;
+				attack_collider->to_delete = true;
 			}
 			LOG("JUMPBACKPUNCH ANIMATION ACTIVE");
 			break;
@@ -718,6 +723,7 @@ update_status ModulePlayer::Update()
 				currentstate = idlestate;
 				gravity = 1;
 				forwardjump.Reset();
+				attack_collider->to_delete = true;
 			}
 			LOG("JUMPFRONTKICK ANIMATION ACTIVE");
 			break;
@@ -741,6 +747,7 @@ update_status ModulePlayer::Update()
 				airkick = true;
 				currentstate = idlestate;
 				gravity = 1;
+				attack_collider->to_delete = true;
 			}
 			LOG("JUMPFRONTPUNCH ANIMATION ACTIVE");
 			break;
@@ -767,6 +774,7 @@ update_status ModulePlayer::Update()
 				jumpfrontkick.Reset();
 				gravity = 1;
 				forwardjump.Reset();
+				attack_collider->to_delete = true;
 			}
 			LOG("FORWARD JUMP ANIMATION ACTIVE");
 			break;
@@ -788,6 +796,7 @@ update_status ModulePlayer::Update()
 				gravity = 1;
 				jumpbackkick.Reset();
 				backwardjump.Reset();
+				attack_collider->to_delete = true;
 			}
 			LOG("backward JUMP ANIMATION ACTIVE");
 			break;
@@ -840,6 +849,7 @@ update_status ModulePlayer::Update()
 			}
 
 			else if (position.y == groundLevel) {
+				attack_collider->to_delete=true;
 				jump.Reset();
 				airkick = true;
 				jumpkick.Reset();
@@ -891,6 +901,7 @@ update_status ModulePlayer::Update()
 				currentstate = idlestate;
 				gravity = 1;
 				backwardjump.Reset();
+				attack_collider->to_delete = true;
 			}
 			LOG("JUMP KICK ACTIVE");
 			break;
@@ -898,6 +909,7 @@ update_status ModulePlayer::Update()
 		case jumppunchstate:
 			current_animation = &jumpbackpunch;
 			player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
+			attack_collider->rect.y -= speed * gravity;
 			position.y -= speed * gravity;
 
 			if (position.y <= maxHeight)
@@ -910,6 +922,9 @@ update_status ModulePlayer::Update()
 				currentstate = idlestate;
 				gravity = 1;
 				backwardjump.Reset();
+				attack_collider->to_delete = true;
+				alreadyHit = false;
+
 			}
 			LOG("JUMP PUNCH ACTIVE");
 			break;
