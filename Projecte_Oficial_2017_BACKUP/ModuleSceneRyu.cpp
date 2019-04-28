@@ -240,6 +240,8 @@ update_status ModuleSceneRyu::Update()
 		}
 	}
 
+
+
 	//if (App->input->keyboard[SDL_SCANCODE_F1]) //God Mode
 	//{
 	//	if (!godOn)

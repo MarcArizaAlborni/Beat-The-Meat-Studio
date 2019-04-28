@@ -309,13 +309,23 @@ update_status ModulePlayer2::PreUpdate() {
 			}*/
 		}
 		if (currentstate == hadoukenstate2) {
-
-			if (current_animation->Finished()) {
-				App->particles->hadouken2.speed.x = -5;
-				App->particles->hadouken2.life = 2000;
-				App->particles->AddParticle(App->particles->hadouken2, position.x + 25, position.y - 70, COLLIDER_PLAYER2_SHOT);
-				currentstate = idlestate2;
-				hadouken2.Reset();
+			if (!App->player->flip) {
+				if (current_animation->Finished()) {
+					App->particles->hadouken2.speed.x = -5;
+					App->particles->hadouken2.life = 2000;
+					App->particles->AddParticle(App->particles->hadouken2, position.x + 25, position.y - 70, COLLIDER_PLAYER2_SHOT);
+					currentstate = idlestate2;
+					hadouken2.Reset();
+				}
+			}
+			if (App->player->flip) {
+				if (current_animation->Finished()) {
+					App->particles->hadouken.speed.x = 5;
+					App->particles->hadouken.life = 2000;
+					App->particles->AddParticle(App->particles->hadouken, position.x +100, position.y - 70, COLLIDER_PLAYER2_SHOT);
+					currentstate = idlestate2;
+					App->player->hadouken.Reset();
+				}
 			}
 		}
 
@@ -334,17 +344,33 @@ update_status ModulePlayer2::PreUpdate() {
 				currentstate = crouched2;
 				LOG("IDLE to CROUCH");
 			}
-			if (inputplayer2.Kick2_active) {
-				attack_collider2 = App->collision->AddCollider({ position.x +40,position.y - 100 ,50 ,50 }, COLLIDER_PLAYER2_ATTACK, App->player2);
-				App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
-				currentstate = kicklight2;
-				LOG("IDLE TO kick");
+			if (!App->player->flip) {
+				if (inputplayer2.Kick2_active) {
+					attack_collider2 = App->collision->AddCollider({ position.x + 40,position.y - 100 ,50 ,50 }, COLLIDER_PLAYER2_ATTACK, App->player2);
+					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
+					currentstate = kicklight2;
+					LOG("IDLE TO kick");
+				}
+				if (inputplayer2.Punch2_active) {
+					attack_collider2 = App->collision->AddCollider({ position.x + 50,position.y - 80 ,35 ,20 }, COLLIDER_PLAYER2_ATTACK, App->player2);
+					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
+					currentstate = punchlight2;
+					LOG("IDLE TO punch");
+				}
 			}
-			if (inputplayer2.Punch2_active) {
-				attack_collider2 = App->collision->AddCollider({ position.x +50,position.y - 80 ,35 ,20 }, COLLIDER_PLAYER2_ATTACK, App->player2);
-				App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
-				currentstate = punchlight2;
-				LOG("IDLE TO punch");
+			if (App->player->flip) {
+				if (inputplayer2.Kick2_active) {
+					attack_collider2 = App->collision->AddCollider({ position.x + 157,position.y - 100 ,50 ,50 }, COLLIDER_PLAYER2_ATTACK, App->player2);
+					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
+					currentstate = kicklight2;
+					LOG("IDLE TO kick");
+				}
+				if (inputplayer2.Punch2_active) {
+					attack_collider2 = App->collision->AddCollider({ position.x + 152,position.y - 80 ,35 ,20 }, COLLIDER_PLAYER2_ATTACK, App->player2);
+					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
+					currentstate = punchlight2;
+					LOG("IDLE TO punch");
+				}
 			}
 			if (inputplayer2.Special2_active) {
 				currentstate = hadoukenstate2;
@@ -543,23 +569,45 @@ update_status ModulePlayer2::PreUpdate() {
 		}
 
 		if (currentstate == crouched2) {
-			if (inputplayer2.Punch2_active) {
+			if (!App->player->flip) {
+				if (inputplayer2.Punch2_active) {
 
-				attack_collider2 = App->collision->AddCollider({ position.x + 60 ,position.y - 60 ,38 ,20 }, COLLIDER_PLAYER2_ATTACK, App->player2);
-				App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
-				currentstate = punchcrouch2;
+					attack_collider2 = App->collision->AddCollider({ position.x + 60 ,position.y - 60 ,38 ,20 }, COLLIDER_PLAYER2_ATTACK, App->player2);
+					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
+					currentstate = punchcrouch2;
+				}
+
+				if (inputplayer2.Kick2_active) {
+					attack_collider2 = App->collision->AddCollider({ position.x + 45 ,position.y - 24 ,50 ,25 }, COLLIDER_PLAYER2_ATTACK, App->player2);
+					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
+					currentstate = kickcrouch2;
+				}
+
+				if (!inputplayer2.Down_active) {
+					App->player->crouch;
+					currentstate = idlestate2;
+					LOG("CROUCH TO IDLE");
+				}
 			}
+			if (App->player->flip) {
+				if (inputplayer2.Punch2_active) {
 
-			if (inputplayer2.Kick2_active) {
-				attack_collider2 = App->collision->AddCollider({ position.x + 45 ,position.y - 24 ,50 ,25 }, COLLIDER_PLAYER2_ATTACK, App->player2);
-				App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
-				currentstate = kickcrouch2;
-			}
+					attack_collider2 = App->collision->AddCollider({ position.x +155 ,position.y - 60 ,38 ,20 }, COLLIDER_PLAYER2_ATTACK, App->player2);
+					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
+					currentstate = punchcrouch2;
+				}
 
-			if (!inputplayer2.Down_active) {
-				App->player->crouch;
-				currentstate = idlestate2;
-				LOG("CROUCH TO IDLE");
+				if (inputplayer2.Kick2_active) {
+					attack_collider2 = App->collision->AddCollider({ position.x +155 ,position.y - 24 ,50 ,25 }, COLLIDER_PLAYER2_ATTACK, App->player2);
+					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
+					currentstate = kickcrouch2;
+				}
+
+				if (!inputplayer2.Down_active) {
+					App->player->crouch;
+					currentstate = idlestate2;
+					LOG("CROUCH TO IDLE");
+				}
 			}
 		}
 
@@ -986,7 +1034,8 @@ update_status ModulePlayer2::Update()
 			player2_collider->SetPos(position.x + 90 - App->render->camera.x, position.y - 93 - App->render->camera.y);
 			position.x += speedII;
 			position.y -= speedII * gravityII;
-
+			attack_collider2->rect.x = position.x + 150 - App->render->camera.x;
+			attack_collider2->rect.y = position.y - 45;
 
 			if (position.y <= maxHeightII)
 			{
@@ -1015,7 +1064,8 @@ update_status ModulePlayer2::Update()
 			player2_collider->SetPos(position.x + 90 - App->render->camera.x, position.y - 93 - App->render->camera.y);
 			position.x += speedII;
 			position.y -= speedII * gravityII;
-
+			attack_collider2->rect.x = position.x + 145 - App->render->camera.x;
+			attack_collider2->rect.y = position.y - 65;
 
 			if (position.y <= maxHeightII)
 			{
@@ -1045,8 +1095,9 @@ update_status ModulePlayer2::Update()
 			current_animation = &App->player->jumpfrontkick;
 			player2_collider->SetPos(position.x + 90 - App->render->camera.x, position.y - 93 - App->render->camera.y);
 			position.x -= speedII;
-
 			position.y -= speedII * gravityII;
+			attack_collider2->rect.x = position.x + 150 - App->render->camera.x;
+			attack_collider2->rect.y = position.y - 45;
 
 
 			if (position.y <= maxHeightII)
@@ -1076,7 +1127,8 @@ update_status ModulePlayer2::Update()
 			player2_collider->SetPos(position.x + 90 - App->render->camera.x, position.y - 93 - App->render->camera.y);
 			position.x -= speedII;
 			position.y -= speedII * gravityII;
-
+			attack_collider2->rect.x = position.x + 145 - App->render->camera.x;
+			attack_collider2->rect.y = position.y - 65;
 
 			if (position.y <= maxHeightII)
 			{
@@ -1251,7 +1303,7 @@ update_status ModulePlayer2::Update()
 
 		case hadoukenstate2:
 
-			current_animation = &hadouken2;
+			current_animation = &App->player->hadouken;
 			LOG("KADOUKEN ANIMATION ACTIVE");
 			break;
 
@@ -1260,6 +1312,9 @@ update_status ModulePlayer2::Update()
 			current_animation = &App->player->jumpkick;
 			player2_collider->SetPos(position.x + 90 - App->render->camera.x, position.y - 93 - App->render->camera.y);
 			position.y -= speedII * gravityII;
+
+			attack_collider2->rect.x = position.x + 145 - App->render->camera.x;
+			attack_collider2->rect.y = position.y - 90;
 			if (position.y <= maxHeightII)
 			{
 				gravityII = -1;
@@ -1284,6 +1339,9 @@ update_status ModulePlayer2::Update()
 			current_animation = &App->player->jumppunch;
 			player2_collider->SetPos(position.x + 90 - App->render->camera.x, position.y - 93 - App->render->camera.y);
 			position.y -= speedII * gravityII;
+			attack_collider2->rect.x = position.x + 145 - App->render->camera.x;
+			attack_collider2->rect.y = position.y - 60;
+
 			if (position.y <= maxHeightII)
 			{
 				gravityII = -1;
@@ -1292,6 +1350,7 @@ update_status ModulePlayer2::Update()
 			else if (position.y == groundLevelII) {
 				
 				airkickII = true;
+				alreadyHit2 = false;
 				currentstate = idlestate2;
 				gravityII = 1;
 				App->player->jumpkick.Reset();
