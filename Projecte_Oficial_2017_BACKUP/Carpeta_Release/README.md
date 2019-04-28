@@ -1,6 +1,6 @@
 ## Game Description
 
-The game consists in a 1 vs 1 duel between two characters, each with the same moveset and playstyle. The first player that knocks out the other by reducing their opponent's health bar to zero wins.
+The game consists in a 1 vs 1 duel between two characters, each with the same moveset and playstyle. There are two win conditions: The player who knocks out the other by reducing their opponent's health bar to zero wins or the player that has the most health out of the two when the time runs out (99 seconds) wins.
 
 
 
@@ -80,7 +80,7 @@ The game consists in a 1 vs 1 duel between two characters, each with the same mo
 
 **v.0.5(current version):**  
 
-- Added the win/lose condition (Empty health bar).
+- Added the win/lose conditions: Empty health bar or time runs out (99 seconds).
 
 - Added 5 Scene transitions: Welcome Screen, Game Screen, Win/Lose Screen, Back to Welcome Screen.  
 

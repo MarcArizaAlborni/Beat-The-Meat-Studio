@@ -1,6 +1,7 @@
 #include "Application.h"
 #include "ModuleInput.h"
 #include "ModuleRender.h"
+#include "ModuleSceneRyu.h"
 #include "ModuleCollision.h"
 
 ModuleCollision::ModuleCollision()
@@ -120,7 +121,7 @@ update_status ModuleCollision::PreUpdate()
 
 // Called before render is available
 update_status ModuleCollision::Update()
-{
+{	
 
 	DebugDraw();
 
