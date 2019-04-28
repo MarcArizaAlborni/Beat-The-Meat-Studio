@@ -23,17 +23,23 @@ ModuleParticles::~ModuleParticles()
 bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
-	graphics = App->textures->Load("ryu.png");
+	graphics = App->textures->Load("RyuP1_def.png");
 
 	//Hadouken Particle
-	hadouken.anim.PushBack({ 493, 1563, 43, 32 });
-	hadouken.anim.PushBack({ 550, 1565, 56, 28 });
+	hadouken.anim.PushBack({ 183, 975, 65, 39 });
+	hadouken.anim.PushBack({ 134, 975, 49, 39 });
 	//ESTAS TRES SON PARA EL IMPACTO
 	//hadouken.anim.PushBack({ 614, 1569, 26, 20 });
 	//hadouken.anim.PushBack({ 652, 1566, 15, 25 });
 	//hadouken.anim.PushBack({ 677, 1565, 28, 28 });
 	hadouken.anim.loop = true;
 	hadouken.anim.speed = 0.1f;
+
+
+	hadouken2.anim.PushBack({ 2177, 975, 60, 39 });
+	hadouken2.anim.PushBack({ 2237, 975, 56, 39 });
+	hadouken2.anim.loop = true;
+	hadouken2.anim.speed = 0.1f;
 
 	// TODO 2: Create the template for a new particle "laser"
 	/*laser.anim.PushBack({ 200, 121, 32, 10 });

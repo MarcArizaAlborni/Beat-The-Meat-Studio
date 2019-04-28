@@ -42,7 +42,6 @@ ModulePlayer::ModulePlayer()
 	idle.PushBack({160, 54, 68, 98});
 	idle.PushBack({223, 54, 67, 98});
 	idle.speed = 0.15f;
-	idle.loop = true;
 
 	//Walk FORWARD Animation
 	forward.PushBack({ 27,250, 66, 100 });
@@ -81,23 +80,24 @@ ModulePlayer::ModulePlayer()
 	jump.loop = false;
 	jump.speed = 0.10f;
 
-	// forward Jump Animation
-	forwardjump.PushBack({ 13,716,62,111  });
-	forwardjump.PushBack({ 75,716,65,91 });
-	forwardjump.PushBack({ 140,716,112,49 });
-	forwardjump.PushBack({ 420,695,58,85 });
-	forwardjump.PushBack({ 140,777,129,51 });
-	forwardjump.PushBack({ 328,767,77,93 });
+	//Forward Jump Animation
+	forwardjump.PushBack({ 13, 716, 62, 111  });
+	forwardjump.PushBack({ 75, 716, 65, 91 });
+	forwardjump.PushBack({ 140, 716, 112, 49 });
+	forwardjump.PushBack({ 420, 695, 58, 85 });
+	forwardjump.PushBack({ 140, 777, 129, 51 });
+	forwardjump.PushBack({ 328, 767, 77, 93 });
+	forwardjump.PushBack({ 343, 580, 61, 120 });
 	forwardjump.speed = 0.1f;
 	forwardjump.loop = false;
 
 	//Backward Jump Animation
-	backwardjump.PushBack({ 328,767,77,93 });
-	backwardjump.PushBack({ 140,777,129,51 });
-	backwardjump.PushBack({ 420,695,58,85 });
-	backwardjump.PushBack({ 140,716,112,49 });
-	backwardjump.PushBack({ 75,716,65,91 });
-	backwardjump.PushBack({ 13,716,62,111 });
+	backwardjump.PushBack({ 328, 767, 77, 93 });
+	backwardjump.PushBack({ 140, 777, 129, 51 });
+	backwardjump.PushBack({ 420, 695, 58, 85 });
+	backwardjump.PushBack({ 140, 716, 112, 49 });
+	backwardjump.PushBack({ 75, 716, 65, 91 });
+	backwardjump.PushBack({ 13, 716, 62, 111 });
 	backwardjump.speed = 0.1f;
 	backwardjump.loop = false;
 
@@ -126,20 +126,20 @@ ModulePlayer::ModulePlayer()
 	lightKick.speed = 0.1f;
 
 	//punchcrouch Animation
-	crouchpunch.PushBack({ 34,2038,86,72 });
-	crouchpunch.PushBack({ 120,2037,100,73 });
+	crouchpunch.PushBack({ 34, 2038, 90, 72 });
+	crouchpunch.PushBack({ 120, 2037, 105 , 73 });
 	crouchpunch.speed = 0.15f;
 	crouchpunch.loop = false;
 
 	//kickcrouch Animation
-	crouchkick.PushBack({ 32,2296,80,70 });
-	crouchkick.PushBack({ 109,2296,121,70 });
+	crouchkick.PushBack({ 32, 2296, 80, 70 });
+	crouchkick.PushBack({ 109, 2296, 121, 70 });
 	crouchkick.speed = 0.15f;
 	crouchkick.loop = false;
 
 	//Neutral punch jump Animation
-	jumppunch.PushBack({ 259,1693,83,91 });
-	jumppunch.PushBack({ 353,1693,200,78 });
+	jumppunch.PushBack({ 259, 1693, 83, 91 });
+	jumppunch.PushBack({ 353, 1693, 200, 78 });
 	jumppunch.speed = 0.1f;
 	jumppunch.loop = false;
 
@@ -149,27 +149,27 @@ ModulePlayer::ModulePlayer()
 	jumpkick.loop = false;
 
 	//Jumpbackkick Animation
-	jumpbackkick.PushBack({347,1925,80,91});
-	jumpbackkick.PushBack({ 427,1925,135,91 });
+	jumpbackkick.PushBack({347, 1925, 80, 91});
+	jumpbackkick.PushBack({ 427, 1925, 135, 91 });
 	jumpbackkick.loop = false;
 	jumpbackkick.speed = 0.08f;
 	
 	
 	//jumpbackpunch Animation
-	jumpbackpunch.PushBack({ 23,1689,74,91 });
-	jumpbackpunch.PushBack({ 99,1689,104,92 });
+	jumpbackpunch.PushBack({ 23, 1689, 74, 91 });
+	jumpbackpunch.PushBack({ 99, 1689, 104, 92 });
 	jumpbackpunch.loop = false;
 	jumpbackpunch.speed = 0.08f;
 
 	//jumpfrontkick Animation
-	jumpfrontkick.PushBack({ 347,1925,80,91 });
-	jumpfrontkick.PushBack({ 427,1925,135,91 });
+	jumpfrontkick.PushBack({ 347, 1925, 80, 91 });
+	jumpfrontkick.PushBack({ 427, 1925, 135, 91 });
 	jumpfrontkick.loop = false;
 	jumpfrontkick.speed = 0.08f;
 	
 	// jumpfrontpunch Animation 
-	jumpfrontpunch.PushBack({23,1689,74,91});
-	jumpfrontpunch.PushBack({ 99,1689,104,92 });
+	jumpfrontpunch.PushBack({23, 1689, 74, 91});
+	jumpfrontpunch.PushBack({ 99, 1689, 104, 92 });
 	jumpfrontpunch.loop = false;
 	jumpfrontpunch.speed = 0.08f;
 }
@@ -191,7 +191,7 @@ bool ModulePlayer::Start()
 
 
 	//Player 2 stest collider
-	player_collider = App->collision->AddCollider({ position.x, position.y - 100, 60, 93 }, COLLIDER_PLAYER, App->player);
+	player_collider = App->collision->AddCollider({ position.x , position.y - 100, 60, 93 }, COLLIDER_PLAYER, App->player);
 	
 
 	
@@ -239,7 +239,6 @@ update_status ModulePlayer::PreUpdate() {
 
 				currentstate = idlestate;
 				lightPunch.Reset();
-				
 				LOG("PUNCH TO IDLE");
 
 			}
@@ -749,12 +748,12 @@ update_status ModulePlayer::Update()
 
 	}
 	//Limits ben fets
-	if (position.x <= App->render->camera.x / SCREEN_SIZE)
+	if (position.x <= App->render->camera.x - 10 / SCREEN_SIZE)
 	{
-		position.x = App->render->camera.x / SCREEN_SIZE;
+		position.x = App->render->camera.x - 10/ SCREEN_SIZE;
 	}
-	if (position.x >= SCREEN_WIDTH - 60 + App->render->camera.x / SCREEN_SIZE) { //Hardcodeado una mica, s'haura de revisar
-		position.x = SCREEN_WIDTH - 60 + App->render->camera.x / SCREEN_SIZE;
+	if (position.x >= SCREEN_WIDTH - 60 + App->render->camera.x -10/ SCREEN_SIZE) { //Hardcodeado una mica, s'haura de revisar
+		position.x = SCREEN_WIDTH - 60 + App->render->camera.x -10/ SCREEN_SIZE;
 	}
 
 	SDL_Rect r = current_animation->GetCurrentFrame();

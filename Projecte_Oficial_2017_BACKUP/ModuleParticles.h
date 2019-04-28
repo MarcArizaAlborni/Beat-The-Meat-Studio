@@ -51,6 +51,7 @@ private:
 public:
 
 	Particle hadouken;
+	Particle hadouken2;
 };
 
 #endif // __MODULEPARTICLES_H__

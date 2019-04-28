@@ -81,7 +81,7 @@ public:
 	Animation lightPunch;
 	Animation lightKick;
 	Animation jump;
-	Animation hadouken;
+	Animation hadouken2;
 	Animation crouchpunch;
 	Animation crouchkick;
 	Animation jumppunch;

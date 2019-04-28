@@ -38,144 +38,139 @@ ModulePlayer2::ModulePlayer2()
 	//App->render->DrawQuad(health, 255, 0, 0, alphaka);
 
 	// idle animation (arcade sprite sheet)
-	idle.PushBack({ 2330, 61, 59, 90});
-	idle.PushBack({ 2267, 59, 58, 92 });
-	idle.PushBack({ 2203, 58, 55, 94 });
-	idle.PushBack({ 2134, 62, 60, 89 });
+	idle.PushBack({ 1152, 14, 154, 96});
+	idle.PushBack({ 990, 14, 154, 96 });
+	idle.PushBack({ 836, 14, 154, 96 });
+	idle.PushBack({ 681 , 14, 154, 96 });
 	idle.speed = 0.15f;
 
-	//Crouch Animation
-	crouch.PushBack({ 1840,766,67,95 });
-	crouch.PushBack({ 587,156,68,95 });
-	crouch.PushBack({ 654,156,68,95 });
-	crouch.speed = 0.5f;
-	crouch.loop = false;
-
-
-	//punchcrouch Animation
-	crouchpunch.PushBack({ 2315, 2046, 70, 61 });
-	crouchpunch.PushBack({ 2201, 2046, 95, 61 });
-	crouchpunch.speed = 0.15f;
-	crouchpunch.loop = false;
-
-	//kickcrouch Animation
-	crouchkick.PushBack({ 2316, 2299, 70, 64 });
-	crouchkick.PushBack({ 2197, 2299, 112, 64  });
-	crouchkick.speed = 0.15f;
-	crouchkick.loop = false;
-
-	// forward Jump Animation
-	forwardjump.PushBack({ 13,716,62,111 });
-	forwardjump.PushBack({ 75,716,65,91 });
-	forwardjump.PushBack({ 140,716,112,49 });
-	forwardjump.PushBack({ 420,695,58,85 });
-	forwardjump.PushBack({ 140,777,129,51 });
-	forwardjump.PushBack({ 328,767,77,93 });
-	forwardjump.speed = 0.1f;
-	forwardjump.loop = false;
-
-	//Backward Jump Animation
-	backwardjump.PushBack({ 328,767,77,93 });
-	backwardjump.PushBack({ 140,777,129,51 });
-	backwardjump.PushBack({ 420,695,58,85 });
-	backwardjump.PushBack({ 140,716,112,49 });
-	backwardjump.PushBack({ 75,716,65,91 });
-	backwardjump.PushBack({ 13,716,62,111 });
-	backwardjump.speed = 0.1f;
-	backwardjump.loop = false;
-
-	//punch jump Animation
-	jumppunch.PushBack({ 259,1693,83,91 });
-	jumppunch.PushBack({ 353,1693,200,78 });
-	jumppunch.speed = 0.1f;
-	jumppunch.loop = false;
-
-	// kick jump Animation
-	jumpkick.PushBack({ 33, 1802, 82, 95 });
-	jumpkick.speed = 0.05f;
-	jumpkick.loop = false;
-	 
-	//Damaged Animation
-
-	// walk forward animation (arcade sprite sheet)
-	//forward.frames.PushBack({9, 136, 53, 83});
-
 	//Walk FORWARD Animation 
-	forward.PushBack({ 2336,263, 56, 86 }); //Cal repetir les posicions d'aquests.
-	forward.PushBack({ 2265, 258, 63, 91 });
-	forward.PushBack({ 2192, 254, 68, 95 });
-	forward.PushBack({ 2118, 254, 65, 95 });
-	forward.PushBack({ 2055, 254, 57, 95 });
-	forward.PushBack({ 1998, 254, 52, 95 });
+	forward.PushBack({ 1152, 206, 154, 96 });
+	forward.PushBack({ 990, 206, 154, 96 });
+	forward.PushBack({ 836, 206, 154, 96 });
+	forward.PushBack({ 681, 206, 154, 96 });
+	forward.PushBack({ 528, 206, 154, 96 });
+	forward.PushBack({ 371, 206, 154, 96 });
 
 	forward.loop = true;
 	forward.speed = 0.1f;
 
 	//Walk backwards animation
-	backward.PushBack({ 2329, 160, 63, 90  });
-	backward.PushBack({ 2261, 160 , 63, 90 });
-	backward.PushBack({ 2188, 156, 63, 94 });
-	backward.PushBack({ 2125, 155, 63, 94 });
-	backward.PushBack({ 2062, 155, 63, 94 });
-	backward.PushBack({ 1998, 155, 63, 94 });
+	backward.PushBack({ 1152, 110, 154, 96 });
+	backward.PushBack({ 990, 110, 154, 96 });
+	backward.PushBack({ 836, 110, 154, 96 });
+	backward.PushBack({ 681, 110, 154, 96 });
+	backward.PushBack({ 528, 110, 154, 96 });
+	backward.PushBack({ 371, 110, 154, 96 });
 	backward.loop = true;
 	backward.speed = 0.1f;
 
+	//Crouch Animation
+	crouch.PushBack({ 371, 14, 154, 96 });
+	crouch.PushBack({ 210, 14, 154, 96 });
+	crouch.PushBack({ 57, 14, 154, 96 });
+	crouch.speed = 0.5;
+	crouch.loop = false;
+
+	//Ryu jump
+	jump.PushBack({ 1151, 514, 154, 111 });
+	jump.PushBack({ 989, 514, 154, 111 });
+	jump.PushBack({ 835, 514, 154, 111 });
+	jump.PushBack({ 681, 504, 154, 111 });
+	jump.PushBack({ 527, 504, 154, 111 });
+	jump.PushBack({ 371, 514, 154, 111 });
+	jump.loop = false;
+	jump.speed = 0.10f;
+	
+	//Forward Jump Animation
+	forwardjump.PushBack({ 1151, 625, 154, 111 });
+	forwardjump.PushBack({ 989, 625, 154, 111 });
+	forwardjump.PushBack({ 371, 625, 154, 111 });
+	forwardjump.PushBack({ 527, 625, 154, 111 });
+	forwardjump.PushBack({ 836, 625, 154, 111 });
+	forwardjump.PushBack({ 681, 625, 154, 111 });
+	forwardjump.PushBack({ 371, 514, 154, 111 });
+	forwardjump.speed = 0.1f;
+	forwardjump.loop = false;
+
+	//Backward Jump Animation
+	backwardjump.PushBack({ 681, 625, 154, 111 });
+	backwardjump.PushBack({ 836, 625, 154, 111 });
+	backwardjump.PushBack({ 527, 625, 154, 111 });
+	backwardjump.PushBack({ 371, 625, 154, 111 });
+	backwardjump.PushBack({ 989, 625, 154, 111 });
+	backwardjump.PushBack({ 1151, 625, 154, 111 });
+	backwardjump.speed = 0.1f;
+	backwardjump.loop = false;
+
+	//Ryu Hadouken movement
+	hadouken2.PushBack({ 1151, 740, 154, 95 });
+	hadouken2.PushBack({ 989, 740, 154, 95 });
+	hadouken2.PushBack({ 836, 740, 154, 95 });
+	hadouken2.PushBack({ 681, 740, 154, 95 });
+	hadouken2.loop = false;
+	hadouken2.speed = 0.1f;
+	 
+	//Damaged Animation
+
 	//Ryu light punch
-	lightPunch.PushBack({ 2319, 1369, 70, 96 });
-	lightPunch.PushBack({ 2212, 1369, 101, 96 });
-	lightPunch.PushBack({ 2319, 1369, 70, 96 });
+	lightPunch.PushBack({ 1151, 1171, 154, 96 });
+	lightPunch.PushBack({ 989, 1171, 154, 96 });
+	lightPunch.PushBack({ 1151, 1171, 154, 96 });
 	lightPunch.loop = true;
 	lightPunch.speed = 0.1f;
 
 	//Ryu light kick
-	lightKick.PushBack({ 35, 1586, 69, 97 });
-	lightKick.PushBack({ 125, 1585, 120, 98 });
+	lightKick.PushBack({ 1151, 1274, 154, 97 });
+	lightKick.PushBack({ 989, 1274, 154, 98 });
 	lightKick.loop = false;
 	lightKick.speed = 0.1f;
+	
+	//punchcrouch Animation
+	crouchpunch.PushBack({ 1151, 1663, 164, 81 });
+	crouchpunch.PushBack({ 989, 1663, 164, 81 });
+	crouchpunch.speed = 0.15f;
+	crouchpunch.loop = false;
 
-	//Ryu jump
-	jump.PushBack({ 17, 580, 63,105 });
-	jump.PushBack({ 80, 580, 62, 115 });
-	jump.PushBack({ 149, 580, 54, 100 });
-	jump.PushBack({ 207, 580, 61, 100 });
-	jump.PushBack({ 282, 580, 56,100 });
-	jump.PushBack({ 343, 580, 61,120 });
-	jump.loop = false;
-	jump.speed = 0.10f;
+	//kickcrouch Animation  
+	crouchkick.PushBack({ 1151, 1912, 164, 71 });
+	crouchkick.PushBack({ 989, 1912, 164, 71 });
+	crouchkick.speed = 0.15f;
+	crouchkick.loop = false;
 
-	//Ryu Hadouken movement
-	hadouken.PushBack({ 18, 870, 80, 95 });
-	hadouken.PushBack({ 100, 875, 90, 95 });
-	hadouken.PushBack({ 190, 875, 97, 95 });
-	hadouken.PushBack({ 290, 875, 110, 95 });
-	hadouken.loop = false;
-	hadouken.speed = 0.1f;
-
+	//Neutral punch jump Animation
+	jumppunch.PushBack({ 1151, 1375, 162, 86 });
+	jumppunch.PushBack({ 989, 1375, 162, 86 });
+	jumppunch.speed = 0.1f;
+	jumppunch.loop = false;
+	
+	//Neutral kick jump Animation
+	jumpkick.PushBack({ 1151, 1456, 162, 121 });
+	jumpkick.speed = 0.05f;
+	jumpkick.loop = false;
 
 	//Jumpbackkick Animation
-	jumpbackkick.PushBack({ 347,1925,80,91 });
-	jumpbackkick.PushBack({ 427,1925,135,91 });
+	jumpbackkick.PushBack({ 681, 1578, 164, 91 });
+	jumpbackkick.PushBack({ 528, 1578, 164, 91 });
 	jumpbackkick.loop = false;
 	jumpbackkick.speed = 0.08f;
 
-
-	// jumpbackpunch Animation
-	jumpbackpunch.PushBack({ 23,1689,74,91 });
-	jumpbackpunch.PushBack({ 99,1689,104,92 });
+	//jumpbackpunch Animation
+	jumpbackpunch.PushBack({ 1151, 1375, 162, 86 });
+	jumpbackpunch.PushBack({ 989, 1375, 162, 86 });
 	jumpbackpunch.loop = false;
-	jumpbackpunch.speed = 0.08f;
-
+	jumpbackpunch.speed = 0.08f; 
+	
 	//jumpfrontkick Animation
-	jumpfrontkick.PushBack({ 347,1925,80,91 });
-	jumpfrontkick.PushBack({ 427,1925,135,91 });
+	jumpfrontkick.PushBack({ 681,1578, 164, 91 });
+	jumpfrontkick.PushBack({ 528,1578, 164, 91 });
 	jumpfrontkick.loop = false;
 	jumpfrontkick.speed = 0.08f;
+	
+	//jumpfrontpunch Animation 
 
-	// jumpfrontpunch Animation 
-
-	jumpfrontpunch.PushBack({ 23,1689,74,91 });
-	jumpfrontpunch.PushBack({ 99,1689,104,92 });
+	jumpfrontpunch.PushBack({ 1151, 1375, 162, 86 });
+	jumpfrontpunch.PushBack({ 989, 1375, 162, 86 });
 	jumpfrontpunch.loop = false;
 	jumpfrontpunch.speed = 0.08f;
 }
@@ -188,11 +183,11 @@ bool ModulePlayer2::Start()
 {
 	LOG("Loading player textures");
 	bool ret = true;
-	graphics = App->textures->Load("RyuP1_Def.png"); // JA TE LA FOTO BONA
+	graphics = App->textures->Load("RyuP1_Inv.png"); // JA TE LA FOTO BONA
 	LP = App->audio->LoadFx("");
 	Hadoken_Sound = App->audio->LoadFx("Audios/Voices/Ryu&Ken hadouken.wav");
 
-	position.x = 250;
+	position.x = 180;
 	position.y = 205;
 
 	//Player 2 stest collider
@@ -279,11 +274,11 @@ update_status ModulePlayer2::PreUpdate() {
 		if (currentstate == hadoukenstate2) {
 
 			if (current_animation->Finished()) {
-				App->particles->hadouken.speed.x = -5;
-				App->particles->hadouken.life = 2000;
-				App->particles->AddParticle(App->particles->hadouken, position.x + 25, position.y - 70, COLLIDER_PLAYER2_SHOT);
+				App->particles->hadouken2.speed.x = -5;
+				App->particles->hadouken2.life = 2000;
+				App->particles->AddParticle(App->particles->hadouken2, position.x + 25, position.y - 70, COLLIDER_PLAYER2_SHOT);
 				currentstate = idlestate2;
-				hadouken.Reset();
+				hadouken2.Reset();
 			}
 		}
 
@@ -339,6 +334,10 @@ update_status ModulePlayer2::PreUpdate() {
 				currentstate = kicklight2;
 				LOG("BACK TO KICK");
 			}
+			if (inputplayer2.Down_active) {
+				currentstate = crouched2;
+				LOG("BACK TO CROUCH");
+			}
 		}
 
 		if (currentstate == forwardstate2) {
@@ -357,6 +356,10 @@ update_status ModulePlayer2::PreUpdate() {
 			if (inputplayer2.Up_active) {
 				currentstate = jumpforward2; // Aquest hauria de ser jump FORWARD pero no tenim l'animacio posada encara
 				LOG("FORWARD TO JUMP");
+			}
+			if (inputplayer2.Down_active) {
+				currentstate = crouched2;
+				LOG("BACK TO CROUCH");
 			}
 		}
 
@@ -507,12 +510,11 @@ update_status ModulePlayer2::PreUpdate() {
 update_status ModulePlayer2::Update()
 {
 
-
 	switch (currentstate) {
 	case jumpfalling2:
 
 		current_animation = &jump;
-		player2_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
+		player2_collider->SetPos(position.x + 90 - App->render->camera.x, position.y - 93 - App->render->camera.y);
 		position.y -= speedII * gravityII;
 
 
@@ -533,7 +535,7 @@ update_status ModulePlayer2::Update()
 	case jumpbackwardkick2:
 
 		current_animation = &jumpbackkick;
-		player2_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
+		player2_collider->SetPos(position.x + 90 - App->render->camera.x, position.y - 93 - App->render->camera.y);
 		position.x -= speedII;
 		position.y -= speedII * gravityII;
 
@@ -557,7 +559,7 @@ update_status ModulePlayer2::Update()
 	case jumpbackwardpunch2:
 
 		current_animation = &jumpbackpunch;
-		player2_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
+		player2_collider->SetPos(position.x + 90 - App->render->camera.x, position.y - 93 - App->render->camera.y);
 		position.x -= speedII;
 		position.y -= speedII * gravityII;
 
@@ -581,7 +583,7 @@ update_status ModulePlayer2::Update()
 	case jumpforwardkick2:
 
 		current_animation = &jumpfrontkick;
-		player2_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
+		player2_collider->SetPos(position.x + 90 - App->render->camera.x, position.y - 93 - App->render->camera.y);
 		position.x += speedII;
 
 		position.y -= speedII * gravityII;
@@ -606,7 +608,7 @@ update_status ModulePlayer2::Update()
 	case  jumpforwardpunch2:
 
 		current_animation = &jumpfrontpunch;
-		player2_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
+		player2_collider->SetPos(position.x + 90 - App->render->camera.x, position.y - 93 - App->render->camera.y);
 		position.x += speedII;
 		position.y -= speedII * gravityII;
 
@@ -636,7 +638,7 @@ update_status ModulePlayer2::Update()
 	case jumpforward2:
 		position.x -= speedII;
 		position.y -= speedII * gravityII;
-		player2_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
+		player2_collider->SetPos(position.x + 90 - App->render->camera.x, position.y - 93 - App->render->camera.y);
 		if (position.y <= maxHeightII)
 		{
 			gravityII = -1;
@@ -660,7 +662,7 @@ update_status ModulePlayer2::Update()
 		current_animation = &backwardjump;
 		position.x += speedII;
 		position.y -= speedII * gravityII;
-		player2_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
+		player2_collider->SetPos(position.x + 90 - App->render->camera.x, position.y - 93 - App->render->camera.y);
 		if (position.y <= maxHeightII)
 		{
 			gravityII = -1;
@@ -706,14 +708,14 @@ update_status ModulePlayer2::Update()
 	case idlestate2:
 		crouch.Reset();
 		player2_collider->rect.h = 93;
-		player2_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
+		player2_collider->SetPos(position.x + 90 - App->render->camera.x, position.y - 93 - App->render->camera.y);
 		current_animation = &idle;
 		LOG("IDLE ANIMATION ACTIVE");
 		break;
 
 
 	case backwardstate2:
-		player2_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
+		player2_collider->SetPos(position.x + 90 - App->render->camera.x, position.y - 93 - App->render->camera.y);
 		current_animation = &backward;
 		position.x += speedII;
 		LOG("BACKWARD ANIMATION ACTIVE");
@@ -721,7 +723,7 @@ update_status ModulePlayer2::Update()
 
 
 	case forwardstate2:
-		player2_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
+		player2_collider->SetPos(position.x + 90 - App->render->camera.x, position.y - 93 - App->render->camera.y);
 		current_animation = &forward;
 		position.x -= speedII;
 		LOG("FORWARD ANIMATION ACTIVE");
@@ -732,7 +734,7 @@ update_status ModulePlayer2::Update()
 
 		current_animation = &jump;
 		
-		player2_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
+		player2_collider->SetPos(position.x + 90  - App->render->camera.x, position.y - 93 - App->render->camera.y);
 		position.y -= speedII * gravityII;
 
 
@@ -766,21 +768,21 @@ update_status ModulePlayer2::Update()
 	case crouched2:
 
 		current_animation = &crouch;
-		player2_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 68 - App->render->camera.y);
+		player2_collider->SetPos(position.x + 90 - App->render->camera.x + 5, position.y - 68 - App->render->camera.y);
 		player2_collider->rect.h = 65;
 		LOG("CROUCHED ANIMATION ACTIVE");
 		break;
 
 	case hadoukenstate2:
 
-		current_animation = &hadouken;
+		current_animation = &hadouken2;
 		LOG("KADOUKEN ANIMATION ACTIVE");
 		break;
 
 	case jumpkickstate2:
 
 		current_animation = &jumpkick;
-		player2_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
+		player2_collider->SetPos(position.x + 90 - App->render->camera.x, position.y - 93 - App->render->camera.y);
 		position.y -= speedII * gravityII;
 		if (position.y <= maxHeightII)
 		{
@@ -799,7 +801,7 @@ update_status ModulePlayer2::Update()
 
 	case jumppunchstate2:
 		current_animation = &jumpbackpunch;
-		player2_collider->SetPos(position.x - App->render->camera.x, position.y - 93 - App->render->camera.y);
+		player2_collider->SetPos(position.x + 90 - App->render->camera.x, position.y - 93 - App->render->camera.y);
 		position.y -= speedII * gravityII;
 		if (position.y <= maxHeightII)
 		{
@@ -819,12 +821,12 @@ update_status ModulePlayer2::Update()
 	}
 
 	//Limits ben fets
-	if (position.x <= App->render->camera.x / SCREEN_SIZE)
+	if (position.x <= App->render->camera.x - 180 / SCREEN_SIZE)
 	{
-		position.x = App->render->camera.x / SCREEN_SIZE;
+		position.x = App->render->camera.x - 180 / SCREEN_SIZE;
 	}
-	if (position.x >= SCREEN_WIDTH - 60 + App->render->camera.x / SCREEN_SIZE) { //Hardcodeado una mica, s'haura de revisar
-		position.x = SCREEN_WIDTH - 60 + App->render->camera.x / SCREEN_SIZE;
+	if (position.x >= SCREEN_WIDTH - 60 + App->render->camera.x - 180 / SCREEN_SIZE) { //Hardcodeado una mica, s'haura de revisar
+		position.x = SCREEN_WIDTH - 60 + App->render->camera.x - 180/ SCREEN_SIZE;
 	}
 
 	// TODO 7.3: Update collider position to player position
