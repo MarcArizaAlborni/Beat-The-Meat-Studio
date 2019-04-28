@@ -19,6 +19,7 @@ Uint8 alphaka= 255;
 int groundLevel = 205;
 int maxHeight = 120; 
 bool airkick = true;
+bool alreadyHit = false;
 
 ModulePlayer::ModulePlayer()
 {
@@ -236,8 +237,10 @@ update_status ModulePlayer::PreUpdate() {
 		if (currentstate == punchlight) {
 			
 			if (current_animation->Finished()) {
-
+				
+				attack_collider->to_delete = true;
 				currentstate = idlestate;
+				alreadyHit = false;
 				lightPunch.Reset();
 				
 				LOG("PUNCH TO IDLE");
@@ -249,8 +252,9 @@ update_status ModulePlayer::PreUpdate() {
 		if (currentstate == kicklight) {
 
 			if (current_animation->Finished()) {
-
 				currentstate = idlestate;
+				attack_collider->to_delete = true;
+				alreadyHit = false;
 				lightKick.Reset();
 				LOG("KICK TO IDLE");
 			}
@@ -292,10 +296,14 @@ update_status ModulePlayer::PreUpdate() {
 			}
 			if (inputplayer1.Kick1_active) {
 				currentstate = kicklight;
+				attack_collider = App->collision->AddCollider({ position.x + 65 ,position.y - 100 ,50 ,50 }, COLLIDER_PLAYER_ATTACK, App->player);
+
 				LOG("IDLE TO kick");
 			}
 			if (inputplayer1.Punch1_active) {
 				currentstate = punchlight;
+				attack_collider = App->collision->AddCollider({ position.x+65 ,position.y-80 ,35 ,20 }, COLLIDER_PLAYER_ATTACK, App->player);
+				alreadyHit = false;
 				LOG("IDLE TO punch");
 			}
 			if (inputplayer1.Special1_active) {
@@ -317,6 +325,7 @@ update_status ModulePlayer::PreUpdate() {
 			}
 			if (inputplayer1.Punch1_active){
 				currentstate = punchlight;
+				attack_collider = App->collision->AddCollider({ position.x + 65 ,position.y - 80 ,35 ,20 }, COLLIDER_PLAYER_ATTACK, App->player);
 				LOG("BACK TO PUNCH");
 			}
 			if (inputplayer1.W_active) {
@@ -325,6 +334,7 @@ update_status ModulePlayer::PreUpdate() {
 			}
 			if (inputplayer1.Kick1_active) {
 				currentstate = kicklight;
+				attack_collider = App->collision->AddCollider({ position.x + 65 ,position.y - 100 ,50 ,50 }, COLLIDER_PLAYER_ATTACK, App->player);
 				LOG("BACK TO KICK");
 			}
 			if (inputplayer1.S_active) {
@@ -340,10 +350,12 @@ update_status ModulePlayer::PreUpdate() {
 			}
 			if (inputplayer1.Kick1_active) {
 				currentstate = kicklight;
+				attack_collider = App->collision->AddCollider({ position.x + 65 ,position.y - 100 ,50 ,50 }, COLLIDER_PLAYER_ATTACK, App->player);
 				LOG("FORWARD TO KICK");
 			}
 			if (inputplayer1.Punch1_active) {
 				currentstate = punchlight;
+				attack_collider = App->collision->AddCollider({ position.x + 65 ,position.y - 80 ,35 ,20 }, COLLIDER_PLAYER_ATTACK, App->player);
 				LOG("FORWARD TO PUNCH");
 			}
 			if (inputplayer1.W_active) {
@@ -685,6 +697,7 @@ update_status ModulePlayer::Update()
 
 	case punchlight:
 		current_animation = &lightPunch;
+		
 		LOG("PUNCH ANIMATION ACTIVE");
 		break;
 
@@ -766,7 +779,12 @@ update_status ModulePlayer::Update()
 //TODO 7.4: Detect collision with a wall. If so, go back to intro screen.
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
-	
+	if (!alreadyHit) {
+		if (c1->type==COLLIDER_PLAYER_ATTACK) {
+			App->scene_ryu->health2.w -= 10;
+			alreadyHit = true;
+		}
+	}
 
 
 }
