@@ -76,7 +76,7 @@ The game consists in a 1 vs 1 duel between two characters, each with the same mo
 
 - Added colliders to the player(Ryu) and its particles(Hadouken) 
 - Players can now collide with something in the environment. (Not done: Camera limits and God mode when pressing F5)
-- Implemented the Audio Module.
+- Solved all current Memory Leaks.
 
 **v.0.5(current version):**  
 
@@ -85,6 +85,8 @@ The game consists in a 1 vs 1 duel between two characters, each with the same mo
 - Added 5 Scene transitions: Welcome Screen, Game Screen, Win/Lose Screen, Back to Welcome Screen.  
 
 - Added Camera Limits so the Player cannot move out of the camera.
+
+- Implemented the Audio Module.
 
 - Implemented the pertaining music for each screen along with the pertaining sound effects for each movement and interaction.
 
