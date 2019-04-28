@@ -39,7 +39,8 @@ public:
 	//	health.x = 189;
 	//	health.y = 144;
 	//}
-
+	
+	int damage = 10;
 	float background_pos;
 	bool forward;
 };

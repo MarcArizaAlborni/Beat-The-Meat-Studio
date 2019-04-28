@@ -17,7 +17,9 @@
 
 
 Uint32 timeLimit = 0;
-Uint32 deltaTime = 0;
+Uint32 deltaTime = SDL_GetTicks() / 1000;;
+Uint32 startTime = 0;
+
 bool healthIsNotEqual = false;
 
 ModuleSceneRyu::ModuleSceneRyu()
@@ -100,7 +102,9 @@ bool ModuleSceneRyu::Start()
 	App->particles->Enable();
 	App->collision->Enable();
 
-
+	//Declares the scene start timer. / Resets the timer. 
+	deltaTime = SDL_GetTicks() / 1000;
+	startTime = deltaTime;
 
 	return true;
 }
@@ -121,7 +125,7 @@ bool ModuleSceneRyu::CleanUp()
 	health2.w = 144;
 
 	//Resets the timer
-	timeLimit = -99;
+	//currentTime += deltaTime;
 
 	return true;
 }
@@ -154,7 +158,7 @@ update_status ModuleSceneRyu::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_F5] == 1) //Health-substracting button
 	{
-		health.x -= 10;
+		health.x -= damage;
 	}
 	if (health.x <= 45) //45 instead of 0 because it doesnt exactly fit. If the duel ends then reset the healthbars
 	{
@@ -162,7 +166,7 @@ update_status ModuleSceneRyu::Update()
 	}
 	if (App->input->keyboard[SDL_SCANCODE_F6] == 1) //Health-substracting button
 	{
-		health2.w -= 10;
+		health2.w -= damage;
 	}
 	if (health2.w <= 0) //If the duel ends then reset the healthbars
 	{
@@ -181,7 +185,7 @@ update_status ModuleSceneRyu::Update()
 	
 	//Win/lose condition using time:
 	deltaTime = SDL_GetTicks() / 1000; //GetTicks counts the amount of milliseconds that have elapsed since the SDL_library has been executed. Milliseconds to seconds.
-	timeLimit = deltaTime;
+	timeLimit = deltaTime - startTime;
 
 	if (timeLimit >= 99)
 	{

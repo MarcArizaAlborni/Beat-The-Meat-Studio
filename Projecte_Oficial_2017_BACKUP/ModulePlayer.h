@@ -103,6 +103,8 @@ public:
 	Mix_Chunk* LK;
 	Mix_Chunk* Hadoken_Sound;
 
+	//test attacks
+	Collider* attack_collider = nullptr;
 
 };
 
