@@ -92,7 +92,7 @@
   
   - Time estimated: 5 hours.
     
-  - Time taken: 15 hours. 
+  - Time taken: 25 hours. 
   
     
 
@@ -196,4 +196,4 @@
 - **Deploying the Players (Ryu vs Ryu).** (Date of Completion: 28/04/2019)
   
   - Collective Time Estimation: 18 hours  
-  - Collective Time Taken: 45 hours
+  - Collective Time Taken: 55 hours
