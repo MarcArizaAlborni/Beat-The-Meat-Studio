@@ -306,6 +306,7 @@ update_status ModulePlayer::PreUpdate() {
 		}
 
 		if (currentstate == jumpstate) {
+
 			if (airkick) {
 				if (inputplayer1.Punch1_active) {
 					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
@@ -319,22 +320,27 @@ update_status ModulePlayer::PreUpdate() {
 		}
 
 		if (currentstate == hadoukenstate) {
-			if (current_animation->Finished()) {
-				App->particles->hadouken.speed.x = 5;
-				App->particles->hadouken.life = 2000;
-				App->particles->AddParticle(App->particles->hadouken, position.x + 25, position.y - 70, COLLIDER_PLAYER_SHOT);
-				currentstate = idlestate;
-				hadouken.Reset();
+
+			if (!flip) {
+				if (current_animation->Finished()) {
+					App->particles->hadouken.speed.x = 5;
+					App->particles->hadouken.life = 2000;
+					App->particles->AddParticle(App->particles->hadouken, position.x + 25, position.y - 70, COLLIDER_PLAYER_SHOT);
+					currentstate = idlestate;
+					hadouken.Reset();
+				}
 			}
-			if (App->player2->hadouken2.Finished()) {
+			if (flip) {
+				if (App->player2->hadouken2.Finished()) {
 
-				App->particles->hadouken.speed.x = 5;
-				App->particles->hadouken.life = 2000;
-				App->particles->AddParticle(App->particles->hadouken, position.x + 25, position.y - 70, COLLIDER_PLAYER_SHOT);
-				currentstate = idlestate;
-				App->player2->hadouken2.Reset();
-				LOG("PUNCH TO IDLE");
+					App->particles->hadouken2.speed.x = 5;
+					App->particles->hadouken2.life = 2000;
+					App->particles->AddParticle(App->particles->hadouken2, position.x + 25, position.y - 70, COLLIDER_PLAYER_SHOT);
+					currentstate = idlestate;
+					App->player2->hadouken2.Reset();
+					LOG("PUNCH TO IDLE");
 
+				}
 			}
 		}
 		
@@ -351,18 +357,33 @@ update_status ModulePlayer::PreUpdate() {
 				currentstate = crouched;
 				LOG("IDLE to CROUCH");
 			}
-			if (inputplayer1.Kick1_active) {
-				currentstate = kicklight;
-				attack_collider = App->collision->AddCollider({ position.x + 65 ,position.y - 100 ,50 ,50 }, COLLIDER_PLAYER_ATTACK, App->player);
-				App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
-				LOG("IDLE TO kick");
+			if (!flip) {
+				if (inputplayer1.Punch1_active) {
+					currentstate = punchlight;
+					attack_collider = App->collision->AddCollider({ position.x + 65 ,position.y - 80 ,35 ,20 }, COLLIDER_PLAYER_ATTACK, App->player);
+					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
+					LOG("BACK TO PUNCH");
+				}
+				if (inputplayer1.Kick1_active) {
+					currentstate = kicklight;
+					attack_collider = App->collision->AddCollider({ position.x + 65 ,position.y - 100 ,50 ,50 }, COLLIDER_PLAYER_ATTACK, App->player);
+					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
+					LOG("BACK TO KICK");
+				}
 			}
-			if (inputplayer1.Punch1_active) {
-				currentstate = punchlight;
-				attack_collider = App->collision->AddCollider({ position.x+65 ,position.y-80 ,35 ,20 }, COLLIDER_PLAYER_ATTACK, App->player);
-				App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
-				alreadyHit = false;
-				LOG("IDLE TO punch");
+			if (flip) {
+				if (inputplayer1.Punch1_active) {
+					currentstate = punchlight;
+					attack_collider = App->collision->AddCollider({ position.x -35,position.y - 80 ,35 ,20 }, COLLIDER_PLAYER_ATTACK, App->player);
+					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
+					LOG("BACK TO PUNCH");
+				}
+				if (inputplayer1.Kick1_active) {
+					currentstate = kicklight;
+					attack_collider = App->collision->AddCollider({ position.x -35,position.y - 100 ,50 ,50 }, COLLIDER_PLAYER_ATTACK, App->player);
+					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
+					LOG("BACK TO KICK");
+				}
 			}
 			if (inputplayer1.Special1_active) {
 				App->audio->PlayFx(Hadoken_Sound); //PONER HADOUKEN SOUNDS 
@@ -381,22 +402,42 @@ update_status ModulePlayer::PreUpdate() {
 				currentstate = idlestate;
 				LOG("BACK TO IDLE");
 			}
-			if (inputplayer1.Punch1_active){
-				currentstate = punchlight;
-				attack_collider = App->collision->AddCollider({ position.x + 65 ,position.y - 80 ,35 ,20 }, COLLIDER_PLAYER_ATTACK, App->player);
-				App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
-				LOG("BACK TO PUNCH");
+			if (!flip) {
+				if (inputplayer1.Punch1_active) {
+					currentstate = punchlight;
+					attack_collider = App->collision->AddCollider({ position.x + 65 ,position.y - 80 ,35 ,20 }, COLLIDER_PLAYER_ATTACK, App->player);
+					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
+					LOG("BACK TO PUNCH");
+				}
+				if (inputplayer1.Kick1_active) {
+					currentstate = kicklight;
+					attack_collider = App->collision->AddCollider({ position.x + 65 ,position.y - 100 ,50 ,50 }, COLLIDER_PLAYER_ATTACK, App->player);
+					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
+					LOG("BACK TO KICK");
+				}
+			}
+			if (flip) {
+				if (inputplayer1.Punch1_active) {
+					currentstate = punchlight;
+					attack_collider = App->collision->AddCollider({ position.x ,position.y - 80 ,35 ,20 }, COLLIDER_PLAYER_ATTACK, App->player);
+					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
+					LOG("BACK TO PUNCH");
+				}
+				if (inputplayer1.Kick1_active) {
+					currentstate = kicklight;
+					attack_collider = App->collision->AddCollider({ position.x ,position.y - 100 ,50 ,50 }, COLLIDER_PLAYER_ATTACK, App->player);
+					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
+					LOG("BACK TO KICK");
+				}
+
+
+
 			}
 			if (inputplayer1.W_active) {
 				currentstate =jumpbackward;
 				LOG("BACK TO JUMP");
 			}
-			if (inputplayer1.Kick1_active) {
-				currentstate = kicklight;
-				attack_collider = App->collision->AddCollider({ position.x + 65 ,position.y - 100 ,50 ,50 }, COLLIDER_PLAYER_ATTACK, App->player);
-				App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
-				LOG("BACK TO KICK");
-			}
+			
 			if (inputplayer1.S_active) {
 				currentstate = crouched;
 				LOG("BACK TO KICK");
@@ -408,17 +449,33 @@ update_status ModulePlayer::PreUpdate() {
 				LOG("FORWARD TO IDLE");
 				currentstate = idlestate;
 			}
-			if (inputplayer1.Kick1_active) {
-				currentstate = kicklight;
-				attack_collider = App->collision->AddCollider({ position.x + 65 ,position.y - 100 ,50 ,50 }, COLLIDER_PLAYER_ATTACK, App->player);
-				App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
-				LOG("FORWARD TO KICK");
+			if (!flip) {
+				if (inputplayer1.Punch1_active) {
+					currentstate = punchlight;
+					attack_collider = App->collision->AddCollider({ position.x + 65 ,position.y - 80 ,35 ,20 }, COLLIDER_PLAYER_ATTACK, App->player);
+					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
+					LOG("BACK TO PUNCH");
+				}
+				if (inputplayer1.Kick1_active) {
+					currentstate = kicklight;
+					attack_collider = App->collision->AddCollider({ position.x + 65 ,position.y - 100 ,50 ,50 }, COLLIDER_PLAYER_ATTACK, App->player);
+					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
+					LOG("BACK TO KICK");
+				}
 			}
-			if (inputplayer1.Punch1_active) {
-				currentstate = punchlight;
-				attack_collider = App->collision->AddCollider({ position.x + 65 ,position.y - 80 ,35 ,20 }, COLLIDER_PLAYER_ATTACK, App->player);
-				App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
-				LOG("FORWARD TO PUNCH");
+			if (flip) {
+				if (inputplayer1.Punch1_active) {
+					currentstate = punchlight;
+					attack_collider = App->collision->AddCollider({ position.x ,position.y - 80 ,35 ,20 }, COLLIDER_PLAYER_ATTACK, App->player);
+					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
+					LOG("BACK TO PUNCH");
+				}
+				if (inputplayer1.Kick1_active) {
+					currentstate = kicklight;
+					attack_collider = App->collision->AddCollider({ position.x ,position.y - 100 ,50 ,50 }, COLLIDER_PLAYER_ATTACK, App->player);
+					App->audio->PlayFx(LightDamage_Sound); //PONER SOUNDS
+					LOG("BACK TO KICK");
+				}
 			}
 			if (inputplayer1.W_active) {
 				currentstate = jumpforward; 
@@ -1186,7 +1243,10 @@ update_status ModulePlayer::Update()
 	{ 
 		position.x = (SCREEN_WIDTH +App->render->camera.x ) / SCREEN_SIZE +127;
 	}
-	if (position.x > App->player2->position.x ) {
+	/*if (position.y < groundLevel + 20) {
+		position.y = groundLevel;
+	}*/
+	if (position.x > App->player2->position.x +75) {
 		flip = true;
 	}
 	else {
