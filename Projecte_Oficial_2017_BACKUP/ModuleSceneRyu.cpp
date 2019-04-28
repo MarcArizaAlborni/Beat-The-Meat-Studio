@@ -21,7 +21,7 @@ Uint32 timeLimit = 0;
 Uint32 deltaTime = SDL_GetTicks() / 1000;;
 Uint32 startTime = 0;
 
-bool godOn = false;
+//bool godOn = false;
 
 
 ModuleSceneRyu::ModuleSceneRyu()
@@ -147,7 +147,20 @@ bool ModuleSceneRyu::CleanUp()
 // Update: draw background
 update_status ModuleSceneRyu::Update()
 {
+	//if (App->input->keyboard[SDL_SCANCODE_F1]) //God Mode
+	//{
+	//	if (!godOn)
+	//	{
+	//		damage = 0;
+	//		godOn = true;
+	//	}
 
+	//	else
+	//	{
+	//		damage = 10;
+	//		godOn = false;
+	//	}
+	//}
 	// Draw everything --------------------------------------
 	if (background_pos > 1000.0f)
 	forward = true;
@@ -227,20 +240,20 @@ update_status ModuleSceneRyu::Update()
 		}
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_F1]) //God Mode
-	{
-		if (!godOn)
-		{
-			damage = 0;
-			godOn = true;
-		}
+	//if (App->input->keyboard[SDL_SCANCODE_F1]) //God Mode
+	//{
+	//	if (!godOn)
+	//	{
+	//		damage = 0;
+	//		godOn = true;
+	//	}
 
-		else
-		{
-			damage = 10;
-			godOn = false;
-		}
-	}
+	//	else
+	//	{
+	//		damage = 10;
+	//		godOn = false;
+	//	}
+	//}
 
 	return UPDATE_CONTINUE;
 }

@@ -5,6 +5,8 @@
 #include "ModuleSceneRyu.h"
 #include "SDL/include/SDL.h"
 
+bool godOn = false;
+
 ModuleInput::ModuleInput() : Module()
 {
 	for (uint i = 0; i < MAX_KEYS; ++i)
@@ -59,18 +61,20 @@ update_status ModuleInput::PreUpdate()
 	if (keyboard[SDL_SCANCODE_ESCAPE])
 		return update_status::UPDATE_STOP;
 
-	//if (keyboard[SDL_SCANCODE_F1]) //God Mode
-	//{
-	//	if (App->scene_ryu->damage != 0)
-	//	{
-	//		App->scene_ryu->damage = 0;
-	//	}
+	if (App->input->keyboard[SDL_SCANCODE_F1]) //God Mode
+	{
+		if (!godOn)
+		{
+			App->scene_ryu->damage = 0;
+			godOn = true;
+		}
 
-	//	else
-	//	{
-	//		App->scene_ryu->damage = 10;
-	//	}
-	//}
+		else
+		{
+			App->scene_ryu->damage = 10;
+			godOn = false;
+		}
+	}
 
 	return update_status::UPDATE_CONTINUE;
 }
