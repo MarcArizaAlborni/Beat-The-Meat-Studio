@@ -1330,11 +1330,11 @@ update_status ModulePlayer::Update()
 //TODO 7.4: Detect collision with a wall. If so, go back to intro screen.
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
-	if (!alreadyHit) {
+	/*if (!alreadyHit) {
 		if (c1->type==COLLIDER_PLAYER_ATTACK) {
 			App->scene_ryu->health2.w -= App->scene_ryu->damage;
 			alreadyHit = true;
 		}
-	}
+	}*/
 
 }

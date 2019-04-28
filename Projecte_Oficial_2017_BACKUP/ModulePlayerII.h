@@ -108,6 +108,7 @@ public:
 	Mix_Chunk* LightDamage_Sound;
 	Mix_Chunk* Hadoken_Sound;
 
+	Collider* attack_collider2 = nullptr;
 
 };
 
