@@ -158,7 +158,7 @@ update_status ModuleSceneRyu::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_F5] == 1) //Health-substracting button
 	{
-		health.x -= 10;
+		health.x -= damage;
 	}
 	if (health.x <= 45) //45 instead of 0 because it doesnt exactly fit. If the duel ends then reset the healthbars
 	{
@@ -166,7 +166,7 @@ update_status ModuleSceneRyu::Update()
 	}
 	if (App->input->keyboard[SDL_SCANCODE_F6] == 1) //Health-substracting button
 	{
-		health2.w -= 10;
+		health2.w -= damage;
 	}
 	if (health2.w <= 0) //If the duel ends then reset the healthbars
 	{
