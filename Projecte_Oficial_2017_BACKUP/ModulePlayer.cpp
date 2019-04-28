@@ -113,13 +113,21 @@ ModulePlayer::ModulePlayer()
 
 	//Damaged Animation
 
+	damaged.PushBack({ 499,900,84,108 });
+	damaged.PushBack({582,905,81,103});
+	damaged.PushBack({668,905,87,103});
+	damaged.PushBack({755,899,119,109});
+	damaged.loop = false;
+	damaged.speed = 0.1f;
+
+
 	//Ryu light punch
 	lightPunch.PushBack({ 34, 1368, 70, 96 });
 	lightPunch.PushBack({ 112, 1368, 101, 96 } );
 	lightPunch.PushBack({ 34, 1368, 70, 96 });
 	lightPunch.loop = true;
 	lightPunch.speed = 0.1f;
-
+ 
 	//Ryu light kick
 	lightKick.PushBack({ 35, 1586, 69, 97 });
 	lightKick.PushBack({ 125, 1585, 120, 98 });
@@ -234,6 +242,19 @@ update_status ModulePlayer::PreUpdate() {
 	inputplayer1.Special1_active = App->input->keyboard[SDL_SCANCODE_B] == KEY_DOWN;
 
 	{
+
+
+
+		if (currentstate = damagedstate) {
+
+
+
+
+
+
+
+		}
+
 		if (currentstate == punchlight) {
 			
 			if (current_animation->Finished()) {
