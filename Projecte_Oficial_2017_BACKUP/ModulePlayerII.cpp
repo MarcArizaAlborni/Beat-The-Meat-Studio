@@ -178,7 +178,9 @@ ModulePlayer2::ModulePlayer2()
 }
 
 ModulePlayer2::~ModulePlayer2()
-{}
+{
+
+}
 
 // Load assets
 bool ModulePlayer2::Start()
@@ -1087,6 +1089,9 @@ update_status ModulePlayer2::Update()
 				App->player->backwardjump.Reset();
 				App->player->forwardjump.Reset();
 				App->player->jumpfrontkick.Reset();
+				if (attack_collider2 != nullptr) {
+					attack_collider2->to_delete = true;
+				}
 			}
 			
 
@@ -1113,6 +1118,9 @@ update_status ModulePlayer2::Update()
 				App->player->forwardjump.Reset();
 				App->player->backwardjump.Reset();
 				App->player->jumpfrontkick.Reset();
+				if (attack_collider2 != nullptr) {
+					attack_collider2->to_delete = true;
+				}
 
 			}
 
@@ -1176,10 +1184,15 @@ update_status ModulePlayer2::Update()
 			else if (position.y == groundLevelII) {
 				
 				airkickII = true;
+				App->player->jumpkick.Reset();
 				App->player->jump.Reset();
+				App->player->jumppunch.Reset();
 
 				currentstate = idlestate2;
 				gravityII = 1;
+				if (attack_collider2 != nullptr) {
+					attack_collider2->to_delete = true;
+				}
 			}
 			LOG("JUMP ANIMATION ACTIVE");
 			break;
@@ -1225,6 +1238,11 @@ update_status ModulePlayer2::Update()
 				currentstate = idlestate2;
 				gravityII = 1;
 				App->player->jumpkick.Reset();
+				App->player->jump.Reset();
+				App->player->jumppunch.Reset();
+				if (attack_collider2 != nullptr) {
+					attack_collider2->to_delete = true;
+				}
 			}
 			LOG("JUMP KICK ACTIVE");
 			break;
@@ -1243,8 +1261,12 @@ update_status ModulePlayer2::Update()
 				airkickII = true;
 				currentstate = idlestate2;
 				gravityII = 1;
-				App->player->jumppunch.Reset();
+				App->player->jumpkick.Reset();
 				App->player->jump.Reset();
+				App->player->jumppunch.Reset();
+				if (attack_collider2 != nullptr) {
+					attack_collider2->to_delete = true;
+				}
 
 			}
 			LOG("JUMP PUNCH ACTIVE");
