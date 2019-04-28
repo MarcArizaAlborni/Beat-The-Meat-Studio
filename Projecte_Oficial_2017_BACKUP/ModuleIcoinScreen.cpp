@@ -31,7 +31,7 @@ ModuleIcoinScreen::~ModuleIcoinScreen()
 bool ModuleIcoinScreen::Start()
 {
 	LOG("Loading Welcome screen");
-	graphics = App->textures->Load("StartScreenIII_II.png");
+	graphics = App->textures->Load("Sprites/StartScreenIII_II.png");
 	return true;
 }
 

@@ -26,7 +26,7 @@ ModuleCongratScreen::~ModuleCongratScreen()
 bool ModuleCongratScreen::Start()
 {
 	LOG("Loading Welcome screen");
-	graphics = App->textures->Load("Ryu_Wins_Honda.png");
+	graphics = App->textures->Load("Sprites/Ryu_Wins_Honda.png");
 	return true;
 }
 

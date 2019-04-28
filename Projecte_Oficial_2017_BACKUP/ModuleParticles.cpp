@@ -23,7 +23,7 @@ ModuleParticles::~ModuleParticles()
 bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
-	graphics = App->textures->Load("RyuP1_def.png");
+	graphics = App->textures->Load("Sprites/RyuP1_def.png");
 
 	//Hadouken Particle
 	hadouken.anim.PushBack({ 183, 975, 65, 39 });

@@ -28,7 +28,7 @@ ModuleStartScreen::~ModuleStartScreen()
 bool ModuleStartScreen::Start()
 {
 	LOG("Loading Welcome screen");
-	graphics = App->textures->Load("Start_Game.png");
+	graphics = App->textures->Load("Sprites/Start_Game.png");
 
 	return true;
 }

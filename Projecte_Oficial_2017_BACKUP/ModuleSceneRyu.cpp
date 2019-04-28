@@ -95,8 +95,8 @@ ModuleSceneRyu::~ModuleSceneRyu()
 bool ModuleSceneRyu::Start()
 {
 	LOG("Loading Ryu scene");
-	graphics = App->textures->Load("ryu_stage.png");
-	graphics2 = App->textures->Load("UI_Spritesheet.png");
+	graphics = App->textures->Load("Sprites/ryu_stage.png");
+	graphics2 = App->textures->Load("Sprites/UI_Spritesheet.png");
 	Background_Sound = App->audio->LoadMus("Audios/Music/05 Japan (Ryu) I.ogg");
 
 	App->audio->PlayMusic(Background_Sound, 0);

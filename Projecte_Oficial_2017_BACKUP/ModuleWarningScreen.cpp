@@ -26,7 +26,7 @@ ModuleWarningScreen::~ModuleWarningScreen()
 bool ModuleWarningScreen::Start()
 {
 	LOG("Loading Warning screen");
-	graphics = App->textures->Load("StartScreenII.png");
+	graphics = App->textures->Load("Sprites/StartScreenII.png");
 	return true;
 }
 

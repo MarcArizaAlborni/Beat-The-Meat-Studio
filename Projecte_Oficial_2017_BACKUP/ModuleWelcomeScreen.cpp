@@ -27,7 +27,7 @@ ModuleWelcomeScreen::~ModuleWelcomeScreen()
 bool ModuleWelcomeScreen::Start()
 {
 	LOG("Loading Welcome screen");
-	graphics = App->textures->Load("First_text.png");
+	graphics = App->textures->Load("Sprites/First_text.png");
 	return true;
 }
 

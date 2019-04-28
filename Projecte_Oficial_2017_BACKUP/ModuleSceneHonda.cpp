@@ -46,7 +46,7 @@ bool ModuleSceneHonda::Start()
 {
 	LOG("Loading background assets");
 	bool ret = true;
-	graphics = App->textures->Load("honda_stage2.png");
+	graphics = App->textures->Load("Sprites/honda_stage2.png");
 
 	// TODO 5.1: Enable (and properly disable) the player module
 	App->player->Enable();

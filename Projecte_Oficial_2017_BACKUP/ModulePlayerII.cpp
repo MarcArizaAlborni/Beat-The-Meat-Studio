@@ -187,8 +187,8 @@ bool ModulePlayer2::Start()
 {
 	LOG("Loading player textures");
 	bool ret = true;
-	graphics = App->textures->Load("RyuP1_Inv.png"); // JA TE LA FOTO BONA
-	graphics2 = App->textures->Load("RyuP1_Def.png"); // JA TE LA FOTO BONA
+	graphics = App->textures->Load("Sprites/RyuP1_Inv.png"); // JA TE LA FOTO BONA
+	graphics2 = App->textures->Load("Sprites/RyuP1_Def.png"); // JA TE LA FOTO BONA
 	LightDamage_Sound = App->audio->LoadFx("Audios/FX/25H.wav");
 	Hadoken_Sound = App->audio->LoadFx("Audios/Voices/Ryu&Ken hadouken.wav");
 
