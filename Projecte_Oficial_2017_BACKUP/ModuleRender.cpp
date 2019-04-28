@@ -8,7 +8,8 @@
 #include "ModuleSceneHonda.h"
 #include "ModuleSceneryu.h"
 #include "ModuleCollision.h"
-
+#include "ModulePlayer.h"
+#include "ModulePlayerII.h"
 ModuleRender::ModuleRender() : Module()
 {
 	camera.x = camera.y = 0;

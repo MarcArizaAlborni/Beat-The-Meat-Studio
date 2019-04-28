@@ -69,6 +69,9 @@ public:
 
 	SDL_Rect health;
 	SDL_Texture* graphics = nullptr;
+	//test
+	SDL_Texture* graphics2 = nullptr;
+	bool flip = false;
 	Animation * current_animation = nullptr;
 	int font_score = -1;
 	char score_text[10];

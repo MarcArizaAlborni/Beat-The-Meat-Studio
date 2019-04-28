@@ -9,6 +9,7 @@
 #include "ModuleFonts.h"
 #include "ModuleCollision.h"
 #include "ModuleSceneRyu.h"
+#include "ModulePlayerII.h"
 #include <stdio.h>
 
 
@@ -21,9 +22,11 @@ int maxHeight = 120;
 bool airkick = true;
 bool alreadyHit = false;
 
+
 ModulePlayer::ModulePlayer()
 {
 	graphics = NULL;
+	graphics2 = NULL;
 	current_animation = NULL;
 	
 	position.x = 100;
@@ -173,6 +176,8 @@ ModulePlayer::ModulePlayer()
 	jumpfrontpunch.PushBack({ 99, 1689, 104, 92 });
 	jumpfrontpunch.loop = false;
 	jumpfrontpunch.speed = 0.08f;
+
+
 }
 
 ModulePlayer::~ModulePlayer()
@@ -183,7 +188,9 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player textures");
 	bool ret = true;
+	graphics2 = App->textures->Load("RyuP1_Inv.png"); // JA TE LA FOTO BONA
 	graphics = App->textures->Load("RyuP1_Def.png"); // JA TE LA FOTO BONA
+	
 	LightDamage_Sound = App->audio->LoadFx("Audios/FX/25H.wav");
 	Hadoken_Sound = App->audio->LoadFx("Audios/Voices/Ryu&Ken hadouken.wav");
 
@@ -490,291 +497,580 @@ update_status ModulePlayer::PreUpdate() {
 }
 
 float gravity = 1;
+
 update_status ModulePlayer::Update()
 {
-	switch (currentstate) {
+	if (!flip) {
+		switch (currentstate) {
 
-	case jumpfalling:
+		case jumpfalling:
 
-		current_animation = &jump;
-		position.y -= speed * gravity;
-		player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
+			current_animation = &jump;
+			position.y -= speed * gravity;
+			player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
 
-		if (position.y <= maxHeight)
-		{
-			gravity = -1;
-		}
+			if (position.y <= maxHeight)
+			{
+				gravity = -1;
+			}
 
-		else if (position.y == groundLevel) {
-			jump.Reset();
-			airkick = true;
-			currentstate = idlestate;
-			gravity = 1;
-		}
-		LOG("JUMPFALLING ANIMATION ACTIVE");
-		break;
-
-	case jumpbackwardkick:
-
-		current_animation = &jumpbackkick;
-		player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
-		position.x -= speed;
-		position.y -= speed * gravity;
-
-		if (position.y <= maxHeight)
-		{
-			gravity = -1;
-		}
-
-		else if (position.y == groundLevel) {
-			jump.Reset();
-			jumpbackkick.Reset();
-			backwardjump.Reset();
-			airkick = true;
-			currentstate = idlestate;
-			gravity = 1;
-		}
-		LOG("JUMPBACKKICK ANIMATION ACTIVE");
-		break;
-
-	case jumpbackwardpunch:
-
-		current_animation = &jumpbackpunch;
-		player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
-		position.x -= speed;
-		position.y -= speed * gravity;
-
-		if (position.y <= maxHeight)
-		{
-			gravity = -1;
-		}
-
-		else if (position.y == groundLevel) {
-			jump.Reset();
-			airkick = true;
-			jumpbackpunch.Reset();
-			backwardjump.Reset();
-			currentstate = idlestate;
-			gravity = 1;
-		}
-		LOG("JUMPBACKPUNCH ANIMATION ACTIVE");
-		break;
-
-	case jumpforwardkick:
-
-		current_animation = &jumpfrontkick;
-		player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
-		position.x += speed;
-		position.y -= speed * gravity;
-
-		if (position.y <= maxHeight)
-		{
-			gravity = -1;
-		}
-
-		else if (position.y == groundLevel) {
-			jump.Reset();
-			airkick = true;
-			jumpfrontkick.Reset();
-			currentstate = idlestate;
-			gravity = 1;
-			forwardjump.Reset();
-		}
-		LOG("JUMPFRONTKICK ANIMATION ACTIVE");
-		break;
-
-	case  jumpforwardpunch:
-
-		current_animation = &jumpfrontpunch;
-		player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
-		position.x += speed;
-		position.y -= speed * gravity;
-
-		if (position.y <= maxHeight)
-		{
-			gravity = -1;
-		}
-
-		else if (position.y == groundLevel) {
-			jumpfrontpunch.Reset();
-			jump.Reset();
-			forwardjump.Reset();
-			airkick = true;
-			currentstate = idlestate;
-			gravity = 1;
-		}
-		LOG("JUMPFRONTPUNCH ANIMATION ACTIVE");
-		break;
-
-	case damagedstate:
-
-		current_animation = &damaged;
-		LOG("DAMAGED ANIMATION ACTIVE");
-		break;
-
-	case jumpforward:
-		position.x += speed;
-		position.y -= speed * gravity;
-		current_animation = &forwardjump;
-		player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
-		if (position.y <= maxHeight)
-		{
-			gravity = -1;
-		}
-		else if (position.y == groundLevel) {
-			jump.Reset();
-			airkick = true;
-			currentstate = idlestate;
-			jumpfrontkick.Reset();
-			gravity = 1;
-			forwardjump.Reset();
-		}
-		LOG("FORWARD JUMP ANIMATION ACTIVE");
-		break;
-
-	case jumpbackward:
-
-		current_animation = &backwardjump;
-		player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
-		position.x -= speed;
-		position.y -= speed * gravity;
-		if (position.y <= maxHeight)
-		{
-			gravity = -1;
-		}
-		else if (position.y == groundLevel) {
-			jump.Reset();
-			airkick = true;
-			currentstate = idlestate;
-			gravity = 1;
-			jumpbackkick.Reset();
-			backwardjump.Reset();
-		}
-		LOG("backward JUMP ANIMATION ACTIVE");
-		break;
-
-	case punchcrouch:
-
-		current_animation = &crouchpunch;
-		LOG("CROUCH PUNCH ANIMATION ACTIVE")
+			else if (position.y == groundLevel) {
+				jump.Reset();
+				airkick = true;
+				currentstate = idlestate;
+				gravity = 1;
+			}
+			LOG("JUMPFALLING ANIMATION ACTIVE");
 			break;
 
-	case kickcrouch:
+		case jumpbackwardkick:
 
-		current_animation = &crouchkick;
-		LOG("CROUCH KICK ANIMATION ACTIVE");
-		break;
+			current_animation = &jumpbackkick;
+			player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
+			position.x -= speed;
+			position.y -= speed * gravity;
 
-	case idlestate:
+			if (position.y <= maxHeight)
+			{
+				gravity = -1;
+			}
 
-		crouch.Reset();
-		player_collider->rect.h = 93;
-		player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
-		current_animation = &idle;
-		LOG("IDLE ANIMATION ACTIVE");
-		break;
+			else if (position.y == groundLevel) {
+				jump.Reset();
+				jumpbackkick.Reset();
+				backwardjump.Reset();
+				airkick = true;
+				currentstate = idlestate;
+				gravity = 1;
+			}
+			LOG("JUMPBACKKICK ANIMATION ACTIVE");
+			break;
 
-	case backwardstate:
-		player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
-		current_animation = &backward;
-		position.x -= speed;
-		LOG("BACKWARD ANIMATION ACTIVE");
-		break;
+		case jumpbackwardpunch:
 
-	case forwardstate:
-		player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
-		current_animation = &forward;
-		position.x += speed;
-		LOG("FORWARD ANIMATION ACTIVE");
-		break;
+			current_animation = &jumpbackpunch;
+			player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
+			position.x -= speed;
+			position.y -= speed * gravity;
 
-	case jumpstate:
+			if (position.y <= maxHeight)
+			{
+				gravity = -1;
+			}
 
-		current_animation = &jump;
-		player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
-		position.y -= speed * gravity;
+			else if (position.y == groundLevel) {
+				jump.Reset();
+				airkick = true;
+				jumpbackpunch.Reset();
+				backwardjump.Reset();
+				currentstate = idlestate;
+				gravity = 1;
+			}
+			LOG("JUMPBACKPUNCH ANIMATION ACTIVE");
+			break;
 
-		if (position.y <= maxHeight)
-		{
-			gravity = -1;
+		case jumpforwardkick:
+
+			current_animation = &jumpfrontkick;
+			player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
+			position.x += speed;
+			position.y -= speed * gravity;
+
+			if (position.y <= maxHeight)
+			{
+				gravity = -1;
+			}
+
+			else if (position.y == groundLevel) {
+				jump.Reset();
+				airkick = true;
+				jumpfrontkick.Reset();
+				currentstate = idlestate;
+				gravity = 1;
+				forwardjump.Reset();
+			}
+			LOG("JUMPFRONTKICK ANIMATION ACTIVE");
+			break;
+
+		case  jumpforwardpunch:
+
+			current_animation = &jumpfrontpunch;
+			player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
+			position.x += speed;
+			position.y -= speed * gravity;
+
+			if (position.y <= maxHeight)
+			{
+				gravity = -1;
+			}
+
+			else if (position.y == groundLevel) {
+				jumpfrontpunch.Reset();
+				jump.Reset();
+				forwardjump.Reset();
+				airkick = true;
+				currentstate = idlestate;
+				gravity = 1;
+			}
+			LOG("JUMPFRONTPUNCH ANIMATION ACTIVE");
+			break;
+
+		case damagedstate:
+
+			current_animation = &damaged;
+			LOG("DAMAGED ANIMATION ACTIVE");
+			break;
+
+		case jumpforward:
+			position.x += speed;
+			position.y -= speed * gravity;
+			current_animation = &forwardjump;
+			player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
+			if (position.y <= maxHeight)
+			{
+				gravity = -1;
+			}
+			else if (position.y == groundLevel) {
+				jump.Reset();
+				airkick = true;
+				currentstate = idlestate;
+				jumpfrontkick.Reset();
+				gravity = 1;
+				forwardjump.Reset();
+			}
+			LOG("FORWARD JUMP ANIMATION ACTIVE");
+			break;
+
+		case jumpbackward:
+
+			current_animation = &backwardjump;
+			player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
+			position.x -= speed;
+			position.y -= speed * gravity;
+			if (position.y <= maxHeight)
+			{
+				gravity = -1;
+			}
+			else if (position.y == groundLevel) {
+				jump.Reset();
+				airkick = true;
+				currentstate = idlestate;
+				gravity = 1;
+				jumpbackkick.Reset();
+				backwardjump.Reset();
+			}
+			LOG("backward JUMP ANIMATION ACTIVE");
+			break;
+
+		case punchcrouch:
+
+			current_animation = &crouchpunch;
+			LOG("CROUCH PUNCH ANIMATION ACTIVE")
+				break;
+
+		case kickcrouch:
+
+			current_animation = &crouchkick;
+			LOG("CROUCH KICK ANIMATION ACTIVE");
+			break;
+
+		case idlestate:
+
+			crouch.Reset();
+			player_collider->rect.h = 93;
+			player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
+			current_animation = &idle;
+			LOG("IDLE ANIMATION ACTIVE");
+			break;
+
+		case backwardstate:
+			player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
+			current_animation = &backward;
+			position.x -= speed;
+			LOG("BACKWARD ANIMATION ACTIVE");
+			break;
+
+		case forwardstate:
+			player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
+			current_animation = &forward;
+			position.x += speed;
+			LOG("FORWARD ANIMATION ACTIVE");
+			break;
+
+		case jumpstate:
+
+			current_animation = &jump;
+			player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
+			position.y -= speed * gravity;
+
+			if (position.y <= maxHeight)
+			{
+				gravity = -1;
+			}
+
+			else if (position.y == groundLevel) {
+				jump.Reset();
+				airkick = true;
+				jumpkick.Reset();
+				currentstate = idlestate;
+				gravity = 1;
+			}
+			LOG("JUMP ANIMATION ACTIVE");
+			break;
+
+		case punchlight:
+			current_animation = &lightPunch;
+
+			LOG("PUNCH ANIMATION ACTIVE");
+			break;
+
+		case kicklight:
+
+			current_animation = &lightKick;
+			LOG("KICK ANIMATION ACTIVE");
+			break;
+
+		case crouched:
+
+			current_animation = &crouch;
+			player_collider->rect.h = 65;
+			player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 68 - App->render->camera.y);
+			LOG("CROUCHED ANIMATION ACTIVE");
+			break;
+
+		case hadoukenstate:
+
+			current_animation = &hadouken;
+			LOG("KADOUKEN ANIMATION ACTIVE");
+			break;
+
+		case jumpkickstate:
+
+			current_animation = &jumpkick;
+			player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
+			position.y -= speed * gravity;
+			if (position.y <= maxHeight)
+			{
+				gravity = -1;
+
+			}
+			else if (position.y == groundLevel) {
+				jump.Reset();
+				airkick = true;
+				currentstate = idlestate;
+				gravity = 1;
+				backwardjump.Reset();
+			}
+			LOG("JUMP KICK ACTIVE");
+			break;
+
+		case jumppunchstate:
+			current_animation = &jumpbackpunch;
+			player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
+			position.y -= speed * gravity;
+
+			if (position.y <= maxHeight)
+			{
+				gravity = -1;
+			}
+			else if (position.y == groundLevel) {
+				jump.Reset();
+				airkick = true;
+				currentstate = idlestate;
+				gravity = 1;
+				backwardjump.Reset();
+			}
+			LOG("JUMP PUNCH ACTIVE");
+			break;
 		}
-
-		else if (position.y == groundLevel) {
-			jump.Reset();
- 			airkick = true;
-			jumpkick.Reset();
-			currentstate = idlestate;
-			gravity = 1;
-		}
-		LOG("JUMP ANIMATION ACTIVE");
-		break;
-
-	case punchlight:
-		current_animation = &lightPunch;
-		
-		LOG("PUNCH ANIMATION ACTIVE");
-		break;
-
-	case kicklight:
-
-		current_animation = &lightKick;
-		LOG("KICK ANIMATION ACTIVE");
-		break;
-
-	case crouched:
-
-		current_animation = &crouch;
-		player_collider->rect.h = 65;
-		player_collider->SetPos(position.x - App->render->camera.x +5, position.y - 68 - App->render->camera.y);
-		LOG("CROUCHED ANIMATION ACTIVE");
-		break;
-
-	case hadoukenstate:
-		
-		current_animation = &hadouken;
-		LOG("KADOUKEN ANIMATION ACTIVE");
-		break;
-
-	case jumpkickstate:
-
-		current_animation = &jumpkick;
-		player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
-		position.y -= speed * gravity;
-		if (position.y <= maxHeight)
-		{
-			gravity = -1;
-
-		}
-		else if (position.y == groundLevel) {
-			jump.Reset();
-			airkick = true;
-			currentstate = idlestate;
-			gravity = 1;
-			backwardjump.Reset();
-		}
-		LOG("JUMP KICK ACTIVE");
-		break;
-
-	case jumppunchstate:
-		current_animation = &jumpbackpunch;
-		player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
-		position.y -= speed * gravity;
-
-		if (position.y <= maxHeight)
-		{
-			gravity = -1;
-		}
-		else if (position.y == groundLevel) {
-			jump.Reset();
-			airkick = true;
-			currentstate = idlestate;
-			gravity = 1;
-			backwardjump.Reset();
-		}
-		LOG("JUMP PUNCH ACTIVE");
-		break;
-
 	}
+	if (flip) { // FLIP HERE AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+		switch (currentstate) {
+
+		case jumpfalling:
+
+			current_animation = &jump;
+			position.y -= speed * gravity;
+			player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
+
+			if (position.y <= maxHeight)
+			{
+				gravity = -1;
+			}
+
+			else if (position.y == groundLevel) {
+				jump.Reset();
+				airkick = true;
+				currentstate = idlestate;
+				gravity = 1;
+			}
+			LOG("JUMPFALLING ANIMATION ACTIVE");
+			break;
+
+		case jumpbackwardkick:
+
+			current_animation = &jumpbackkick;
+			player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
+			position.x -= speed;
+			position.y -= speed * gravity;
+
+			if (position.y <= maxHeight)
+			{
+				gravity = -1;
+			}
+
+			else if (position.y == groundLevel) {
+				jump.Reset();
+				jumpbackkick.Reset();
+				backwardjump.Reset();
+				airkick = true;
+				currentstate = idlestate;
+				gravity = 1;
+			}
+			LOG("JUMPBACKKICK ANIMATION ACTIVE");
+			break;
+
+		case jumpbackwardpunch:
+
+			current_animation = &jumpbackpunch;
+			player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
+			position.x -= speed;
+			position.y -= speed * gravity;
+
+			if (position.y <= maxHeight)
+			{
+				gravity = -1;
+			}
+
+			else if (position.y == groundLevel) {
+				jump.Reset();
+				airkick = true;
+				jumpbackpunch.Reset();
+				backwardjump.Reset();
+				currentstate = idlestate;
+				gravity = 1;
+			}
+			LOG("JUMPBACKPUNCH ANIMATION ACTIVE");
+			break;
+
+		case jumpforwardkick:
+
+			current_animation = &jumpfrontkick;
+			player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
+			position.x += speed;
+			position.y -= speed * gravity;
+
+			if (position.y <= maxHeight)
+			{
+				gravity = -1;
+			}
+
+			else if (position.y == groundLevel) {
+				jump.Reset();
+				airkick = true;
+				jumpfrontkick.Reset();
+				currentstate = idlestate;
+				gravity = 1;
+				forwardjump.Reset();
+			}
+			LOG("JUMPFRONTKICK ANIMATION ACTIVE");
+			break;
+
+		case  jumpforwardpunch:
+
+			current_animation = &jumpfrontpunch;
+			player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
+			position.x += speed;
+			position.y -= speed * gravity;
+
+			if (position.y <= maxHeight)
+			{
+				gravity = -1;
+			}
+
+			else if (position.y == groundLevel) {
+				jumpfrontpunch.Reset();
+				jump.Reset();
+				forwardjump.Reset();
+				airkick = true;
+				currentstate = idlestate;
+				gravity = 1;
+			}
+			LOG("JUMPFRONTPUNCH ANIMATION ACTIVE");
+			break;
+
+		case damagedstate:
+
+			current_animation = &damaged;
+			LOG("DAMAGED ANIMATION ACTIVE");
+			break;
+
+		case jumpforward:
+			position.x += speed;
+			position.y -= speed * gravity;
+			current_animation = &forwardjump;
+			player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
+			if (position.y <= maxHeight)
+			{
+				gravity = -1;
+			}
+			else if (position.y == groundLevel) {
+				jump.Reset();
+				airkick = true;
+				currentstate = idlestate;
+				jumpfrontkick.Reset();
+				gravity = 1;
+				forwardjump.Reset();
+			}
+			LOG("FORWARD JUMP ANIMATION ACTIVE");
+			break;
+
+		case jumpbackward:
+
+			current_animation = &backwardjump;
+			player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
+			position.x -= speed;
+			position.y -= speed * gravity;
+			if (position.y <= maxHeight)
+			{
+				gravity = -1;
+			}
+			else if (position.y == groundLevel) {
+				jump.Reset();
+				airkick = true;
+				currentstate = idlestate;
+				gravity = 1;
+				jumpbackkick.Reset();
+				backwardjump.Reset();
+			}
+			LOG("backward JUMP ANIMATION ACTIVE");
+			break;
+
+		case punchcrouch:
+
+			current_animation = &crouchpunch;
+			LOG("CROUCH PUNCH ANIMATION ACTIVE")
+				break;
+
+		case kickcrouch:
+
+			current_animation = &crouchkick;
+			LOG("CROUCH KICK ANIMATION ACTIVE");
+			break;
+
+		case idlestate:
+
+			crouch.Reset();
+			player_collider->rect.h = 93;
+			player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
+
+			current_animation = &App->player2->idle2;
+			LOG("IDLE ANIMATION ACTIVE");
+			break;
+
+		case backwardstate:
+			player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
+			current_animation = &backward;
+			position.x -= speed;
+			LOG("BACKWARD ANIMATION ACTIVE");
+			break;
+
+		case forwardstate:
+			player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
+			current_animation = &forward;
+			position.x += speed;
+			LOG("FORWARD ANIMATION ACTIVE");
+			break;
+
+		case jumpstate:
+
+			current_animation = &jump;
+			player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
+			position.y -= speed * gravity;
+
+			if (position.y <= maxHeight)
+			{
+				gravity = -1;
+			}
+
+			else if (position.y == groundLevel) {
+				jump.Reset();
+				airkick = true;
+				jumpkick.Reset();
+				currentstate = idlestate;
+				gravity = 1;
+			}
+			LOG("JUMP ANIMATION ACTIVE");
+			break;
+
+		case punchlight:
+			current_animation = &lightPunch;
+
+			LOG("PUNCH ANIMATION ACTIVE");
+			break;
+
+		case kicklight:
+
+			current_animation = &lightKick;
+			LOG("KICK ANIMATION ACTIVE");
+			break;
+
+		case crouched:
+
+			current_animation = &crouch;
+			player_collider->rect.h = 65;
+			player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 68 - App->render->camera.y);
+			LOG("CROUCHED ANIMATION ACTIVE");
+			break;
+
+		case hadoukenstate:
+
+			current_animation = &hadouken;
+			LOG("KADOUKEN ANIMATION ACTIVE");
+			break;
+
+		case jumpkickstate:
+
+			current_animation = &jumpkick;
+			player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
+			position.y -= speed * gravity;
+			if (position.y <= maxHeight)
+			{
+				gravity = -1;
+
+			}
+			else if (position.y == groundLevel) {
+				jump.Reset();
+				airkick = true;
+				currentstate = idlestate;
+				gravity = 1;
+				backwardjump.Reset();
+			}
+			LOG("JUMP KICK ACTIVE");
+			break;
+
+		case jumppunchstate:
+			current_animation = &jumpbackpunch;
+			player_collider->SetPos(position.x - App->render->camera.x + 5, position.y - 93 - App->render->camera.y);
+			position.y -= speed * gravity;
+
+			if (position.y <= maxHeight)
+			{
+				gravity = -1;
+			}
+			else if (position.y == groundLevel) {
+				jump.Reset();
+				airkick = true;
+				currentstate = idlestate;
+				gravity = 1;
+				backwardjump.Reset();
+			}
+			LOG("JUMP PUNCH ACTIVE");
+			break;
+		}
+	}
+
+
 	//Limits ben fets
 	if (position.x <= App->render->camera.x - 10 / SCREEN_SIZE)
 	{
@@ -783,10 +1079,27 @@ update_status ModulePlayer::Update()
 	if (position.x >= SCREEN_WIDTH - 60 + App->render->camera.x -10/ SCREEN_SIZE) { //Hardcodeado una mica, s'haura de revisar
 		position.x = SCREEN_WIDTH - 60 + App->render->camera.x -10/ SCREEN_SIZE;
 	}
+	if (position.x > App->player2->position.x ) {
+		flip = true;
+	}
+	else {
+		flip = false;
+	}
+	/*if (position.x >= App->player2->position.x) {
+		if (App->player->currentstate == forwardstate) {
+			position.x -= 1;
+			App->player2->position.x += 1;
+		}
+
+	}*/
 
 	SDL_Rect r = current_animation->GetCurrentFrame();
-	App->render->Blit(graphics, position.x, position.y - r.h, &r);
-
+	if (!flip) {
+		App->render->Blit(graphics, position.x, position.y - r.h, &r);
+	}
+	if (flip) {
+		App->render->Blit(graphics2, position.x - 87, position.y - r.h, &r);
+	}
 	return UPDATE_CONTINUE;
 }
 
@@ -799,4 +1112,5 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			alreadyHit = true;
 		}
 	}
+
 }

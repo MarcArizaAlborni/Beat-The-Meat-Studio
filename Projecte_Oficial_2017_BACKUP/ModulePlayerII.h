@@ -70,30 +70,32 @@ public:
 
 	SDL_Rect health;
 	SDL_Texture* graphics = nullptr;
+	//test
+	SDL_Texture* graphics2 = nullptr;
 	Animation * current_animation = nullptr;
 	int font_score = -1;
 	char score_text[10];
 	uint score = 0;
 	STATE2 currentstate;
-	Animation idle;
-	Animation forward;
-	Animation backward;
-	Animation lightPunch;
-	Animation lightKick;
-	Animation jump;
+	Animation idle2;
+	Animation forward2;
+	Animation backward2;
+	Animation lightPunch2;
+	Animation lightKick2;
+	Animation jump2;
 	Animation hadouken2;
-	Animation crouchpunch;
-	Animation crouchkick;
-	Animation jumppunch;
-	Animation jumpkick;
-	Animation damaged;
-	Animation forwardjump;
-	Animation backwardjump;
-	Animation crouch;
-	Animation jumpbackkick;
-	Animation jumpbackpunch;
-	Animation jumpfrontkick;
-	Animation jumpfrontpunch;
+	Animation crouchpunch2;
+	Animation crouchkick2;
+	Animation jumppunch2;
+	Animation jumpkick2;
+	Animation damaged2;
+	Animation forwardjump2;
+	Animation backwardjump2;
+	Animation crouch2;
+	Animation jumpbackkick2;
+	Animation jumpbackpunch2;
+	Animation jumpfrontkick2;
+	Animation jumpfrontpunch2;
 
 
 	iPoint position;
