@@ -648,6 +648,7 @@ update_status ModulePlayer::PreUpdate() {
 					currentstate = kickcrouch;
 				}
 			}
+
 			if (!flip) {
 				if (inputplayer1.Punch1_active) {
 					attack_collider = App->collision->AddCollider({ position.x +65 ,position.y - 60 ,38 ,20 }, COLLIDER_PLAYER_ATTACK, App->player);
