@@ -550,21 +550,41 @@ update_status ModulePlayer2::PreUpdate() {
 
 		if (currentstate == punchcrouch2) {
 			LOG("CROUCH TO CROUCHPUNCH");
+			if (App->player->flip){
+				if (current_animation->Finished()) {
+					attack_collider2->to_delete = true;
+					currentstate = crouched2;
+					App->player->crouchpunch.Reset();
+					alreadyHit2 = false;
+				}
+			}
+		if (!App->player->flip) {
 			if (current_animation->Finished()) {
 				attack_collider2->to_delete = true;
 				currentstate = crouched2;
-				App->player->crouchpunch.Reset();
+				crouchpunch2.Reset();
 				alreadyHit2 = false;
 			}
+		}
 		}
 
 		if (currentstate == kickcrouch2) {
 			LOG("CROUCH TO KICKCROUCH");
-			if (current_animation->Finished()) {
-				attack_collider2->to_delete = true;
-				currentstate = crouched2;
-				App->player->crouchkick.Reset();
-				alreadyHit2 = false;
+			if (App->player->flip) {
+				if (current_animation->Finished()) {
+					attack_collider2->to_delete = true;
+					currentstate = crouched2;
+					App->player->crouchkick.Reset();
+					alreadyHit2 = false;
+				}
+			}
+			if (!App->player->flip) {
+				if (current_animation->Finished()) {
+					attack_collider2->to_delete = true;
+					currentstate = crouched2;
+					crouchkick2.Reset();
+					alreadyHit2 = false;
+				}
 			}
 		}
 

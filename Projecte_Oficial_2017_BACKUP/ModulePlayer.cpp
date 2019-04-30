@@ -636,16 +636,29 @@ update_status ModulePlayer::PreUpdate() {
 		}
 		
 		if (currentstate == crouched) {
-
-			if (inputplayer1.Punch1_active) {
-				attack_collider = App->collision->AddCollider({ position.x + 65 ,position.y - 60 ,38 ,20 }, COLLIDER_PLAYER_ATTACK, App->player);
-				App->audio->PlayFx(LightDamage_Sound);
-				currentstate = punchcrouch;
+			if (flip) {
+				if (inputplayer1.Punch1_active) {
+					attack_collider = App->collision->AddCollider({ position.x - 30 ,position.y - 60 ,38 ,20 }, COLLIDER_PLAYER_ATTACK, App->player);
+					App->audio->PlayFx(LightDamage_Sound);
+					currentstate = punchcrouch;
+				}
+				if (inputplayer1.Kick1_active) {
+					attack_collider = App->collision->AddCollider({ position.x - 40 ,position.y - 24 ,50 ,25 }, COLLIDER_PLAYER_ATTACK, App->player);
+					App->audio->PlayFx(LightDamage_Sound);
+					currentstate = kickcrouch;
+				}
 			}
-			if (inputplayer1.Kick1_active) {
-				attack_collider = App->collision->AddCollider({ position.x + 65 ,position.y -24 ,50 ,25 }, COLLIDER_PLAYER_ATTACK, App->player);
-				App->audio->PlayFx(LightDamage_Sound);
-				currentstate = kickcrouch;
+			if (!flip) {
+				if (inputplayer1.Punch1_active) {
+					attack_collider = App->collision->AddCollider({ position.x +65 ,position.y - 60 ,38 ,20 }, COLLIDER_PLAYER_ATTACK, App->player);
+					App->audio->PlayFx(LightDamage_Sound);
+					currentstate = punchcrouch;
+				}
+				if (inputplayer1.Kick1_active) {
+					attack_collider = App->collision->AddCollider({ position.x +65 ,position.y - 24 ,50 ,25 }, COLLIDER_PLAYER_ATTACK, App->player);
+					App->audio->PlayFx(LightDamage_Sound);
+					currentstate = kickcrouch;
+				}
 			}
 			if (!flip) {
 				if (!inputplayer1.S_active) {

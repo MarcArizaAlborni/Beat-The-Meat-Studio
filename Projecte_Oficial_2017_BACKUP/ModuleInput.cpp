@@ -61,7 +61,7 @@ update_status ModuleInput::PreUpdate()
 	if (keyboard[SDL_SCANCODE_ESCAPE])
 		return update_status::UPDATE_STOP;
 
-	if (App->input->keyboard[SDL_SCANCODE_F1]) //God Mode
+	if (App->input->keyboard[SDL_SCANCODE_F1]==KEY_DOWN) //God Mode
 	{
 		if (!godOn)
 		{
