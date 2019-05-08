@@ -5,6 +5,7 @@
 #include "ModuleSceneRyu.h"
 #include "SDL/include/SDL.h"
 
+
 bool godOn = false;
 
 ModuleInput::ModuleInput() : Module()

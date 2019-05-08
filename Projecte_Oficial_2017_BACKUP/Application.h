@@ -25,6 +25,7 @@ class ModuleLoseScreen;
 class ModuleFonts;
 class ModuleAudio;
 
+
 class Module;
 
 
@@ -53,6 +54,7 @@ public:
 	ModuleCongratScreen * congrat_screen;
 	ModuleFonts* fonts;
 	ModuleAudio* audio;
+	
 
 public:
 
