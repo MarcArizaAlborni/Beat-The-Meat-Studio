@@ -22,7 +22,6 @@ ModuleCongratScreen::ModuleCongratScreen()
 ModuleCongratScreen::~ModuleCongratScreen()
 {}
 
-// Load assets
 bool ModuleCongratScreen::Start()
 {
 	LOG("Loading Welcome screen");
@@ -30,7 +29,7 @@ bool ModuleCongratScreen::Start()
 	return true;
 }
 
-// UnLoad assets
+
 bool ModuleCongratScreen::CleanUp()
 {
 	LOG("Unloading Welcome Screen");
@@ -38,7 +37,7 @@ bool ModuleCongratScreen::CleanUp()
 	return true;
 }
 
-// Update: draw background
+
 update_status ModuleCongratScreen::Update()
 {
 	App->render->Blit(graphics, 0, 0, &congrat_screen, 0.75f,true);

@@ -18,18 +18,18 @@ public:
 
 	bool Init();
 	bool CleanUp();
-	//LOAD MUSIC AND FX
+	
 	Mix_Music * const LoadMus(const char * path);
 	bool PlayMusic(Mix_Music *music, uint time);
 	bool FinishMusic(uint time);
 	Mix_Chunk *const LoadFx(const char *path);
 	bool PlayFx(Mix_Chunk* chunk);
-	//REMOVE MUSIC AND FX
+	
 	bool UnLoadMusic(Mix_Music* music);
 	bool UnLoadFX(Mix_Chunk* chunk);
 
 public:
-	//Create variables
+	
 	Mix_Music* Music[MAX_MUSIC];
 	Mix_Chunk* Fx[MAX_FX];
 

@@ -9,7 +9,7 @@ ModuleAudio::ModuleAudio() :Module() {}
 
 ModuleAudio::~ModuleAudio() {}
 
-//INICIATE AUDIO MODULE
+
 bool ModuleAudio::Init() {
 
 	int flags = MIX_INIT_OGG;
@@ -38,7 +38,7 @@ bool ModuleAudio::Init() {
 
 
 
-//CLEANUP DE AUDIO MODULE
+
 bool ModuleAudio::CleanUp() {
 
 	for (uint i = 0; i < MAX_MUSIC; ++i) {
@@ -60,11 +60,11 @@ bool ModuleAudio::CleanUp() {
 }
 
 
-//LOAD MUSIC (OGG FILES)
+
 
 Mix_Music* const ModuleAudio::LoadMus(const char *path)
 {
-	//LOAD AUDIO MUSIC
+	
 	Mix_Music*  backgroundmusic = nullptr;
 
 	backgroundmusic = Mix_LoadMUS(path);
@@ -85,11 +85,11 @@ Mix_Music* const ModuleAudio::LoadMus(const char *path)
 }
 
 
-//LOAD FX (WAV FILES)
+
 Mix_Chunk* const ModuleAudio::LoadFx(const char *path)
 {
 
-	//LOAD AUDIO fx
+	
 	Mix_Chunk*  effects = nullptr;
 
 	effects = Mix_LoadWAV(path);
@@ -133,14 +133,13 @@ bool ModuleAudio::PlayFx(Mix_Chunk* chunk) {
 bool ModuleAudio::FinishMusic(uint time) {
 
 	while (!Mix_FadeOutMusic(time)) {
-		// wait for any fades to complete
+		
 		SDL_Delay(100);
 		return true;
 	}
 
 }
 
-//REMOVING MUSIC (OGG FILES)
 bool ModuleAudio::UnLoadMusic(Mix_Music* music) {
 
 	if (music != nullptr) {
@@ -159,7 +158,6 @@ bool ModuleAudio::UnLoadMusic(Mix_Music* music) {
 	return true;
 }
 
-//REMOVING FX (WAV FILES)
 bool ModuleAudio::UnLoadFX(Mix_Chunk* fx) {
 
 	if (fx != nullptr) {

@@ -29,9 +29,7 @@ bool ModuleParticles::Start()
 	hadouken.anim.PushBack({ 183, 975, 65, 39 });
 	hadouken.anim.PushBack({ 134, 975, 49, 39 });
 	//ESTAS TRES SON PARA EL IMPACTO
-	//hadouken.anim.PushBack({ 614, 1569, 26, 20 });
-	//hadouken.anim.PushBack({ 652, 1566, 15, 25 });
-	//hadouken.anim.PushBack({ 677, 1565, 28, 28 });
+	
 	hadouken.anim.loop = true;
 	hadouken.anim.speed = 0.1f;
 
@@ -41,13 +39,8 @@ bool ModuleParticles::Start()
 	hadouken2.anim.loop = true;
 	hadouken2.anim.speed = 0.1f;
 
-	// TODO 2: Create the template for a new particle "laser"
-	/*laser.anim.PushBack({ 200, 121, 32, 10 });
-	laser.anim.PushBack({ 233, 121, 32, 10 });
-	laser.anim.PushBack({ 200, 121, 32, 10 });
-	laser.anim.PushBack({ 233, 121, 32, 10 });
-	laser.anim.loop = true;
-	laser.anim.speed = 0.1f;*/
+	
+	
 
 	return true;
 }
@@ -117,8 +110,6 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 		}
 	}
 }
-
-// TODO 7.5: Make so every time a particle hits a wall it triggers an explosion particle
 void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 {
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
@@ -175,9 +166,8 @@ bool Particle::Update()
 		if (anim.Finished())
 			ret = false;
 
-	//rect.x = (int)(-camera.x * speed) + x * SCREEN_SIZE;
-	//(App->render->camera.x * speed.x) + position.x *SCREEN_SIZE;
-	position.x +=  speed.x ; // speed.x ; 
+	
+	position.x +=  speed.x ; 
 	position.y += speed.y;
 
 	if (collider != nullptr)

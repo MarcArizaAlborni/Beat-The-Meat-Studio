@@ -37,8 +37,7 @@ ModulePlayer2::ModulePlayer2()
 	health.w = 200;
 	health.h = 20; 
 
-	//App->render->DrawQuad(health, 255, 0, 0, alphaka);
-
+	
 	// idle animation (arcade sprite sheet)
 	idle2.PushBack({ 1152, 14, 154, 96});
 	idle2.PushBack({ 990, 14, 154, 96 });
@@ -301,12 +300,7 @@ update_status ModulePlayer2::PreUpdate() {
 					currentstate = jumpkickstate2;
 				}
 			}
-			/*if (current_animation->Finished()) {
-				jump.Reset();
-				currentstate = idlestate;
-
-				LOG("JUMP TO IDLE");
-			}*/
+			
 		}
 		if (currentstate == hadoukenstate2) {
 			if (!App->player->flip) {
@@ -456,10 +450,7 @@ update_status ModulePlayer2::PreUpdate() {
 					LOG("BACKWARDJUMP TO BACKWARDJUMPKICK");
 				}
 			}
-			/*if (current_animation->Finished()) { // Aquest d'aqui no el poseu perque per ara trenca el jumpbackward.
-				currentstate = idlestate;
-				backwardjump.Reset();
-			}*/
+			
 		}
 		if (currentstate == jumpforward2) {
 			LOG("FORWARDJUMP TO IDLE");
@@ -480,10 +471,7 @@ update_status ModulePlayer2::PreUpdate() {
 					LOG("FORWARDJUMP TO FORWARDJUMPKICK");
 				}
 			}
-			/*if (current_animation->Finished()) {  // Aquest d'aqui no el poseu perque per ara trenca el jumpforward.
-				currentstate = idlestate;
-				forwardjump.Reset();
-			}*/
+			
 		}
 
 		if (currentstate == jumpbackwardkick2) {
@@ -884,17 +872,7 @@ update_status ModulePlayer2::Update()
 			LOG("CROUCH KICK ANIMATION ACTIVE");
 			break;
 
-			/*case kickjump:
-
-				current_animation = &jumpkick;
-				LOG("JUMP KICK ANIMATION ACTIVE");
-				break;*/
-
-				/*case punchjump:
-
-					current_animation = &jumppunch;
-					LOG("JUMP PUNCH ANIMATION ACTIVE");
-					break;*/
+			
 
 		case idlestate2:
 			player2_collider->rect.h = 93;
@@ -1174,7 +1152,7 @@ update_status ModulePlayer2::Update()
 
 		case damagedstate2:
 
-			//current_animation = &App->player->damaged;
+			
 			LOG("DAMAGED ANIMATION ACTIVE");
 			break;
 
@@ -1407,11 +1385,7 @@ update_status ModulePlayer2::Update()
 	}
 
 
-	// TODO 7.3: Update collider position to player position
-	//PONER LOS COLLIDERS  DENTRO DE LOS STATES
-	//player_collider->SetPos(position.x - App->render->camera.x, position.y - 93- App->render->camera.y);
-
-	// Draw everything --------------------------------------
+	
 	
 
 	
@@ -1422,7 +1396,7 @@ update_status ModulePlayer2::Update()
 	return UPDATE_CONTINUE;
 }
 
-//TODO 7.4: Detect collision with a wall. If so, go back to intro screen.
+
 void ModulePlayer2::OnCollision(Collider* c1, Collider* c2)
 {
 	if (!alreadyHit2) {

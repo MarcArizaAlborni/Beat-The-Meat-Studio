@@ -38,7 +38,7 @@ ModulePlayer::ModulePlayer()
 	health.w = 200;
 	health.h = 20;
 	
-	//App->render->DrawQuad(health, 255, 0, 0, alphaka);
+	
 
 	// idle animation (arcade sprite sheet)
 	idle.PushBack({25, 54, 68, 98});
@@ -1431,13 +1431,7 @@ update_status ModulePlayer::Update()
 	else {
 		flip = false;
 	}
-	/*if (position.x >= App->player2->position.x) {
-		if (App->player->currentstate == forwardstate) {
-			position.x -= 1;
-			App->player2->position.x += 1;
-		}
-
-	}*/
+	
 
 	SDL_Rect r = current_animation->GetCurrentFrame();
 	if (!flip) {

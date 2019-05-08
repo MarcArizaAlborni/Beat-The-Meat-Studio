@@ -1,6 +1,3 @@
-// ----------------------------------------------------
-// Point class    -----------
-// ----------------------------------------------------
 
 #ifndef __P2POINT_H__
 #define __P2POINT_H__
@@ -38,7 +35,7 @@ public:
 		return(*this);
 	}
 
-	// Math ------------------------------------------------
+	
 	p2Point operator -(const p2Point &v) const
 	{
 		p2Point r;
@@ -85,7 +82,7 @@ public:
 		return (x != v.x || y != v.y);
 	}
 
-	// Utils ------------------------------------------------
+	
 	bool IsZero() const
 	{
 		return (x == 0 && y == 0);

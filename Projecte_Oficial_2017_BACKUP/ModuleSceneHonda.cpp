@@ -48,14 +48,13 @@ bool ModuleSceneHonda::Start()
 	bool ret = true;
 	graphics = App->textures->Load("Sprites/honda_stage2.png");
 
-	// TODO 5.1: Enable (and properly disable) the player module
+	
 	App->player->Enable();
 	App->particles->Enable();
 	App->collision->Enable();
 
-	// Colliders ---
-	/*App->collision->AddCollider({ 4, 0, 50, 400 }, COLLIDER_WALL);
-	App->collision->AddCollider({ 340, 0, 50, 400 }, COLLIDER_WALL);*/
+	
+	
 	
 	return ret;
 }
@@ -63,7 +62,7 @@ bool ModuleSceneHonda::Start()
 // Load assets
 bool ModuleSceneHonda::CleanUp()
 {
-	// TODO 5.5: Remove all memory leaks
+	
 	LOG("Unloading honda stage");
 	App->textures->Unload(graphics);
 	App->player->Disable();
@@ -84,7 +83,7 @@ update_status ModuleSceneHonda::Update()
 	App->render->Blit(graphics, /*305*/205, 136, &(water.GetCurrentFrame())); // water animation
 	App->render->Blit(graphics, /*0*/-75, -16, &roof, 0.75f);
 
-	// TODO 2: make so pressing SPACE the KEN stage is loaded
+	
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 
 		App->fade->FadeToBlack(App->scene_honda, App->congrat_screen,1.0f);

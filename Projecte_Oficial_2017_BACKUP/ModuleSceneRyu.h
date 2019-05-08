@@ -36,11 +36,7 @@ public:
 	Animation cartel;
 	Mix_Music* Background_Sound;
 
-	//void healthReset()
-	//{
-	//	health.x = 189;
-	//	health.y = 144;
-	//}
+	
 	
 	int damage = 10;
 	float background_pos;

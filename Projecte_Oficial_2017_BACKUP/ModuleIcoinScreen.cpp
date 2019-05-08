@@ -46,7 +46,7 @@ bool ModuleIcoinScreen::CleanUp()
 // Update: draw background
 update_status ModuleIcoinScreen::Update()
 {
-	//Animation* current_animation = &idle;
+	
 
 	App->render->Blit(graphics, 0, 0, &icoin_screen, 0.75f);
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
