@@ -12,6 +12,15 @@
     <Filter Include="Containers">
       <UniqueIdentifier>{78a7f487-1d77-4fdc-9f51-f067eccd6239}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Modules\Players">
+      <UniqueIdentifier>{c39fc01c-9c25-462a-9763-2f33d4dce268}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Stages">
+      <UniqueIdentifier>{009754e6-f01d-4bf6-923f-16c07a01de0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Intro">
+      <UniqueIdentifier>{82c31111-531b-4606-81a5-ff7eb27eafae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -38,9 +47,6 @@
     <ClInclude Include="ModuleTextures.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="ModulePlayer.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
     <ClInclude Include="p2Point.h">
       <Filter>Containers</Filter>
     </ClInclude>
@@ -50,22 +56,7 @@
     <ClInclude Include="ModuleFadeToBlack.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleSceneHonda.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleWelcomeScreen.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
     <ClInclude Include="ModuleCongratScreen.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleIcoinScreen.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleStartScreen.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleWarningScreen.h">
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="ModuleWinScreen.h">
@@ -86,11 +77,29 @@
     <ClInclude Include="ModuleLoseScreen.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleSceneRyu.h">
-      <Filter>Modules</Filter>
+    <ClInclude Include="ModulePlayer.h">
+      <Filter>Modules\Players</Filter>
     </ClInclude>
     <ClInclude Include="ModulePlayerII.h">
-      <Filter>Modules</Filter>
+      <Filter>Modules\Players</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleSceneHonda.h">
+      <Filter>Modules\Stages</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleSceneRyu.h">
+      <Filter>Modules\Stages</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleIcoinScreen.h">
+      <Filter>Modules\Intro</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleStartScreen.h">
+      <Filter>Modules\Intro</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleWarningScreen.h">
+      <Filter>Modules\Intro</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleWelcomeScreen.h">
+      <Filter>Modules\Intro</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -115,28 +124,10 @@
     <ClCompile Include="Globals.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="ModulePlayer.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
     <ClCompile Include="ModuleFadeToBlack.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleSceneHonda.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleWelcomeScreen.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
     <ClCompile Include="ModuleCongratScreen.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleIcoinScreen.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleStartScreen.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleWarningScreen.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="ModuleWinScreen.cpp">
@@ -157,11 +148,29 @@
     <ClCompile Include="ModuleLoseScreen.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleSceneRyu.cpp">
-      <Filter>Modules</Filter>
+    <ClCompile Include="ModulePlayer.cpp">
+      <Filter>Modules\Players</Filter>
     </ClCompile>
     <ClCompile Include="ModulePlayerII.cpp">
-      <Filter>Modules</Filter>
+      <Filter>Modules\Players</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleSceneHonda.cpp">
+      <Filter>Modules\Stages</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleSceneRyu.cpp">
+      <Filter>Modules\Stages</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleIcoinScreen.cpp">
+      <Filter>Modules\Intro</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleStartScreen.cpp">
+      <Filter>Modules\Intro</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleWarningScreen.cpp">
+      <Filter>Modules\Intro</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleWelcomeScreen.cpp">
+      <Filter>Modules\Intro</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
