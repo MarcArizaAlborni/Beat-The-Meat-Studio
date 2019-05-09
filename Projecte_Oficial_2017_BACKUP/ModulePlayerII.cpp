@@ -113,12 +113,12 @@ ModulePlayer2::ModulePlayer2()
 	hadouken2.speed = 0.1f;
 	 
 	//Damaged Animation
-
+	
 	//Ryu light punch
 	lightPunch2.PushBack({ 1151, 1171, 154, 96 });
 	lightPunch2.PushBack({ 989, 1171, 154, 96 });
 	lightPunch2.PushBack({ 1151, 1171, 154, 96 });
-	lightPunch2.loop = true;
+	lightPunch2.loop = false;
 	lightPunch2.speed = 0.1f;
 
 	//Ryu light kick
@@ -235,6 +235,7 @@ update_status ModulePlayer2::PreUpdate() {
 	inputplayer2.Special2_active = App->input->keyboard[SDL_SCANCODE_I ] == KEY_DOWN;
 
 	{
+		
 		if (currentstate == punchlight2) {
 
 			if (!App->player->flip){
@@ -1403,6 +1404,7 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2)
 		if (c1->type == COLLIDER_PLAYER2_ATTACK) {
 			App->scene_ryu->health.x -= App->scene_ryu->damage;
 			alreadyHit2 = true;
+			App->player->currentstate = damagedstate;
 		}
 	}
 

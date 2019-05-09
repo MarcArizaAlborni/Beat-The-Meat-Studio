@@ -121,7 +121,7 @@ ModulePlayer::ModulePlayer()
 	damaged.PushBack({668,905,87,103});
 	damaged.PushBack({755,899,119,109});
 	damaged.loop = false;
-	damaged.speed = 0.1f;
+	damaged.speed = 0.2f;
 
 
 	//Ryu light punch
@@ -252,7 +252,14 @@ update_status ModulePlayer::PreUpdate() {
 
 
 
-		//if (currentstate = damagedstate) {
+		if (currentstate == damagedstate) {
+			
+				if (current_animation->Finished()) {
+					currentstate = idlestate;
+					damaged.Reset();
+				}
+			
+		}
 
 
 
@@ -1447,9 +1454,14 @@ update_status ModulePlayer::Update()
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
 	if (!alreadyHit) {
-		if (c1->type==COLLIDER_PLAYER_ATTACK) {
+		if (c1->type == COLLIDER_PLAYER_ATTACK) {
+			
 			App->scene_ryu->health2.w -= App->scene_ryu->damage;
 			alreadyHit = true;
+			
+				
+			
 		}
 	}
+
 }
