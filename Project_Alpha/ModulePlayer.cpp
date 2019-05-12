@@ -38,8 +38,8 @@ ModulePlayer::ModulePlayer()
 	//Idle animation (arcade sprite sheet)
 	idleP1.PushBack({ 28, 27, 105, 100 });
 	idleP1.PushBack({ 133, 27, 100, 100 });
-	idleP1.PushBack({ 33, 27, 100, 100 });
-	idleP1.speed = 0.15f;
+	idleP1.PushBack({ 233, 27, 100, 100 });
+	idleP1.speed = 0.08f;
 
 	//Walk FORWARD Animation
 	forwardP1.PushBack({ 699, 127, 97, 84 });
@@ -208,7 +208,12 @@ update_status ModulePlayer::Update() {
 
 	SDL_Rect r = currentP1_animation->GetCurrentFrame();
 
-	App->render->Blit(graphicsP1, positionP1.x, positionP1.y - r.h, &r, 1.0f, true, SDL_FLIP_NONE);
+	if (playerP1_collider->rect.x < App->player2->playerP2_collider->rect.x ) {
+		App->render->Blit(graphicsP1, positionP1.x, positionP1.y - r.h, &r, 1.0f, true, SDL_FLIP_NONE);
+	}
+	else {
+		App->render->Blit(graphicsP1, positionP1.x, positionP1.y - r.h, &r, 1.0f, true, SDL_FLIP_HORIZONTAL);
+	}
 
 	return UPDATE_CONTINUE;
 }
@@ -216,7 +221,13 @@ update_status ModulePlayer::Update() {
 //TODO 7.4: Detect collision with a wall. If so, go back to intro screen.
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
-	
-	
+	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_PLAYER2 && inputplayerP1.D_active) {
+
+		speed = 0;
+	}
+	else
+	{
+		speed = 2;
+	}
 
 }

@@ -41,7 +41,7 @@ ModulePlayer2::ModulePlayer2()
 	idleP2.PushBack({ 28, 27, 105, 100 });
 	idleP2.PushBack({ 133, 27, 100, 100 });
 	idleP2.PushBack({ 233, 27, 100, 100 });
-	idleP2.speed = 0.15f;
+	idleP2.speed = 0.08f;
 
 	//Walk FORWARD Animation
 	forwardP2.PushBack({ 699, 127, 97, 84 });
@@ -130,7 +130,7 @@ update_status ModulePlayer2::PreUpdate() {
 			}
 			if (inputplayerP2.Left_active) {
 				currentstateP2 = forwardstateP2;
-				LOG("IDLE TO forward");
+LOG("IDLE TO forward");
 			}
 			if (inputplayerP2.Down_active) {
 				currentstateP2 = crouchstateP2;
@@ -173,7 +173,7 @@ update_status ModulePlayer2::PreUpdate() {
 			}
 		}
 	}
-	
+
 	return UPDATE_CONTINUE;
 
 }
@@ -181,7 +181,7 @@ update_status ModulePlayer2::PreUpdate() {
 // Update: draw background
 update_status ModulePlayer2::Update()
 {
-	
+
 	switch (currentstateP2)
 	{
 	case idlestateP2:
@@ -198,7 +198,6 @@ update_status ModulePlayer2::Update()
 		positionP2.x += speedII;
 		LOG("BACK ANIMATION ACTIVE");
 		break;
-
 	case forwardstateP1:
 		playerP2_collider->SetPos(positionP2.x - App->render->camera.x + 5, positionP2.y - 93 - App->render->camera.y);
 		currentP2_animation = &forwardP2;
@@ -212,12 +211,17 @@ update_status ModulePlayer2::Update()
 		playerP2_collider->SetPos(positionP2.x - App->render->camera.x + 5, positionP2.y - 68 - App->render->camera.y);
 		LOG("CROUCHED ANIMATION ACTIVE");
 		break;
-
 	}
 
 	SDL_Rect r = currentP2_animation->GetCurrentFrame();
 
-	App->render->Blit(graphicsP2, positionP2.x, positionP2.y - r.h, &r, 1.0f, true, SDL_FLIP_HORIZONTAL);
+	if (playerP2_collider->rect.x > App->player->playerP1_collider->rect.x) {
+		App->render->Blit(graphicsP2, positionP2.x, positionP2.y - r.h, &r, 1.0f, true, SDL_FLIP_HORIZONTAL);
+	}
+	else
+	{
+		App->render->Blit(graphicsP2, positionP2.x, positionP2.y - r.h, &r, 1.0f, true, SDL_FLIP_NONE);
+	}
 
 
 	return UPDATE_CONTINUE;
@@ -226,6 +230,13 @@ update_status ModulePlayer2::Update()
 
 void ModulePlayer2::OnCollision(Collider* c1, Collider* c2)
 {
-	
+	if(c1->type == COLLIDER_PLAYER2 && c2->type == COLLIDER_PLAYER && inputplayerP2.Left_active ){
+
+		speedII = 0;
+	}
+	else
+	{
+		speedII = 2;
+	}
 
 }
