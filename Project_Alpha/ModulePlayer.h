@@ -62,6 +62,7 @@ public:
 	//Player2 Test collider
 	Collider* playerP1_collider = nullptr;
 	Collider* attackP1_collider = nullptr;
+	Collider* blockP1_collider = nullptr;
 
 };
 

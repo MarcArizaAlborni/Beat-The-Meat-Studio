@@ -118,6 +118,7 @@ update_status ModulePlayer::PreUpdate() {
 		if (currentstateP1 == idlestateP1) {
 			if (inputplayerP1.A_active) {
 				currentstateP1 = backwardstateP1;
+				blockP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x +50 ,positionP1.y -50, 10, 10 }, COLLIDER_PLAYER_BLOCK, App->player);
 				LOG("IDLE TO BACK");
 			}
 			if (inputplayerP1.D_active) {
@@ -134,10 +135,12 @@ update_status ModulePlayer::PreUpdate() {
 		if (currentstateP1 == backwardstateP1) {
 			if (!inputplayerP1.A_active) {
 				currentstateP1 = idlestateP1;
+				blockP1_collider->to_delete = true;
 				LOG("BACK to IDLE");
 			}
 			if (inputplayerP1.S_active) {
 				currentstateP1 = crouchstateP1;
+				blockP1_collider->to_delete = true;
 				LOG("BACK to CROUCH");
 			}
 		}
@@ -149,6 +152,7 @@ update_status ModulePlayer::PreUpdate() {
 			}
 			if (inputplayerP1.A_active) {
 				currentstateP1 = backwardstateP1;
+				blockP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x +50, positionP1.y -50, 10, 10 }, COLLIDER_PLAYER_BLOCK, App->player);
 				LOG("FOR to BACK");
 			}
 
@@ -185,6 +189,7 @@ update_status ModulePlayer::Update() {
 
 	case backwardstateP1:
 		playerP1_collider->rect.h = 93;
+		blockP1_collider->SetPos(positionP1.x-App->render->camera.x +50, positionP1.y -50 );
 		playerP1_collider->SetPos(positionP1.x - App->render->camera.x + 5, positionP1.y - 93 - App->render->camera.y);
 		currentP1_animation = &backwardP1;
 		positionP1.x -= speed;
