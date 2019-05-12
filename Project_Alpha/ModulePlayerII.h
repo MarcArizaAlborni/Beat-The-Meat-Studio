@@ -1,4 +1,3 @@
-#pragma once
 #ifndef __ModulePlayer2_H__
 #define __ModulePlayer2_H__
 
@@ -13,33 +12,12 @@
 struct SDL_Texture;
 struct Collider;
 
-enum STATE2 {
+enum STATEP2 {
 
-	backwardstate2,
-	forwardstate2,
-	idlestate2,
-	crouchstate2,
-	punchlight2,
-	kicklight2,
-	jumpstate2,
-	hadoukenstate2,
-	punchcrouch2,
-	punchjump2,
-	kickjump2,
-	kickcrouch2,
-	jumpforward2,
-	jumpbackward2,
-	damagedstate2,
-	crouched2,
-	jumpbackwardkick2,
-	jumpbackwardpunch2,
-	jumpforwardkick2,
-	jumpforwardpunch2,
-	jumpkickstate2,
-	jumppunchstate2,
-	jumpfalling2
-
-
+	backwardstateP2,
+	forwardstateP2,
+	idlestateP2,
+	crouchstateP2,
 
 };
 struct InputP2 {
@@ -49,9 +27,6 @@ struct InputP2 {
 	bool Left_active; //D_active
 	bool Up_active; //W_active
 	bool Down_active; //S_active
-	bool Punch2_active; //I_active
-	bool Kick2_active; //K_active
-	bool Special2_active; //R_active
 };
 
 class ModulePlayer2 : public Module
@@ -68,47 +43,25 @@ public:
 
 public:
 
-	SDL_Rect health;
-	SDL_Texture* graphics = nullptr;
+	SDL_Rect healthP2;
+	SDL_Texture* graphicsP2 = nullptr;
 	//test
-	SDL_Texture* graphics2 = nullptr;
-	Animation * current_animation = nullptr;
+	Animation* currentP2_animation = nullptr;
 	int font_score = -1;
 	char score_text[10];
 	uint score = 0;
-	STATE2 currentstate;
-	Animation idle2;
-	Animation forward2;
-	Animation backward2;
-	Animation lightPunch2;
-	Animation lightKick2;
-	Animation jump2;
-	Animation hadouken2;
-	Animation crouchpunch2;
-	Animation crouchkick2;
-	Animation jumppunch2;
-	Animation jumpkick2;
-	Animation damaged2;
-	Animation forwardjump2;
-	Animation backwardjump2;
-	Animation crouch2;
-	Animation jumpbackkick2;
-	Animation jumpbackpunch2;
-	Animation jumpfrontkick2;
-	Animation jumpfrontpunch2;
-
-
-	iPoint position;
-	InputP2 inputplayer2;
+	STATEP2 currentstateP2;
+	Animation idleP2;
+	Animation forwardP2;
+	Animation backwardP2;
+	Animation crouchP2;
+	iPoint positionP2;
+	InputP2 inputplayerP2;
 	  
 	void OnCollision(Collider* c1, Collider* c2);
-
 	//Player2 Test collider
-	Collider* player2_collider = nullptr;
-	Mix_Chunk* LightDamage_Sound;
-	Mix_Chunk* Hadoken_Sound;
-
-	Collider* attack_collider2 = nullptr;
+	Collider* playerP2_collider = nullptr;
+	Collider* attackP2_collider = nullptr;
 
 };
 

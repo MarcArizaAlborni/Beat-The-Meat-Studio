@@ -99,9 +99,12 @@ bool ModuleSceneRyu::Start()
 
 	App->audio->PlayMusic(Background_Sound, 0);
 
-	App->player->currentstate = idlestate;
-	App->player->position.x = 100;
-	App->player->position.y = 205;
+	App->player->currentstateP1 = idlestateP1;
+	App->player->positionP1.x = 50;
+	App->player->positionP1.y = 205;
+	App->player2->currentstateP2 = idlestateP2;
+	App->player2->positionP2.x = 230;
+	App->player2->positionP2.y = 205;
 	
 	
 	App->player->Enable();

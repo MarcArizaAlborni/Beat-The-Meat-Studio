@@ -12,34 +12,12 @@
 struct SDL_Texture;
 struct Collider;
 
-enum STATE {
+enum STATEP1 {
 
-	backwardstate,
-	forwardstate,
-	idlestate,
-	crouchstate,
-	punchlight,
-	kicklight,
-	jumpstate,
-	hadoukenstate,
-	punchcrouch,
-	punchjump,
-	kickjump,
-	kickcrouch,
-	jumpforward,
-	jumpbackward,
-	damagedstate,
-	crouched,
-	jumpbackwardkick,
-	jumpbackwardpunch,
-	jumpforwardkick,
-	jumpforwardpunch,
-	jumpkickstate,
-	jumppunchstate,
-	jumpfalling,
-	croucheddamaged
-
-
+	backwardstateP1,
+	forwardstateP1,
+	idlestateP1,
+	crouchstateP1,
 
 };
 struct InputP1 {
@@ -49,9 +27,6 @@ struct InputP1 {
 	bool D_active;
 	bool W_active;
 	bool S_active;
-	bool Punch1_active;
-	bool Kick1_active;
-	bool Special1_active;
 };
 
 class ModulePlayer : public Module
@@ -68,47 +43,25 @@ public:
 
 public:
 
-	SDL_Rect health;
-	SDL_Texture* graphics = nullptr;
+	SDL_Rect healthP1;
+	SDL_Texture* graphicsP1 = nullptr;
 	//test
-	SDL_Texture* graphics2 = nullptr;
-	bool flip = false;
-	Animation * current_animation = nullptr;
+	Animation* currentP1_animation = nullptr;
 	int font_score = -1;
 	char score_text[10];
 	uint score = 0;
-	STATE currentstate;
-	Animation idle;
-	Animation forward;
-	Animation backward;
-	Animation lightPunch;
-	Animation lightKick;
-	Animation jump;
-	Animation hadouken;
-	Animation crouchpunch;
-	Animation crouchkick;
-	Animation jumppunch;
-	Animation jumpkick;
-	Animation damaged;
-	Animation forwardjump;
-	Animation backwardjump;
-	Animation crouch;
-	Animation jumpbackkick;
-	Animation jumpbackpunch;
-	Animation jumpfrontkick;
-	Animation jumpfrontpunch;
-	Animation croucheddamaged;
-	
-	
-	iPoint position;
-	InputP1 inputplayer1;
-	Collider* player_collider = nullptr;
-	void OnCollision(Collider* c1, Collider* c2);
-	Mix_Chunk* LightDamage_Sound;;
-	Mix_Chunk* Hadoken_Sound;
+	STATEP1 currentstateP1;
+	Animation idleP1;
+	Animation forwardP1;
+	Animation backwardP1;
+	Animation crouchP1;
+	iPoint positionP1;
+	InputP1 inputplayerP1;
 
-	//test attacks
-	Collider* attack_collider = nullptr;
+	void OnCollision(Collider* c1, Collider* c2);
+	//Player2 Test collider
+	Collider* playerP1_collider = nullptr;
+	Collider* attackP1_collider = nullptr;
 
 };
 
