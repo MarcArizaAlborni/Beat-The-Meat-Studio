@@ -27,6 +27,12 @@ struct InputP1 {
 	bool D_active;
 	bool W_active;
 	bool S_active;
+
+	bool left_active;
+	bool right_active;
+	bool up_active;
+	bool down_active;
+
 };
 
 class ModulePlayer : public Module

@@ -114,10 +114,10 @@ update_status ModulePlayer::PreUpdate() {
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	 
-	 inputplayerP1.A_active = SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTX) <= -10000;
-	 inputplayerP1.D_active = SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTX) >= 10000;
-	 inputplayerP1.W_active = SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTY) >= 10000;
-	 inputplayerP1.S_active = SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTY) <= -10000;
+	 inputplayerP1.left_active = SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTX) <= -10000;
+	 inputplayerP1.right_active = SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTX) >= 10000;
+	 inputplayerP1.down_active = SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTY) >= 10000;
+	 inputplayerP1.up_active = SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTY) <= -10000;
 	/* App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_1] == KEY_DOWN;
 	 App->input->game_pad[SDL_CONTROLLER_BUTTON_B][GAME_PAD_1] == KEY_DOWN;
      App->input->game_pad[SDL_CONTROLLER_BUTTON_X][GAME_PAD_1] == KEY_DOWN;*/
@@ -126,9 +126,9 @@ update_status ModulePlayer::PreUpdate() {
 	{
 		//IDLE STATE
 		if (currentstateP1 == idlestateP1) {
-			if (inputplayerP1.A_active) {
+			if (inputplayerP1.A_active ) {
 				currentstateP1 = backwardstateP1;
-				blockP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x +50 ,positionP1.y -50, 10, 10 }, COLLIDER_PLAYER_BLOCK, App->player);
+				blockP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x +50 ,positionP1.y -50, 10, 30 }, COLLIDER_PLAYER_BLOCK, App->player);
 				LOG("IDLE TO BACK");
 			}
 			if (inputplayerP1.D_active) {
@@ -162,7 +162,7 @@ update_status ModulePlayer::PreUpdate() {
 			}
 			if (inputplayerP1.A_active) {
 				currentstateP1 = backwardstateP1;
-				blockP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x +50, positionP1.y -50, 10, 10 }, COLLIDER_PLAYER_BLOCK, App->player);
+				blockP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x +55, positionP1.y -80, 7, 30 }, COLLIDER_PLAYER_BLOCK, App->player);
 				LOG("FOR to BACK");
 			}
 
@@ -192,22 +192,22 @@ update_status ModulePlayer::Update() {
 
 	case idlestateP1:
 		playerP1_collider->rect.h = 93;
-		playerP1_collider->SetPos(positionP1.x - App->render->camera.x + 5, positionP1.y - 93 - App->render->camera.y);
+		//playerP1_collider->SetPos(positionP1.x - App->render->camera.x + 5, positionP1.y - 93 - App->render->camera.y);
 		currentP1_animation = &idleP1;
 		LOG("IDLE ANIMATION ACTIVE");
 		break;
 
 	case backwardstateP1:
 		playerP1_collider->rect.h = 93;
-		blockP1_collider->SetPos(positionP1.x-App->render->camera.x +50, positionP1.y -50 );
-		playerP1_collider->SetPos(positionP1.x - App->render->camera.x + 5, positionP1.y - 93 - App->render->camera.y);
+		blockP1_collider->SetPos(positionP1.x + 55 - App->render->camera.x  *2, positionP1.y -80 );
+		//playerP1_collider->SetPos(positionP1.x - App->render->camera.x + 5, positionP1.y - 93 - App->render->camera.y);
 		currentP1_animation = &backwardP1;
 		positionP1.x -= speed;
 		LOG("BACK ANIMATION ACTIVE");
 		break;
 
 	case forwardstateP1:
-		playerP1_collider->SetPos(positionP1.x - App->render->camera.x + 5, positionP1.y - 93 - App->render->camera.y);
+		//playerP1_collider->SetPos(positionP1.x - App->render->camera.x + 5, positionP1.y - 93 - App->render->camera.y);
 		currentP1_animation = &forwardP1;
 		positionP1.x += speed;
 		LOG("FORWARD ANIMATION ACTIVE");
@@ -216,9 +216,13 @@ update_status ModulePlayer::Update() {
 	case crouchstateP1:
 		currentP1_animation = &crouchP1;
 		playerP1_collider->rect.h = 65;
-		playerP1_collider->SetPos(positionP1.x - App->render->camera.x + 5, positionP1.y - 68 - App->render->camera.y);
+		playerP1_collider->SetPos(positionP1.x - App->render->camera.x *2  , positionP1.y - 68 - App->render->camera.y);
 		LOG("CROUCHED ANIMATION ACTIVE");
 		break;
+	}
+
+	if ( currentstateP1 != crouchstateP1) {
+		playerP1_collider->SetPos(positionP1.x  - App->render->camera.x *2  , positionP1.y - 93 - App->render->camera.y);
 	}
 
 	SDL_Rect r = currentP1_animation->GetCurrentFrame();
@@ -230,13 +234,13 @@ update_status ModulePlayer::Update() {
 		App->render->Blit(graphicsP1, positionP1.x, positionP1.y - r.h, &r, 1.0f, true, SDL_FLIP_HORIZONTAL);
 	}
 
-	if (positionP1.x <= (App->render->camera.x - 10) / SCREEN_SIZE)
+	if (positionP1.x <= (App->render->camera.x - 10))
 	{
-		positionP1.x = (App->render->camera.x - 10) / SCREEN_SIZE;
+		positionP1.x = (App->render->camera.x - 10);
 	}
-	if (positionP1.x >= (SCREEN_WIDTH + App->render->camera.x) / SCREEN_SIZE + 127)
+	if (positionP1.x >= (App->render->camera.x) + SCREEN_WIDTH)
 	{
-		positionP1.x = (SCREEN_WIDTH + App->render->camera.x) / SCREEN_SIZE + 127;
+		positionP1.x = (App->render->camera.x) +SCREEN_WIDTH;
 	}
 
 

@@ -195,7 +195,7 @@ update_status ModulePlayer2::Update()
 	{
 	case idlestateP2:
 		playerP2_collider->rect.h = 93;
-		playerP2_collider->SetPos(positionP2.x - App->render->camera.x + 5, positionP2.y - 93 - App->render->camera.y);
+		playerP2_collider->SetPos(positionP2.x - App->render->camera.x + 5 , positionP2.y - 93 - App->render->camera.y);
 		currentP2_animation = &idleP2;
 		LOG("IDLE ANIMATION ACTIVE");
 		break;
@@ -224,12 +224,13 @@ update_status ModulePlayer2::Update()
 
 	SDL_Rect r = currentP2_animation->GetCurrentFrame();
 
-	if (positionP2.x <= (App->render->camera.x) / SCREEN_SIZE - 90)
+	if (positionP2.x <= (App->render->camera.x - 10))
 	{
-		positionP2.x = (App->render->camera.x) / SCREEN_SIZE - 90;
+		positionP2.x = (App->render->camera.x - 10);
 	}
-	if (positionP2.x >= (SCREEN_WIDTH + App->render->camera.x) / SCREEN_SIZE +90) {
-		positionP2.x = (SCREEN_WIDTH + App->render->camera.x) / SCREEN_SIZE +90;
+	if (positionP2.x >= (180 + App->render->camera.x) + 127)
+	{
+		positionP2.x = (180 + App->render->camera.x) + 127;
 	}
 
 	if (playerP2_collider->rect.x > App->player->playerP1_collider->rect.x) {
