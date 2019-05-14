@@ -49,6 +49,7 @@ public:
 
 public:
 
+	SDL_Rect shadow ;
 	SDL_Rect healthP1;
 	SDL_Texture* graphicsP1 = nullptr;
 	//test

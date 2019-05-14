@@ -226,6 +226,10 @@ update_status ModulePlayer::Update() {
 	}
 
 	SDL_Rect r = currentP1_animation->GetCurrentFrame();
+	SDL_Rect shadow = {796,27,100,20};
+
+	App->render->Blit(graphicsP1, positionP1.x - 10, positionP1.y -15, &shadow , 1.0f, true);
+
 
 	if (playerP1_collider->rect.x < App->player2->playerP2_collider->rect.x ) {
 		App->render->Blit(graphicsP1, positionP1.x, positionP1.y - r.h, &r, 1.0f, true, SDL_FLIP_NONE);
