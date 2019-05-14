@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "ModuleWindow.h"
 #include "SDL/include/SDL.h"
+#include "ModuleInput.h"
 
 ModuleWindow::ModuleWindow() : Module()
 {
@@ -40,7 +41,7 @@ bool ModuleWindow::Init()
 		if(WIN_RESIZABLE == true)
 			flags |= SDL_WINDOW_RESIZABLE;
 
-		if(WIN_FULLSCREEN_DESKTOP == true)
+		if(WIN_FULLSCREEN_DESKTOP == true )
 			flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
 
 		window = SDL_CreateWindow("", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, flags);
