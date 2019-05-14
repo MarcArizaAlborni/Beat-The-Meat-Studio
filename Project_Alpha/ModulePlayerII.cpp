@@ -215,6 +215,14 @@ update_status ModulePlayer2::Update()
 
 	SDL_Rect r = currentP2_animation->GetCurrentFrame();
 
+	if (positionP2.x <= (App->render->camera.x) / SCREEN_SIZE - 90)
+	{
+		positionP2.x = (App->render->camera.x) / SCREEN_SIZE - 90;
+	}
+	if (positionP2.x >= (SCREEN_WIDTH + App->render->camera.x) / SCREEN_SIZE +90) {
+		positionP2.x = (SCREEN_WIDTH + App->render->camera.x) / SCREEN_SIZE +90;
+	}
+
 	if (playerP2_collider->rect.x > App->player->playerP1_collider->rect.x) {
 		App->render->Blit(graphicsP2, positionP2.x, positionP2.y - r.h, &r, 1.0f, true, SDL_FLIP_HORIZONTAL);
 	}

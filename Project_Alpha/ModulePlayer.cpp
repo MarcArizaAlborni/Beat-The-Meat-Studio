@@ -220,6 +220,20 @@ update_status ModulePlayer::Update() {
 		App->render->Blit(graphicsP1, positionP1.x, positionP1.y - r.h, &r, 1.0f, true, SDL_FLIP_HORIZONTAL);
 	}
 
+	if (positionP1.x <= (App->render->camera.x - 10) / SCREEN_SIZE)
+	{
+		positionP1.x = (App->render->camera.x - 10) / SCREEN_SIZE;
+	}
+	if (positionP1.x >= (SCREEN_WIDTH + App->render->camera.x) / SCREEN_SIZE + 127)
+	{
+		positionP1.x = (SCREEN_WIDTH + App->render->camera.x) / SCREEN_SIZE + 127;
+	}
+
+
+
+
+
+
 	return UPDATE_CONTINUE;
 }
 
