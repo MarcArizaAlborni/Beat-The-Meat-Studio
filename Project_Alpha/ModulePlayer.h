@@ -18,6 +18,9 @@ enum STATEP1 {
 	forwardstateP1,
 	idlestateP1,
 	crouchstateP1,
+	NjumpstateP1,
+	FjumpstateP1,
+	BjumpstateP1,
 
 };
 struct InputP1 {
@@ -48,8 +51,12 @@ public:
 	update_status PreUpdate();
 
 public:
-
-	
+	float yvel = 12.0f;
+	float gravity = 0.7f;
+	uint time = 0;
+	uint jumpTimer = 0;
+	uint jumpstart;
+	bool jumping = false;
 	SDL_Rect healthP1;
 	SDL_Rect shadowP1;
 	SDL_Texture* graphicsP1 = nullptr;

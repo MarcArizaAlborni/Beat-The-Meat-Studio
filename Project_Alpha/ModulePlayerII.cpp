@@ -74,6 +74,41 @@ ModulePlayer2::ModulePlayer2()
 	crouchP2.speed = 0.5f;
 	crouchP2.loop = false;
 	
+	//Neutral Jump Animation
+	NjumpP2.PushBack({ 28, 525, 97, 128 });
+	NjumpP2.PushBack({ 125, 525, 85, 128 });
+	NjumpP2.PushBack({ 210, 525, 83, 128 });
+	NjumpP2.PushBack({ 293, 525, 86, 128 });
+	NjumpP2.PushBack({ 210, 525, 83, 128 });
+	NjumpP2.PushBack({ 125, 525, 85, 128 });
+	NjumpP2.PushBack({ 28, 525, 97, 128 });
+	NjumpP2.speed = 0.5f;
+	NjumpP2.loop = false;
+
+	//Forward Jump Animation
+	FjumpP2.PushBack({ 28, 525, 97, 128 });
+	FjumpP2.PushBack({ 125, 525, 85, 128 });
+	FjumpP2.PushBack({ 210, 525, 83, 128 });
+	FjumpP2.PushBack({ 293, 525, 86, 128 });
+	FjumpP2.PushBack({ 379, 525, 90, 128 });
+	FjumpP2.PushBack({ 469, 525, 98, 128 });
+	FjumpP2.PushBack({ 567, 525, 119, 128 });
+	FjumpP2.PushBack({ 686, 525, 96, 128 });
+	FjumpP2.PushBack({ 379, 525, 90, 128 });
+	FjumpP2.PushBack({ 293, 525, 86, 128 });
+	FjumpP2.speed = 0.5f;
+	FjumpP2.loop = false;
+
+	//Backward Jump Animation
+	BjumpP2.PushBack({ 28, 525, 97, 128 });
+	BjumpP2.PushBack({ 125, 525, 85, 128 });
+	BjumpP2.PushBack({ 210, 525, 83, 128 });
+	BjumpP2.PushBack({ 293, 525, 86, 128 });
+	BjumpP2.PushBack({ 210, 525, 83, 128 });
+	BjumpP2.PushBack({ 125, 525, 85, 128 });
+	BjumpP2.PushBack({ 28, 525, 97, 128 });
+	BjumpP2.speed = 0.5f;
+	BjumpP2.loop = false;
 }
 
 ModulePlayer2::~ModulePlayer2()

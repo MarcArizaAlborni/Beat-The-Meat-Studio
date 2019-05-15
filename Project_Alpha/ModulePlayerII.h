@@ -56,6 +56,9 @@ public:
 	Animation forwardP2;
 	Animation backwardP2;
 	Animation crouchP2;
+	Animation NjumpP2;
+	Animation FjumpP2;
+	Animation BjumpP2;
 	iPoint positionP2;
 	InputP2 inputplayerP2;
 	  
