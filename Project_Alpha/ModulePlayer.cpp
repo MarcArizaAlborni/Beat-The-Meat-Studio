@@ -92,7 +92,7 @@ ModulePlayer::ModulePlayer()
 	FjumpP1.PushBack({ 686, 525, 96, 128 });
 	FjumpP1.PushBack({ 379, 525, 90, 128 });
 	FjumpP1.PushBack({ 293, 525, 86, 128 });
-	FjumpP1.speed = 0.01f;
+	FjumpP1.speed = 0.17f;
 	FjumpP1.loop = false;
 
 	//Backward Jump Animation
@@ -103,7 +103,7 @@ ModulePlayer::ModulePlayer()
 	BjumpP1.PushBack({ 210, 525, 83, 128 });
 	BjumpP1.PushBack({ 125, 525, 85, 128 });
 	BjumpP1.PushBack({ 28, 525, 97, 128 });
-	BjumpP1.speed = 0.01f;
+	BjumpP1.speed = 0.17f;
 	BjumpP1.loop = false;
 
 }
@@ -166,21 +166,7 @@ update_status ModulePlayer::PreUpdate() {
 	 inputplayerP1.W_active = App->input->keyboard[SDL_SCANCODE_W] == KEY_REPEAT || SDL_GameControllerGetButton(App->input->controller_player_1, SDL_CONTROLLER_BUTTON_DPAD_UP) || SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTY) <= -10000;
 		
 	{
-		 if (jumping = true) {
-
-			 if (positionP1.y >= groundLevel+10 ) {
-				 positionP1.y = groundLevel;
-				 currentstateP1 = idlestateP1;
-				 NjumpP1.Reset();
-				 FjumpP1.Reset();
-				 BjumpP1.Reset();
-				 jumping = false;
-				 jumpTimer = 0;
-				
-			 }
-
-
-		 }
+		
 		//IDLE STATE
 		if (currentstateP1 == idlestateP1) {
 			if (inputplayerP1.A_active ) {
@@ -258,6 +244,22 @@ update_status ModulePlayer::PreUpdate() {
 				LOG("CROUCH to IDLE");
 			}
 		}
+		//JUMP STATE
+		if (jumping = true) {
+
+			if (positionP1.y >= groundLevel + 10) {
+				positionP1.y = groundLevel;
+				currentstateP1 = idlestateP1;
+				NjumpP1.Reset();
+				FjumpP1.Reset();
+				BjumpP1.Reset();
+				jumping = false;
+				jumpTimer = 0;
+
+			}
+
+
+		}
 		
 
 		return UPDATE_CONTINUE;
@@ -300,33 +302,26 @@ update_status ModulePlayer::Update() {
 		break;
 
 	case NjumpstateP1:
-		
 		currentP1_animation = &NjumpP1;
-		
 		positionP1.y = groundLevel - (yvel*jumpTimer) + (0.5*(gravity) * (jumpTimer*jumpTimer)); //MRUA
-		
-		
+		LOG(" NEUTRAL JUMP ANIMATION ACTIVE");
 		break;
+
 	case FjumpstateP1:
 
 		currentP1_animation = &FjumpP1;
-
 		positionP1.x += speed;
 		positionP1.y = groundLevel - (yvel*jumpTimer) + (0.5*(gravity) * (jumpTimer*jumpTimer)); //MRUA
-
-
+		LOG(" FORWARD JUMP ANIMATION ACTIVE");
 		break;
+
 	case BjumpstateP1:
-
 		currentP1_animation = &BjumpP1;
-		
 		positionP1.x -= speed;
-
 		positionP1.y = groundLevel - (yvel*jumpTimer) + (0.5*(gravity) * (jumpTimer*jumpTimer)); //MRUA
-
-
+		LOG(" BACKWARD JUMP ANIMATION ACTIVE");
 		break;
-	
+
 	}
 
 	if ( currentstateP1 != crouchstateP1) {
@@ -335,6 +330,7 @@ update_status ModulePlayer::Update() {
 
 	SDL_Rect r = currentP1_animation->GetCurrentFrame();
 
+	//SHADOW
 	SDL_Rect shadowP1 = {796,27,100,20};
 	
 	if (jumping) {
