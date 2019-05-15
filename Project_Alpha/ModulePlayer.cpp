@@ -73,23 +73,38 @@ ModulePlayer::ModulePlayer()
 	crouchP1.loop = false;
 
 	//Neutral Jump Animation
-	NjumpP1.PushBack({ 427, 323, 99, 94 });
-	NjumpP1.PushBack({ 526, 323, 89, 94 });
-	NjumpP1.PushBack({ 615, 323, 93, 94 });
+	NjumpP1.PushBack({ 28, 525, 97, 128 });
+	NjumpP1.PushBack({ 125, 525, 85, 128 });
+	NjumpP1.PushBack({ 210, 525, 83, 128 });
+	NjumpP1.PushBack({ 293, 525, 86, 128 });
+	NjumpP1.PushBack({ 210, 525, 83, 128 });
+	NjumpP1.PushBack({ 125, 525, 85, 128 });
+	NjumpP1.PushBack({ 28, 525, 97, 128 });
 	NjumpP1.speed = 0.5f;
 	NjumpP1.loop = false;
 
 	//Forward Jump Animation
-	FjumpP1.PushBack({ 427, 323, 99, 94 });
-	FjumpP1.PushBack({ 526, 323, 89, 94 });
-	FjumpP1.PushBack({ 615, 323, 93, 94 });
+	FjumpP1.PushBack({ 28, 525, 97, 128 });
+	FjumpP1.PushBack({ 125, 525, 85, 128 });
+	FjumpP1.PushBack({ 210, 525, 83, 128 });
+	FjumpP1.PushBack({ 293, 525, 86, 128 });
+	FjumpP1.PushBack({ 379, 525, 90, 128 });
+	FjumpP1.PushBack({ 469, 525, 98, 128 });
+	FjumpP1.PushBack({ 567, 525, 119, 128 });
+	FjumpP1.PushBack({ 686, 525, 96, 128 });
+	FjumpP1.PushBack({ 379, 525, 90, 128 });
+	FjumpP1.PushBack({ 293, 525, 86, 128 });
 	FjumpP1.speed = 0.5f;
 	FjumpP1.loop = false;
 
 	//Backward Jump Animation
-	BjumpP1.PushBack({ 427, 323, 99, 94 });
-	BjumpP1.PushBack({ 526, 323, 89, 94 });
-	BjumpP1.PushBack({ 615, 323, 93, 94 });
+	BjumpP1.PushBack({ 28, 525, 97, 128 });
+	BjumpP1.PushBack({ 125, 525, 85, 128 });
+	BjumpP1.PushBack({ 210, 525, 83, 128 });
+	BjumpP1.PushBack({ 293, 525, 86, 128 });
+	BjumpP1.PushBack({ 210, 525, 83, 128 });
+	BjumpP1.PushBack({ 125, 525, 85, 128 });
+	BjumpP1.PushBack({ 28, 525, 97, 128 });
 	BjumpP1.speed = 0.5f;
 	BjumpP1.loop = false;
 
