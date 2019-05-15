@@ -5,7 +5,7 @@
 #include "Globals.h"
 #include "SDL\include\SDL_scancode.h"
 #include "SDL/include/SDL_events.h"
-#define MAX_BUTTONS 15
+#define MAX_BUTTONS 50
 #define MAX_KEYS 300
 
 #define GAME_PAD_1 0
