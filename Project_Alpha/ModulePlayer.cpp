@@ -72,6 +72,26 @@ ModulePlayer::ModulePlayer()
 	crouchP1.speed = 0.5f;
 	crouchP1.loop = false;
 
+	//Neutral Jump Animation
+	NjumpP1.PushBack({ 427, 323, 99, 94 });
+	NjumpP1.PushBack({ 526, 323, 89, 94 });
+	NjumpP1.PushBack({ 615, 323, 93, 94 });
+	NjumpP1.speed = 0.5f;
+	NjumpP1.loop = false;
+
+	//Forward Jump Animation
+	FjumpP1.PushBack({ 427, 323, 99, 94 });
+	FjumpP1.PushBack({ 526, 323, 89, 94 });
+	FjumpP1.PushBack({ 615, 323, 93, 94 });
+	FjumpP1.speed = 0.5f;
+	FjumpP1.loop = false;
+
+	//Backward Jump Animation
+	BjumpP1.PushBack({ 427, 323, 99, 94 });
+	BjumpP1.PushBack({ 526, 323, 89, 94 });
+	BjumpP1.PushBack({ 615, 323, 93, 94 });
+	BjumpP1.speed = 0.5f;
+	BjumpP1.loop = false;
 
 }
 
@@ -132,7 +152,7 @@ update_status ModulePlayer::PreUpdate() {
 		if (currentstateP1 == idlestateP1) {
 			if (inputplayerP1.A_active ) {
 				currentstateP1 = backwardstateP1;
-				blockP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x +50 ,positionP1.y -50, 10, 30 }, COLLIDER_PLAYER_BLOCK, App->player);
+				blockP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x +50 ,positionP1.y -80 - App->render->camera.y * 2, 10, 30 }, COLLIDER_PLAYER_BLOCK, App->player);
 				LOG("IDLE TO BACK");
 			}
 			if (inputplayerP1.D_active) {
@@ -166,7 +186,7 @@ update_status ModulePlayer::PreUpdate() {
 			}
 			if (inputplayerP1.A_active) {
 				currentstateP1 = backwardstateP1;
-				blockP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x +55, positionP1.y -80, 7, 30 }, COLLIDER_PLAYER_BLOCK, App->player);
+				blockP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x +55, positionP1.y -80 - App->render->camera.y * 2, 7, 30 }, COLLIDER_PLAYER_BLOCK, App->player);
 				LOG("FOR to BACK");
 			}
 
@@ -196,22 +216,22 @@ update_status ModulePlayer::Update() {
 
 	case idlestateP1:
 		playerP1_collider->rect.h = 93;
-		//playerP1_collider->SetPos(positionP1.x - App->render->camera.x + 5, positionP1.y - 93 - App->render->camera.y);
+		
 		currentP1_animation = &idleP1;
 		LOG("IDLE ANIMATION ACTIVE");
 		break;
 
 	case backwardstateP1:
 		playerP1_collider->rect.h = 93;
-		blockP1_collider->SetPos(positionP1.x + 55 - App->render->camera.x  *2, positionP1.y -80 );
-		//playerP1_collider->SetPos(positionP1.x - App->render->camera.x + 5, positionP1.y - 93 - App->render->camera.y);
+		blockP1_collider->SetPos(positionP1.x + 55 - App->render->camera.x  *2, positionP1.y -80 - App->render->camera.y * 2);
+		
 		currentP1_animation = &backwardP1;
 		positionP1.x -= speed;
 		LOG("BACK ANIMATION ACTIVE");
 		break;
 
 	case forwardstateP1:
-		//playerP1_collider->SetPos(positionP1.x - App->render->camera.x + 5, positionP1.y - 93 - App->render->camera.y);
+		
 		currentP1_animation = &forwardP1;
 		positionP1.x += speed;
 		LOG("FORWARD ANIMATION ACTIVE");
@@ -220,25 +240,29 @@ update_status ModulePlayer::Update() {
 	case crouchstateP1:
 		currentP1_animation = &crouchP1;
 		playerP1_collider->rect.h = 65;
-		playerP1_collider->SetPos(positionP1.x - App->render->camera.x *2  , positionP1.y - 68 - App->render->camera.y);
+		playerP1_collider->SetPos(positionP1.x - App->render->camera.x *2  , positionP1.y - 68 - App->render->camera.y * 2);
 		LOG("CROUCHED ANIMATION ACTIVE");
 		break;
 	}
 
 	if ( currentstateP1 != crouchstateP1) {
-		playerP1_collider->SetPos(positionP1.x  - App->render->camera.x *2  , positionP1.y - 93 - App->render->camera.y);
+		playerP1_collider->SetPos(positionP1.x  - App->render->camera.x *2  , positionP1.y - 93 - App->render->camera.y * 2);
 	}
 
 	SDL_Rect r = currentP1_animation->GetCurrentFrame();
-	SDL_Rect shadow = {796,27,100,20};
 
-	App->render->Blit(graphicsP1, positionP1.x - 10, positionP1.y -15, &shadow , 1.0f, true);
+	SDL_Rect shadowP1 = {796,27,100,20};
+
+
+	
 
 
 	if (playerP1_collider->rect.x < App->player2->playerP2_collider->rect.x ) {
+		App->render->Blit(graphicsP1, positionP1.x - 10, positionP1.y - 15, &shadowP1, 1.0f, true,SDL_FLIP_NONE);
 		App->render->Blit(graphicsP1, positionP1.x, positionP1.y - r.h, &r, 1.0f, true, SDL_FLIP_NONE);
 	}
 	else {
+		App->render->Blit(graphicsP1, positionP1.x - 10, positionP1.y - 15, &shadowP1, 1.0f, true, SDL_FLIP_HORIZONTAL);
 		App->render->Blit(graphicsP1, positionP1.x, positionP1.y - r.h, &r, 1.0f, true, SDL_FLIP_HORIZONTAL);
 	}
 

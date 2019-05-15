@@ -137,6 +137,7 @@ update_status ModulePlayer2::PreUpdate() {
 		if (currentstateP2 == idlestateP2) {
 			if (inputplayerP2.Right_active) {
 				currentstateP2 = backwardstateP2;
+				blockP2_collider = App->collision->AddCollider({ positionP2.x +50 -App->render->camera.x * 2, positionP2.y - 80 - App->render->camera.y * 2, 10, 30 }, COLLIDER_PLAYER_BLOCK, App->player);
 				LOG("IDLE TO BACK");
 			}
 			if (inputplayerP2.Left_active) {
@@ -151,12 +152,19 @@ LOG("IDLE TO forward");
 		//BACKWARDS STATE
 		if (currentstateP2 == backwardstateP2) {
 			if (!inputplayerP2.Right_active) {
+				blockP2_collider->to_delete = true;
 				currentstateP2 = idlestateP2;
 				LOG("BACK to IDLE");
 			}
 			if (inputplayerP2.Down_active) {
+				blockP2_collider->to_delete = true;
 				currentstateP2 = crouchstateP2;
 				LOG("BACK to CROUCH");
+			}
+			if (inputplayerP2.Left_active) {
+				blockP2_collider->to_delete = true;
+				currentstateP2 = forwardstateP2;
+				LOG("BACK to FORWARD");
 			}
 		}
 		//FORWARD STATE
@@ -167,6 +175,7 @@ LOG("IDLE TO forward");
 			}
 			if (inputplayerP2.Right_active) {
 				currentstateP2 = backwardstateP2;
+				blockP2_collider = App->collision->AddCollider({ positionP2.x  -App->render->camera.x * 2, positionP2.y - 80 - App->render->camera.y * 2, 10, 30 }, COLLIDER_PLAYER_BLOCK, App->player);
 				LOG("FOR to BACK");
 			}
 
@@ -197,34 +206,40 @@ update_status ModulePlayer2::Update()
 	{
 	case idlestateP2:
 		playerP2_collider->rect.h = 93;
-		playerP2_collider->SetPos(positionP2.x - App->render->camera.x + 5 , positionP2.y - 93 - App->render->camera.y);
+		
 		currentP2_animation = &idleP2;
 		LOG("IDLE ANIMATION ACTIVE");
 		break;
 
 	case backwardstateP2:
 		playerP2_collider->rect.h = 93;
-		playerP2_collider->SetPos(positionP2.x - App->render->camera.x + 5, positionP2.y - 93 - App->render->camera.y);
+		blockP2_collider->SetPos(positionP2.x - App->render->camera.x * 2, positionP2.y - 80 - App->render->camera.y * 2);
+		
 		currentP2_animation = &backwardP2;
 		positionP2.x += speedII;
 		LOG("BACK ANIMATION ACTIVE");
 		break;
-	case forwardstateP1:
-		playerP2_collider->SetPos(positionP2.x - App->render->camera.x + 5, positionP2.y - 93 - App->render->camera.y);
+	case forwardstateP2:
+		
 		currentP2_animation = &forwardP2;
 		positionP2.x -= speedII;
 		LOG("FORWARD ANIMATION ACTIVE");
 		break;
 
-	case crouchstateP1:
+	case crouchstateP2:
 		currentP2_animation = &crouchP2;
 		playerP2_collider->rect.h = 65;
-		playerP2_collider->SetPos(positionP2.x - App->render->camera.x + 5, positionP2.y - 68 - App->render->camera.y);
+		playerP2_collider->SetPos(positionP2.x - App->render->camera.x * 2, positionP2.y - 68 - App->render->camera.y * 2);
 		LOG("CROUCHED ANIMATION ACTIVE");
 		break;
 	}
-
+	if (currentstateP2 != crouchstateP2) {
+		playerP2_collider->SetPos(positionP2.x - App->render->camera.x * 2, positionP2.y - 93 - App->render->camera.y * 2);
+	}
 	SDL_Rect r = currentP2_animation->GetCurrentFrame();
+	SDL_Rect shadowP2 = { 796,27,100,20 };
+
+	
 
 	if (positionP2.x <= (App->render->camera.x - 10))
 	{
@@ -236,10 +251,12 @@ update_status ModulePlayer2::Update()
 	}
 
 	if (playerP2_collider->rect.x > App->player->playerP1_collider->rect.x) {
+		App->render->Blit(graphicsP2, positionP2.x + 10, positionP2.y - 15, &shadowP2, 1.0f, true,SDL_FLIP_HORIZONTAL);
 		App->render->Blit(graphicsP2, positionP2.x, positionP2.y - r.h, &r, 1.0f, true, SDL_FLIP_HORIZONTAL);
 	}
 	else
 	{
+		App->render->Blit(graphicsP2, positionP2.x + 10, positionP2.y - 15, &shadowP2, 1.0f, true, SDL_FLIP_NONE);
 		App->render->Blit(graphicsP2, positionP2.x, positionP2.y - r.h, &r, 1.0f, true, SDL_FLIP_NONE);
 	}
 

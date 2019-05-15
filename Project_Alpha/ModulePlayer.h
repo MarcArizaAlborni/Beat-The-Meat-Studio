@@ -49,8 +49,9 @@ public:
 
 public:
 
-	SDL_Rect shadow ;
+	
 	SDL_Rect healthP1;
+	SDL_Rect shadowP1;
 	SDL_Texture* graphicsP1 = nullptr;
 	//test
 	Animation* currentP1_animation = nullptr;
@@ -62,6 +63,9 @@ public:
 	Animation forwardP1;
 	Animation backwardP1;
 	Animation crouchP1;
+	Animation NjumpP1;
+	Animation FjumpP1;
+	Animation BjumpP1;
 	iPoint positionP1;
 	InputP1 inputplayerP1;
 

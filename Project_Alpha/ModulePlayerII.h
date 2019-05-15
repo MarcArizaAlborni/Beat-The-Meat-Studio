@@ -44,6 +44,7 @@ public:
 public:
 
 	SDL_Rect healthP2;
+	SDL_Rect shadowP2;
 	SDL_Texture* graphicsP2 = nullptr;
 	//test
 	Animation* currentP2_animation = nullptr;
@@ -62,6 +63,7 @@ public:
 	//Player2 Test collider
 	Collider* playerP2_collider = nullptr;
 	Collider* attackP2_collider = nullptr;
+	Collider* blockP2_collider = nullptr;
 
 };
 
