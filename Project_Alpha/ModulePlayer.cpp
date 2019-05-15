@@ -15,12 +15,7 @@
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
-int speed = 2;
-Uint8 alphaka= 255;
-int groundLevel = 205;
-int maxHeight = 120; 
-bool airkick = true;
-bool alreadyHit = false;
+
 
 
 
@@ -83,7 +78,7 @@ ModulePlayer::ModulePlayer()
 	NjumpP1.PushBack({ 210, 525, 83, 128 });
 	NjumpP1.PushBack({ 125, 525, 85, 128 });
 	NjumpP1.PushBack({ 28, 525, 97, 128 });
-	NjumpP1.speed = 0.05f;
+	NjumpP1.speed = 0.1f;
 	NjumpP1.loop = false;
 
 	//Forward Jump Animation
@@ -97,7 +92,7 @@ ModulePlayer::ModulePlayer()
 	FjumpP1.PushBack({ 686, 525, 96, 128 });
 	FjumpP1.PushBack({ 379, 525, 90, 128 });
 	FjumpP1.PushBack({ 293, 525, 86, 128 });
-	FjumpP1.speed = 0.1f;
+	FjumpP1.speed = 0.01f;
 	FjumpP1.loop = false;
 
 	//Backward Jump Animation
@@ -108,7 +103,7 @@ ModulePlayer::ModulePlayer()
 	BjumpP1.PushBack({ 210, 525, 83, 128 });
 	BjumpP1.PushBack({ 125, 525, 85, 128 });
 	BjumpP1.PushBack({ 28, 525, 97, 128 });
-	BjumpP1.speed = 0.1f;
+	BjumpP1.speed = 0.01f;
 	BjumpP1.loop = false;
 
 }
@@ -173,10 +168,12 @@ update_status ModulePlayer::PreUpdate() {
 	{
 		 if (jumping = true) {
 
-			 if (positionP1.y >= groundLevel+1 ) {
+			 if (positionP1.y >= groundLevel+10 ) {
 				 positionP1.y = groundLevel;
 				 currentstateP1 = idlestateP1;
 				 NjumpP1.Reset();
+				 FjumpP1.Reset();
+				 BjumpP1.Reset();
 				 jumping = false;
 				 jumpTimer = 0;
 				
@@ -199,10 +196,11 @@ update_status ModulePlayer::PreUpdate() {
 				currentstateP1 = crouchstateP1;
 				LOG("IDLE to CROUCH");
 			}
-			if (App->input->keyboard[SDL_SCANCODE_W] == KEY_REPEAT || App->input->keyboard[SDL_SCANCODE_W] == KEY_DOWN) {
+			if ( App->input->keyboard[SDL_SCANCODE_W] == KEY_DOWN) {
 				jumping = true;
 				currentstateP1 = NjumpstateP1;
 				jumpstart = time;
+				jumpTimer = 0;
 				LOG("IDLE to CROUCH");
 			}
 
@@ -220,10 +218,11 @@ update_status ModulePlayer::PreUpdate() {
 				blockP1_collider->to_delete = true;
 				LOG("BACK to CROUCH");
 			}
-			if (App->input->keyboard[SDL_SCANCODE_W] == KEY_REPEAT ||App->input->keyboard[SDL_SCANCODE_W] == KEY_DOWN) {
+			if (App->input->keyboard[SDL_SCANCODE_W] == KEY_DOWN) {
 				jumping = true;
 				currentstateP1 = BjumpstateP1;
 				jumpstart = time;
+				jumpTimer = 0;
 				LOG("IDLE to CROUCH");
 			}
 		}
@@ -243,10 +242,11 @@ update_status ModulePlayer::PreUpdate() {
 				currentstateP1 = crouchstateP1;
 				LOG("FOR to CROUCH");
 			}
-			if (App->input->keyboard[SDL_SCANCODE_W] == KEY_REPEAT || App->input->keyboard[SDL_SCANCODE_W] == KEY_DOWN) {
+			if ( App->input->keyboard[SDL_SCANCODE_W] == KEY_DOWN) {
 				jumping = true;
 				currentstateP1 = FjumpstateP1;
 				jumpstart = time;
+				jumpTimer = 0;
 				LOG("IDLE to CROUCH");
 			}
 		}
@@ -309,18 +309,18 @@ update_status ModulePlayer::Update() {
 		break;
 	case FjumpstateP1:
 
-		currentP1_animation = &NjumpP1;
+		currentP1_animation = &FjumpP1;
 
-		positionP1.x -= speed;
+		positionP1.x += speed;
 		positionP1.y = groundLevel - (yvel*jumpTimer) + (0.5*(gravity) * (jumpTimer*jumpTimer)); //MRUA
 
 
 		break;
 	case BjumpstateP1:
 
-		currentP1_animation = &NjumpP1;
+		currentP1_animation = &BjumpP1;
 		
-		positionP1.x += 5;
+		positionP1.x -= speed;
 
 		positionP1.y = groundLevel - (yvel*jumpTimer) + (0.5*(gravity) * (jumpTimer*jumpTimer)); //MRUA
 
@@ -340,17 +340,18 @@ update_status ModulePlayer::Update() {
 	if (jumping) {
 
 		jumpTimer = time - jumpstart;
+
 		playerP1_collider->SetPos(positionP1.x - App->render->camera.x * 2, positionP1.y - 68 - App->render->camera.y * 2);
 
 	}
 
 
 	if (playerP1_collider->rect.x < App->player2->playerP2_collider->rect.x ) {
-		App->render->Blit(graphicsP1, positionP1.x - 10, positionP1.y - 15, &shadowP1, 1.0f, true,SDL_FLIP_NONE);
+		App->render->Blit(graphicsP1, positionP1.x - 10, groundLevel-15, &shadowP1, 1.0f, true,SDL_FLIP_NONE);
 		App->render->Blit(graphicsP1, positionP1.x, positionP1.y - r.h, &r, 1.0f, true, SDL_FLIP_NONE);
 	}
 	else {
-		App->render->Blit(graphicsP1, positionP1.x - 10, positionP1.y - 15, &shadowP1, 1.0f, true, SDL_FLIP_HORIZONTAL);
+		App->render->Blit(graphicsP1, positionP1.x - 10, groundLevel -15, &shadowP1, 1.0f, true, SDL_FLIP_HORIZONTAL);
 		App->render->Blit(graphicsP1, positionP1.x, positionP1.y - r.h, &r, 1.0f, true, SDL_FLIP_HORIZONTAL);
 	}
 
@@ -374,13 +375,13 @@ update_status ModulePlayer::Update() {
 //TODO 7.4: Detect collision with a wall. If so, go back to intro screen.
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
-	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_PLAYER2 && inputplayerP1.D_active) {
+	/*if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_PLAYER2 && inputplayerP1.D_active) {
 
 		speed = 0;
 	}
 	else
 	{
-		speed = 2;
-	}
+		speed = 3;
+	}*/
 
 }

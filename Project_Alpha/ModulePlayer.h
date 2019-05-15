@@ -51,6 +51,12 @@ public:
 	update_status PreUpdate();
 
 public:
+	int speed = 3;
+	Uint8 alphaka = 255;
+	int groundLevel = 205;
+	int maxHeight = 120;
+	bool airkick = true;
+	bool alreadyHit = false;
 	float yvel = 12.0f;
 	float gravity = 0.7f;
 	uint time = 0;
