@@ -6,6 +6,7 @@
 #include "ModuleTextures.h"
 #include "ModuleSceneRyu.h"
 #include "ModuleSceneHonda.h"
+#include "ModuleSceneGuile.h"
 #include "ModuleCollision.h"
 #include "ModulePlayer.h"
 #include "ModulePlayerII.h"
@@ -32,17 +33,18 @@ Application::Application()
 	modules[6] = icoin_screen = new ModuleIcoinScreen();
 	modules[7] = start_screen = new ModuleStartScreen();
 	modules[8] = scene_honda = new ModuleSceneHonda();
-	modules[9] = scene_ryu = new ModuleSceneRyu();
-	modules[10] = win_screen = new ModuleWinScreen();
-	modules[11] = lose_screen = new ModuleLoseScreen();
-	modules[12] = player = new ModulePlayer();
-	modules[13] = player2 = new ModulePlayer2();
-	modules[14] = congrat_screen = new ModuleCongratScreen();
-	modules[15] = particles = new ModuleParticles();
-	modules[16] = collision = new ModuleCollision();
-	modules[17] = fade = new ModuleFadeToBlack();
-	modules[18] = fonts = new ModuleFonts();
-	modules[19] = audio = new ModuleAudio();
+	modules[9] = scene_guile = new ModuleSceneGuile();
+	modules[10] = scene_ryu = new ModuleSceneRyu();
+	modules[11] = win_screen = new ModuleWinScreen();
+	modules[12] = lose_screen = new ModuleLoseScreen();
+	modules[13] = player = new ModulePlayer();
+	modules[14] = player2 = new ModulePlayer2();
+	modules[15] = congrat_screen = new ModuleCongratScreen();
+	modules[16] = particles = new ModuleParticles();
+	modules[17] = collision = new ModuleCollision();
+	modules[18] = fade = new ModuleFadeToBlack();
+	modules[19] = fonts = new ModuleFonts();
+	modules[20] = audio = new ModuleAudio();
 
 }	
 
@@ -62,6 +64,7 @@ bool Application::Init()
 	collision->Disable();
 	// Disable the map that you do not start with
 	scene_honda->Disable();
+	scene_guile->Disable();
 	scene_ryu->Disable();
 	congrat_screen->Disable();
 	icoin_screen->Disable();

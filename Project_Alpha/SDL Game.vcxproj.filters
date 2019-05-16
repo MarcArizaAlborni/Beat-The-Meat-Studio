@@ -104,6 +104,9 @@
     <ClInclude Include="ModuleTimer.h">
       <Filter>Modules</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleSceneGuile.h">
+      <Filter>Modules\Stages</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -177,6 +180,9 @@
     </ClCompile>
     <ClCompile Include="ModuleTimer.cpp">
       <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleSceneGuile.cpp">
+      <Filter>Modules\Stages</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

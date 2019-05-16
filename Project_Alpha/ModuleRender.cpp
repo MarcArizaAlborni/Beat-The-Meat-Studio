@@ -7,6 +7,7 @@
 #include "SDL/include/SDL.h"
 #include "ModuleSceneHonda.h"
 #include "ModuleSceneryu.h"
+#include "ModuleSceneGuile.h"
 #include "ModuleCollision.h"
 #include "ModulePlayer.h"
 #include "ModulePlayerII.h"
@@ -61,7 +62,7 @@ update_status ModuleRender::Update()
 	if (!App->collision->debug) {
 		if (App->input->keyboard[SDL_SCANCODE_KP_2] == KEY_REPEAT)
 		{
-			if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled())
+			if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled() || App->scene_guile->IsEnabled())
 			{
 				camera.y += speed;
 			}
@@ -73,7 +74,7 @@ update_status ModuleRender::Update()
 
 		if (App->input->keyboard[SDL_SCANCODE_KP_8] == KEY_REPEAT)
 		{
-			if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled())
+			if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled() || App->scene_guile->IsEnabled())
 			{
 				camera.y -= speed;
 			}
@@ -85,7 +86,7 @@ update_status ModuleRender::Update()
 
 		if (App->input->keyboard[SDL_SCANCODE_KP_4] == KEY_REPEAT)
 		{
-			if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled())
+			if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled() || App->scene_guile->IsEnabled())
 			{
 				camera.x -= speed;
 			}
@@ -97,7 +98,7 @@ update_status ModuleRender::Update()
 
 		if (App->input->keyboard[SDL_SCANCODE_KP_6] == KEY_REPEAT)
 		{
-			if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled())
+			if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled() || App->scene_guile->IsEnabled())
 			{
 				camera.x += speed;
 			}

@@ -4,7 +4,7 @@
 #include "SDL_image/include/SDL_image.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
-#include "ModuleSceneRyu.h"
+#include "ModuleSceneGuile.h"
 #include "ModulePlayer.h"
 #include "ModulePlayerII.h"
 #include "ModuleInput.h"
@@ -17,34 +17,22 @@
 #include "ModuleAudio.h"
 
 
-Uint32 timeLimit = 0;
-Uint32 deltaTime = SDL_GetTicks() / 1000;;
-Uint32 startTime = 0;
-
-
-ModuleSceneRyu::ModuleSceneRyu()
+ModuleSceneGuile::ModuleSceneGuile()
 {
-	
-	// ground
-	ground.x = 45;
-	ground.y = 298;
-	ground.w = 620;
-	ground.h = 237.3;
+	//PLANE && GROUND
+	plane_ground = {59, 413, 673, 224};
 
-	// Sky
-	background.x = 49;
-	background.y = 45;
-	background.w = 1409,8;
-	background.h = 176.3;
+	//SKY
+	sky = {};
 
-	background_pos = 0;
-	forward = true;
+	//BACKGROUND
+	background = {59, 207, 673, 160};
 
-	//Castle
-	castle.x = 1477;
-	castle.y = 10;
-	castle.w = 504;
-	castle.h = 182;
+	//LEFT GUYS
+
+	//MID GUYS
+
+	//RIGHT GUYS
 
 	//Healthbar & health
 	healthbar.x = 188;
@@ -84,20 +72,19 @@ ModuleSceneRyu::ModuleSceneRyu()
 	timer.y = 292;
 	timer.w = 28;
 	timer.h = 15;
-}	
+}
 
-ModuleSceneRyu::~ModuleSceneRyu()
+ModuleSceneGuile::~ModuleSceneGuile()
 {}
 
-// Load assets
-bool ModuleSceneRyu::Start()
+bool ModuleSceneGuile::Start()
 {
-	LOG("Loading Ryu scene");
-	graphics = App->textures->Load("Sprites/ryu_stage.png");
+	LOG("Loading Guile scene");
+	graphics = App->textures->Load("Sprites/guile_stage.png");
 	graphics2 = App->textures->Load("Sprites/UI_Spritesheet.png");
-	Background_Sound = App->audio->LoadMus("Audios/Music/05 Japan (Ryu) I.ogg");
+	//Background_Sound = App->audio->LoadMus("Audios/Music/05 Japan (Ryu) I.ogg");
 
-	App->audio->PlayMusic(Background_Sound, 0);
+	//App->audio->PlayMusic(Background_Sound, 0);
 
 	App->player->currentstateP1 = idlestateP1;
 	App->player->positionP1.x = 50;
@@ -105,8 +92,8 @@ bool ModuleSceneRyu::Start()
 	App->player2->currentstateP2 = idlestateP2;
 	App->player2->positionP2.x = 230;
 	App->player2->positionP2.y = 205;
-	
-	
+
+
 	App->player->Enable();
 	App->player2->Enable();
 	App->particles->Enable();
@@ -121,10 +108,9 @@ bool ModuleSceneRyu::Start()
 	return true;
 }
 
-// UnLoad assets
-bool ModuleSceneRyu::CleanUp()
+bool ModuleSceneGuile::CleanUp()
 {
-	LOG("Unloading Ryu scene");
+	LOG("Unloading Guile Scene");
 	App->textures->Unload(graphics);
 	App->textures->Unload(graphics2);
 	App->player->Disable();
@@ -137,31 +123,16 @@ bool ModuleSceneRyu::CleanUp()
 	health.x = 189;
 	health2.w = 144;
 
-
-
-	
 	return true;
 }
 
-// Update: draw background
-update_status ModuleSceneRyu::Update()
+update_status ModuleSceneGuile::Update()
 {
+	App->render->Blit(graphics, 0, 0, &sky); //sky
+	App->render->Blit(graphics, 0, 0, &background); //background
+	App->render->Blit(graphics, 0, 0, &plane_ground); //plane_ground
 	
-
-	
-	if (background_pos > 1000.0f)
-	forward = true;
-
-	if (forward)
-		background_pos -= 0.15f;
-
-	App->render->Blit(graphics, -77 + (int)background_pos, 0, &background); //sky
-
-	App->render->Blit(graphics, 0, -3.25, &castle); //castle
-
-	App->render->Blit(graphics, -115, -13, &ground); //ground
-
-	App->render->Blit(graphics2, 30, 20, &healthbar,1.0f,false); //healthbar
+	App->render->Blit(graphics2, 30, 20, &healthbar, 1.0f, false); //healthbar
 	App->render->Blit(graphics2, 31, 23, &health, 1.0f, false); //health
 	App->render->Blit(graphics2, 207, 23, &health2, 1.0f, false); //health
 
@@ -176,7 +147,7 @@ update_status ModuleSceneRyu::Update()
 	}
 	if (health.x <= 45) //45 instead of 0 because it doesnt exactly fit. If the duel ends then reset the healthbars
 	{
-		App->fade->FadeToBlack(App->scene_ryu, App->lose_screen, 1.0f);
+		App->fade->FadeToBlack(App->scene_guile, App->lose_screen, 1.0f);
 		App->audio->FinishMusic(1000);
 	}
 	if (App->input->keyboard[SDL_SCANCODE_F6] == 1) //Health-substracting button
@@ -185,23 +156,23 @@ update_status ModuleSceneRyu::Update()
 	}
 	if (health2.w <= 0) //If the duel ends then reset the healthbars
 	{
-		App->fade->FadeToBlack(App->scene_ryu, App->win_screen, 1.0f);
+		App->fade->FadeToBlack(App->scene_guile, App->win_screen, 1.0f);
 		App->audio->FinishMusic(1000);
 	}
 	if (App->input->keyboard[SDL_SCANCODE_F3] == 1) //Insta-Win Input Button
 	{
-		App->fade->FadeToBlack(App->scene_ryu, App->win_screen, 1.0f);
-		
-		App->audio->FinishMusic(1000);
-	}
-	 
-	if (App->input->keyboard[SDL_SCANCODE_F4] == 1) //Insta-Lose Input Button
-	{
-		App->fade->FadeToBlack(App->scene_ryu, App->lose_screen, 1.0f);
+		App->fade->FadeToBlack(App->scene_guile, App->win_screen, 1.0f);
+
 		App->audio->FinishMusic(1000);
 	}
 
-	
+	if (App->input->keyboard[SDL_SCANCODE_F4] == 1) //Insta-Lose Input Button
+	{
+		App->fade->FadeToBlack(App->scene_guile, App->lose_screen, 1.0f);
+		App->audio->FinishMusic(1000);
+	}
+
+
 	//Win/lose condition using time:
 	deltaTime = SDL_GetTicks() / 1000; //GetTicks counts the amount of milliseconds that have elapsed since the SDL_library has been executed. Milliseconds to seconds.
 	timeLimit = deltaTime - startTime;
@@ -210,26 +181,22 @@ update_status ModuleSceneRyu::Update()
 	{
 		if (health.x == health2.w + 45)
 		{
-			App->fade->FadeToBlack(App->scene_ryu, App->win_screen, 1.0f);
+			App->fade->FadeToBlack(App->scene_guile, App->win_screen, 1.0f);
 		}
-		
+
 		if (health.x - 45 != health2.w) //p1 and p2 have the same amount of hp.
 		{
 			if (health.x > health2.w + 45) //p1 has more  health than p2
 			{
-				App->fade->FadeToBlack(App->scene_ryu, App->win_screen, 1.0f);
+				App->fade->FadeToBlack(App->scene_guile, App->win_screen, 1.0f);
 			}
 
 			if (health.x < health2.w + 45)//p2 has more  health than p1
 			{
-				App->fade->FadeToBlack(App->scene_ryu, App->lose_screen, 1.0f);
+				App->fade->FadeToBlack(App->scene_guile, App->lose_screen, 1.0f);
 			}
 		}
 	}
-
-
-
-	
 
 	return UPDATE_CONTINUE;
 }
