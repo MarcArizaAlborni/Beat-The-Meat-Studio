@@ -17,7 +17,7 @@
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
 
-
+using namespace std;
 
 
 ModulePlayer::ModulePlayer()
@@ -170,71 +170,64 @@ update_status ModulePlayer::PreUpdate() {
 	 inputplayerP1.C_active = App->input->keyboard[SDL_SCANCODE_C] == KEY_DOWN;
 	 inputplayerP1.V_active = App->input->keyboard[SDL_SCANCODE_V] == KEY_DOWN;
 	{
-		/* int combocounter = 0;
-		 int completedcombo = 0;
-		 bool startcombo = 0;
+		/* std::string ComboArrayInput = "aaaa";
+		
+		
+		 int j = 0;
+		 int m = 0;
+		 char comboArray1[] = "zxcv";
 
-		 int ComboArray[10] = {};
+		
 		 if (inputplayerP1.Z_active) {
 			 LOG("Z ACTIVE");
-			 ComboArray[0] = 1;
-			 startcombo = 1;
-			 
+			
+			 ComboArrayInput[0] = 'z' ;
 		 }
 		
 		 if (inputplayerP1.X_active) {
 			
 			 LOG("X ACTIVE");
-			ComboArray[1] = 1;
+			 ComboArrayInput[1] = 'x';
 		 }
 		
 		 if (inputplayerP1.C_active) {
 		 LOG("C ACTIVE");
-		 ComboArray[2] = 1;
+		 ComboArrayInput[2] = 'c';
 		 }
 		 
 		 if (inputplayerP1.V_active) {
 	     LOG("V ACTIVE");
-		 ComboArray[3] = 1;
+		 ComboArrayInput[3] = 'v';
 		 }
+		 
+		if(inputplayerP1.Z_active){
+			 int combocount = 0;
+			 while (m < 5) {
+				 if (ComboArrayInput[j] == comboArray1[j]) {
+					 LOG("COMPARING");
 
-		 if (startcombo ==  1) {
-			 while (combocounter < 10) {
+					 ++combocount;
+					 ++j;
+					 ++m;
+					 if (combocount >= 4) {
+						 LOG("COMBO ACTIVE");
+						 currentstateP1 = forwardstateP1;
 
-				 if (ComboArray[combocounter] == 1) {
+					 }
 
-					 ++completedcombo;
-					 LOG("COMPLETED COMBO +1");
 				 }
 				 else {
-
-					 ComboArray[0] = 0;
-					 ComboArray[1] = 0;
-					 ComboArray[2] = 0;
-					 ComboArray[3] = 0;
-					 ComboArray[4] = 0;
-					 ComboArray[5] = 0;
-					 ComboArray[6] = 0;
-					 ComboArray[7] = 0;
-					 ComboArray[8] = 0;
-					 ComboArray[9] = 0;
-					 LOG("RESTARTING COMBO");
-					 startcombo = 0;
+				   break;
 				 }
-
-				 ++combocounter;
 			 }
-
-			 if (completedcombo >= 4) {
-
-				 currentstateP1 = forwardstateP1;
-				 LOG("COMBO DONE");
-				 startcombo = 0;
-			 }
-
-
+			 combocount = 0;
+			 m = 0;
+			 ComboArrayInput = "aaaa";
+			 LOG("Removing combosequence");
+			
 		 }
-				 */
+		 */
+				 
 		 
 			
 		
