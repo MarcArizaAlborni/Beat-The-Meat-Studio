@@ -18,6 +18,9 @@ enum STATEP1 {
 	forwardstateP1,
 	idlestateP1,
 	crouchstateP1,
+	NjumpstateP1,
+	FjumpstateP1,
+	BjumpstateP1,
 
 };
 struct InputP1 {
@@ -48,9 +51,20 @@ public:
 	update_status PreUpdate();
 
 public:
-
-	SDL_Rect shadow ;
+	int speed = 3;
+	Uint8 alphaka = 255;
+	int groundLevel = 205;
+	int maxHeight = 120;
+	bool airkick = true;
+	bool alreadyHit = false;
+	float yvel = 12.0f;
+	float gravity = 0.7f;
+	uint time = 0;
+	uint jumpTimer = 0;
+	uint jumpstart;
+	bool jumping = false;
 	SDL_Rect healthP1;
+	SDL_Rect shadowP1;
 	SDL_Texture* graphicsP1 = nullptr;
 	//test
 	Animation* currentP1_animation = nullptr;
@@ -62,6 +76,9 @@ public:
 	Animation forwardP1;
 	Animation backwardP1;
 	Animation crouchP1;
+	Animation NjumpP1;
+	Animation FjumpP1;
+	Animation BjumpP1;
 	iPoint positionP1;
 	InputP1 inputplayerP1;
 

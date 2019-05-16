@@ -15,18 +15,16 @@
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
-int speed = 2;
-Uint8 alphaka= 255;
-int groundLevel = 205;
-int maxHeight = 120; 
-bool airkick = true;
-bool alreadyHit = false;
+
+
 
 
 ModulePlayer::ModulePlayer()
 {
 	graphicsP1 = NULL;
 	currentP1_animation = NULL;
+
+	
 
 	score = 0;
 
@@ -72,6 +70,41 @@ ModulePlayer::ModulePlayer()
 	crouchP1.speed = 0.5f;
 	crouchP1.loop = false;
 
+	//Neutral Jump Animation
+	NjumpP1.PushBack({ 28, 525, 97, 128 });
+	NjumpP1.PushBack({ 125, 525, 85, 128 });
+	NjumpP1.PushBack({ 210, 525, 83, 128 });
+	NjumpP1.PushBack({ 293, 525, 86, 128 });
+	NjumpP1.PushBack({ 210, 525, 83, 128 });
+	NjumpP1.PushBack({ 125, 525, 85, 128 });
+	NjumpP1.PushBack({ 28, 525, 97, 128 });
+	NjumpP1.speed = 0.1f;
+	NjumpP1.loop = false;
+
+	//Forward Jump Animation
+	FjumpP1.PushBack({ 28, 525, 97, 128 });
+	FjumpP1.PushBack({ 125, 525, 85, 128 });
+	FjumpP1.PushBack({ 210, 525, 83, 128 });
+	FjumpP1.PushBack({ 293, 525, 86, 128 });
+	FjumpP1.PushBack({ 379, 525, 90, 128 });
+	FjumpP1.PushBack({ 469, 525, 98, 128 });
+	FjumpP1.PushBack({ 567, 525, 119, 128 });
+	FjumpP1.PushBack({ 686, 525, 96, 128 });
+	FjumpP1.PushBack({ 379, 525, 90, 128 });
+	FjumpP1.PushBack({ 293, 525, 86, 128 });
+	FjumpP1.speed = 0.17f;
+	FjumpP1.loop = false;
+
+	//Backward Jump Animation
+	BjumpP1.PushBack({ 28, 525, 97, 128 });
+	BjumpP1.PushBack({ 125, 525, 85, 128 });
+	BjumpP1.PushBack({ 210, 525, 83, 128 });
+	BjumpP1.PushBack({ 293, 525, 86, 128 });
+	BjumpP1.PushBack({ 210, 525, 83, 128 });
+	BjumpP1.PushBack({ 125, 525, 85, 128 });
+	BjumpP1.PushBack({ 28, 525, 97, 128 });
+	BjumpP1.speed = 0.17f;
+	BjumpP1.loop = false;
 
 }
 
@@ -84,7 +117,7 @@ bool ModulePlayer::Start()
 	LOG("Loading player textures");
 
 	graphicsP1 = App->textures->Load("Sprites/BlankaP1.png"); // JA TE LA FOTO BONA
-	
+	currentstateP1 = idlestateP1;
 	//Player 2 stest collider
 	playerP1_collider = App->collision->AddCollider({ positionP1.x , positionP1.y - 100, 60, 93 }, COLLIDER_PLAYER, App->player);
 	attackP1_collider = nullptr;
@@ -102,7 +135,12 @@ bool ModulePlayer::CleanUp()
 
 
 update_status ModulePlayer::PreUpdate() {
+	
+	time = SDL_GetTicks() / 20;
+	
+	
 
+	
 	//MOVE BACKWARD
 	//inputplayerP1.A_active = App->input->keyboard[SDL_SCANCODE_A] == KEY_REPEAT;
 	//MOVE FORWARD
@@ -125,14 +163,15 @@ update_status ModulePlayer::PreUpdate() {
 	 inputplayerP1.D_active = App->input->keyboard[SDL_SCANCODE_D] == KEY_REPEAT || SDL_GameControllerGetButton(App->input->controller_player_1, SDL_CONTROLLER_BUTTON_DPAD_RIGHT)|| SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTX) >= 10000;
 	 inputplayerP1.A_active = App->input->keyboard[SDL_SCANCODE_A] == KEY_REPEAT || SDL_GameControllerGetButton(App->input->controller_player_1, SDL_CONTROLLER_BUTTON_DPAD_LEFT)|| SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTX) <= -10000;
 	 inputplayerP1.S_active = App->input->keyboard[SDL_SCANCODE_S] == KEY_REPEAT || SDL_GameControllerGetButton(App->input->controller_player_1, SDL_CONTROLLER_BUTTON_DPAD_DOWN) || SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTY) >= 10000;
-	 inputplayerP1.W_active = App->input->keyboard[SDL_SCANCODE_W] == KEY_REPEAT || SDL_GameControllerGetButton(App->input->controller_player_1, SDL_CONTROLLER_BUTTON_DPAD_UP) || SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTY) >= -10000;
+	 inputplayerP1.W_active = App->input->keyboard[SDL_SCANCODE_W] == KEY_REPEAT || SDL_GameControllerGetButton(App->input->controller_player_1, SDL_CONTROLLER_BUTTON_DPAD_UP) || SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTY) <= -10000;
 		
 	{
+		
 		//IDLE STATE
 		if (currentstateP1 == idlestateP1) {
 			if (inputplayerP1.A_active ) {
 				currentstateP1 = backwardstateP1;
-				blockP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x +50 ,positionP1.y -50, 10, 30 }, COLLIDER_PLAYER_BLOCK, App->player);
+				blockP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x +50 ,positionP1.y -80 - App->render->camera.y * 2, 10, 30 }, COLLIDER_PLAYER_BLOCK, App->player);
 				LOG("IDLE TO BACK");
 			}
 			if (inputplayerP1.D_active) {
@@ -143,6 +182,14 @@ update_status ModulePlayer::PreUpdate() {
 				currentstateP1 = crouchstateP1;
 				LOG("IDLE to CROUCH");
 			}
+			if ( App->input->keyboard[SDL_SCANCODE_W] == KEY_DOWN) {
+				jumping = true;
+				currentstateP1 = NjumpstateP1;
+				jumpstart = time;
+				jumpTimer = 0;
+				LOG("IDLE to CROUCH");
+			}
+
 		}
 
 		//BACKWARDS STATE
@@ -157,6 +204,13 @@ update_status ModulePlayer::PreUpdate() {
 				blockP1_collider->to_delete = true;
 				LOG("BACK to CROUCH");
 			}
+			if (App->input->keyboard[SDL_SCANCODE_W] == KEY_DOWN) {
+				jumping = true;
+				currentstateP1 = BjumpstateP1;
+				jumpstart = time;
+				jumpTimer = 0;
+				LOG("IDLE to CROUCH");
+			}
 		}
 		//FORWARD STATE
 		if (currentstateP1 == forwardstateP1) {
@@ -166,13 +220,20 @@ update_status ModulePlayer::PreUpdate() {
 			}
 			if (inputplayerP1.A_active) {
 				currentstateP1 = backwardstateP1;
-				blockP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x +55, positionP1.y -80, 7, 30 }, COLLIDER_PLAYER_BLOCK, App->player);
+				blockP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x +55, positionP1.y -80 - App->render->camera.y * 2, 7, 30 }, COLLIDER_PLAYER_BLOCK, App->player);
 				LOG("FOR to BACK");
 			}
 
 			if (inputplayerP1.S_active) {
 				currentstateP1 = crouchstateP1;
 				LOG("FOR to CROUCH");
+			}
+			if ( App->input->keyboard[SDL_SCANCODE_W] == KEY_DOWN) {
+				jumping = true;
+				currentstateP1 = FjumpstateP1;
+				jumpstart = time;
+				jumpTimer = 0;
+				LOG("IDLE to CROUCH");
 			}
 		}
 		//COUCH STATE
@@ -183,35 +244,51 @@ update_status ModulePlayer::PreUpdate() {
 				LOG("CROUCH to IDLE");
 			}
 		}
+		//JUMP STATE
+		if (jumping = true) {
 
+			if (positionP1.y >= groundLevel + 10) {
+				positionP1.y = groundLevel;
+				currentstateP1 = idlestateP1;
+				NjumpP1.Reset();
+				FjumpP1.Reset();
+				BjumpP1.Reset();
+				jumping = false;
+				jumpTimer = 0;
+
+			}
+
+
+		}
+		
 
 		return UPDATE_CONTINUE;
 	}
 }
 
 update_status ModulePlayer::Update() {
-
+	
 	switch (currentstateP1)
 	{
 
 	case idlestateP1:
 		playerP1_collider->rect.h = 93;
-		//playerP1_collider->SetPos(positionP1.x - App->render->camera.x + 5, positionP1.y - 93 - App->render->camera.y);
+		
 		currentP1_animation = &idleP1;
 		LOG("IDLE ANIMATION ACTIVE");
 		break;
 
 	case backwardstateP1:
 		playerP1_collider->rect.h = 93;
-		blockP1_collider->SetPos(positionP1.x + 55 - App->render->camera.x  *2, positionP1.y -80 );
-		//playerP1_collider->SetPos(positionP1.x - App->render->camera.x + 5, positionP1.y - 93 - App->render->camera.y);
+		blockP1_collider->SetPos(positionP1.x + 55 - App->render->camera.x  *2, positionP1.y -80 - App->render->camera.y * 2);
+		
 		currentP1_animation = &backwardP1;
 		positionP1.x -= speed;
 		LOG("BACK ANIMATION ACTIVE");
 		break;
 
 	case forwardstateP1:
-		//playerP1_collider->SetPos(positionP1.x - App->render->camera.x + 5, positionP1.y - 93 - App->render->camera.y);
+		
 		currentP1_animation = &forwardP1;
 		positionP1.x += speed;
 		LOG("FORWARD ANIMATION ACTIVE");
@@ -220,25 +297,57 @@ update_status ModulePlayer::Update() {
 	case crouchstateP1:
 		currentP1_animation = &crouchP1;
 		playerP1_collider->rect.h = 65;
-		playerP1_collider->SetPos(positionP1.x - App->render->camera.x *2  , positionP1.y - 68 - App->render->camera.y);
+		playerP1_collider->SetPos(positionP1.x - App->render->camera.x *2  , positionP1.y - 68 - App->render->camera.y * 2);
 		LOG("CROUCHED ANIMATION ACTIVE");
 		break;
+
+	case NjumpstateP1:
+		currentP1_animation = &NjumpP1;
+		positionP1.y = groundLevel - (yvel*jumpTimer) + (0.5*(gravity) * (jumpTimer*jumpTimer)); //MRUA
+		LOG(" NEUTRAL JUMP ANIMATION ACTIVE");
+		break;
+
+	case FjumpstateP1:
+
+		currentP1_animation = &FjumpP1;
+		positionP1.x += speed;
+		positionP1.y = groundLevel - (yvel*jumpTimer) + (0.5*(gravity) * (jumpTimer*jumpTimer)); //MRUA
+		LOG(" FORWARD JUMP ANIMATION ACTIVE");
+		break;
+
+	case BjumpstateP1:
+		currentP1_animation = &BjumpP1;
+		positionP1.x -= speed;
+		positionP1.y = groundLevel - (yvel*jumpTimer) + (0.5*(gravity) * (jumpTimer*jumpTimer)); //MRUA
+		LOG(" BACKWARD JUMP ANIMATION ACTIVE");
+		break;
+
 	}
 
 	if ( currentstateP1 != crouchstateP1) {
-		playerP1_collider->SetPos(positionP1.x  - App->render->camera.x *2  , positionP1.y - 93 - App->render->camera.y);
+		playerP1_collider->SetPos(positionP1.x  - App->render->camera.x *2  , positionP1.y - 93 - App->render->camera.y * 2);
 	}
 
 	SDL_Rect r = currentP1_animation->GetCurrentFrame();
-	SDL_Rect shadow = {796,27,100,20};
 
-	App->render->Blit(graphicsP1, positionP1.x - 10, positionP1.y -15, &shadow , 1.0f, true);
+	//SHADOW
+	SDL_Rect shadowP1 = {796,27,100,20};
+	
+	if (jumping) {
+
+		jumpTimer = time - jumpstart;
+
+		playerP1_collider->SetPos(positionP1.x - App->render->camera.x * 2, positionP1.y - 68 - App->render->camera.y * 2);
+
+	}
 
 
 	if (playerP1_collider->rect.x < App->player2->playerP2_collider->rect.x ) {
+		App->render->Blit(graphicsP1, positionP1.x - 10, groundLevel-15, &shadowP1, 1.0f, true,SDL_FLIP_NONE);
 		App->render->Blit(graphicsP1, positionP1.x, positionP1.y - r.h, &r, 1.0f, true, SDL_FLIP_NONE);
 	}
 	else {
+		App->render->Blit(graphicsP1, positionP1.x - 10, groundLevel -15, &shadowP1, 1.0f, true, SDL_FLIP_HORIZONTAL);
 		App->render->Blit(graphicsP1, positionP1.x, positionP1.y - r.h, &r, 1.0f, true, SDL_FLIP_HORIZONTAL);
 	}
 
@@ -262,13 +371,13 @@ update_status ModulePlayer::Update() {
 //TODO 7.4: Detect collision with a wall. If so, go back to intro screen.
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
-	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_PLAYER2 && inputplayerP1.D_active) {
+	/*if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_PLAYER2 && inputplayerP1.D_active) {
 
 		speed = 0;
 	}
 	else
 	{
-		speed = 2;
-	}
+		speed = 3;
+	}*/
 
 }
