@@ -11,6 +11,7 @@
 #include "ModuleSceneRyu.h"
 #include "ModulePlayerII.h"
 #include <stdio.h>
+#include <iostream>
 
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
@@ -164,8 +165,80 @@ update_status ModulePlayer::PreUpdate() {
 	 inputplayerP1.A_active = App->input->keyboard[SDL_SCANCODE_A] == KEY_REPEAT || SDL_GameControllerGetButton(App->input->controller_player_1, SDL_CONTROLLER_BUTTON_DPAD_LEFT)|| SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTX) <= -10000;
 	 inputplayerP1.S_active = App->input->keyboard[SDL_SCANCODE_S] == KEY_REPEAT || SDL_GameControllerGetButton(App->input->controller_player_1, SDL_CONTROLLER_BUTTON_DPAD_DOWN) || SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTY) >= 10000;
 	 inputplayerP1.W_active = App->input->keyboard[SDL_SCANCODE_W] == KEY_REPEAT || SDL_GameControllerGetButton(App->input->controller_player_1, SDL_CONTROLLER_BUTTON_DPAD_UP) || SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTY) <= -10000;
-		
+	 inputplayerP1.Z_active = App->input->keyboard[SDL_SCANCODE_Z] == KEY_DOWN;
+	 inputplayerP1.X_active = App->input->keyboard[SDL_SCANCODE_X] == KEY_DOWN;
+	 inputplayerP1.C_active = App->input->keyboard[SDL_SCANCODE_C] == KEY_DOWN;
+	 inputplayerP1.V_active = App->input->keyboard[SDL_SCANCODE_V] == KEY_DOWN;
 	{
+		/* int combocounter = 0;
+		 int completedcombo = 0;
+		 bool startcombo = 0;
+
+		 int ComboArray[10] = {};
+		 if (inputplayerP1.Z_active) {
+			 LOG("Z ACTIVE");
+			 ComboArray[0] = 1;
+			 startcombo = 1;
+			 
+		 }
+		
+		 if (inputplayerP1.X_active) {
+			
+			 LOG("X ACTIVE");
+			ComboArray[1] = 1;
+		 }
+		
+		 if (inputplayerP1.C_active) {
+		 LOG("C ACTIVE");
+		 ComboArray[2] = 1;
+		 }
+		 
+		 if (inputplayerP1.V_active) {
+	     LOG("V ACTIVE");
+		 ComboArray[3] = 1;
+		 }
+
+		 if (startcombo ==  1) {
+			 while (combocounter < 10) {
+
+				 if (ComboArray[combocounter] == 1) {
+
+					 ++completedcombo;
+					 LOG("COMPLETED COMBO +1");
+				 }
+				 else {
+
+					 ComboArray[0] = 0;
+					 ComboArray[1] = 0;
+					 ComboArray[2] = 0;
+					 ComboArray[3] = 0;
+					 ComboArray[4] = 0;
+					 ComboArray[5] = 0;
+					 ComboArray[6] = 0;
+					 ComboArray[7] = 0;
+					 ComboArray[8] = 0;
+					 ComboArray[9] = 0;
+					 LOG("RESTARTING COMBO");
+					 startcombo = 0;
+				 }
+
+				 ++combocounter;
+			 }
+
+			 if (completedcombo >= 4) {
+
+				 currentstateP1 = forwardstateP1;
+				 LOG("COMBO DONE");
+				 startcombo = 0;
+			 }
+
+
+		 }
+				 */
+		 
+			
+		
+		
 		
 		//IDLE STATE
 		if (currentstateP1 == idlestateP1) {
@@ -275,7 +348,7 @@ update_status ModulePlayer::Update() {
 		playerP1_collider->rect.h = 93;
 		
 		currentP1_animation = &idleP1;
-		LOG("IDLE ANIMATION ACTIVE");
+		//LOG("IDLE ANIMATION ACTIVE");
 		break;
 
 	case backwardstateP1:

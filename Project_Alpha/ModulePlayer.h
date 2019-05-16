@@ -35,6 +35,11 @@ struct InputP1 {
 	bool right_active;
 	bool up_active;
 	bool down_active;
+	bool Z_active;
+	bool X_active;
+	bool C_active;
+	bool V_active;
+	
 
 };
 
