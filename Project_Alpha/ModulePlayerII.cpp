@@ -15,7 +15,7 @@
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
-int speedII = 2;
+int speedII = 3;
 Uint8 alphakaII = 255;
 float gravityII = 1;
 int groundLevelII = 205;
@@ -272,7 +272,8 @@ update_status ModulePlayer2::Update()
 		playerP2_collider->SetPos(positionP2.x - App->render->camera.x * 2, positionP2.y - 93 - App->render->camera.y * 2);
 	}
 	SDL_Rect r = currentP2_animation->GetCurrentFrame();
-	SDL_Rect shadowP2 = { 796,27,100,20 };
+	//SHADOW
+	shadowP2 = { 796,27,100,20 };
 
 	
 
@@ -308,7 +309,7 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2)
 	}
 	else
 	{
-		speedII = 2;
+		speedII = 3;
 	}
 
 }

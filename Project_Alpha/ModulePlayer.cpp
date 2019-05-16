@@ -329,9 +329,8 @@ update_status ModulePlayer::Update() {
 	}
 
 	SDL_Rect r = currentP1_animation->GetCurrentFrame();
-
 	//SHADOW
-	SDL_Rect shadowP1 = {796,27,100,20};
+	shadowP1 = {796,27,100,20};
 	
 	if (jumping) {
 
