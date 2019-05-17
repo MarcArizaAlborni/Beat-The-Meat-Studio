@@ -23,22 +23,48 @@ ModuleSceneGuile::ModuleSceneGuile()
 	plane_ground = {59, 413, 673, 224};
 
 	//SKY
-	sky = {};
+	sky = {59, 46, 673, 54 };
 
 	//BACKGROUND
 	background = {59, 207, 673, 160};
 
 	//FENCE
 
+	fence = { 1123, 207, 125, 119 };
 
 	//LEFT GUYS
 
+	left_guys.PushBack({ 911, 33, 65, 112 });
+	left_guys.PushBack({ 985, 33, 65, 112 });
+	left_guys.PushBack({ 911, 33, 65, 112 });
+	left_guys.PushBack({ 985, 33, 65, 112 });
+	left_guys.PushBack({ 911, 33, 65, 112 });
+	left_guys.PushBack({ 985, 33, 65, 112 });
+	left_guys.PushBack({ 911, 33, 65, 112 });
+	left_guys.PushBack({ 1059, 33, 65, 112 });
+	left_guys.PushBack({ 911, 33, 65, 112 });
+	left_guys.PushBack({ 985, 33, 65, 112 });
+	left_guys.PushBack({ 911, 33, 65, 112 });
+	left_guys.PushBack({ 1059, 33, 65, 112 });
+	left_guys.speed = 0.05f;
+	left_guys.loop = true;
+
 	//MID GUYS
 
+	mid_guys.PushBack({ 1250, 64, 154, 81 });
+	mid_guys.PushBack({ 1423, 64, 154, 81 });
+	mid_guys.PushBack({ 1596, 64, 154, 81 });
+	mid_guys.speed = 0.05;
+	mid_guys.loop = true;
 	//RIGHT GUYS
 
-	//Healthbar & health
-	healthbar.x = 188;
+	right_guys.PushBack({ 1774, 55, 97, 91 });
+	right_guys.PushBack({ 1880, 55, 97, 91 });
+	right_guys.PushBack({ 1986, 55, 97, 91 });
+	right_guys.speed = 0.05;
+	right_guys.loop = true;
+
+	//Healthbar & health 
 	healthbar.y = 254;
 	healthbar.w = 322;
 	healthbar.h = 14;
@@ -51,7 +77,7 @@ ModuleSceneGuile::ModuleSceneGuile()
 	health2.x = 365;
 	health2.y = 274;
 	health2.w = 144;
-	health2.h = 9;
+	health2.h = 9; 
 
 	//Names
 	name.x = 226;
@@ -130,11 +156,15 @@ bool ModuleSceneGuile::CleanUp()
 }
 
 update_status ModuleSceneGuile::Update()
-{
+{ 
 	App->render->Blit(graphics, 0, 0, &sky); //sky
 	App->render->Blit(graphics, 0, 0, &background); //background
 	App->render->Blit(graphics, 0, 0, &plane_ground); //plane_ground
-	
+	App->render->Blit(graphics, 0, 70, &fence); //fence
+	App->render->Blit(graphics, 194, 79, &(left_guys.GetCurrentFrame())); //left_guys
+	App->render->Blit(graphics, 300, 110, &(mid_guys.GetCurrentFrame())); //mid_guys
+	App->render->Blit(graphics, 460, 101, &(right_guys.GetCurrentFrame())); //right_guys
+
 	App->render->Blit(graphics2, 30, 20, &healthbar, 1.0f, false); //healthbar
 	App->render->Blit(graphics2, 31, 23, &health, 1.0f, false); //health
 	App->render->Blit(graphics2, 207, 23, &health2, 1.0f, false); //health
