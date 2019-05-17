@@ -25,87 +25,152 @@ ModulePlayer::ModulePlayer()
 	graphicsP1 = NULL;
 	currentP1_animation = NULL;
 
-	
+
 
 	score = 0;
 
 	healthP1.x = 100;
-	healthP1.y = 400; 
+	healthP1.y = 400;
 	healthP1.w = 200;
 	healthP1.h = 20;
-	
-	//Idle animation (arcade sprite sheet)
-	idleP1.PushBack({ 28, 27, 105, 100 });
-	idleP1.PushBack({ 133, 27, 100, 100 });
-	idleP1.PushBack({ 233, 27, 100, 100 });
-	idleP1.speed = 0.08f;
 
-	//Walk FORWARD Animation
-	forwardP1.PushBack({ 699, 127, 97, 84 });
-	forwardP1.PushBack({ 232, 127, 90, 84 });
-	forwardP1.PushBack({ 322, 127, 100, 84 });
-	forwardP1.PushBack({ 422, 127, 100, 84 });
-	forwardP1.PushBack({ 522, 127, 88, 84 });
-	forwardP1.PushBack({ 609, 127, 90, 84 });
-	forwardP1.PushBack({ 132, 127, 100, 84 });
-	forwardP1.PushBack({ 29, 127, 105, 84 });
-	forwardP1.loop = true;
-	forwardP1.speed = 0.1f;
+	{ //BASIC MOVEMENTS ANIMATIONS
 
-	//Walk backwards animation
-	backwardP1.PushBack({ 694, 211, 101, 101 });
-	backwardP1.PushBack({ 609, 211, 85, 101 });
-	backwardP1.PushBack({ 522, 211, 87, 101 });
-	backwardP1.PushBack({ 232, 211, 91, 101 });
-	backwardP1.PushBack({ 322, 211, 105, 101 });
-	backwardP1.PushBack({ 427, 211, 95, 101 });
-	backwardP1.PushBack({ 132, 211, 100, 101 });
-	backwardP1.PushBack({ 29, 211, 104, 101 });
-	backwardP1.loop = true;
-	backwardP1.speed = 0.1f;
+		//Idle animation (arcade sprite sheet)
+		idleP1.PushBack({ 28, 27, 105, 100 });
+		idleP1.PushBack({ 133, 27, 100, 100 });
+		idleP1.PushBack({ 233, 27, 100, 100 });
+		idleP1.speed = 0.08f;
 
-	//Crouch Animation
-	crouchP1.PushBack({ 427, 323, 99, 94 });
-	crouchP1.PushBack({ 526, 323, 89, 94 });
-	crouchP1.PushBack({ 615, 323, 93, 94 });
-	crouchP1.speed = 0.5f;
-	crouchP1.loop = false;
+		//Walk FORWARD Animation
+		forwardP1.PushBack({ 699, 127, 97, 84 });
+		forwardP1.PushBack({ 232, 127, 90, 84 });
+		forwardP1.PushBack({ 322, 127, 100, 84 });
+		forwardP1.PushBack({ 422, 127, 100, 84 });
+		forwardP1.PushBack({ 522, 127, 88, 84 });
+		forwardP1.PushBack({ 609, 127, 90, 84 });
+		forwardP1.PushBack({ 132, 127, 100, 84 });
+		forwardP1.PushBack({ 29, 127, 105, 84 });
+		forwardP1.loop = true;
+		forwardP1.speed = 0.1f;
 
-	//Neutral Jump Animation
-	NjumpP1.PushBack({ 28, 525, 97, 128 });
-	NjumpP1.PushBack({ 125, 525, 85, 128 });
-	NjumpP1.PushBack({ 210, 525, 83, 128 });
-	NjumpP1.PushBack({ 293, 525, 86, 128 });
-	NjumpP1.PushBack({ 210, 525, 83, 128 });
-	NjumpP1.PushBack({ 125, 525, 85, 128 });
-	NjumpP1.PushBack({ 28, 525, 97, 128 });
-	NjumpP1.speed = 0.1f;
-	NjumpP1.loop = false;
+		//Walk backwards animation
+		backwardP1.PushBack({ 694, 211, 101, 101 });
+		backwardP1.PushBack({ 609, 211, 85, 101 });
+		backwardP1.PushBack({ 522, 211, 87, 101 });
+		backwardP1.PushBack({ 232, 211, 91, 101 });
+		backwardP1.PushBack({ 322, 211, 105, 101 });
+		backwardP1.PushBack({ 427, 211, 95, 101 });
+		backwardP1.PushBack({ 132, 211, 100, 101 });
+		backwardP1.PushBack({ 29, 211, 104, 101 });
+		backwardP1.loop = true;
+		backwardP1.speed = 0.1f;
 
-	//Forward Jump Animation
-	FjumpP1.PushBack({ 28, 525, 97, 128 });
-	FjumpP1.PushBack({ 125, 525, 85, 128 });
-	FjumpP1.PushBack({ 210, 525, 83, 128 });
-	FjumpP1.PushBack({ 293, 525, 86, 128 });
-	FjumpP1.PushBack({ 379, 525, 90, 128 });
-	FjumpP1.PushBack({ 469, 525, 98, 128 });
-	FjumpP1.PushBack({ 567, 525, 119, 128 });
-	FjumpP1.PushBack({ 686, 525, 96, 128 });
-	FjumpP1.PushBack({ 379, 525, 90, 128 });
-	FjumpP1.PushBack({ 293, 525, 86, 128 });
-	FjumpP1.speed = 0.17f;
-	FjumpP1.loop = false;
+		//Crouch Animation
+		crouchP1.PushBack({ 427, 323, 99, 94 });
+		crouchP1.PushBack({ 526, 323, 89, 94 });
+		crouchP1.PushBack({ 615, 323, 93, 94 });
+		crouchP1.speed = 0.5f;
+		crouchP1.loop = false;
 
-	//Backward Jump Animation
-	BjumpP1.PushBack({ 28, 525, 97, 128 });
-	BjumpP1.PushBack({ 125, 525, 85, 128 });
-	BjumpP1.PushBack({ 210, 525, 83, 128 });
-	BjumpP1.PushBack({ 293, 525, 86, 128 });
-	BjumpP1.PushBack({ 210, 525, 83, 128 });
-	BjumpP1.PushBack({ 125, 525, 85, 128 });
-	BjumpP1.PushBack({ 28, 525, 97, 128 });
-	BjumpP1.speed = 0.17f;
-	BjumpP1.loop = false;
+		//Neutral Jump Animation
+		NjumpP1.PushBack({ 28, 525, 97, 128 });
+		NjumpP1.PushBack({ 125, 525, 85, 128 });
+		NjumpP1.PushBack({ 210, 525, 83, 128 });
+		NjumpP1.PushBack({ 293, 525, 86, 128 });
+		NjumpP1.PushBack({ 210, 525, 83, 128 });
+		NjumpP1.PushBack({ 125, 525, 85, 128 });
+		NjumpP1.PushBack({ 28, 525, 97, 128 });
+		NjumpP1.speed = 0.1f;
+		NjumpP1.loop = false;
+
+		//Forward Jump Animation
+		FjumpP1.PushBack({ 28, 525, 97, 128 });
+		FjumpP1.PushBack({ 125, 525, 85, 128 });
+		FjumpP1.PushBack({ 210, 525, 83, 128 });
+		FjumpP1.PushBack({ 293, 525, 86, 128 });
+		FjumpP1.PushBack({ 379, 525, 90, 128 });
+		FjumpP1.PushBack({ 469, 525, 98, 128 });
+		FjumpP1.PushBack({ 567, 525, 119, 128 });
+		FjumpP1.PushBack({ 686, 525, 96, 128 });
+		FjumpP1.PushBack({ 379, 525, 90, 128 });
+		FjumpP1.PushBack({ 293, 525, 86, 128 });
+		FjumpP1.speed = 0.17f;
+		FjumpP1.loop = false;
+
+		//Backward Jump Animation
+		BjumpP1.PushBack({ 28, 525, 97, 128 });
+		BjumpP1.PushBack({ 125, 525, 85, 128 });
+		BjumpP1.PushBack({ 210, 525, 83, 128 });
+		BjumpP1.PushBack({ 293, 525, 86, 128 });
+		BjumpP1.PushBack({ 210, 525, 83, 128 });
+		BjumpP1.PushBack({ 125, 525, 85, 128 });
+		BjumpP1.PushBack({ 28, 525, 97, 128 });
+		BjumpP1.speed = 0.17f;
+		BjumpP1.loop = false;
+
+		//Standing Turn Animation
+		SturnP1.PushBack({ 36, 418, 89, 105 });
+		SturnP1.PushBack({ 125, 418, 103, 105 });
+		SturnP1.PushBack({ 228, 418, 97, 105 });
+
+		//Crouch Turn Animation
+		CturnP1.PushBack({ 622, 451, 82, 71 });
+		CturnP1.PushBack({ 516, 451, 106, 71 });
+		CturnP1.PushBack({ 428, 451, 88, 71 });
+
+		//Standing Block Animation
+		SblockP1.PushBack({ 730, 2169, 100, 96 });
+		SblockP1.PushBack({ 630, 2169, 100, 96 });
+		
+		//Crouch Block Animation
+		CblockP1.PushBack({ 730, 2100, 100, 63 });
+		CblockP1.PushBack({ 630, 2100, 100, 63 });
+
+	    //Standing Damage 
+		SdamageP1.PushBack({});
+
+		//Standing Damage Low Attack
+		SdamagelowP1.PushBack({});
+
+		//Crouch Damage
+		CdamageP1.PushBack({});
+
+		//Electric Thunder Damage
+		ETdamgeP1.PushBack({});
+
+		//Recovery
+		RecoveryP1.PushBack({});
+
+	}
+
+	{ //ATTACKS ANIMATIONS
+		
+	  //Standing LP
+	  SLP_P1.PushBack({});
+
+	  //Crouch LP
+	  CLP_P1.PushBack({});
+
+	  //Jumping LP
+	  JLP_P1.PushBack({});
+
+	  //Standing MP
+	  //Crouch MP
+	  //Jump MP
+
+	  //Standing HP
+	  //Crouch HP
+	  //Jump HP
+
+	  //Electric Thunder 
+	  Ethunder_P1.PushBack({});
+
+	  //Rolling Attack
+	  RollingP1.PushBack({});
+
+	}
+
 
 }
 

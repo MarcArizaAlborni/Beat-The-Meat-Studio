@@ -77,13 +77,32 @@ public:
 	char score_text[10];
 	uint score = 0;
 	STATEP1 currentstateP1;
-	Animation idleP1;
-	Animation forwardP1;
-	Animation backwardP1;
-	Animation crouchP1;
-	Animation NjumpP1;
-	Animation FjumpP1;
-	Animation BjumpP1;
+
+	//Basic Movements Animations
+	Animation idleP1;        //Idle
+	Animation forwardP1;     //Move Forward
+	Animation backwardP1;    //Move Backward
+	Animation crouchP1;      //Crouch
+	Animation NjumpP1;	     //Neutral Jump
+	Animation FjumpP1;       //Forward Jump
+	Animation BjumpP1;       //Backward Jump
+	Animation SturnP1;       //Standing Turn
+	Animation CturnP1;       //Crouch Turn
+	Animation SblockP1;      //Standing Block
+	Animation CblockP1;      //Crouch Block
+	Animation SdamageP1;     //Standing Damage 
+	Animation SdamagelowP1;  //Standing Damage Low Attack
+	Animation CdamageP1;     //Crouch Damage
+	Animation ETdamgeP1;     //Electric Thunder Damage
+	Animation RecoveryP1;    //Recovery After Damage
+
+	//Attack Animations
+	Animation SLP_P1;        //Standing LP (light punch) 
+	Animation CLP_P1;        //Crouch LP
+	Animation JLP_P1;        //Jumping LP
+	Animation Ethunder_P1;   //Electric Thunder 
+	Animation RollingP1;     //Rolling Attack
+
 	iPoint positionP1;
 	InputP1 inputplayerP1;
 
