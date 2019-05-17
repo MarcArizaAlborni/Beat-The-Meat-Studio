@@ -23,7 +23,7 @@ ModuleSceneGuile::ModuleSceneGuile()
 	plane_ground = {59, 413, 673, 224};
 
 	//SKY
-	sky = {59, 46, 673, 54 };
+	sky = {59, 40, 673, 54 };
 
 	//BACKGROUND
 	background = {59, 207, 673, 160};
@@ -65,6 +65,7 @@ ModuleSceneGuile::ModuleSceneGuile()
 	right_guys.loop = true;
 
 	//Healthbar & health 
+	healthbar.x = 188;
 	healthbar.y = 254;
 	healthbar.w = 322;
 	healthbar.h = 14;
