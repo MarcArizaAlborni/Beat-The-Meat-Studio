@@ -157,13 +157,13 @@ bool ModuleSceneGuile::CleanUp()
 
 update_status ModuleSceneGuile::Update()
 { 
-	App->render->Blit(graphics, 0, 0, &sky); //sky
-	App->render->Blit(graphics, 0, 0, &background); //background
-	App->render->Blit(graphics, 0, 0, &plane_ground); //plane_ground
-	App->render->Blit(graphics, 0, 70, &fence); //fence
-	App->render->Blit(graphics, 194, 79, &(left_guys.GetCurrentFrame())); //left_guys
-	App->render->Blit(graphics, 300, 110, &(mid_guys.GetCurrentFrame())); //mid_guys
-	App->render->Blit(graphics, 460, 101, &(right_guys.GetCurrentFrame())); //right_guys
+	App->render->Blit(graphics, -160, 0, &sky); //sky
+	App->render->Blit(graphics, -160, 0, &background); //background
+	App->render->Blit(graphics, -160, 0, &plane_ground); //plane_ground
+	App->render->Blit(graphics, -160, 70, &fence); //fence
+	App->render->Blit(graphics, 34, 79, &(left_guys.GetCurrentFrame())); //left_guys
+	App->render->Blit(graphics, 140, 110, &(mid_guys.GetCurrentFrame())); //mid_guys
+	App->render->Blit(graphics, 300, 101, &(right_guys.GetCurrentFrame())); //right_guys
 
 	App->render->Blit(graphics2, 30, 20, &healthbar, 1.0f, false); //healthbar
 	App->render->Blit(graphics2, 31, 23, &health, 1.0f, false); //health
