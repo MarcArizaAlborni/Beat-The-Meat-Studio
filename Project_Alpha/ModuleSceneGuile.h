@@ -25,6 +25,7 @@ public:
 	SDL_Rect plane_ground;
 	SDL_Rect background;
 	SDL_Rect sky;
+	SDL_Rect fence;
 	SDL_Rect healthbar;
 	SDL_Rect health;
 	SDL_Rect health2;

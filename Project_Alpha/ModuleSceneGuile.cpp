@@ -28,6 +28,9 @@ ModuleSceneGuile::ModuleSceneGuile()
 	//BACKGROUND
 	background = {59, 207, 673, 160};
 
+	//FENCE
+
+
 	//LEFT GUYS
 
 	//MID GUYS
