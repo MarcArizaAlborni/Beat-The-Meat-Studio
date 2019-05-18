@@ -112,9 +112,9 @@ bool ModuleSceneGuile::Start()
 	LOG("Loading Guile scene");
 	graphics = App->textures->Load("Sprites/guile_stage.png");
 	graphics2 = App->textures->Load("Sprites/UI_Spritesheet.png");
-	//Background_Sound = App->audio->LoadMus("Audios/Music/05 Japan (Ryu) I.ogg");
+	Background_Sound = App->audio->LoadMus("Audios/Music/10 U.S.A. (Guile) I.ogg");
 
-	//App->audio->PlayMusic(Background_Sound, 0);
+	App->audio->PlayMusic(Background_Sound, 0);
 
 	App->player->currentstateP1 = idlestateP1;
 	App->player->positionP1.x = 50;
@@ -158,13 +158,13 @@ bool ModuleSceneGuile::CleanUp()
 
 update_status ModuleSceneGuile::Update()
 { 
-	App->render->Blit(graphics, -160, 0, &sky); //sky
-	App->render->Blit(graphics, -160, 0, &background); //background
-	App->render->Blit(graphics, -160, 0, &plane_ground); //plane_ground
-	App->render->Blit(graphics, -160, 70, &fence); //fence
-	App->render->Blit(graphics, 34, 79, &(left_guys.GetCurrentFrame())); //left_guys
-	App->render->Blit(graphics, 140, 110, &(mid_guys.GetCurrentFrame())); //mid_guys
-	App->render->Blit(graphics, 300, 101, &(right_guys.GetCurrentFrame())); //right_guys
+	App->render->Blit(graphics, -146, 0, &sky); //sky
+	App->render->Blit(graphics, -146, 0, &background); //background
+	App->render->Blit(graphics, -146, 0, &plane_ground); //plane_ground
+	App->render->Blit(graphics, -146, 70, &fence); //fence
+	App->render->Blit(graphics, 44, 79, &(left_guys.GetCurrentFrame())); //left_guys
+	App->render->Blit(graphics, 150, 110, &(mid_guys.GetCurrentFrame())); //mid_guys
+	App->render->Blit(graphics, 310, 101, &(right_guys.GetCurrentFrame())); //right_guys
 
 	App->render->Blit(graphics2, 30, 20, &healthbar, 1.0f, false); //healthbar
 	App->render->Blit(graphics2, 31, 23, &health, 1.0f, false); //health
