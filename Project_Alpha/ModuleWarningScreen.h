@@ -22,6 +22,8 @@ public:
 
 	SDL_Texture* graphics = nullptr;
 	SDL_Rect warning_screen;
+	SDL_Rect black;
+	
 
 };
 

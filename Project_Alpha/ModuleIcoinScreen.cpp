@@ -41,6 +41,7 @@ bool ModuleIcoinScreen::CleanUp()
 {
 	LOG("Unloading Introduce coin Screen");
 	App->textures->Unload(graphics);
+	App->audio->UnLoadMusic(insert_coin);
 	return true;
 }
 
@@ -50,10 +51,7 @@ update_status ModuleIcoinScreen::Update()
 
 
 	App->render->Blit(graphics, 0, 0, &icoin_screen, 0.75f);
-	//if (App->input->keyboard[SDL_SCANCODE_SPACE] || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_1] == KEY_DOWN || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_2] == KEY_DOWN) {
-		
 	
-
 	if (App->input->keyboard[SDL_SCANCODE_F3] || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_1] == KEY_DOWN || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_2] == KEY_DOWN) {
 
 		App->audio->PlayMusic(insert_coin, NULL);
