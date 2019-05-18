@@ -19,6 +19,7 @@
 #include "ModuleWarningScreen.h"
 #include "ModuleWinScreen.h"
 #include "ModuleLoseScreen.h"
+#include "ModuleUI.h"
 #include "ModuleFonts.h"
 #include "ModuleAudio.h"
 
@@ -43,8 +44,9 @@ Application::Application()
 	modules[16] = particles = new ModuleParticles();
 	modules[17] = collision = new ModuleCollision();
 	modules[18] = fade = new ModuleFadeToBlack();
-	modules[19] = fonts = new ModuleFonts();
-	modules[20] = audio = new ModuleAudio();
+	modules[19] = ui = new ModuleUI();
+	modules[20] = fonts = new ModuleFonts();
+	modules[21] = audio = new ModuleAudio();
 
 }	
 
@@ -72,6 +74,7 @@ bool Application::Init()
 	win_screen->Disable();
 	start_screen->Disable();
 	lose_screen->Disable();
+	ui->Disable();
 
 	for(int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->Init();
