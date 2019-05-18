@@ -23,13 +23,13 @@ enum update_status
 typedef unsigned int uint;
 
 // Configuration -----------
-#define SCREEN_SIZE 1
-#define SCREEN_WIDTH 398
-#define SCREEN_HEIGHT 224
+#define SCREEN_SIZE 2 /// poseu 2 si voleu NO FULLSCREN ----- 1 SI VOLEU FULLSCREEN
+#define SCREEN_WIDTH  398  //398
+#define SCREEN_HEIGHT  224 //224
 #define WIN_FULLSCREEN 0
 #define WIN_FULLSCREEN_DESKTOP 0
 #define WIN_BORDERLESS 0
-#define WIN_RESIZABLE 1
+#define WIN_RESIZABLE 0
 #define REN_VSYNC 1
 
 #endif // __GLOBALS_H__

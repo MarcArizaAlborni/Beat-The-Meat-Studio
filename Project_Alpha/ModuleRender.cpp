@@ -48,7 +48,9 @@ bool ModuleRender::Init()
 // Called every draw update
 update_status ModuleRender::PreUpdate()
 {
-	SDL_RenderSetLogicalSize(renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
+	if (WIN_FULLSCREEN == true) {
+		SDL_RenderSetLogicalSize(renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
+	}
 	SDL_RenderClear(renderer);
 
 	return update_status::UPDATE_CONTINUE;
