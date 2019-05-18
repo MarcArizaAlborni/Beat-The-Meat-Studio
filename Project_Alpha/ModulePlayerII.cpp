@@ -125,7 +125,7 @@ bool ModulePlayer2::Start()
 	graphicsP2 = App->textures->Load("Sprites/BlankaP2.png"); // JA TE LA FOTO BONA
 
 	//Player 2 stest collider
-	playerP2_collider = App->collision->AddCollider({ positionP2.x, positionP2.y - 100,56,93 }, COLLIDER_PLAYER2, App->player2);
+	playerP2_collider = App->collision->AddCollider({ positionP2.x, positionP2.y - 100, 56, 93 }, COLLIDER_PLAYER2, App->player2);
 	attackP2_collider = nullptr;
 
 

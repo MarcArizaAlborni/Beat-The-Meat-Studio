@@ -147,10 +147,18 @@ ModulePlayer::ModulePlayer()
 	{ //ATTACKS ANIMATIONS
 		
 	  //Standing LP
-	  SLP_P1.PushBack({});
+	  SLFP_P1.PushBack({28, 658, 104, 105});
+	  SLFP_P1.PushBack({132, 658, 143, 105});
+	  SLFP_P1.PushBack({275, 658, 123, 105});
+	  SLFP_P1.speed = 0.2f;	
+	  SLFP_P1.loop = false;
 
 	  //Crouch LP
-	  CLP_P1.PushBack({});
+	  CLP_P1.PushBack({610, 709, 109, 56 });
+	  CLP_P1.PushBack({727, 715, 154, 50 });
+	  CLP_P1.PushBack({890, 713, 142, 52 });
+	  CLP_P1.speed = 0.2f;
+	  CLP_P1.loop = false;
 
 	  //Jumping LP
 	  JLP_P1.PushBack({});
@@ -230,168 +238,210 @@ update_status ModulePlayer::PreUpdate() {
 	 inputplayerP1.A_active = App->input->keyboard[SDL_SCANCODE_A] == KEY_REPEAT || SDL_GameControllerGetButton(App->input->controller_player_1, SDL_CONTROLLER_BUTTON_DPAD_LEFT)|| SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTX) <= -10000;
 	 inputplayerP1.S_active = App->input->keyboard[SDL_SCANCODE_S] == KEY_REPEAT || SDL_GameControllerGetButton(App->input->controller_player_1, SDL_CONTROLLER_BUTTON_DPAD_DOWN) || SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTY) >= 10000;
 	 inputplayerP1.W_active = App->input->keyboard[SDL_SCANCODE_W] == KEY_REPEAT || SDL_GameControllerGetButton(App->input->controller_player_1, SDL_CONTROLLER_BUTTON_DPAD_UP) || SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTY) <= -10000;
-	 inputplayerP1.Z_active = App->input->keyboard[SDL_SCANCODE_Z] == KEY_DOWN;
+	 inputplayerP1.U_active = App->input->keyboard[SDL_SCANCODE_U] == KEY_DOWN;
 	 inputplayerP1.X_active = App->input->keyboard[SDL_SCANCODE_X] == KEY_DOWN;
 	 inputplayerP1.C_active = App->input->keyboard[SDL_SCANCODE_C] == KEY_DOWN;
 	 inputplayerP1.V_active = App->input->keyboard[SDL_SCANCODE_V] == KEY_DOWN;
-	{
-		/* std::string ComboArrayInput = "aaaa";
-		
-		
-		 int j = 0;
-		 int m = 0;
-		 char comboArray1[] = "zxcv";
+	 {
+		 /* std::string ComboArrayInput = "aaaa";
 
-		
-		 if (inputplayerP1.Z_active) {
-			 LOG("Z ACTIVE");
-			
-			 ComboArrayInput[0] = 'z' ;
-		 }
-		
-		 if (inputplayerP1.X_active) {
-			
-			 LOG("X ACTIVE");
-			 ComboArrayInput[1] = 'x';
-		 }
-		
-		 if (inputplayerP1.C_active) {
-		 LOG("C ACTIVE");
-		 ComboArrayInput[2] = 'c';
-		 }
-		 
-		 if (inputplayerP1.V_active) {
-	     LOG("V ACTIVE");
-		 ComboArrayInput[3] = 'v';
-		 }
-		 
-		if(inputplayerP1.Z_active){
-			 int combocount = 0;
-			 while (m < 5) {
-				 if (ComboArrayInput[j] == comboArray1[j]) {
-					 LOG("COMPARING");
 
-					 ++combocount;
-					 ++j;
-					 ++m;
-					 if (combocount >= 4) {
-						 LOG("COMBO ACTIVE");
-						 currentstateP1 = forwardstateP1;
+		  int j = 0;
+		  int m = 0;
+		  char comboArray1[] = "zxcv";
 
-					 }
 
-				 }
-				 else {
-				   break;
-				 }
+		  if (inputplayerP1.Z_active) {
+			  LOG("Z ACTIVE");
+
+			  ComboArrayInput[0] = 'z' ;
+		  }
+
+		  if (inputplayerP1.X_active) {
+
+			  LOG("X ACTIVE");
+			  ComboArrayInput[1] = 'x';
+		  }
+
+		  if (inputplayerP1.C_active) {
+		  LOG("C ACTIVE");
+		  ComboArrayInput[2] = 'c';
+		  }
+
+		  if (inputplayerP1.V_active) {
+		  LOG("V ACTIVE");
+		  ComboArrayInput[3] = 'v';
+		  }
+
+		 if(inputplayerP1.Z_active){
+			  int combocount = 0;
+			  while (m < 5) {
+				  if (ComboArrayInput[j] == comboArray1[j]) {
+					  LOG("COMPARING");
+
+					  ++combocount;
+					  ++j;
+					  ++m;
+					  if (combocount >= 4) {
+						  LOG("COMBO ACTIVE");
+						  currentstateP1 = forwardstateP1;
+
+					  }
+
+				  }
+				  else {
+					break;
+				  }
+			  }
+			  combocount = 0;
+			  m = 0;
+			  ComboArrayInput = "aaaa";
+			  LOG("Removing combosequence");
+
+		  }
+		  */
+
+
+
+
+		 //BASIC MOVEMENTS
+
+		  //IDLE STATE
+		 if (currentstateP1 == idlestateP1) {
+			 if (inputplayerP1.A_active) {
+				 currentstateP1 = backwardstateP1;
+				 blockP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 50 ,positionP1.y - 80 - App->render->camera.y * 2, 10, 30 }, COLLIDER_PLAYER_BLOCK, App->player);
+				 LOG("IDLE TO BACK");
 			 }
-			 combocount = 0;
-			 m = 0;
-			 ComboArrayInput = "aaaa";
-			 LOG("Removing combosequence");
-			
+			 if (inputplayerP1.D_active) {
+				 currentstateP1 = forwardstateP1;
+				 LOG("IDLE TO forward");
+			 }
+			 if (inputplayerP1.S_active) {
+				 currentstateP1 = crouchstateP1;
+				 LOG("IDLE to CROUCH");
+			 }
+			 if (inputplayerP1.W_active) {
+				 jumping = true;
+				 currentstateP1 = NjumpstateP1;
+				 jumpstart = time;
+				 jumpTimer = 0;
+				 LOG("IDLE to CROUCH");
+			 }
+			 if (inputplayerP1.U_active) {
+				 currentstateP1 = standingfarLP;
+				 LOG("IDLE to LP");
+			 }
 		 }
-		 */
-				 
-		 
-			
-		
-		
-		
-		//IDLE STATE
-		if (currentstateP1 == idlestateP1) {
-			if (inputplayerP1.A_active ) {
-				currentstateP1 = backwardstateP1;
-				blockP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x +50 ,positionP1.y -80 - App->render->camera.y * 2, 10, 30 }, COLLIDER_PLAYER_BLOCK, App->player);
-				LOG("IDLE TO BACK");
-			}
-			if (inputplayerP1.D_active) {
-				currentstateP1 = forwardstateP1;
-				LOG("IDLE TO forward");
-			}
-			if (inputplayerP1.S_active) {
-				currentstateP1 = crouchstateP1;
-				LOG("IDLE to CROUCH");
-			}
-			if ( App->input->keyboard[SDL_SCANCODE_W] == KEY_DOWN) {
-				jumping = true;
-				currentstateP1 = NjumpstateP1;
-				jumpstart = time;
-				jumpTimer = 0;
-				LOG("IDLE to CROUCH");
-			}
 
-		}
+		 //BACKWARDS STATE
+		 if (currentstateP1 == backwardstateP1) {
+			 if (!inputplayerP1.A_active) {
+				 currentstateP1 = idlestateP1;
+				 blockP1_collider->to_delete = true;
+				 LOG("BACK to IDLE");
+			 }
+			 if (inputplayerP1.S_active) {
+				 currentstateP1 = crouchstateP1;
+				 blockP1_collider->to_delete = true;
+				 LOG("BACK to CROUCH");
+			 }
+			 if (inputplayerP1.W_active) {
+				 jumping = true;
+				 currentstateP1 = BjumpstateP1;
+				 jumpstart = time;
+				 jumpTimer = 0;
+				 LOG("IDLE to CROUCH");
+			 }
+			 if (inputplayerP1.U_active) {
+				 currentstateP1 = standingfarLP;
+				 LOG("BACK to LP");
+			 }
+		 }
+		 //FORWARD STATE
+		 if (currentstateP1 == forwardstateP1) {
+			 if (!inputplayerP1.D_active) {
+				 currentstateP1 = idlestateP1;
+				 LOG("FOR to IDLE");
+			 }
+			 if (inputplayerP1.A_active) {
+				 currentstateP1 = backwardstateP1;
+				 blockP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 7, 30 }, COLLIDER_PLAYER_BLOCK, App->player);
+				 LOG("FOR to BACK");
+			 }
 
-		//BACKWARDS STATE
-		if (currentstateP1 == backwardstateP1) {
-			if (!inputplayerP1.A_active) {
-				currentstateP1 = idlestateP1;
-				blockP1_collider->to_delete = true;
-				LOG("BACK to IDLE");
-			}
-			if (inputplayerP1.S_active) {
-				currentstateP1 = crouchstateP1;
-				blockP1_collider->to_delete = true;
-				LOG("BACK to CROUCH");
-			}
-			if (App->input->keyboard[SDL_SCANCODE_W] == KEY_DOWN) {
-				jumping = true;
-				currentstateP1 = BjumpstateP1;
-				jumpstart = time;
-				jumpTimer = 0;
-				LOG("IDLE to CROUCH");
-			}
-		}
-		//FORWARD STATE
-		if (currentstateP1 == forwardstateP1) {
-			if (!inputplayerP1.D_active) {
-				currentstateP1 = idlestateP1;
-				LOG("FOR to IDLE");
-			}
-			if (inputplayerP1.A_active) {
-				currentstateP1 = backwardstateP1;
-				blockP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x +55, positionP1.y -80 - App->render->camera.y * 2, 7, 30 }, COLLIDER_PLAYER_BLOCK, App->player);
-				LOG("FOR to BACK");
-			}
+			 if (inputplayerP1.S_active) {
+				 currentstateP1 = crouchstateP1;
+				 LOG("FOR to CROUCH");
+			 }
+			 if (inputplayerP1.W_active){
+				 jumping = true;
+				 currentstateP1 = FjumpstateP1;
+				 jumpstart = time;
+				 jumpTimer = 0;
+				 LOG("FOR to CROUCH");
+			 }
+			 if (inputplayerP1.U_active) {
+				 currentstateP1 = standingfarLP;
+				 LOG("FOR to LP");
+			 }
+		 }
+		 //COUCH STATE
+		 if (currentstateP1 == crouchstateP1) {
+			 if (!inputplayerP1.S_active) {
+				 crouchP1.Reset();
+				 currentstateP1 = idlestateP1;
+				 LOG("CROUCH to IDLE");
+			 }
 
-			if (inputplayerP1.S_active) {
-				currentstateP1 = crouchstateP1;
-				LOG("FOR to CROUCH");
-			}
-			if ( App->input->keyboard[SDL_SCANCODE_W] == KEY_DOWN) {
-				jumping = true;
-				currentstateP1 = FjumpstateP1;
-				jumpstart = time;
-				jumpTimer = 0;
-				LOG("IDLE to CROUCH");
-			}
-		}
-		//COUCH STATE
-		if (currentstateP1 == crouchstateP1) {
-			if (!inputplayerP1.S_active) {
-				crouchP1.Reset();
-				currentstateP1 = idlestateP1;
-				LOG("CROUCH to IDLE");
-			}
-		}
-		//JUMP STATE
-		if (jumping = true) {
+			 if (inputplayerP1.U_active) {
+				 currentstateP1 = crouchLP;
+				 LOG("CROUCH to LP");
+			 }
+		 }
+		 //JUMP STATE
+		 if (jumping = true) {
 
-			if (positionP1.y >= groundLevel + 10) {
-				positionP1.y = groundLevel;
-				currentstateP1 = idlestateP1;
-				NjumpP1.Reset();
-				FjumpP1.Reset();
-				BjumpP1.Reset();
-				jumping = false;
-				jumpTimer = 0;
+			 if (positionP1.y >= groundLevel + 10) {
+				 positionP1.y = groundLevel;
+				 currentstateP1 = idlestateP1;
+				 NjumpP1.Reset();
+				 FjumpP1.Reset();
+				 BjumpP1.Reset();
+				 jumping = false;
+				 jumpTimer = 0;
 
-			}
+			 }
+
+		 }
 
 
-		}
-		
+
+		 //ATTACKS
+		 //STANDING FAR LP
+		 if (currentstateP1 == standingfarLP) {
+			 if (currentP1_animation->Finished() && !inputplayerP1.U_active) {
+				 currentstateP1 = idlestateP1;
+				 alreadyHit = false;
+				 SLFP_P1.Reset();
+				 LOG("LP to IDLE");
+			 }
+		 }
+		 //CROUCH LP
+		 if (currentstateP1 == crouchLP) {
+			 if (currentP1_animation->Finished() && !inputplayerP1.U_active && inputplayerP1.S_active) {
+				 currentstateP1 = crouchstateP1;
+				 alreadyHit = false;
+				 CLP_P1.Reset();
+				 LOG("LP to CROUCH");
+			 }
+			 if (currentP1_animation->Finished() && !inputplayerP1.U_active && !inputplayerP1.S_active) {
+				 currentstateP1 =idlestateP1;
+				 alreadyHit = false;
+				 CLP_P1.Reset();
+				 LOG("LP to CROUCH");
+			 }
+		 }
 
 		return UPDATE_CONTINUE;
 	}
@@ -404,15 +454,13 @@ update_status ModulePlayer::Update() {
 
 	case idlestateP1:
 		playerP1_collider->rect.h = 93;
-		
 		currentP1_animation = &idleP1;
-		//LOG("IDLE ANIMATION ACTIVE");
+		LOG("IDLE ANIMATION ACTIVE");
 		break;
 
 	case backwardstateP1:
 		playerP1_collider->rect.h = 93;
 		blockP1_collider->SetPos(positionP1.x + 55 - App->render->camera.x  *2, positionP1.y -80 - App->render->camera.y * 2);
-		
 		currentP1_animation = &backwardP1;
 		positionP1.x -= speed;
 		LOG("BACK ANIMATION ACTIVE");
@@ -439,7 +487,6 @@ update_status ModulePlayer::Update() {
 		break;
 
 	case FjumpstateP1:
-
 		currentP1_animation = &FjumpP1;
 		positionP1.x += speed;
 		positionP1.y = groundLevel - (yvel*jumpTimer) + (0.5*(gravity) * (jumpTimer*jumpTimer)); //MRUA
@@ -453,6 +500,15 @@ update_status ModulePlayer::Update() {
 		LOG(" BACKWARD JUMP ANIMATION ACTIVE");
 		break;
 
+	case standingfarLP:
+		currentP1_animation = &SLFP_P1;
+		LOG("LP ANIMATION ACTIVE");
+		break;
+
+	case crouchLP:
+		currentP1_animation = &CLP_P1;
+		LOG("CROUCH LP ANIMATION ACTIVE");
+		break;
 	}
 
 	if ( currentstateP1 != crouchstateP1) {

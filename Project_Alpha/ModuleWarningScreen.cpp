@@ -43,7 +43,7 @@ bool ModuleWarningScreen::CleanUp()
 update_status ModuleWarningScreen::Update()
 {
 	
-
+	App->render->Blit(graphics, 0, 0, &warning_screen, 0.75f);
 
 	App->fade->FadeToBlack(App->warning_screen, App->icoin_screen, 5.0f);
 

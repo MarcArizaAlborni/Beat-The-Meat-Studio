@@ -13,7 +13,7 @@ struct SDL_Texture;
 struct Collider;
 
 enum STATEP1 {
-
+	//Basic Movements
 	backwardstateP1,
 	forwardstateP1,
 	idlestateP1,
@@ -21,6 +21,12 @@ enum STATEP1 {
 	NjumpstateP1,
 	FjumpstateP1,
 	BjumpstateP1,
+
+	//Attack
+	standingfarLP,
+	crouchLP,
+	jumpLP,
+
 
 };
 struct InputP1 {
@@ -31,11 +37,7 @@ struct InputP1 {
 	bool W_active;
 	bool S_active;
 
-	bool left_active;
-	bool right_active;
-	bool up_active;
-	bool down_active;
-	bool Z_active;
+	bool U_active;
 	bool X_active;
 	bool C_active;
 	bool V_active;
@@ -97,7 +99,7 @@ public:
 	Animation RecoveryP1;    //Recovery After Damage
 
 	//Attack Animations
-	Animation SLP_P1;        //Standing LP (light punch) 
+	Animation SLFP_P1;        //Standing LP (light punch) 
 	Animation CLP_P1;        //Crouch LP
 	Animation JLP_P1;        //Jumping LP
 	Animation Ethunder_P1;   //Electric Thunder 
