@@ -21,6 +21,9 @@
     <Filter Include="Modules\Intro">
       <UniqueIdentifier>{82c31111-531b-4606-81a5-ff7eb27eafae}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Modules\UI">
+      <UniqueIdentifier>{4f3ef062-8e63-403a-a864-4559b94c7c58}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -68,9 +71,6 @@
     <ClInclude Include="ModuleCollision.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleFonts.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
     <ClInclude Include="ModuleAudio.h">
       <Filter>Modules</Filter>
     </ClInclude>
@@ -110,6 +110,12 @@
     <ClInclude Include="ModuleCharacterSelect.h">
       <Filter>Modules\Intro</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleFonts.h">
+      <Filter>Modules\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleUI.h">
+      <Filter>Modules\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -146,9 +152,6 @@
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="ModuleCollision.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleFonts.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="ModuleAudio.cpp">
@@ -189,6 +192,12 @@
     </ClCompile>
     <ClCompile Include="ModuleCharacterSelect.cpp">
       <Filter>Modules\Intro</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleFonts.cpp">
+      <Filter>Modules\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleUI.cpp">
+      <Filter>Modules\UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
