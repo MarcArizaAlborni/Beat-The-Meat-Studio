@@ -45,12 +45,12 @@ update_status ModuleWelcomeScreen::Update()
 	App->render->Blit(graphics, 0, 0, &welcome_screen, 0.75f); 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 
-		App->fade->FadeToBlack(App->welcome_screen, App->start_screen,1.0f);
+		App->fade->FadeToBlack(App->welcome_screen, App->warning_screen,1.0f);
 
 	}
 
 	if (App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_1] == KEY_DOWN || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_2] == KEY_DOWN) {
-		App->fade->FadeToBlack(App->welcome_screen, App->start_screen, 1.0f);
+		App->fade->FadeToBlack(App->welcome_screen, App->warning_screen, 1.0f);
 
 	}
 	return UPDATE_CONTINUE;

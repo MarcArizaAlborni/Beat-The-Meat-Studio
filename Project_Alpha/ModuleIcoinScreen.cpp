@@ -32,6 +32,7 @@ bool ModuleIcoinScreen::Start()
 {
 	LOG("Loading Welcome screen");
 	graphics = App->textures->Load("Sprites/StartScreenIII_II.png");
+	insert_coin = App->audio->LoadMus("Audios/Music/02 Credit.ogg");
 	return true;
 }
 
@@ -46,18 +47,25 @@ bool ModuleIcoinScreen::CleanUp()
 // Update: draw background
 update_status ModuleIcoinScreen::Update()
 {
-	
+
 
 	App->render->Blit(graphics, 0, 0, &icoin_screen, 0.75f);
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
+	//if (App->input->keyboard[SDL_SCANCODE_SPACE] || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_1] == KEY_DOWN || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_2] == KEY_DOWN) {
+		
+	
 
-		App->fade->FadeToBlack(App->icoin_screen, App->scene_ryu, 1.0f);
+	if (App->input->keyboard[SDL_SCANCODE_F3] || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_1] == KEY_DOWN || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_2] == KEY_DOWN) {
 
+		App->audio->PlayMusic(insert_coin, NULL);
+		App->audio->FinishMusic(1000);
+		
+		coin_inserted = true;
+
+		if (coin_inserted == true) {
+			App->fade->FadeToBlack(App->icoin_screen, App->start_screen, 0.5f);
+		}
 	}
 
-	if (App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_1] == KEY_DOWN || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_2] == KEY_DOWN) {
-		App->fade->FadeToBlack(App->icoin_screen, App->scene_ryu, 1.0f);
-
-	}
+	
 	return UPDATE_CONTINUE;
 }

@@ -107,6 +107,9 @@
     <ClInclude Include="ModuleSceneGuile.h">
       <Filter>Modules\Stages</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleCharacterSelect.h">
+      <Filter>Modules\Intro</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -183,6 +186,9 @@
     </ClCompile>
     <ClCompile Include="ModuleSceneGuile.cpp">
       <Filter>Modules\Stages</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleCharacterSelect.cpp">
+      <Filter>Modules\Intro</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
