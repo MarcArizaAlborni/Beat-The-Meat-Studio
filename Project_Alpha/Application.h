@@ -2,7 +2,7 @@
 #define __APPLICATION_H__
 #include "Globals.h"
 
-#define NUM_MODULES 22
+#define NUM_MODULES 23
 
 class ModuleWindow;
 class ModuleInput;
@@ -21,6 +21,7 @@ class ModuleCongratScreen;
 class ModuleIcoinScreen;
 class ModuleStartScreen;
 class ModuleWarningScreen;
+class ModuleCharacterSelect;
 class ModuleWinScreen;
 class ModuleLoseScreen;
 class ModuleUI;
@@ -52,6 +53,7 @@ public:
 	ModuleWarningScreen* warning_screen;
 	ModuleIcoinScreen* icoin_screen;
 	ModuleStartScreen* start_screen;
+	ModuleCharacterSelect * character_select;
 	ModuleWinScreen * win_screen;
 	ModuleLoseScreen * lose_screen;
 	ModuleCongratScreen * congrat_screen;

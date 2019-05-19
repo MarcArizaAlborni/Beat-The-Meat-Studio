@@ -13,6 +13,7 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleParticles.h"
 #include "ModuleWelcomeScreen.h"
+#include "ModuleCharacterSelect.h"
 #include "ModuleCongratScreen.h"
 #include "ModuleIcoinScreen.h"
 #include "ModuleStartScreen.h"
@@ -33,20 +34,21 @@ Application::Application()
 	modules[5] = warning_screen = new ModuleWarningScreen();
 	modules[6] = icoin_screen = new ModuleIcoinScreen();
 	modules[7] = start_screen = new ModuleStartScreen();
-	modules[8] = scene_honda = new ModuleSceneHonda();
-	modules[9] = scene_guile = new ModuleSceneGuile();
-	modules[10] = scene_ryu = new ModuleSceneRyu();
-	modules[11] = win_screen = new ModuleWinScreen();
-	modules[12] = lose_screen = new ModuleLoseScreen();
-	modules[13] = player = new ModulePlayer();
-	modules[14] = player2 = new ModulePlayer2();
-	modules[15] = congrat_screen = new ModuleCongratScreen();
-	modules[16] = particles = new ModuleParticles();
-	modules[17] = collision = new ModuleCollision();
-	modules[18] = fade = new ModuleFadeToBlack();
-	modules[19] = ui = new ModuleUI();
-	modules[20] = fonts = new ModuleFonts();
-	modules[21] = audio = new ModuleAudio();
+	modules[8] = character_select = new ModuleCharacterSelect();
+	modules[9] = scene_honda = new ModuleSceneHonda();
+	modules[10] = scene_guile = new ModuleSceneGuile();
+	modules[11] = scene_ryu = new ModuleSceneRyu();
+	modules[12] = win_screen = new ModuleWinScreen();
+	modules[13] = lose_screen = new ModuleLoseScreen();
+	modules[14] = player = new ModulePlayer();
+	modules[15] = player2 = new ModulePlayer2();
+	modules[16] = congrat_screen = new ModuleCongratScreen();
+	modules[17] = particles = new ModuleParticles();
+	modules[18] = collision = new ModuleCollision();
+	modules[19] = fade = new ModuleFadeToBlack();
+	modules[20] = ui = new ModuleUI();
+	modules[21] = fonts = new ModuleFonts();
+	modules[22] = audio = new ModuleAudio();
 
 }	
 
@@ -71,6 +73,7 @@ bool Application::Init()
 	congrat_screen->Disable();
 	icoin_screen->Disable();
 	warning_screen->Disable();
+	character_select->Disable();
 	win_screen->Disable();
 	start_screen->Disable();
 	lose_screen->Disable();

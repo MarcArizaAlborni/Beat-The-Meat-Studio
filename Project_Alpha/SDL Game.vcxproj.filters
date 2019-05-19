@@ -18,18 +18,33 @@
     <Filter Include="Modules\Stages">
       <UniqueIdentifier>{009754e6-f01d-4bf6-923f-16c07a01de0d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Modules\Intro">
-      <UniqueIdentifier>{82c31111-531b-4606-81a5-ff7eb27eafae}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Modules\UI">
       <UniqueIdentifier>{4f3ef062-8e63-403a-a864-4559b94c7c58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Audio">
+      <UniqueIdentifier>{e01cc7bd-dd49-4e73-9318-7d2770343c4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Scenes">
+      <UniqueIdentifier>{4f5151a7-6fd9-48ff-bd21-affaa7fa1186}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Scenes\Intro">
+      <UniqueIdentifier>{82c31111-531b-4606-81a5-ff7eb27eafae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Scenes\Post_Battle">
+      <UniqueIdentifier>{76f72011-5b12-4451-9597-c87c1669f4df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Mechanics">
+      <UniqueIdentifier>{931326a9-0fdd-4146-8980-5d73d5d18687}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Visuals">
+      <UniqueIdentifier>{ed241d12-519d-488f-9ffa-c570989647db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Scenes\Fade_To_Black">
+      <UniqueIdentifier>{44048b27-ea3a-4ccf-a055-cfacf5c30896}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleWindow.h">
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="MemLeaks.h">
@@ -41,41 +56,11 @@
     <ClInclude Include="Application.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleInput.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleRender.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleTextures.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
     <ClInclude Include="p2Point.h">
       <Filter>Containers</Filter>
     </ClInclude>
     <ClInclude Include="Animation.h">
       <Filter>Containers</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleFadeToBlack.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleCongratScreen.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleWinScreen.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleParticles.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleCollision.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleAudio.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleLoseScreen.h">
-      <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="ModulePlayer.h">
       <Filter>Modules\Players</Filter>
@@ -90,31 +75,64 @@
       <Filter>Modules\Stages</Filter>
     </ClInclude>
     <ClInclude Include="ModuleIcoinScreen.h">
-      <Filter>Modules\Intro</Filter>
+      <Filter>Modules\Scenes\Intro</Filter>
     </ClInclude>
     <ClInclude Include="ModuleStartScreen.h">
-      <Filter>Modules\Intro</Filter>
+      <Filter>Modules\Scenes\Intro</Filter>
     </ClInclude>
     <ClInclude Include="ModuleWarningScreen.h">
-      <Filter>Modules\Intro</Filter>
+      <Filter>Modules\Scenes\Intro</Filter>
     </ClInclude>
     <ClInclude Include="ModuleWelcomeScreen.h">
-      <Filter>Modules\Intro</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleTimer.h">
-      <Filter>Modules</Filter>
+      <Filter>Modules\Scenes\Intro</Filter>
     </ClInclude>
     <ClInclude Include="ModuleSceneGuile.h">
       <Filter>Modules\Stages</Filter>
     </ClInclude>
     <ClInclude Include="ModuleCharacterSelect.h">
-      <Filter>Modules\Intro</Filter>
+      <Filter>Modules\Scenes\Intro</Filter>
     </ClInclude>
     <ClInclude Include="ModuleFonts.h">
       <Filter>Modules\UI</Filter>
     </ClInclude>
     <ClInclude Include="ModuleUI.h">
       <Filter>Modules\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleAudio.h">
+      <Filter>Modules\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleCongratScreen.h">
+      <Filter>Modules\Scenes\Post_Battle</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleLoseScreen.h">
+      <Filter>Modules\Scenes\Post_Battle</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleWinScreen.h">
+      <Filter>Modules\Scenes\Post_Battle</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleCollision.h">
+      <Filter>Modules\Mechanics</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleInput.h">
+      <Filter>Modules\Mechanics</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleTimer.h">
+      <Filter>Modules\Mechanics</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleParticles.h">
+      <Filter>Modules\Mechanics</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleRender.h">
+      <Filter>Modules\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleTextures.h">
+      <Filter>Modules\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleWindow.h">
+      <Filter>Modules\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleFadeToBlack.h">
+      <Filter>Modules\Scenes\Fade_To_Black</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -124,41 +142,8 @@
     <ClCompile Include="Application.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleWindow.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleInput.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleRender.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleTextures.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
     <ClCompile Include="Globals.cpp">
       <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleFadeToBlack.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleCongratScreen.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleWinScreen.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleParticles.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleCollision.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleAudio.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleLoseScreen.cpp">
-      <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="ModulePlayer.cpp">
       <Filter>Modules\Players</Filter>
@@ -173,31 +158,64 @@
       <Filter>Modules\Stages</Filter>
     </ClCompile>
     <ClCompile Include="ModuleIcoinScreen.cpp">
-      <Filter>Modules\Intro</Filter>
+      <Filter>Modules\Scenes\Intro</Filter>
     </ClCompile>
     <ClCompile Include="ModuleStartScreen.cpp">
-      <Filter>Modules\Intro</Filter>
+      <Filter>Modules\Scenes\Intro</Filter>
     </ClCompile>
     <ClCompile Include="ModuleWarningScreen.cpp">
-      <Filter>Modules\Intro</Filter>
+      <Filter>Modules\Scenes\Intro</Filter>
     </ClCompile>
     <ClCompile Include="ModuleWelcomeScreen.cpp">
-      <Filter>Modules\Intro</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleTimer.cpp">
-      <Filter>Modules</Filter>
+      <Filter>Modules\Scenes\Intro</Filter>
     </ClCompile>
     <ClCompile Include="ModuleSceneGuile.cpp">
       <Filter>Modules\Stages</Filter>
     </ClCompile>
     <ClCompile Include="ModuleCharacterSelect.cpp">
-      <Filter>Modules\Intro</Filter>
+      <Filter>Modules\Scenes\Intro</Filter>
     </ClCompile>
     <ClCompile Include="ModuleFonts.cpp">
       <Filter>Modules\UI</Filter>
     </ClCompile>
     <ClCompile Include="ModuleUI.cpp">
       <Filter>Modules\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleAudio.cpp">
+      <Filter>Modules\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleCongratScreen.cpp">
+      <Filter>Modules\Scenes\Post_Battle</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleLoseScreen.cpp">
+      <Filter>Modules\Scenes\Post_Battle</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleWinScreen.cpp">
+      <Filter>Modules\Scenes\Post_Battle</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleCollision.cpp">
+      <Filter>Modules\Mechanics</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleInput.cpp">
+      <Filter>Modules\Mechanics</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleTimer.cpp">
+      <Filter>Modules\Mechanics</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleParticles.cpp">
+      <Filter>Modules\Mechanics</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleRender.cpp">
+      <Filter>Modules\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleTextures.cpp">
+      <Filter>Modules\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleWindow.cpp">
+      <Filter>Modules\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleFadeToBlack.cpp">
+      <Filter>Modules\Scenes\Fade_To_Black</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

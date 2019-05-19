@@ -51,6 +51,12 @@ ModuleUI::ModuleUI() : Module()
 	timer.y = 292;
 	timer.w = 28;
 	timer.h = 15;
+
+	//Character Grid
+	characterGrid.x = 360;
+	characterGrid.y = 126;
+	characterGrid.w = 128;
+	characterGrid.h = 64;
 }
 
 // Destructor
@@ -68,14 +74,22 @@ bool ModuleUI::Start()
 update_status ModuleUI::Update()
 {
 	//Blits
-	App->render->Blit(graphicsUI, 30, 20, &healthbar, 1.0f, false); //healthbar
-	App->render->Blit(graphicsUI, 31, 23, &health, 1.0f, false); //health
-	App->render->Blit(graphicsUI, 207, 23, &health2, 1.0f, false); //health
+	if (App->scene_guile != nullptr)
+	{
+		App->render->Blit(graphicsUI, 30, 20, &healthbar, 1.0f, false); //healthbar
+		App->render->Blit(graphicsUI, 31, 23, &health, 1.0f, false); //health
+		App->render->Blit(graphicsUI, 207, 23, &health2, 1.0f, false); //health
 
-	App->render->Blit(graphicsUI, 32, 34, &name, 1.0f, false); //name p1
-	App->render->Blit(graphicsUI, 322, 34, &name2, 1.0f, false); //name p2
-	App->render->Blit(graphicsUI, 6, 1, &score, 1.0f, false); //score
-	App->render->Blit(graphicsUI, 178, 34, &timer, 1.0f, false); //timer
+		App->render->Blit(graphicsUI, 32, 34, &name, 1.0f, false); //name p1
+		App->render->Blit(graphicsUI, 322, 34, &name2, 1.0f, false); //name p2
+		App->render->Blit(graphicsUI, 6, 1, &score, 1.0f, false); //score
+		App->render->Blit(graphicsUI, 178, 34, &timer, 1.0f, false); //timer
+	}
+	
+	else if (App->character_select != nullptr)
+	{
+		App->render->Blit(graphicsUI, 128, 143, &characterGrid, 1.0f, false); //Character Grid.
+	}
 
 	return update_status::UPDATE_CONTINUE;
 }

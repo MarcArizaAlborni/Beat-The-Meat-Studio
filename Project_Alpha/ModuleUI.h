@@ -27,6 +27,7 @@ public:
 	SDL_Rect name2;
 	SDL_Rect score;
 	SDL_Rect timer;
+	SDL_Rect characterGrid;
 	
 };
 
