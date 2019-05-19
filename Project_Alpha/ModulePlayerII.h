@@ -13,11 +13,19 @@ struct SDL_Texture;
 struct Collider;
 
 enum STATEP2 {
-
+	//Basic Movements
 	backwardstateP2,
 	forwardstateP2,
 	idlestateP2,
 	crouchstateP2,
+	NjumpstateP2,
+	FjumpstateP2,
+	BjumpstateP2,
+
+	//Attack
+	standingfarLPP2,
+	crouchLPP2,
+	jumpLPP2,
 
 };
 struct InputP2 {
@@ -27,6 +35,15 @@ struct InputP2 {
 	bool Left_active; //D_active
 	bool Up_active; //W_active
 	bool Down_active; //S_active
+
+	bool Num7_active; //Light Punch LP
+	bool Num8_active; //Medium Punch MP
+	bool Num9_active; //Hard Punch Hp
+
+	bool Num4_active; //Light Kick LK
+	bool Num5_active; //Medium Kick MK
+	bool Num6_active; //Hard Kick HK
+
 };
 
 class ModulePlayer2 : public Module
@@ -52,13 +69,33 @@ public:
 	char score_text[10];
 	uint score = 0;
 	STATEP2 currentstateP2;
-	Animation idleP2;
-	Animation forwardP2;
-	Animation backwardP2;
-	Animation crouchP2;
-	Animation NjumpP2;
-	Animation FjumpP2;
-	Animation BjumpP2;
+
+	//Basic Movements Animations
+	Animation idleP2;        //Idle
+	Animation forwardP2;     //Move Forward
+	Animation backwardP2;    //Move Backward
+	Animation crouchP2;      //Crouch
+	Animation NjumpP2;	     //Neutral Jump
+	Animation FjumpP2;       //Forward Jump
+	Animation BjumpP2;       //Backward Jump
+	Animation SturnP2;       //Standing Turn
+	Animation CturnP2;       //Crouch Turn
+	Animation SblockP2;      //Standing Block
+	Animation CblockP2;      //Crouch Block
+	Animation SdamageP2;     //Standing Damage 
+	Animation SdamagelowP2;  //Standing Damage Low Attack
+	Animation CdamageP2;     //Crouch Damage
+	Animation ETdamgeP2;     //Electric Thunder Damage
+	Animation RecoveryP2;    //Recovery After Damage
+
+	//Attack Animations
+	Animation SLFP_P2;        //Standing LP (light punch) 
+	Animation CLP_P2;        //Crouch LP
+	Animation SLCP_P2;       //Standing CLOSE LP 
+	Animation JLP_P2;        //Jumping LP
+	Animation Ethunder_P2;   //Electric Thunder 
+	Animation RollingP2;     //Rolling Attack
+
 	iPoint positionP2;
 	InputP2 inputplayerP2;
 	  

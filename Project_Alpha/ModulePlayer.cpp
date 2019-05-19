@@ -329,7 +329,7 @@ update_status ModulePlayer::PreUpdate() {
 				 LOG("IDLE to CROUCH");
 			 }
 			 if (inputplayerP1.U_active) {
-				 currentstateP1 = standingfarLP;
+				 currentstateP1 = standingfarLPP1;
 				 LOG("IDLE to LP");
 			 }
 		 }
@@ -354,7 +354,7 @@ update_status ModulePlayer::PreUpdate() {
 				 LOG("IDLE to CROUCH");
 			 }
 			 if (inputplayerP1.U_active) {
-				 currentstateP1 = standingfarLP;
+				 currentstateP1 = standingfarLPP1;
 				 LOG("BACK to LP");
 			 }
 		 }
@@ -382,7 +382,7 @@ update_status ModulePlayer::PreUpdate() {
 				 LOG("FOR to CROUCH");
 			 }
 			 if (inputplayerP1.U_active) {
-				 currentstateP1 = standingfarLP;
+				 currentstateP1 = standingfarLPP1;
 				 LOG("FOR to LP");
 			 }
 		 }
@@ -395,7 +395,7 @@ update_status ModulePlayer::PreUpdate() {
 			 }
 
 			 if (inputplayerP1.U_active) {
-				 currentstateP1 = crouchLP;
+				 currentstateP1 = crouchLPP1;
 				 LOG("CROUCH to LP");
 			 }
 		 }
@@ -419,7 +419,7 @@ update_status ModulePlayer::PreUpdate() {
 
 		 //ATTACKS
 		 //STANDING FAR LP
-		 if (currentstateP1 == standingfarLP) {
+		 if (currentstateP1 == standingfarLPP1) {
 			 if (currentP1_animation->Finished() && !inputplayerP1.U_active) {
 				 currentstateP1 = idlestateP1;
 				 alreadyHit = false;
@@ -428,7 +428,7 @@ update_status ModulePlayer::PreUpdate() {
 			 }
 		 }
 		 //CROUCH LP
-		 if (currentstateP1 == crouchLP) {
+		 if (currentstateP1 == crouchLPP1) {
 			 if (currentP1_animation->Finished() && !inputplayerP1.U_active && inputplayerP1.S_active) {
 				 currentstateP1 = crouchstateP1;
 				 alreadyHit = false;
@@ -500,12 +500,12 @@ update_status ModulePlayer::Update() {
 		LOG(" BACKWARD JUMP ANIMATION ACTIVE");
 		break;
 
-	case standingfarLP:
+	case standingfarLPP1:
 		currentP1_animation = &SLFP_P1;
 		LOG("LP ANIMATION ACTIVE");
 		break;
 
-	case crouchLP:
+	case crouchLPP1:
 		currentP1_animation = &CLP_P1;
 		LOG("CROUCH LP ANIMATION ACTIVE");
 		break;

@@ -35,80 +35,152 @@ ModulePlayer2::ModulePlayer2()
 	healthP2.w = 200;
 	healthP2.h = 20;
 
+
+	{ //BASIC MOVEMENTS ANIMATIONS
+
+		//Idle animation (arcade sprite sheet)
+		idleP2.PushBack({ 28, 27, 105, 100 });
+		idleP2.PushBack({ 133, 27, 100, 100 });
+		idleP2.PushBack({ 233, 27, 100, 100 });
+		idleP2.speed = 0.08f;
+
+		//Walk FORWARD Animation
+		forwardP2.PushBack({ 699, 127, 97, 84 });
+		forwardP2.PushBack({ 232, 127, 90, 84 });
+		forwardP2.PushBack({ 322, 127, 100, 84 });
+		forwardP2.PushBack({ 422, 127, 100, 84 });
+		forwardP2.PushBack({ 522, 127, 88, 84 });
+		forwardP2.PushBack({ 609, 127, 90, 84 });
+		forwardP2.PushBack({ 132, 127, 100, 84 });
+		forwardP2.PushBack({ 29, 127, 105, 84 });
+		forwardP2.loop = true;
+		forwardP2.speed = 0.1f;
+
+		//Walk backwards animation
+		backwardP2.PushBack({ 694, 211, 101, 101 });
+		backwardP2.PushBack({ 609, 211, 85, 101 });
+		backwardP2.PushBack({ 522, 211, 87, 101 });
+		backwardP2.PushBack({ 232, 211, 91, 101 });
+		backwardP2.PushBack({ 322, 211, 105, 101 });
+		backwardP2.PushBack({ 427, 211, 95, 101 });
+		backwardP2.PushBack({ 132, 211, 100, 101 });
+		backwardP2.PushBack({ 29, 211, 104, 101 });
+		backwardP2.loop = true;
+		backwardP2.speed = 0.1f;
+
+		//Crouch Animation
+		crouchP2.PushBack({ 427, 323, 99, 94 });
+		crouchP2.PushBack({ 526, 323, 89, 94 });
+		crouchP2.PushBack({ 615, 323, 93, 94 });
+		crouchP2.speed = 0.5f;
+		crouchP2.loop = false;
+
+		//Neutral Jump Animation
+		NjumpP2.PushBack({ 28, 525, 97, 128 });
+		NjumpP2.PushBack({ 125, 525, 85, 128 });
+		NjumpP2.PushBack({ 210, 525, 83, 128 });
+		NjumpP2.PushBack({ 293, 525, 86, 128 });
+		NjumpP2.PushBack({ 210, 525, 83, 128 });
+		NjumpP2.PushBack({ 125, 525, 85, 128 });
+		NjumpP2.PushBack({ 28, 525, 97, 128 });
+		NjumpP2.speed = 0.5f;
+		NjumpP2.loop = false;
+
+		//Forward Jump Animation
+		FjumpP2.PushBack({ 28, 525, 97, 128 });
+		FjumpP2.PushBack({ 125, 525, 85, 128 });
+		FjumpP2.PushBack({ 210, 525, 83, 128 });
+		FjumpP2.PushBack({ 293, 525, 86, 128 });
+		FjumpP2.PushBack({ 379, 525, 90, 128 });
+		FjumpP2.PushBack({ 469, 525, 98, 128 });
+		FjumpP2.PushBack({ 567, 525, 119, 128 });
+		FjumpP2.PushBack({ 686, 525, 96, 128 });
+		FjumpP2.PushBack({ 379, 525, 90, 128 });
+		FjumpP2.PushBack({ 293, 525, 86, 128 });
+		FjumpP2.speed = 0.5f;
+		FjumpP2.loop = false;
+
+		//Backward Jump Animation
+		BjumpP2.PushBack({ 28, 525, 97, 128 });
+		BjumpP2.PushBack({ 125, 525, 85, 128 });
+		BjumpP2.PushBack({ 210, 525, 83, 128 });
+		BjumpP2.PushBack({ 293, 525, 86, 128 });
+		BjumpP2.PushBack({ 210, 525, 83, 128 });
+		BjumpP2.PushBack({ 125, 525, 85, 128 });
+		BjumpP2.PushBack({ 28, 525, 97, 128 });
+		BjumpP2.speed = 0.5f;
+		BjumpP2.loop = false;
+
+		//Standing Turn Animation
+		SturnP2.PushBack({ 36, 418, 89, 105 });
+		SturnP2.PushBack({ 125, 418, 103, 105 });
+		SturnP2.PushBack({ 228, 418, 97, 105 });
+
+		//Crouch Turn Animation
+		CturnP2.PushBack({ 622, 451, 82, 71 });
+		CturnP2.PushBack({ 516, 451, 106, 71 });
+		CturnP2.PushBack({ 428, 451, 88, 71 });
+
+		//Standing Block Animation
+		SblockP2.PushBack({ 730, 2169, 100, 96 });
+		SblockP2.PushBack({ 630, 2169, 100, 96 });
+
+		//Crouch Block Animation
+		CblockP2.PushBack({ 730, 2100, 100, 63 });
+		CblockP2.PushBack({ 630, 2100, 100, 63 });
+
+		//Standing Damage 
+		SdamageP2.PushBack({});
+
+		//Standing Damage Low Attack
+		SdamagelowP2.PushBack({});
+
+		//Crouch Damage
+		CdamageP2.PushBack({});
+
+		//Electric Thunder Damage
+		ETdamgeP2.PushBack({});
+
+		//Recovery
+		RecoveryP2.PushBack({});
+
+	}
+
+	{ //ATTACKS ANIMATIONS
+
+	  //Standing LP
+		SLFP_P2.PushBack({ 28, 658, 104, 105 });
+		SLFP_P2.PushBack({ 132, 658, 143, 105 });
+		SLFP_P2.PushBack({ 275, 658, 123, 105 });
+		SLFP_P2.speed = 0.2f;
+		SLFP_P2.loop = false;
+
+		//Crouch LP
+		CLP_P2.PushBack({ 610, 709, 109, 56 });
+		CLP_P2.PushBack({ 727, 715, 154, 50 });
+		CLP_P2.PushBack({ 890, 713, 142, 52 });
+		CLP_P2.speed = 0.2f;
+		CLP_P2.loop = false;
+
+		//Jumping LP
+		JLP_P2.PushBack({});
+
+		//Standing MP
+		//Crouch MP
+		//Jump MP
+
+		//Standing HP
+		//Crouch HP
+		//Jump HP
+
+		//Electric Thunder 
+		Ethunder_P2.PushBack({});
+
+		//Rolling Attack
+		RollingP2.PushBack({});
+
+	}
 	
-
-	//Idle animation (arcade sprite sheet)
-	idleP2.PushBack({ 28, 27, 105, 100 });
-	idleP2.PushBack({ 133, 27, 100, 100 });
-	idleP2.PushBack({ 233, 27, 100, 100 });
-	idleP2.speed = 0.08f;
-
-	//Walk FORWARD Animation
-	forwardP2.PushBack({ 699, 127, 97, 84 });
-	forwardP2.PushBack({ 232, 127, 90, 84 });
-	forwardP2.PushBack({ 322, 127, 100, 84 });
-	forwardP2.PushBack({ 422, 127, 100, 84 });
-	forwardP2.PushBack({ 522, 127, 88, 84 });
-	forwardP2.PushBack({ 609, 127, 90, 84 });
-	forwardP2.PushBack({ 132, 127, 100, 84 });
-	forwardP2.PushBack({ 29, 127, 105, 84 });
-	forwardP2.loop = true;
-	forwardP2.speed = 0.1f;
-
-	//Walk backwards animation
-	backwardP2.PushBack({ 694, 211, 101, 101 });
-	backwardP2.PushBack({ 609, 211, 85, 101 });
-	backwardP2.PushBack({ 522, 211, 87, 101 });
-	backwardP2.PushBack({ 232, 211, 91, 101 });
-	backwardP2.PushBack({ 322, 211, 105, 101 });
-	backwardP2.PushBack({ 427, 211, 95, 101 });
-	backwardP2.PushBack({ 132, 211, 100, 101 });
-	backwardP2.PushBack({ 29, 211, 104, 101 });
-	backwardP2.loop = true;
-	backwardP2.speed = 0.1f;
-
-	//Crouch Animation
-	crouchP2.PushBack({ 427, 323, 99, 94 });
-	crouchP2.PushBack({ 526, 323, 89, 94 });
-	crouchP2.PushBack({ 615, 323, 93, 94 });
-	crouchP2.speed = 0.5f;
-	crouchP2.loop = false;
-	
-	//Neutral Jump Animation
-	NjumpP2.PushBack({ 28, 525, 97, 128 });
-	NjumpP2.PushBack({ 125, 525, 85, 128 });
-	NjumpP2.PushBack({ 210, 525, 83, 128 });
-	NjumpP2.PushBack({ 293, 525, 86, 128 });
-	NjumpP2.PushBack({ 210, 525, 83, 128 });
-	NjumpP2.PushBack({ 125, 525, 85, 128 });
-	NjumpP2.PushBack({ 28, 525, 97, 128 });
-	NjumpP2.speed = 0.5f;
-	NjumpP2.loop = false;
-
-	//Forward Jump Animation
-	FjumpP2.PushBack({ 28, 525, 97, 128 });
-	FjumpP2.PushBack({ 125, 525, 85, 128 });
-	FjumpP2.PushBack({ 210, 525, 83, 128 });
-	FjumpP2.PushBack({ 293, 525, 86, 128 });
-	FjumpP2.PushBack({ 379, 525, 90, 128 });
-	FjumpP2.PushBack({ 469, 525, 98, 128 });
-	FjumpP2.PushBack({ 567, 525, 119, 128 });
-	FjumpP2.PushBack({ 686, 525, 96, 128 });
-	FjumpP2.PushBack({ 379, 525, 90, 128 });
-	FjumpP2.PushBack({ 293, 525, 86, 128 });
-	FjumpP2.speed = 0.5f;
-	FjumpP2.loop = false;
-
-	//Backward Jump Animation
-	BjumpP2.PushBack({ 28, 525, 97, 128 });
-	BjumpP2.PushBack({ 125, 525, 85, 128 });
-	BjumpP2.PushBack({ 210, 525, 83, 128 });
-	BjumpP2.PushBack({ 293, 525, 86, 128 });
-	BjumpP2.PushBack({ 210, 525, 83, 128 });
-	BjumpP2.PushBack({ 125, 525, 85, 128 });
-	BjumpP2.PushBack({ 28, 525, 97, 128 });
-	BjumpP2.speed = 0.5f;
-	BjumpP2.loop = false;
 }
 
 ModulePlayer2::~ModulePlayer2()

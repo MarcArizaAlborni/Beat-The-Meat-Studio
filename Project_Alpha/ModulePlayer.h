@@ -23,26 +23,27 @@ enum STATEP1 {
 	BjumpstateP1,
 
 	//Attack
-	standingfarLP,
-	crouchLP,
-	jumpLP,
+	standingfarLPP1,
+	crouchLPP1,
+	jumpLPP1,
 
 
 };
 struct InputP1 {
 	// Poseu aqui un nou bool per algun input que no he posat.
 
-	bool A_active;
-	bool D_active;
-	bool W_active;
-	bool S_active;
+	bool A_active; //Move Left
+	bool D_active; //Move Right
+	bool W_active; //Jump
+	bool S_active; //Crouch
 
-	bool U_active;
-	bool X_active;
-	bool C_active;
-	bool V_active;
-	
+	bool U_active; //Light Punch LP
+	bool X_active; //Medium Punch MP
+	bool C_active; //Hard Punch Hp
 
+	bool V_active; //Light Kick LK
+	bool B_active; //Medium Kick MK
+	bool N_active; //Hard Kick HK
 };
 
 class ModulePlayer : public Module
@@ -99,7 +100,8 @@ public:
 	Animation RecoveryP1;    //Recovery After Damage
 
 	//Attack Animations
-	Animation SLFP_P1;        //Standing LP (light punch) 
+	Animation SLFP_P1;       //Standing FAR LP (light punch) 
+	Animation SLCP_P1;       //Standing CLOSE LP 
 	Animation CLP_P1;        //Crouch LP
 	Animation JLP_P1;        //Jumping LP
 	Animation Ethunder_P1;   //Electric Thunder 
