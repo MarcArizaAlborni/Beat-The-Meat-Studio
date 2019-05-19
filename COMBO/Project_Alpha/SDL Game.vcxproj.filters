@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Core">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Modules">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Containers">
+      <UniqueIdentifier>{78a7f487-1d77-4fdc-9f51-f067eccd6239}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Players">
+      <UniqueIdentifier>{c39fc01c-9c25-462a-9763-2f33d4dce268}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Stages">
+      <UniqueIdentifier>{009754e6-f01d-4bf6-923f-16c07a01de0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Intro">
+      <UniqueIdentifier>{82c31111-531b-4606-81a5-ff7eb27eafae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\UI">
+      <UniqueIdentifier>{4f3ef062-8e63-403a-a864-4559b94c7c58}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Module.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleWindow.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="MemLeaks.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Globals.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Application.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleInput.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleRender.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleTextures.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="p2Point.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleFadeToBlack.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleCongratScreen.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleWinScreen.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleParticles.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleCollision.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleAudio.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleLoseScreen.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModulePlayer.h">
+      <Filter>Modules\Players</Filter>
+    </ClInclude>
+    <ClInclude Include="ModulePlayerII.h">
+      <Filter>Modules\Players</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleSceneHonda.h">
+      <Filter>Modules\Stages</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleSceneRyu.h">
+      <Filter>Modules\Stages</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleIcoinScreen.h">
+      <Filter>Modules\Intro</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleStartScreen.h">
+      <Filter>Modules\Intro</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleWarningScreen.h">
+      <Filter>Modules\Intro</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleWelcomeScreen.h">
+      <Filter>Modules\Intro</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleTimer.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleSceneGuile.h">
+      <Filter>Modules\Stages</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleCharacterSelect.h">
+      <Filter>Modules\Intro</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleFonts.h">
+      <Filter>Modules\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleUI.h">
+      <Filter>Modules\UI</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Application.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleWindow.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleInput.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleRender.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleTextures.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Globals.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleFadeToBlack.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleCongratScreen.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleWinScreen.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleParticles.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleCollision.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleAudio.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleLoseScreen.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModulePlayer.cpp">
+      <Filter>Modules\Players</Filter>
+    </ClCompile>
+    <ClCompile Include="ModulePlayerII.cpp">
+      <Filter>Modules\Players</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleSceneHonda.cpp">
+      <Filter>Modules\Stages</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleSceneRyu.cpp">
+      <Filter>Modules\Stages</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleIcoinScreen.cpp">
+      <Filter>Modules\Intro</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleStartScreen.cpp">
+      <Filter>Modules\Intro</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleWarningScreen.cpp">
+      <Filter>Modules\Intro</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleWelcomeScreen.cpp">
+      <Filter>Modules\Intro</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleTimer.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleSceneGuile.cpp">
+      <Filter>Modules\Stages</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleCharacterSelect.cpp">
+      <Filter>Modules\Intro</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleFonts.cpp">
+      <Filter>Modules\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleUI.cpp">
+      <Filter>Modules\UI</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
