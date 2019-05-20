@@ -28,6 +28,9 @@ public:
 	SDL_Rect score;
 	SDL_Rect timer;
 	SDL_Rect characterGrid;
+
+	bool stage;
+	bool character_select;
 	
 };
 

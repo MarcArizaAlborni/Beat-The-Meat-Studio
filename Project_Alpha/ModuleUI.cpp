@@ -74,7 +74,7 @@ bool ModuleUI::Start()
 update_status ModuleUI::Update()
 {
 	//Blits
-	if (App->scene_guile != nullptr)
+	if (stage)
 	{
 		App->render->Blit(graphicsUI, 30, 20, &healthbar, 1.0f, false); //healthbar
 		App->render->Blit(graphicsUI, 31, 23, &health, 1.0f, false); //health
@@ -86,7 +86,7 @@ update_status ModuleUI::Update()
 		App->render->Blit(graphicsUI, 178, 34, &timer, 1.0f, false); //timer
 	}
 	
-	else if (App->character_select != nullptr)
+	if (character_select)
 	{
 		App->render->Blit(graphicsUI, 128, 143, &characterGrid, 1.0f, false); //Character Grid.
 	}

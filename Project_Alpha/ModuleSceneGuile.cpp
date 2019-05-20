@@ -91,6 +91,8 @@ bool ModuleSceneGuile::Start()
 	App->particles->Enable();
 	App->collision->Enable();
 
+	App->ui->stage = true;
+
 	//Declares the scene start timer. / Resets the timer. 
 	deltaTime = SDL_GetTicks() / 1000;
 	startTime = deltaTime;
@@ -110,6 +112,8 @@ bool ModuleSceneGuile::CleanUp()
 	App->particles->Disable();
 	App->ui->Disable();
 	App->audio->UnLoadMusic(Background_Sound);
+
+	App->ui->stage = false;
 
 	//Resets the healthbars at the end of the duel / scene.
 	App->ui->health.x = 189;

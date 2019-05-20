@@ -34,6 +34,7 @@ bool ModuleCharacterSelect::Start()
 	graphics = App->textures->Load("Sprites/Character_Select_WorldMap.png");
 
 	App->ui->Enable();
+	App->ui->character_select = true;
 	//character_screen = App->audio->LoadMus("Audios/Music/02 Credit.ogg");
 	return true;
 }
@@ -43,6 +44,7 @@ bool ModuleCharacterSelect::CleanUp()
 {
 	LOG("Unloading Character Select Screen");
 	App->textures->Unload(graphics);
+	App->ui->character_select = false;
 	App->ui->Disable();
 	//App->audio->UnLoadMusic();
 	return true;
