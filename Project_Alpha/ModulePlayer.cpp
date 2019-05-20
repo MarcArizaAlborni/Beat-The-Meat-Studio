@@ -252,10 +252,15 @@ update_status ModulePlayer::PreUpdate() {
 		 if (currentstateP1 == idlestateP1) {
 			 if (inputplayerP1.A_active) {
 				 currentstateP1 = backwardstateP1;
-				 blockP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 50 ,positionP1.y - 80 - App->render->camera.y * 2, 10, 30 }, COLLIDER_PLAYER_BLOCK, App->player);
+				 if (!flipP1) {
+					 blockP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 50 ,positionP1.y - 80 - App->render->camera.y * 2, 10, 30 }, COLLIDER_PLAYER_BLOCK, App->player);
+				 }
 				 LOG("IDLE TO BACK");
 			 }
 			 if (inputplayerP1.D_active) {
+				 if (flipP1){
+					 blockP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 50 ,positionP1.y - 80 - App->render->camera.y * 2, 10, 30 }, COLLIDER_PLAYER_BLOCK, App->player);
+				 }
 				 currentstateP1 = forwardstateP1;
 				 LOG("IDLE TO forward");
 			 }
@@ -305,12 +310,18 @@ update_status ModulePlayer::PreUpdate() {
 		 //FORWARD STATE
 		 if (currentstateP1 == forwardstateP1) {
 			 if (!inputplayerP1.D_active) {
+				 blockP1_collider->to_delete = true;
 				 currentstateP1 = idlestateP1;
 				 LOG("FOR to IDLE");
 			 }
 			 if (inputplayerP1.A_active) {
 				 currentstateP1 = backwardstateP1;
-				 blockP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 7, 30 }, COLLIDER_PLAYER_BLOCK, App->player);
+				 if (!flipP1) {
+					 blockP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 7, 30 }, COLLIDER_PLAYER_BLOCK, App->player);
+				 }
+				 else {
+					 blockP1_collider->to_delete = true;
+				 }
 				 LOG("FOR to BACK");
 			 }
 
@@ -404,7 +415,9 @@ update_status ModulePlayer::Update() {
 
 	case backwardstateP1:
 		playerP1_collider->rect.h = 93;
-		blockP1_collider->SetPos(positionP1.x + 55 - App->render->camera.x  *2, positionP1.y -80 - App->render->camera.y * 2);
+		if (blockP1_collider != nullptr) {
+			blockP1_collider->SetPos(positionP1.x + 55 - App->render->camera.x * 2, positionP1.y - 80 - App->render->camera.y * 2);
+		}
 		currentP1_animation = &backwardP1;
 		positionP1.x -= speed;
 		LOG("BACK ANIMATION ACTIVE");
@@ -413,6 +426,9 @@ update_status ModulePlayer::Update() {
 	case forwardstateP1:
 		
 		currentP1_animation = &forwardP1;
+		if (blockP1_collider != nullptr) {
+			blockP1_collider->SetPos(positionP1.x - App->render->camera.x * 2, positionP1.y - 80 - App->render->camera.y * 2);
+		}
 		positionP1.x += speed;
 		LOG("FORWARD ANIMATION ACTIVE");
 		break;
@@ -473,10 +489,16 @@ update_status ModulePlayer::Update() {
 
 
 	if (playerP1_collider->rect.x < App->player2->playerP2_collider->rect.x ) {
+		flipP1 = false;
+
 		App->render->Blit(graphicsP1, positionP1.x - 10, groundLevel-15, &shadowP1, 1.0f, true,SDL_FLIP_NONE);
 		App->render->Blit(graphicsP1, positionP1.x, positionP1.y - r.h, &r, 1.0f, true, SDL_FLIP_NONE);
 	}
 	else {
+		flipP1 = true;
+		if (blockP1_collider == nullptr) {
+			blockP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x , positionP1.y - 80 - App->render->camera.y * 2, 7, 30 }, COLLIDER_PLAYER_BLOCK, App->player);
+		}
 		App->render->Blit(graphicsP1, positionP1.x - 10, groundLevel -15, &shadowP1, 1.0f, true, SDL_FLIP_HORIZONTAL);
 		App->render->Blit(graphicsP1, positionP1.x, positionP1.y - r.h, &r, 1.0f, true, SDL_FLIP_HORIZONTAL);
 	}
@@ -485,9 +507,9 @@ update_status ModulePlayer::Update() {
 	{
 		positionP1.x = (App->render->camera.x - 10);
 	}
-	if (positionP1.x >= (App->render->camera.x) + SCREEN_WIDTH)
+	if (positionP1.x >= (App->render->camera.x) + SCREEN_WIDTH -100)
 	{
-		positionP1.x = (App->render->camera.x) +SCREEN_WIDTH;
+		positionP1.x = (App->render->camera.x) +SCREEN_WIDTH -100;
 	}
 
 

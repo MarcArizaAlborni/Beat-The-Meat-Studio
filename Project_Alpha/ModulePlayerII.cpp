@@ -91,7 +91,7 @@ ModulePlayer2::ModulePlayer2()
 		FjumpP2.PushBack({ 686, 525, 96, 128 });
 		FjumpP2.PushBack({ 379, 525, 90, 128 });
 		FjumpP2.PushBack({ 293, 525, 86, 128 });
-		FjumpP2.speed = 0.5f;
+		FjumpP2.speed = 0.17f;
 		FjumpP2.loop = false;
 
 		//Backward Jump Animation
@@ -102,7 +102,7 @@ ModulePlayer2::ModulePlayer2()
 		BjumpP2.PushBack({ 210, 525, 83, 128 });
 		BjumpP2.PushBack({ 125, 525, 85, 128 });
 		BjumpP2.PushBack({ 28, 525, 97, 128 });
-		BjumpP2.speed = 0.5f;
+		BjumpP2.speed = 0.17f;
 		BjumpP2.loop = false;
 
 		//Standing Turn Animation
@@ -276,6 +276,14 @@ update_status ModulePlayer2::PreUpdate() {
 				currentstateP2 = forwardstateP2;
 				LOG("BACK to FORWARD");
 			}
+			if (inputplayerP2.Up_active) {
+				jumping2 = true;
+				blockP2_collider->to_delete = true;
+				jumpstart2 = time2;
+				jumpTimer2 = 0;
+				currentstateP2 = BjumpstateP2;
+				LOG("BACK to FORWARD");
+			}
 		}
 		//FORWARD STATE
 		if (currentstateP2 == forwardstateP2) {
@@ -292,6 +300,14 @@ update_status ModulePlayer2::PreUpdate() {
 			if (inputplayerP2.Down_active) {
 				currentstateP2 = crouchstateP2;
 				LOG("FOR to CROUCH");
+			}
+			if (inputplayerP2.Up_active) {
+				jumping2 = true;
+				blockP2_collider->to_delete = true;
+				jumpstart2 = time2;
+				jumpTimer2 = 0;
+				currentstateP2 = FjumpstateP2;
+				LOG("BACK to FORWARD");
 			}
 		}
 		//COUCH STATE
@@ -363,6 +379,27 @@ update_status ModulePlayer2::Update()
 		positionP2.y = groundLevelII - (yvel2*jumpTimer2) + (0.5*(gravity2) * (jumpTimer2 * jumpTimer2));
 		LOG(" NEUTRAL JUMP ANIMATION ACTIVE");
 		break;
+
+	case FjumpstateP2:
+
+		currentP2_animation = &FjumpP2;
+
+		positionP2.x -= speedII;
+
+		positionP2.y = groundLevelII - (yvel2*jumpTimer2) + (0.5*(gravity2) * (jumpTimer2 * jumpTimer2));
+		LOG(" NEUTRAL JUMP ANIMATION ACTIVE");
+		break;
+
+	case BjumpstateP2:
+
+		currentP2_animation = &BjumpP2;
+
+		positionP2.x += speedII;
+
+		positionP2.y = groundLevelII - (yvel2*jumpTimer2) + (0.5*(gravity2) * (jumpTimer2 * jumpTimer2));
+
+		LOG(" NEUTRAL JUMP ANIMATION ACTIVE");
+		break;
 	}
 
 	if (currentstateP2 != crouchstateP2) {
@@ -373,7 +410,10 @@ update_status ModulePlayer2::Update()
 	shadowP2 = { 796,27,100,20 };
 
 	if (jumping2) {
+
 		jumpTimer2 = time2 - jumpstart2;
+
+		playerP2_collider->SetPos(positionP2.x - App->render->camera.x * 2, positionP2.y - 80 - App->render->camera.y * 2);
 	}
 
 	if (positionP2.x <= (App->render->camera.x - 10))

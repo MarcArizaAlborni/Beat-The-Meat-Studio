@@ -65,6 +65,7 @@ public:
 	int maxHeight = 120;
 	bool airkick = true;
 	bool alreadyHit = false;
+	bool flipP1 = false;
 	float yvel = 12.0f;
 	float gravity = 0.7f;
 	uint time = 0;
