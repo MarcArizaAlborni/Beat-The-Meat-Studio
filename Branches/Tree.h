@@ -23,7 +23,32 @@ public:
 
 
 	}
+	
 
+	void  mergesort(int* array, int begin, int end) {
+
+
+		if (begin < end) {
+
+
+			int mid = (begin + end) / 2;
+			mergesort(array, begin, mid);
+			mergesort(array, mid + 1, end);
+			merge(array, begin, mid, end);
+
+		}
+
+
+	}
+
+	void merge(int*array, int begin, int mid, int end) {
+
+
+
+
+
+	}
+	
 private:
 	struct Node {
 		int value;

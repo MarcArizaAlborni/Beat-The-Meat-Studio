@@ -1,97 +1,119 @@
 #include <iostream>
 #include "Tree.h"
 
-/*struct Node {
-	int value = 0;
-	Node *left = nullptr;
-	Node *right = nullptr;
-};
+void print(int *array, int size) {
 
-void print_tree_pre_order(Node* n) {
+	for (int i = 0; i < size; ++i) {
 
-	if (n != nullptr)
-	{
-		std::cout << n->value << "-";
-		print_tree_pre_order(n->left);
-		print_tree_pre_order(n->right);
+		std::cout << array[i] << std::endl;
+
+
+	}
+
+
+}
+
+void merge(int*array, int begin,int mid,  int end) {
+
+
+
+
+
+}
+void bubblesort(int* array, int size) {
+
+
+
+	for (int i = 0; i < size - 1; ++i) {
+		for (int n = 0; n < size - 1; ++n) {
+			if (array[n] > array[n + 1]) {
+				int x = array[n];
+				array[n] = array[n + 1];
+				array[n + 1] = x;
+
+			}
+		}
+
+
+
 	}
 }
 
-void print_tree_in_order(Node* n) {
+void  mergesort(int* array, int begin, int end) {
 
-	if (n != nullptr)
-	{
-		print_tree_in_order(n->left);
-		std::cout << n->value << "-";
-		print_tree_in_order(n->right);
+
+	if (begin < end) {
+
+
+		int mid = (begin + end) / 2;
+		mergesort(array, begin, mid);
+		mergesort(array, mid + 1, end);
+		merge(array, begin, mid, end);
+
 	}
+
+
+}
+void swap(int start, int finish)
+{
+	int t = start;
+	start = finish;
+	finish = t;
 }
 
-void print_tree_post_order(Node* n) {
-
-	if (n != nullptr)
-	{
-		print_tree_post_order(n->left);
-		print_tree_post_order(n->right);
-		std::cout << n->value << "-";
+int partition(int* array, int begin, int end) {
+	int pivot = array[end];
+	int p = (begin - 1);
+	for (int i = begin; i <= end; ++i) {
+	if (array[i] <= pivot) {
+	i++;
+	swap(array[p], array[i]);
 	}
+	}
+return (p+1);
+
+
+
+
+
+	
+
+}
+void quicksort(int *array, int begin, int end) {
+
+	if (begin < end) {
+		int PivotIndex = partition(array, begin, end);
+		quicksort(array, begin, PivotIndex - 1);
+		quicksort(array, PivotIndex + 1, end);
+
+
+
+	}
+
+
 }
 
-void clear(Node *n) {
 
-	if (n != nullptr) {
-		clear(n->left);
-		clear(n->right);
-		delete n;
-	}
-}
 
 int main() {
 
-	Node* a = new Node; a->value = 3;
-	Node* b = new Node; b->value = 4;
-	Node* c = new Node; c->value = 5;
-	Node* d = new Node; d->value = 6;
-	Node* e = new Node; e->value = 10;
-	Node* f = new Node; f->value = 0;
-	Node* g = new Node; g->value = 2;
+	int v[10] = { 9,2,8,1,7,3,6,4,5,0 };
+	/*std::cout << "----------NOT SORTED-------------" << std::endl;
+	print(v, 10);
+	mergesort(v, 0, 9);
+	std::cout << "----------MERGESORT-------------" << std::endl;
+	print(v, 10);
+	bubblesort(v, 10);
+	std::cout << "--------BUBBLESORT---------------" << std::endl;
+	print(v, 10);*/
+	quicksort(v, 0, 9);
+	std::cout << "--------QUICKSORT---------------" << std::endl;
+	print(v, 10);
 
-	a->left = b;
-	a->right = e;
-	b->left = c;
-	b->right = d; 
-	e->left = f;
-	e->right = g;
-
-	Tree traversal :
-
-	       a
-
-		b     c
-
-		1.Pre - order: Antes de "hacer" un nodo voy ha "hacer" todo lo del propio nodo, despues la izquierda y po ultimo la derecha. a->b->c;
-	2.In - order: Antes de "hacer" un nodo voy ha "hacer" todo lo de la izquierda, despues el propio nodo y ultimo el de la derecha. b->a->c;
-	3.Post - order: Antes de "hacer" un nodo voy ha "hacer" todo lo de la izquierda, despues el de la derecha y despues el propio nodo. b->c->a;
+	
 
 
-	//Pre-order 5-4-6-3-0-10-2;
-	//In-order
-	//Post-order 
 
-	print_tree_pre_order(a);
-	std::cout << std::endl;
-	print_tree_in_order(a);
-	std::cout << std::endl;
-	print_tree_post_order(a);
-	std::cout << std::endl;
-
-	clear(a); 
-
-	system("pause");
-	return 0;
-} */
-
-int mai() {
 
 
 	system("pause");
