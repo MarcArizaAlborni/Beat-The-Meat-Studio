@@ -59,7 +59,18 @@ public:
 	update_status PreUpdate();
 
 public:
-
+	int speedII = 3;
+	Uint8 alphakaII = 255;
+	int groundLevelII = 205;
+	int maxHeightII = 120;
+	bool airkickII = true;
+	bool alreadyHit2 = false;
+	float yvel2 = 12.0f;
+	float gravity2 = 0.7f;
+	uint time2 = 0;
+	uint jumpTimer2 = 0;
+	uint jumpstart2;
+	bool jumping2 = false;
 	SDL_Rect healthP2;
 	SDL_Rect shadowP2;
 	SDL_Texture* graphicsP2 = nullptr;

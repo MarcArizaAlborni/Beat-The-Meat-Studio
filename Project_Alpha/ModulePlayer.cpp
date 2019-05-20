@@ -192,6 +192,7 @@ bool ModulePlayer::Start()
 
 	graphicsP1 = App->textures->Load("Sprites/BlankaP1.png"); // JA TE LA FOTO BONA
 	currentstateP1 = idlestateP1;
+
 	//Player 2 stest collider
 	playerP1_collider = App->collision->AddCollider({ positionP1.x , positionP1.y - 100, 60, 93 }, COLLIDER_PLAYER, App->player);
 	attackP1_collider = nullptr;
@@ -242,71 +243,12 @@ update_status ModulePlayer::PreUpdate() {
 	 inputplayerP1.X_active = App->input->keyboard[SDL_SCANCODE_X] == KEY_DOWN;
 	 inputplayerP1.C_active = App->input->keyboard[SDL_SCANCODE_C] == KEY_DOWN;
 	 inputplayerP1.V_active = App->input->keyboard[SDL_SCANCODE_V] == KEY_DOWN;
+
 	 {
-		 /* std::string ComboArrayInput = "aaaa";
-
-
-		  int j = 0;
-		  int m = 0;
-		  char comboArray1[] = "zxcv";
-
-
-		  if (inputplayerP1.Z_active) {
-			  LOG("Z ACTIVE");
-
-			  ComboArrayInput[0] = 'z' ;
-		  }
-
-		  if (inputplayerP1.X_active) {
-
-			  LOG("X ACTIVE");
-			  ComboArrayInput[1] = 'x';
-		  }
-
-		  if (inputplayerP1.C_active) {
-		  LOG("C ACTIVE");
-		  ComboArrayInput[2] = 'c';
-		  }
-
-		  if (inputplayerP1.V_active) {
-		  LOG("V ACTIVE");
-		  ComboArrayInput[3] = 'v';
-		  }
-
-		 if(inputplayerP1.Z_active){
-			  int combocount = 0;
-			  while (m < 5) {
-				  if (ComboArrayInput[j] == comboArray1[j]) {
-					  LOG("COMPARING");
-
-					  ++combocount;
-					  ++j;
-					  ++m;
-					  if (combocount >= 4) {
-						  LOG("COMBO ACTIVE");
-						  currentstateP1 = forwardstateP1;
-
-					  }
-
-				  }
-				  else {
-					break;
-				  }
-			  }
-			  combocount = 0;
-			  m = 0;
-			  ComboArrayInput = "aaaa";
-			  LOG("Removing combosequence");
-
-		  }
-		  */
-
-
-
 
 		 //BASIC MOVEMENTS
 
-		  //IDLE STATE
+		 //IDLE STATE
 		 if (currentstateP1 == idlestateP1) {
 			 if (inputplayerP1.A_active) {
 				 currentstateP1 = backwardstateP1;
@@ -326,7 +268,7 @@ update_status ModulePlayer::PreUpdate() {
 				 currentstateP1 = NjumpstateP1;
 				 jumpstart = time;
 				 jumpTimer = 0;
-				 LOG("IDLE to CROUCH");
+				 LOG("IDLE to JUMP");
 			 }
 			 if (inputplayerP1.U_active) {
 				 currentstateP1 = standingfarLPP1;
@@ -400,7 +342,7 @@ update_status ModulePlayer::PreUpdate() {
 			 }
 		 }
 		 //JUMP STATE
-		 if (jumping = true) {
+		 if (jumping == true) {
 
 			 if (positionP1.y >= groundLevel + 10) {
 				 positionP1.y = groundLevel;

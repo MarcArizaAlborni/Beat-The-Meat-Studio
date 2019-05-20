@@ -15,13 +15,7 @@
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
-int speedII = 3;
-Uint8 alphakaII = 255;
-float gravityII = 1;
-int groundLevelII = 205;
-int maxHeightII = 120;
-bool airkickII = true;
-bool alreadyHit2 = false;
+
 
 ModulePlayer2::ModulePlayer2()
 {
@@ -83,7 +77,7 @@ ModulePlayer2::ModulePlayer2()
 		NjumpP2.PushBack({ 210, 525, 83, 128 });
 		NjumpP2.PushBack({ 125, 525, 85, 128 });
 		NjumpP2.PushBack({ 28, 525, 97, 128 });
-		NjumpP2.speed = 0.5f;
+		NjumpP2.speed = 0.1f;
 		NjumpP2.loop = false;
 
 		//Forward Jump Animation
@@ -193,14 +187,12 @@ bool ModulePlayer2::Start()
 {
 	LOG("Loading player textures");
 
-
 	graphicsP2 = App->textures->Load("Sprites/BlankaP2.png"); // JA TE LA FOTO BONA
+	currentstateP2 = idlestateP2;
 
 	//Player 2 stest collider
 	playerP2_collider = App->collision->AddCollider({ positionP2.x, positionP2.y - 100, 56, 93 }, COLLIDER_PLAYER2, App->player2);
 	attackP2_collider = nullptr;
-
-
 	return true;
 }
 
@@ -218,6 +210,7 @@ bool ModulePlayer2::CleanUp()
 update_status ModulePlayer2::PreUpdate() {
 
 
+	time2 = SDL_GetTicks() / 20;
 
 	//MOVE BACKWARD
 	//inputplayerP2.Right_active = App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_REPEAT;
@@ -229,17 +222,19 @@ update_status ModulePlayer2::PreUpdate() {
 	//inputplayerP2.Down_active = App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_REPEAT;
 
 	
-	App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_2] == KEY_DOWN;
-	App->input->game_pad[SDL_CONTROLLER_BUTTON_B][GAME_PAD_2] == KEY_DOWN;
-	App->input->game_pad[SDL_CONTROLLER_BUTTON_X][GAME_PAD_2] == KEY_DOWN;
+	App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_2] = KEY_DOWN;
+	App->input->game_pad[SDL_CONTROLLER_BUTTON_B][GAME_PAD_2] = KEY_DOWN;
+	App->input->game_pad[SDL_CONTROLLER_BUTTON_X][GAME_PAD_2] = KEY_DOWN;
 
 	 inputplayerP2.Right_active = App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_REPEAT || SDL_GameControllerGetButton(App->input->controller_player_2, SDL_CONTROLLER_BUTTON_DPAD_RIGHT)|| SDL_GameControllerGetAxis(App->input->controller_player_2, SDL_CONTROLLER_AXIS_LEFTX) >= 10000;
 	 inputplayerP2.Left_active = App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_REPEAT || SDL_GameControllerGetButton(App->input->controller_player_2, SDL_CONTROLLER_BUTTON_DPAD_LEFT)|| SDL_GameControllerGetAxis(App->input->controller_player_2, SDL_CONTROLLER_AXIS_LEFTX) <= -10000;
 	 inputplayerP2.Down_active = App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_REPEAT || SDL_GameControllerGetButton(App->input->controller_player_2, SDL_CONTROLLER_BUTTON_DPAD_DOWN) || SDL_GameControllerGetAxis(App->input->controller_player_2, SDL_CONTROLLER_AXIS_LEFTY) >= 10000;
-	 inputplayerP2.Up_active = App->input->keyboard[SDL_SCANCODE_UP] == KEY_REPEAT || SDL_GameControllerGetButton(App->input->controller_player_2, SDL_CONTROLLER_BUTTON_DPAD_UP) || SDL_GameControllerGetAxis(App->input->controller_player_2, SDL_CONTROLLER_AXIS_LEFTY) >= -10000;
+	// inputplayerP2.Up_active = App->input->keyboard[SDL_SCANCODE_UP] == KEY_REPEAT || SDL_GameControllerGetButton(App->input->controller_player_2, SDL_CONTROLLER_BUTTON_DPAD_UP) || SDL_GameControllerGetAxis(App->input->controller_player_2, SDL_CONTROLLER_AXIS_LEFTY) >= -10000;
 
 
 	{
+		 //BASIC MOVEMENTS
+
 		//IDLE STATE
 		if (currentstateP2 == idlestateP2) {
 			if (inputplayerP2.Right_active) {
@@ -249,12 +244,20 @@ update_status ModulePlayer2::PreUpdate() {
 			}
 			if (inputplayerP2.Left_active) {
 				currentstateP2 = forwardstateP2;
-LOG("IDLE TO forward");
+				LOG("IDLE TO forward");
 			}
 			if (inputplayerP2.Down_active) {
 				currentstateP2 = crouchstateP2;
 				LOG("IDLE to CROUCH");
 			}
+			if (inputplayerP2.Up_active){
+				jumping2 = true;
+				currentstateP2 = NjumpstateP2;
+				jumpstart2 = time2;
+				jumpTimer2 = 0;
+				LOG("IDLE to JUMP");
+			}
+
 		}
 		//BACKWARDS STATE
 		if (currentstateP2 == backwardstateP2) {
@@ -299,6 +302,22 @@ LOG("IDLE TO forward");
 				LOG("CROUCH to IDLE");
 			}
 		}
+
+		//JUMP STATE
+		if (jumping2 == true ) {
+
+			if (positionP2.y >= groundLevelII) {
+				positionP2.y = groundLevelII;
+				currentstateP2 = idlestateP2;
+				NjumpP2.Reset();
+				FjumpP2.Reset();
+				BjumpP2.Reset();
+				jumping2 = false;
+				jumpTimer2 = 0;
+
+			}
+
+		}
 	}
 
 	return UPDATE_CONTINUE;
@@ -313,9 +332,8 @@ update_status ModulePlayer2::Update()
 	{
 	case idlestateP2:
 		playerP2_collider->rect.h = 93;
-		
 		currentP2_animation = &idleP2;
-		//LOG("IDLE ANIMATION ACTIVE");
+		LOG("IDLE ANIMATION ACTIVE");
 		break;
 
 	case backwardstateP2:
@@ -339,7 +357,14 @@ update_status ModulePlayer2::Update()
 		playerP2_collider->SetPos(positionP2.x - App->render->camera.x * 2, positionP2.y - 68 - App->render->camera.y * 2);
 		LOG("CROUCHED ANIMATION ACTIVE");
 		break;
+
+	case NjumpstateP2:
+		currentP2_animation = &NjumpP2;
+		positionP2.y = groundLevelII - (yvel2*jumpTimer2) + (0.5*(gravity2) * (jumpTimer2 * jumpTimer2));
+		LOG(" NEUTRAL JUMP ANIMATION ACTIVE");
+		break;
 	}
+
 	if (currentstateP2 != crouchstateP2) {
 		playerP2_collider->SetPos(positionP2.x - App->render->camera.x * 2, positionP2.y - 93 - App->render->camera.y * 2);
 	}
@@ -347,7 +372,9 @@ update_status ModulePlayer2::Update()
 	//SHADOW
 	shadowP2 = { 796,27,100,20 };
 
-	
+	if (jumping2) {
+		jumpTimer2 = time2 - jumpstart2;
+	}
 
 	if (positionP2.x <= (App->render->camera.x - 10))
 	{
@@ -357,6 +384,8 @@ update_status ModulePlayer2::Update()
 	{
 		positionP2.x = (180 + App->render->camera.x) + 127;
 	}
+
+
 
 	if (playerP2_collider->rect.x > App->player->playerP1_collider->rect.x) {
 		App->render->Blit(graphicsP2, positionP2.x + 10, App->player->groundLevel - 15, &shadowP2, 1.0f, true,SDL_FLIP_HORIZONTAL);
@@ -375,13 +404,13 @@ update_status ModulePlayer2::Update()
 
 void ModulePlayer2::OnCollision(Collider* c1, Collider* c2)
 {
-	if(c1->type == COLLIDER_PLAYER2 && c2->type == COLLIDER_PLAYER && inputplayerP2.Left_active ){
+	//if(c1->type == COLLIDER_PLAYER2 && c2->type == COLLIDER_PLAYER && inputplayerP2.Left_active ){
 
-		speedII = 0;
-	}
-	else
-	{
-		speedII = 3;
-	}
+	//	speedII = 0;
+	//}
+	//else
+	//{
+	//	speedII = 3;
+	//}
 
 }
