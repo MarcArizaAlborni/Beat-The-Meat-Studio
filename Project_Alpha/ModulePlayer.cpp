@@ -289,6 +289,7 @@ update_status ModulePlayer::PreUpdate() {
 				 LOG("BACK to CROUCH");
 			 }
 			 if (inputplayerP1.W_active) {
+				 blockP1_collider->to_delete = true;
 				 jumping = true;
 				 currentstateP1 = BjumpstateP1;
 				 jumpstart = time;
@@ -296,6 +297,7 @@ update_status ModulePlayer::PreUpdate() {
 				 LOG("IDLE to CROUCH");
 			 }
 			 if (inputplayerP1.U_active) {
+
 				 currentstateP1 = standingfarLPP1;
 				 LOG("BACK to LP");
 			 }
@@ -344,7 +346,7 @@ update_status ModulePlayer::PreUpdate() {
 		 //JUMP STATE
 		 if (jumping == true) {
 
-			 if (positionP1.y >= groundLevel + 10) {
+			 if (positionP1.y >= groundLevel + 5) {
 				 positionP1.y = groundLevel;
 				 currentstateP1 = idlestateP1;
 				 NjumpP1.Reset();
@@ -465,7 +467,7 @@ update_status ModulePlayer::Update() {
 
 		jumpTimer = time - jumpstart;
 
-		playerP1_collider->SetPos(positionP1.x - App->render->camera.x * 2, positionP1.y - 68 - App->render->camera.y * 2);
+		playerP1_collider->SetPos(positionP1.x - App->render->camera.x * 2, positionP1.y - 80 - App->render->camera.y * 2);
 
 	}
 
