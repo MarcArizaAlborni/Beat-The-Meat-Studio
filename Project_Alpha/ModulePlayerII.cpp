@@ -77,7 +77,7 @@ ModulePlayer2::ModulePlayer2()
 		NjumpP2.PushBack({ 210, 525, 83, 128 });
 		NjumpP2.PushBack({ 125, 525, 85, 128 });
 		NjumpP2.PushBack({ 28, 525, 97, 128 });
-		NjumpP2.speed = 0.1f;
+		NjumpP2.speed = 0.17f;
 		NjumpP2.loop = false;
 
 		//Forward Jump Animation
@@ -303,7 +303,7 @@ update_status ModulePlayer2::PreUpdate() {
 			}
 			if (inputplayerP2.Up_active) {
 				jumping2 = true;
-				blockP2_collider->to_delete = true;
+				if (blockP2_collider != nullptr) {	blockP2_collider->to_delete = true;	}
 				jumpstart2 = time2;
 				jumpTimer2 = 0;
 				currentstateP2 = FjumpstateP2;
@@ -381,7 +381,7 @@ update_status ModulePlayer2::Update()
 		break;
 
 	case FjumpstateP2:
-
+		
 		currentP2_animation = &FjumpP2;
 
 		positionP2.x -= speedII;
@@ -428,12 +428,14 @@ update_status ModulePlayer2::Update()
 
 
 	if (playerP2_collider->rect.x > App->player->playerP1_collider->rect.x) {
+
 		App->render->Blit(graphicsP2, positionP2.x + 10, App->player->groundLevel - 15, &shadowP2, 1.0f, true,SDL_FLIP_HORIZONTAL);
 		App->render->Blit(graphicsP2, positionP2.x, positionP2.y - r.h, &r, 1.0f, true, SDL_FLIP_HORIZONTAL);
 	}
 	else
 	{
-		App->render->Blit(graphicsP2, positionP2.x + 10, App->player->groundLevel - 15, &shadowP2, 1.0f, true, SDL_FLIP_NONE);
+
+		App->render->Blit(graphicsP2, positionP2.x -7, App->player->groundLevel - 15, &shadowP2, 1.0f, true, SDL_FLIP_NONE);
 		App->render->Blit(graphicsP2, positionP2.x, positionP2.y - r.h, &r, 1.0f, true, SDL_FLIP_NONE);
 	}
 

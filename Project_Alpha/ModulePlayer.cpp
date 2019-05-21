@@ -290,7 +290,7 @@ update_status ModulePlayer::PreUpdate() {
 			 }
 			 if (inputplayerP1.S_active) {
 				 currentstateP1 = crouchstateP1;
-				 blockP1_collider->to_delete = true;
+				 if (blockP1_collider != nullptr) { blockP1_collider->to_delete = true; }
 				 LOG("BACK to CROUCH");
 			 }
 			 if (inputplayerP1.W_active) {
@@ -326,10 +326,12 @@ update_status ModulePlayer::PreUpdate() {
 			 }
 
 			 if (inputplayerP1.S_active) {
+				 if (blockP1_collider != nullptr) { blockP1_collider->to_delete = true; }
 				 currentstateP1 = crouchstateP1;
 				 LOG("FOR to CROUCH");
 			 }
 			 if (inputplayerP1.W_active){
+				 if (blockP1_collider != nullptr) { blockP1_collider->to_delete = true; }
 				 jumping = true;
 				 currentstateP1 = FjumpstateP1;
 				 jumpstart = time;
@@ -447,14 +449,18 @@ update_status ModulePlayer::Update() {
 		break;
 
 	case FjumpstateP1:
-		currentP1_animation = &FjumpP1;
+		if (!flipP1) {	currentP1_animation = &FjumpP1;	}
+		else { currentP1_animation = &BjumpP1; }
+
+
 		positionP1.x += speed;
 		positionP1.y = groundLevel - (yvel*jumpTimer) + (0.5*(gravity) * (jumpTimer*jumpTimer)); //MRUA
 		LOG(" FORWARD JUMP ANIMATION ACTIVE");
 		break;
 
 	case BjumpstateP1:
-		currentP1_animation = &BjumpP1;
+		if (!flipP1) { currentP1_animation = &BjumpP1; }
+		else { currentP1_animation = &FjumpP1; }
 		positionP1.x -= speed;
 		positionP1.y = groundLevel - (yvel*jumpTimer) + (0.5*(gravity) * (jumpTimer*jumpTimer)); //MRUA
 		LOG(" BACKWARD JUMP ANIMATION ACTIVE");
@@ -499,7 +505,7 @@ update_status ModulePlayer::Update() {
 		if (blockP1_collider == nullptr) {
 			blockP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x , positionP1.y - 80 - App->render->camera.y * 2, 7, 30 }, COLLIDER_PLAYER_BLOCK, App->player);
 		}
-		App->render->Blit(graphicsP1, positionP1.x - 10, groundLevel -15, &shadowP1, 1.0f, true, SDL_FLIP_HORIZONTAL);
+		App->render->Blit(graphicsP1, positionP1.x +10, groundLevel -15, &shadowP1, 1.0f, true, SDL_FLIP_HORIZONTAL);
 		App->render->Blit(graphicsP1, positionP1.x, positionP1.y - r.h, &r, 1.0f, true, SDL_FLIP_HORIZONTAL);
 	}
 
