@@ -239,11 +239,13 @@ update_status ModulePlayer::PreUpdate() {
 	 inputplayerP1.A_active = App->input->keyboard[SDL_SCANCODE_A] == KEY_REPEAT || SDL_GameControllerGetButton(App->input->controller_player_1, SDL_CONTROLLER_BUTTON_DPAD_LEFT)|| SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTX) <= -10000;
 	 inputplayerP1.S_active = App->input->keyboard[SDL_SCANCODE_S] == KEY_REPEAT || SDL_GameControllerGetButton(App->input->controller_player_1, SDL_CONTROLLER_BUTTON_DPAD_DOWN) || SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTY) >= 10000;
 	 inputplayerP1.W_active = App->input->keyboard[SDL_SCANCODE_W] == KEY_REPEAT || SDL_GameControllerGetButton(App->input->controller_player_1, SDL_CONTROLLER_BUTTON_DPAD_UP) || SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTY) <= -10000;
-	 inputplayerP1.U_active = App->input->keyboard[SDL_SCANCODE_U] == KEY_DOWN;
+	 inputplayerP1.U_active = App->input->keyboard[SDL_SCANCODE_U] == KEY_DOWN || SDL_GameControllerGetButton(App->input->controller_player_1, SDL_CONTROLLER_BUTTON_X);
 	 inputplayerP1.X_active = App->input->keyboard[SDL_SCANCODE_X] == KEY_DOWN;
 	 inputplayerP1.C_active = App->input->keyboard[SDL_SCANCODE_C] == KEY_DOWN;
 	 inputplayerP1.V_active = App->input->keyboard[SDL_SCANCODE_V] == KEY_DOWN;
 
+	
+	 
 	 {
 
 		 //BASIC MOVEMENTS
@@ -310,7 +312,7 @@ update_status ModulePlayer::PreUpdate() {
 		 //FORWARD STATE
 		 if (currentstateP1 == forwardstateP1) {
 			 if (!inputplayerP1.D_active) {
-				 blockP1_collider->to_delete = true;
+				 //blockP1_collider->to_delete = true;
 				 currentstateP1 = idlestateP1;
 				 LOG("FOR to IDLE");
 			 }

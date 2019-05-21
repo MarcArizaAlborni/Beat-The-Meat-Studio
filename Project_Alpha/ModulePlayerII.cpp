@@ -230,7 +230,10 @@ update_status ModulePlayer2::PreUpdate() {
 	 inputplayerP2.Left_active = App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_REPEAT || SDL_GameControllerGetButton(App->input->controller_player_2, SDL_CONTROLLER_BUTTON_DPAD_LEFT)|| SDL_GameControllerGetAxis(App->input->controller_player_2, SDL_CONTROLLER_AXIS_LEFTX) <= -10000;
 	 inputplayerP2.Down_active = App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_REPEAT || SDL_GameControllerGetButton(App->input->controller_player_2, SDL_CONTROLLER_BUTTON_DPAD_DOWN) || SDL_GameControllerGetAxis(App->input->controller_player_2, SDL_CONTROLLER_AXIS_LEFTY) >= 10000;
 	 inputplayerP2.Up_active = App->input->keyboard[SDL_SCANCODE_UP] == KEY_REPEAT  || SDL_GameControllerGetButton(App->input->controller_player_2, SDL_CONTROLLER_BUTTON_DPAD_UP) || SDL_GameControllerGetAxis(App->input->controller_player_2, SDL_CONTROLLER_AXIS_LEFTY) <= -10000;
-
+	 if (inputplayerP2.Left_active && inputplayerP2.Right_active) {
+		 inputplayerP2.Left_active = false;
+		 inputplayerP2.Right_active = false;
+	 }
 
 	{
 		 //BASIC MOVEMENTS
