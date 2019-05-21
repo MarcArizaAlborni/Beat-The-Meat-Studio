@@ -310,7 +310,7 @@ update_status ModulePlayer::PreUpdate() {
 		 //FORWARD STATE
 		 if (currentstateP1 == forwardstateP1) {
 			 if (!inputplayerP1.D_active) {
-				 blockP1_collider->to_delete = true;
+				 if (blockP1_collider != nullptr) {	blockP1_collider->to_delete = true; }
 				 currentstateP1 = idlestateP1;
 				 LOG("FOR to IDLE");
 			 }
