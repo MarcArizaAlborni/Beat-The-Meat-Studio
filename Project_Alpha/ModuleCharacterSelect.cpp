@@ -53,6 +53,7 @@ bool ModuleCharacterSelect::CleanUp()
 // Update: draw background
 update_status ModuleCharacterSelect::Update()
 {
+	//App->ui->character_select = true;
 	App->render->Blit(graphics, 0, 0, &character_screen, 0.75f);
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_1] == KEY_DOWN) 
