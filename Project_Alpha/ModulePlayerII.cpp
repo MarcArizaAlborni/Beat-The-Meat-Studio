@@ -306,7 +306,7 @@ update_status ModulePlayer2::PreUpdate() {
 			}
 			if (inputplayerP2.Up_active) {
 				jumping2 = true;
-				blockP2_collider->to_delete = true;
+				if (blockP2_collider != nullptr) { blockP2_collider->to_delete = true;}
 				jumpstart2 = time2;
 				jumpTimer2 = 0;
 				currentstateP2 = FjumpstateP2;
