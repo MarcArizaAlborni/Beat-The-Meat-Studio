@@ -128,7 +128,7 @@ ModulePlayer::ModulePlayer()
 		CblockP1.PushBack({ 630, 2100, 100, 63 });
 
 	    //Standing Damage 
-		SdamageP1.PushBack({});
+		SdamageP1.PushBack({ });
 
 		//Standing Damage Low Attack
 		SdamagelowP1.PushBack({});
@@ -162,7 +162,7 @@ ModulePlayer::ModulePlayer()
 
 	  //Jumping LP
 	  JLP_P1.PushBack({});
-
+	   
 	  //Standing MP
 	  //Crouch MP
 	  //Jump MP
