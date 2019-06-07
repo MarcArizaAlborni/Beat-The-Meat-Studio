@@ -184,8 +184,6 @@ ModulePlayer::ModulePlayer()
 
 	  //Standing FAR HP
 	  SFHP_P1.PushBack({ 27, 929, 107, 95 });
-	  SFHP_P1.PushBack({ 27, 929, 107, 95 });
-	  SFHP_P1.PushBack({ 140, 926, 128, 98 });
 	  SFHP_P1.PushBack({ 140, 926, 128, 98 });
 	  SFHP_P1.PushBack({ 140, 926, 128, 98 });
 	  SFHP_P1.PushBack({ 275, 906, 99, 118 });
@@ -193,12 +191,6 @@ ModulePlayer::ModulePlayer()
 	  SFHP_P1.PushBack({ 275, 906, 99, 118 });
 	  SFHP_P1.PushBack({ 275, 906, 99, 118 });
 	  SFHP_P1.PushBack({ 275, 906, 99, 118 });
-	  SFHP_P1.PushBack({ 275, 906, 99, 118 });
-	  SFHP_P1.PushBack({ 275, 906, 99, 118 });
-	  SFHP_P1.PushBack({ 140, 926, 128, 98 });
-	  SFHP_P1.PushBack({ 140, 926, 128, 98 });
-	  SFHP_P1.PushBack({ 140, 926, 128, 98 });
-	  SFHP_P1.PushBack({ 140, 926, 128, 98 });
 	  SFHP_P1.PushBack({ 140, 926, 128, 98 });
 	  SFHP_P1.PushBack({ 140, 926, 128, 98 });
 	  SFHP_P1.PushBack({ 140, 926, 128, 98 });
@@ -210,11 +202,7 @@ ModulePlayer::ModulePlayer()
 	  SFHP_P1.PushBack({ 27, 929, 107, 95 });
 	  SFHP_P1.PushBack({ 27, 929, 107, 95 });
 	  SFHP_P1.PushBack({ 27, 929, 107, 95 });
-	  SFHP_P1.PushBack({ 27, 929, 107, 95 });
-	  SFHP_P1.PushBack({ 27, 929, 107, 95 });
-	  SFHP_P1.PushBack({ 27, 929, 107, 95 });
-	  SFHP_P1.PushBack({ 27, 929, 107, 95 });
-	  SFHP_P1.speed = 0.1f;
+	  SFHP_P1.speed = 0.2f;
 
 	  //Standing CLOSE HP
 
