@@ -480,6 +480,38 @@ update_status ModulePlayer::PreUpdate() {
 				 SFLP_P1.Reset();
 				 LOG("LP to IDLE");
 			 }
+			 else if (currentP1_animation->Finished() && inputplayerP1.U_active) {
+				  LOG("LP to Thunder1");
+				 currentstateP1 = thunder1;
+				
+
+			 }
+		 }
+
+
+
+
+		 if (currentstateP1 == thunder1) {
+
+			 if (!inputplayerP1.U_active) {
+
+				 LOG("Thunder 1 to IDLE");
+				 currentstateP1 = idlestateP1;
+
+			 }
+
+			 else if (inputplayerP1.U_active) {
+				 LOG("Thunder 1 to Thunder2");
+				 currentstateP1 = idlestateP1;
+
+
+			 }
+
+			 else {
+				 LOG("Thunder 1 to IDLE/ THROUGH ELSE LOOP");
+				 currentstateP1 = idlestateP1;
+			 }
+
 		 }
 		 //CROUCH LP
 		 if (currentstateP1 == crouchLPP1) {
