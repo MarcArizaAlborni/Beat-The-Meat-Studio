@@ -422,6 +422,12 @@ update_status ModulePlayer2::Update()
 
 		LOG(" NEUTRAL JUMP ANIMATION ACTIVE");
 		break;
+	case standingfarLPP2:
+
+		currentP2_animation = &SLFP_P2;
+
+		LOG(" NEUTRAL JUMP ANIMATION ACTIVE");
+		break;
 	}
 
 	if (currentstateP2 != crouchstateP2) {

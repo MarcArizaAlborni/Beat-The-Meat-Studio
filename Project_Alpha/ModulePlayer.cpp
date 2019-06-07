@@ -435,10 +435,10 @@ update_status ModulePlayer::PreUpdate() {
 				 
 			 }
 			 if (inputplayerP1.A_active) {
-				 crouchBlocking = true;
+				 crouchBlockingP1 = true;
 			 }
 			 if (!inputplayerP1.A_active ) {
-				 crouchBlocking = false;
+				 crouchBlockingP1 = false;
 			 }
 		 }
 		 //JUMP STATE
@@ -613,8 +613,12 @@ update_status ModulePlayer::Update() {
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
 	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_PLAYER2_ATTACK) {
-
-		currentstateP1 = SdamagedP1;
+		if (!SblockingP1) {
+			currentstateP1 = SdamagedP1;
+		}
+		else {
+			//currentstateP1 = ;
+		}
 
 	}
 

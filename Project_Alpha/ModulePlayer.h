@@ -27,6 +27,7 @@ enum STATEP1 {
 	crouchLPP1,
 	jumpLPP1,
 	SdamagedP1,
+	SblockstunP1,
 
 
 };
@@ -64,7 +65,8 @@ public:
 	Uint8 alphaka = 255;
 	int groundLevel = 205;
 	int maxHeight = 120;
-	bool crouchBlocking = false;
+	bool SblockingP1 = false;
+	bool crouchBlockingP1 = false;
 	bool airkick = true;
 	bool alreadyHit = false;
 	bool flipP1 = false;
