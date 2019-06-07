@@ -72,6 +72,9 @@ public:
 	uint jumpTimer = 0;
 	uint jumpstart;
 	bool jumping = false;
+	char combo[100];
+	char* startC = new char();
+	char* finishC = new char();
 	SDL_Rect healthP1;
 	SDL_Rect shadowP1;
 	SDL_Texture* graphicsP1 = nullptr;
@@ -117,6 +120,13 @@ public:
 	Collider* attackP1_collider = nullptr;
 	Collider* blockP1_collider = nullptr;
 
+
+
+	void comboInput(char comboInput);
+	bool comboActive();
+	
+	int startcombo= 0;
+	int endcombo = 0;
 };
 
 
