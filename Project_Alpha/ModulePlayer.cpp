@@ -18,7 +18,9 @@
 
 
 using namespace std;
-
+void deleteCollider(Collider* coll) {
+	if (coll != nullptr) { coll->to_delete = true; };
+}
 
 ModulePlayer::ModulePlayer()
 {
@@ -282,17 +284,17 @@ update_status ModulePlayer::PreUpdate() {
 			 comboInput('m');
 			 if (!inputplayerP1.A_active) {
 				 currentstateP1 = idlestateP1;
-				 blockP1_collider->to_delete = true;
+				 deleteCollider(blockP1_collider);
 				 LOG("BACK to IDLE");
 			 }
 			 if (inputplayerP1.S_active) {
-				 if (flipP1) { blockP1_collider->to_delete = true; }
+				 
 				 currentstateP1 = crouchstateP1;
-				 blockP1_collider->to_delete = true;
+				
 				 LOG("BACK to CROUCH");
 			 }
 			 if (inputplayerP1.W_active) {
-				 blockP1_collider->to_delete = true;
+				 deleteCollider(blockP1_collider);
 				 jumping = true;
 				 currentstateP1 = BjumpstateP1;
 				 jumpstart = time;
@@ -300,7 +302,7 @@ update_status ModulePlayer::PreUpdate() {
 				 LOG("IDLE to CROUCH");
 			 }
 			 if (inputplayerP1.U_active) {
-				 if (blockP1_collider != nullptr) { blockP1_collider->to_delete = true; };
+				 deleteCollider(blockP1_collider);
 				 currentstateP1 = standingfarLPP1;
 				 attackP1_collider= App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
 				 LOG("BACK to LP");
@@ -313,7 +315,7 @@ update_status ModulePlayer::PreUpdate() {
 				 //blockP1_collider->to_delete = true;
 				 currentstateP1 = idlestateP1;
 				 if (flipP1 == true){
-					 if (blockP1_collider != nullptr) { blockP1_collider->to_delete = true; }
+					 deleteCollider(blockP1_collider);
 				 }
 				 LOG("FOR to IDLE");
 			 }
@@ -323,18 +325,18 @@ update_status ModulePlayer::PreUpdate() {
 					 blockP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 7,30 }, COLLIDER_PLAYER_BLOCK, App->player);
 				 }
 				 else {
-					 if (blockP1_collider != nullptr) { blockP1_collider->to_delete = true; }
+					 deleteCollider(blockP1_collider);
 				 }
 				 LOG("FOR to BACK");
 			 }
 			 if (inputplayerP1.S_active) {
-				 if (flipP1 == true) { if (blockP1_collider != nullptr) { blockP1_collider->to_delete = true; }	 }
+				 if (flipP1 == true) { deleteCollider(blockP1_collider); }
 				 currentstateP1 = crouchstateP1;
 				 LOG("FOR to CROUCH");
 			 }
 			 if (inputplayerP1.W_active){
 				 if (flipP1 == true) {
-					 if (blockP1_collider != nullptr) { blockP1_collider->to_delete = true; }
+					 deleteCollider(blockP1_collider);
 				 }
 				 jumping = true;
 				 currentstateP1 = FjumpstateP1;
@@ -343,7 +345,7 @@ update_status ModulePlayer::PreUpdate() {
 				 LOG("FOR to CROUCH");
 			 }
 			 if (inputplayerP1.U_active) {
-				 if (blockP1_collider != nullptr) { blockP1_collider->to_delete = true; };
+				 deleteCollider(blockP1_collider);
 				 currentstateP1 = standingfarLPP1;
 				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
 				 LOG("FOR to LP");
@@ -355,23 +357,23 @@ update_status ModulePlayer::PreUpdate() {
 			 if (!inputplayerP1.S_active) {
 				 crouchP1.Reset();
 				 currentstateP1 = idlestateP1;
-				 if (blockP1_collider != nullptr) { blockP1_collider->to_delete = true; };
+				 deleteCollider(blockP1_collider);
 				 LOG("CROUCH to IDLE");
 			 }
 			 if (inputplayerP1.U_active) {
 				 currentstateP1 = crouchLPP1;
 				 LOG("CROUCH to LP");
-				 if (blockP1_collider != nullptr) { blockP1_collider->to_delete = true; };
+				 deleteCollider(blockP1_collider);
 			 }
 			 if (inputplayerP1.A_active) {
 				 if (crouchBlocking == false) {
 					 blockP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 7, 30 }, COLLIDER_PLAYER_BLOCK, App->player);
 					 crouchBlocking = true;
-				}
+					}
 			 }
 			 if (!inputplayerP1.A_active ) {
 				 crouchBlocking = false;
-				 if (blockP1_collider != nullptr) { blockP1_collider->to_delete = true; };
+				 deleteCollider(blockP1_collider);
 			 }
 		 }
 		 //JUMP STATE
@@ -392,6 +394,7 @@ update_status ModulePlayer::PreUpdate() {
 		 //STANDING FAR LP
 		 if (currentstateP1 == standingfarLPP1) {
 			 if (currentP1_animation->Finished() && !inputplayerP1.U_active) {
+				 deleteCollider(attackP1_collider);
 				 currentstateP1 = idlestateP1;
 				 alreadyHit = false;
 				 SLFP_P1.Reset();
