@@ -21,13 +21,13 @@
 ModuleSceneGuile::ModuleSceneGuile()
 {
 	//PLANE && GROUND
-	plane_ground = {59, 413, 673, 224};
+	plane_ground = {59, 400, 673, 237};
 
 	//SKY
 	sky = {59, 40, 673, 54 };
 
 	//BACKGROUND
-	background = {59, 207, 673, 160};
+	background = {59, 208, 673, 177};
 
 	//FENCE
 
@@ -124,9 +124,10 @@ bool ModuleSceneGuile::CleanUp()
 
 update_status ModuleSceneGuile::Update()
 { 
-	App->render->Blit(graphics, -146, 0, &sky); //sky
-	App->render->Blit(graphics, -146, 0, &background); //background
-	App->render->Blit(graphics, -146, 0, &plane_ground); //plane_ground
+	
+	App->render->Blit(graphics, -146, -13, &background); //background
+	App->render->Blit(graphics, -146, -13, &sky); //sky
+	App->render->Blit(graphics, -146, -13, &plane_ground); //plane_ground
 	App->render->Blit(graphics, -146, 70, &fence); //fence
 	App->render->Blit(graphics, 44, 79, &(left_guys.GetCurrentFrame())); //left_guys
 	App->render->Blit(graphics, 150, 110, &(mid_guys.GetCurrentFrame())); //mid_guys
