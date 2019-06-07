@@ -190,6 +190,9 @@ bool ModulePlayer::Start()
 
 	graphicsP1 = App->textures->Load("Sprites/BlankaP1.png"); // JA TE LA FOTO BONA
 	currentstateP1 = idlestateP1;
+	combo[0] = ' ';
+	*startC = combo[0];
+	*finishC = combo[0];
 
 	//Player 2 stest collider
 	playerP1_collider = App->collision->AddCollider({ positionP1.x , positionP1.y - 100, 60, 93 }, COLLIDER_PLAYER, App->player);
@@ -240,6 +243,7 @@ update_status ModulePlayer::PreUpdate() {
 
 		 //IDLE STATE
 		 if (currentstateP1 == idlestateP1) {
+			 comboInput(' ');
 			 if (inputplayerP1.A_active) {
 				 currentstateP1 = backwardstateP1;
 				 if (!flipP1) {
@@ -274,6 +278,8 @@ update_status ModulePlayer::PreUpdate() {
 		 }
 		 //BACKWARDS STATE
 		 if (currentstateP1 == backwardstateP1) {
+			 comboInput('n');
+			 comboInput('m');
 			 if (!inputplayerP1.A_active) {
 				 currentstateP1 = idlestateP1;
 				 blockP1_collider->to_delete = true;
@@ -302,6 +308,7 @@ update_status ModulePlayer::PreUpdate() {
 		 }
 		 //FORWARD STATE
 		 if (currentstateP1 == forwardstateP1) {
+			 comboInput('d');
 			 if (!inputplayerP1.D_active) {
 				 //blockP1_collider->to_delete = true;
 				 currentstateP1 = idlestateP1;
@@ -344,6 +351,7 @@ update_status ModulePlayer::PreUpdate() {
 		 }
 		 //COUCH STATE
 		 if (currentstateP1 == crouchstateP1) {
+			 comboInput('s');
 			 if (!inputplayerP1.S_active) {
 				 crouchP1.Reset();
 				 currentstateP1 = idlestateP1;
@@ -368,7 +376,7 @@ update_status ModulePlayer::PreUpdate() {
 		 }
 		 //JUMP STATE
 		 if (jumping == true) {
-
+			 comboInput('w');
 			 if (positionP1.y >= groundLevel + 5) {
 				 positionP1.y = groundLevel;
 				 currentstateP1 = idlestateP1;
@@ -543,4 +551,59 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		speed = 3;
 	}*/
 
+}
+
+bool ModulePlayer::comboActive() {
+
+	//Input button combination for special attack	
+	int i = 0;
+	int j = startcombo;
+	int done = 0; //If done = 3. Special attack = true 
+
+	while (i < 100) {
+		switch (done) {
+		case 0:
+			if (combo[j] == 'c')//punch
+				done++;
+			break;
+		case 1:
+			if (combo[j] == 'd')//forward
+				done++;
+			break;
+		case 2:
+			if (combo[j] == 'n' && 'm') // enredere
+				done++;
+			break;
+		case 3:
+			if (combo[j] == 's') //down
+				return true;
+		default:
+			//Special attack is false
+			return false;
+		}
+
+		if (j > 0)
+			j--;
+		else
+			j = 99;
+		i++;
+	}
+
+	return false;
+}
+
+
+void ModulePlayer::comboInput(char comboInput) {
+	combo[*finishC] = comboInput; //We add the newInput to the last inputs array
+
+	if (*finishC < 99) //We change last pointer's position 
+		(*finishC)++;
+	else
+		*finishC = 0;
+
+	//We change first pointer's position 
+	if (*startC == *startC && *startC < 99)
+		(*startC)++;
+	else if (*startC == *finishC && *startC >= 99)
+		* startC = 0;
 }
