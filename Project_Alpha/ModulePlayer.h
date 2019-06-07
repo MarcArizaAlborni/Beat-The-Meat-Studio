@@ -105,10 +105,38 @@ public:
 	Animation RecoveryP1;    //Recovery After Damage
 
 	//Attack Animations
-	Animation SLFP_P1;       //Standing FAR LP (light punch) 
-	Animation SLCP_P1;       //Standing CLOSE LP 
+	Animation SFLP_P1;       //Standing FAR LP (light punch) 
+	Animation SCLP_P1;       //Standing CLOSE LP 
 	Animation CLP_P1;        //Crouch LP
 	Animation JLP_P1;        //Jumping LP
+
+	Animation SFMP_P1;       //Standing FAR MP (medium punch) 
+	Animation SCMP_P1;       //Standing CLOSE MP 
+	Animation CMP_P1;        //Crouch MP
+	Animation JMP_P1;        //Jumping MP
+
+	Animation SFHP_P1;       //Standing FAR HP (hard punch) 
+	Animation SCHP_P1;       //Standing CLOSE HP 
+	Animation CHP_P1;        //Crouch HP
+	Animation JHP_P1;        //Jumping HP
+
+	Animation SFLK_P1;       //Standing FAR LK (light kick) 
+	Animation SCLK_P1;       //Standing CLOSE LK
+	Animation CLK_P1;        //Crouch LK
+	Animation JLK_P1;        //Jumping LK
+
+	Animation SFMK_P1;       //Standing FAR MK (medium kick) 
+	Animation SCMK_P1;       //Standing CLOSE MK
+	Animation CMK_P1;        //Crouch MK
+	Animation JMK_P1;        //Jumping MK
+
+	Animation SFHK_P1;       //Standing FAR HK (hard kick) 
+	Animation SCHK_P1;       //Standing CLOSE HK
+	Animation CHK_P1;        //Crouch HK
+	Animation JHK_P1;        //Jumping HK
+
+	Animation Headbut_P1;    //Heatbut
+	Animation Throw_P1;      //Throw
 	Animation Ethunder_P1;   //Electric Thunder 
 	Animation RollingP1;     //Rolling Attack
 

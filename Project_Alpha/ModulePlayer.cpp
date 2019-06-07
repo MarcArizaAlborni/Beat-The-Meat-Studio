@@ -148,12 +148,15 @@ ModulePlayer::ModulePlayer()
 
 	{ //ATTACKS ANIMATIONS
 		
-	  //Standing LP
-	  SLFP_P1.PushBack({28, 658, 104, 105});
-	  SLFP_P1.PushBack({132, 658, 143, 105});
-	  SLFP_P1.PushBack({275, 658, 123, 105});
-	  SLFP_P1.speed = 0.2f;	
-	  SLFP_P1.loop = false;
+	  //Standing FAR LP
+	  SFLP_P1.PushBack({28, 658, 104, 105});
+	  SFLP_P1.PushBack({132, 658, 143, 105});
+	  SFLP_P1.PushBack({275, 658, 123, 105});
+	  SFLP_P1.speed = 0.2f;	
+	  SFLP_P1.loop = false;
+
+	  //Standing CLOSE LP
+	  SCLP_P1.PushBack({});
 
 	  //Crouch LP
 	  CLP_P1.PushBack({610, 709, 109, 56 });
@@ -165,13 +168,102 @@ ModulePlayer::ModulePlayer()
 	  //Jumping LP
 	  JLP_P1.PushBack({});
 	   
-	  //Standing MP
+	  //Standing FAR MP
+	  SFMP_P1.PushBack({31, 765, 88, 104 }); 
+	  SFMP_P1.PushBack({134, 788, 120, 108 });
+	  SFMP_P1.PushBack({264, 799, 130, 97 });
+	  SFMP_P1.PushBack({403, 803, 103, 93});
+	  SFMP_P1.speed = 0.2f;
+	 
+	  //Standing CLOSE MP
+	  SCMP_P1.PushBack({});
+
 	  //Crouch MP
+
 	  //Jump MP
 
-	  //Standing HP
+	  //Standing FAR HP
+	  SFHP_P1.PushBack({ 27, 929, 107, 95 });
+	  SFHP_P1.PushBack({ 27, 929, 107, 95 });
+	  SFHP_P1.PushBack({ 140, 926, 128, 98 });
+	  SFHP_P1.PushBack({ 140, 926, 128, 98 });
+	  SFHP_P1.PushBack({ 140, 926, 128, 98 });
+	  SFHP_P1.PushBack({ 275, 906, 99, 118 });
+	  SFHP_P1.PushBack({ 275, 906, 99, 118 });
+	  SFHP_P1.PushBack({ 275, 906, 99, 118 });
+	  SFHP_P1.PushBack({ 275, 906, 99, 118 });
+	  SFHP_P1.PushBack({ 275, 906, 99, 118 });
+	  SFHP_P1.PushBack({ 275, 906, 99, 118 });
+	  SFHP_P1.PushBack({ 275, 906, 99, 118 });
+	  SFHP_P1.PushBack({ 140, 926, 128, 98 });
+	  SFHP_P1.PushBack({ 140, 926, 128, 98 });
+	  SFHP_P1.PushBack({ 140, 926, 128, 98 });
+	  SFHP_P1.PushBack({ 140, 926, 128, 98 });
+	  SFHP_P1.PushBack({ 140, 926, 128, 98 });
+	  SFHP_P1.PushBack({ 140, 926, 128, 98 });
+	  SFHP_P1.PushBack({ 140, 926, 128, 98 });
+	  SFHP_P1.PushBack({ 140, 926, 128, 98 });
+	  SFHP_P1.PushBack({ 140, 926, 128, 98 });
+	  SFHP_P1.PushBack({ 140, 926, 128, 98 });
+	  SFHP_P1.PushBack({ 140, 926, 128, 98 });
+	  SFHP_P1.PushBack({ 27, 929, 107, 95 });
+	  SFHP_P1.PushBack({ 27, 929, 107, 95 });
+	  SFHP_P1.PushBack({ 27, 929, 107, 95 });
+	  SFHP_P1.PushBack({ 27, 929, 107, 95 });
+	  SFHP_P1.PushBack({ 27, 929, 107, 95 });
+	  SFHP_P1.PushBack({ 27, 929, 107, 95 });
+	  SFHP_P1.PushBack({ 27, 929, 107, 95 });
+	  SFHP_P1.PushBack({ 27, 929, 107, 95 });
+	  SFHP_P1.speed = 0.1f;
+
+	  //Standing CLOSE HP
+
 	  //Crouch HP
+
 	  //Jump HP
+
+	  //Standing FAR LK
+	  SFLK_P1.PushBack({33, 1028, 81, 96 });
+	  SFLK_P1.PushBack({ 124, 1031, 97, 94 });
+	  SFLK_P1.PushBack({ 230, 1032, 137, 93 });
+	  SFLK_P1.PushBack({ 230, 1032, 137, 93 });
+	  SFLK_P1.PushBack({ 124, 1031, 97, 94 });
+	  SFLK_P1.PushBack({ 33, 1028, 81, 96 });
+	  SFLK_P1.speed = 0.2f;
+
+	  //Standing CLOSE LK
+
+	  //Crouch LK
+
+	  //Jump LK
+
+	  //Standing FAR MK
+	  SFMK_P1.PushBack({28, 1135, 92, 85 });
+	  SFMK_P1.PushBack({ 129, 1135, 101, 85 });
+	  SFMK_P1.PushBack({ 236, 1135, 124, 85 }); 
+	  SFMK_P1.PushBack({ 236, 1135, 124, 85 });
+	  SFMK_P1.PushBack({ 129, 1135, 101, 85 });
+	  SFMK_P1.PushBack({ 28, 1135, 92, 85 });
+
+	  //Standing CLOSE MK
+
+	  //Crouch MK
+
+	  //Jump MK
+
+	  //Standing FAR HK
+	  SFHK_P1.PushBack({34, 1263, 90, 85});
+	  SFHK_P1.PushBack({ 143, 1263, 163, 85 });
+	  SFHK_P1.PushBack({ 316, 1249, 122, 99 });
+	  SFHK_P1.PushBack({ 445, 1221, 88, 127 });
+	  SFHK_P1.PushBack({ 536, 1250, 138, 98 });
+	  SFHK_P1.PushBack({ 686, 1279, 103, 69 });
+
+	  //Standing CLOSE HK
+
+	  //Crouch HK
+
+	  //Jump HK
 
 	  //Electric Thunder 
 	  Ethunder_P1.PushBack({});
@@ -397,7 +489,7 @@ update_status ModulePlayer::PreUpdate() {
 				 deleteCollider(attackP1_collider);
 				 currentstateP1 = idlestateP1;
 				 alreadyHit = false;
-				 SLFP_P1.Reset();
+				 SFLP_P1.Reset();
 				 LOG("LP to IDLE");
 			 }
 		 }
@@ -482,7 +574,7 @@ update_status ModulePlayer::Update() {
 		break;
 
 	case standingfarLPP1:
-		currentP1_animation = &SLFP_P1;
+		currentP1_animation = &SFLP_P1;
 		LOG("LP ANIMATION ACTIVE");
 		break;
 
