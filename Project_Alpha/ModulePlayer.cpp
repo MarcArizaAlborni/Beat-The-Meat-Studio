@@ -328,15 +328,10 @@ update_status ModulePlayer::PreUpdate() {
 			 comboInput(' ');
 			 if (inputplayerP1.A_active) {
 				 currentstateP1 = backwardstateP1;
-				 if (!flipP1) {
-					 blockP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 50 ,positionP1.y - 80 - App->render->camera.y * 2, 10, 30 }, COLLIDER_PLAYER_BLOCK, App->player);
-				 }
 				 LOG("IDLE TO BACK");
 			 }
 			 if (inputplayerP1.D_active) {
-				 if (flipP1){
-					 blockP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 50 ,positionP1.y - 80 - App->render->camera.y * 2, 10, 30 }, COLLIDER_PLAYER_BLOCK, App->player);
-				 }
+
 				 currentstateP1 = forwardstateP1;
 				 LOG("IDLE TO forward");
 			 }
@@ -345,7 +340,7 @@ update_status ModulePlayer::PreUpdate() {
 				 LOG("IDLE to CROUCH");
 			 }
 			 if (inputplayerP1.W_active) {
-				 if (flipP1 == true) { if (blockP1_collider != nullptr) { blockP1_collider->to_delete = true; } }
+
 				 jumping = true;
 				 currentstateP1 = NjumpstateP1;
 				 jumpstart = time;
@@ -364,17 +359,17 @@ update_status ModulePlayer::PreUpdate() {
 			 comboInput('m');
 			 if (!inputplayerP1.A_active) {
 				 currentstateP1 = idlestateP1;
-				 deleteCollider(blockP1_collider);
+
 				 LOG("BACK to IDLE");
 			 }
 			 if (inputplayerP1.S_active) {
-				 
+
 				 currentstateP1 = crouchstateP1;
-				
+
 				 LOG("BACK to CROUCH");
 			 }
 			 if (inputplayerP1.W_active) {
-				 deleteCollider(blockP1_collider);
+
 				 jumping = true;
 				 currentstateP1 = BjumpstateP1;
 				 jumpstart = time;
@@ -382,9 +377,9 @@ update_status ModulePlayer::PreUpdate() {
 				 LOG("IDLE to CROUCH");
 			 }
 			 if (inputplayerP1.U_active) {
-				 deleteCollider(blockP1_collider);
+
 				 currentstateP1 = standingfarLPP1;
-				 attackP1_collider= App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
+				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
 				 LOG("BACK to LP");
 			 }
 		 }
@@ -394,30 +389,21 @@ update_status ModulePlayer::PreUpdate() {
 			 if (!inputplayerP1.D_active) {
 				 //blockP1_collider->to_delete = true;
 				 currentstateP1 = idlestateP1;
-				 if (flipP1 == true){
-					 deleteCollider(blockP1_collider);
-				 }
+
 				 LOG("FOR to IDLE");
 			 }
 			 if (inputplayerP1.A_active) {
 				 currentstateP1 = backwardstateP1;
-				 if (!flipP1) {
-					 blockP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 7,30 }, COLLIDER_PLAYER_BLOCK, App->player);
-				 }
-				 else {
-					 deleteCollider(blockP1_collider);
-				 }
+
 				 LOG("FOR to BACK");
 			 }
 			 if (inputplayerP1.S_active) {
-				 if (flipP1 == true) { deleteCollider(blockP1_collider); }
+
 				 currentstateP1 = crouchstateP1;
 				 LOG("FOR to CROUCH");
 			 }
-			 if (inputplayerP1.W_active){
-				 if (flipP1 == true) {
-					 deleteCollider(blockP1_collider);
-				 }
+			 if (inputplayerP1.W_active) {
+
 				 jumping = true;
 				 currentstateP1 = FjumpstateP1;
 				 jumpstart = time;
@@ -425,7 +411,7 @@ update_status ModulePlayer::PreUpdate() {
 				 LOG("FOR to CROUCH");
 			 }
 			 if (inputplayerP1.U_active) {
-				 deleteCollider(blockP1_collider);
+
 				 currentstateP1 = standingfarLPP1;
 				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
 				 LOG("FOR to LP");
@@ -437,7 +423,7 @@ update_status ModulePlayer::PreUpdate() {
 			 if (!inputplayerP1.S_active) {
 				 crouchP1.Reset();
 				 currentstateP1 = idlestateP1;
-				 deleteCollider(blockP1_collider);
+
 				 LOG("CROUCH to IDLE");
 			 }
 			 if (inputplayerP1.U_active) {
@@ -445,59 +431,54 @@ update_status ModulePlayer::PreUpdate() {
 				 LOG("CROUCH to LP");
 				 deleteCollider(blockP1_collider);
 			 }
-			 if (inputplayerP1.A_active) {
-				 if (crouchBlocking == false) {
-					 blockP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 7, 30 }, COLLIDER_PLAYER_BLOCK, App->player);
-					 crouchBlocking = true;
-					}
-			 }
-			 if (!inputplayerP1.A_active ) {
-				 crouchBlocking = false;
-				 deleteCollider(blockP1_collider);
-			 }
-		 }
-		 //JUMP STATE
-		 if (jumping == true) {
-			 comboInput('w');
-			 if (positionP1.y >= groundLevel + 5) {
-				 positionP1.y = groundLevel;
-				 currentstateP1 = idlestateP1;
-				 NjumpP1.Reset();
-				 FjumpP1.Reset();
-				 BjumpP1.Reset();
-				 jumping = false;
-				 jumpTimer = 0;
 
+
+			 //JUMP STATE
+			 if (jumping == true) {
+				 comboInput('w');
+				 if (positionP1.y >= groundLevel + 5) {
+					 positionP1.y = groundLevel;
+					 currentstateP1 = idlestateP1;
+					 NjumpP1.Reset();
+					 FjumpP1.Reset();
+					 BjumpP1.Reset();
+					 jumping = false;
+					 jumpTimer = 0;
+
+				 }
 			 }
+			 //ATTACKS
+			 //STANDING FAR LP
+			 if (currentstateP1 == standingfarLPP1) {
+				 if (currentP1_animation->Finished() && !inputplayerP1.U_active) {
+					 deleteCollider(attackP1_collider);
+					 currentstateP1 = idlestateP1;
+					 alreadyHit = false;
+					 SFLP_P1.Reset();
+					 LOG("LP to IDLE");
+				 }
+			 }
+			 //CROUCH LP
+			 if (currentstateP1 == crouchLPP1) {
+				 if (currentP1_animation->Finished() && !inputplayerP1.U_active && inputplayerP1.S_active) {
+					 currentstateP1 = crouchstateP1;
+					 alreadyHit = false;
+					 CLP_P1.Reset();
+					 LOG("LP to CROUCH");
+				 }
+				 if (currentP1_animation->Finished() && !inputplayerP1.U_active && !inputplayerP1.S_active) {
+					 currentstateP1 = idlestateP1;
+					 alreadyHit = false;
+					 CLP_P1.Reset();
+					 LOG("LP to CROUCH");
+				 }
+			 }
+
+			 standBlocking = false;
+
+			 return UPDATE_CONTINUE;
 		 }
-		 //ATTACKS
-		 //STANDING FAR LP
-		 if (currentstateP1 == standingfarLPP1) {
-			 if (currentP1_animation->Finished() && !inputplayerP1.U_active) {
-				 deleteCollider(attackP1_collider);
-				 currentstateP1 = idlestateP1;
-				 alreadyHit = false;
-				 SFLP_P1.Reset();
-				 LOG("LP to IDLE");
-			 }
-		 }
-		 //CROUCH LP
-		 if (currentstateP1 == crouchLPP1) {
-			 if (currentP1_animation->Finished() && !inputplayerP1.U_active && inputplayerP1.S_active) {
-				 currentstateP1 = crouchstateP1;
-				 alreadyHit = false;
-				 CLP_P1.Reset();
-				 LOG("LP to CROUCH");
-			 }
-			 if (currentP1_animation->Finished() && !inputplayerP1.U_active && !inputplayerP1.S_active) {
-				 currentstateP1 =idlestateP1;
-				 alreadyHit = false;
-				 CLP_P1.Reset();
-				 LOG("LP to CROUCH");
-			 }
-		 }
-		return UPDATE_CONTINUE;
-	}
+	 }
 }
 
 update_status ModulePlayer::Update() {
@@ -506,6 +487,7 @@ update_status ModulePlayer::Update() {
 	{
 
 	case idlestateP1:
+		
 		playerP1_collider->rect.h = 93;
 		currentP1_animation = &idleP1;
 		LOG("IDLE ANIMATION ACTIVE");
@@ -513,20 +495,17 @@ update_status ModulePlayer::Update() {
 
 	case backwardstateP1:
 		playerP1_collider->rect.h = 93;
-		if (blockP1_collider != nullptr) {
-			blockP1_collider->SetPos(positionP1.x + 55 - App->render->camera.x * 2, positionP1.y - 80 - App->render->camera.y * 2);
-		}
 		currentP1_animation = &backwardP1;
 		positionP1.x -= speed;
+		if (!flipP1) { standBlocking = true; }
+		
 		LOG("BACK ANIMATION ACTIVE");
 		break;
 
 	case forwardstateP1:
-		
 		currentP1_animation = &forwardP1;
-		if (blockP1_collider != nullptr) {
-			blockP1_collider->SetPos(positionP1.x - App->render->camera.x * 2, positionP1.y - 80 - App->render->camera.y * 2);
-		}
+		if (flipP1) { standBlocking = true; }
+		
 		positionP1.x += speed;
 		LOG("FORWARD ANIMATION ACTIVE");
 		break;
@@ -535,7 +514,12 @@ update_status ModulePlayer::Update() {
 		currentP1_animation = &crouchP1;
 		playerP1_collider->rect.h = 65;
 		playerP1_collider->SetPos(positionP1.x - App->render->camera.x *2  , positionP1.y - 68 - App->render->camera.y * 2);
-		if (crouchBlocking == true) {	if (blockP1_collider != nullptr) { blockP1_collider->SetPos(positionP1.x + 55 - App->render->camera.x * 2, positionP1.y - 50 - App->render->camera.y * 2); }}
+		if (inputplayerP1.A_active) {
+			crouchBlocking = true;
+		}
+		else {
+			crouchBlocking = false;
+		}
 		LOG("CROUCHED ANIMATION ACTIVE");
 		break;
 
@@ -568,6 +552,7 @@ update_status ModulePlayer::Update() {
 
 	case crouchLPP1:
 		currentP1_animation = &CLP_P1;
+		
 		LOG("CROUCH LP ANIMATION ACTIVE");
 		break;
 	}
