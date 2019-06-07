@@ -1,0 +1,7 @@
+-"Special Attacks"
+-Aerial Attacks
+-Camera moves with player movement: jump and lateral
+-Block -> blockstun
+-Hitstun
+-Score that adds
+-Time limit which actually shows time
