@@ -179,7 +179,14 @@ ModulePlayer::ModulePlayer()
 	  SFMP_P1.speed = 0.2f;
 	 
 	  //Standing CLOSE MP
-	  SCMP_P1.PushBack({});
+	  SCMP_P1.PushBack({ 610, 792, 82, 64 });
+	  SCMP_P1.PushBack({ 703, 794, 140, 62 });
+	  SCMP_P1.PushBack({ 851, 790, 147, 66 });
+	  SCMP_P1.PushBack({ 1005, 786, 140, 70 });
+	  SCMP_P1.PushBack({ 851, 790, 147, 66 });
+	  SCMP_P1.PushBack({ 703, 794, 140, 62 });
+	  SCMP_P1.PushBack({ 610, 792, 82, 64 });
+	  SCMP_P1.speed = 0.2f;
 
 	  //Crouch MP
 
@@ -210,11 +217,25 @@ ModulePlayer::ModulePlayer()
 	  //Standing CLOSE HP
 
 	  //Crouch HP
+	  CHP_P1.PushBack({ 612, 895, 84, 58 });
+	  CHP_P1.PushBack({ 710, 898, 96, 55 });
+	  CHP_P1.PushBack({ 710, 898, 96, 55 });
+	  CHP_P1.PushBack({ 815, 869, 166, 84 });
+	  CHP_P1.PushBack({ 815, 869, 166, 84 });
+	  CHP_P1.PushBack({ 710, 898, 96, 55 });
+	  CHP_P1.PushBack({ 710, 898, 96, 55 });
+	  CHP_P1.PushBack({ 710, 898, 96, 55 });
+	  CHP_P1.PushBack({ 710, 898, 96, 55 });
+	  CHP_P1.PushBack({ 710, 898, 96, 55 });
+	  CHP_P1.PushBack({ 612, 895, 84, 58 });
+	  CHP_P1.PushBack({ 612, 895, 84, 58 });
+	  CHP_P1.PushBack({ 612, 895, 84, 58 });
+	  CHP_P1.speed = 0.2f;
 
 	  //Jump HP
 
 	  //Standing FAR LK
-	  SFLK_P1.PushBack({33, 1028, 81, 96 });
+	  SFLK_P1.PushBack({ 33, 1028, 81, 96 });
 	  SFLK_P1.PushBack({ 124, 1031, 97, 94 });
 	  SFLK_P1.PushBack({ 230, 1032, 137, 93 });
 	  SFLK_P1.PushBack({ 230, 1032, 137, 93 });
@@ -225,6 +246,12 @@ ModulePlayer::ModulePlayer()
 	  //Standing CLOSE LK
 
 	  //Crouch LK
+	  CLK_P1.PushBack({ 610, 980, 74, 78 }); 
+	  CLK_P1.PushBack({ 702, 978, 74, 78 });
+	  CLK_P1.PushBack({ 790, 972, 139, 68 });
+	  CLK_P1.PushBack({ 702, 978, 74, 78 });
+	  CLK_P1.PushBack({ 610, 980, 74, 78 });
+	  CLK_P1.speed = 0.2f;
 
 	  //Jump LK
 
@@ -235,29 +262,102 @@ ModulePlayer::ModulePlayer()
 	  SFMK_P1.PushBack({ 236, 1135, 124, 85 });
 	  SFMK_P1.PushBack({ 129, 1135, 101, 85 });
 	  SFMK_P1.PushBack({ 28, 1135, 92, 85 });
+	  SFMK_P1.speed = 0.2f;
 
 	  //Standing CLOSE MK
 
 	  //Crouch MK
+	  CMK_P1.PushBack({ 610, 980, 74, 78 });
+	  CMK_P1.PushBack({ 702, 978, 74, 78 });
+	  CMK_P1.PushBack({ 790, 972, 139, 68 });
+	  CMK_P1.PushBack({ 790, 972, 139, 68 });
+	  CMK_P1.PushBack({ 702, 978, 74, 78 });
+	  CMK_P1.PushBack({ 610, 980, 74, 78 });
 
 	  //Jump MK
 
 	  //Standing FAR HK
-	  SFHK_P1.PushBack({34, 1263, 90, 85});
+	  SFHK_P1.PushBack({ 34, 1263, 90, 85 });
 	  SFHK_P1.PushBack({ 143, 1263, 163, 85 });
 	  SFHK_P1.PushBack({ 316, 1249, 122, 99 });
 	  SFHK_P1.PushBack({ 445, 1221, 88, 127 });
 	  SFHK_P1.PushBack({ 536, 1250, 138, 98 });
 	  SFHK_P1.PushBack({ 686, 1279, 103, 69 });
+	  SFHK_P1.speed = 0.2f;
 
 	  //Standing CLOSE HK
 
 	  //Crouch HK
+	  CHK_P1.PushBack({610, 1078, 72, 80 });
+	  CHK_P1.PushBack({698, 1083, 91, 76 });
+	  CHK_P1.PushBack({ 799, 1090, 161, 69 });
+	  CHK_P1.PushBack({ 799, 1090, 161, 69 });
+	  CHK_P1.PushBack({ 698, 1083, 91, 76 });
+	  CHK_P1.PushBack({ 698, 1083, 91, 76 });
+	  CHK_P1.PushBack({ 698, 1083, 91, 76 });
+	  CHK_P1.PushBack({ 698, 1083, 91, 76 });
+	  CHK_P1.PushBack({ 610, 1078, 72, 80 });
+	  CHK_P1.PushBack({ 610, 1078, 72, 80 });
+	  CHK_P1.PushBack({ 610, 1078, 72, 80 });
+	  CHK_P1.PushBack({ 610, 1078, 72, 80 });
+	  CHK_P1.speed = 0.2f;
 
 	  //Jump HK
 
+
+	  //Headbut
+	  Headbut_P1.PushBack({});
+
+	  //Throw
+	  Throw_P1.PushBack({ 27, 2141, 89, 104 });
+	  Throw_P1.PushBack({ 123, 2141, 82, 104 });
+	  Throw_P1.PushBack({ 214, 2141, 76, 104 });
+	  Throw_P1.PushBack({ 214, 2141, 76, 104 });
+	  Throw_P1.PushBack({ 301, 2141, 93, 104 });
+	  Throw_P1.PushBack({ 123, 2141, 82, 104 });
+	  Throw_P1.PushBack({ 123, 2141, 82, 104 });
+	  Throw_P1.PushBack({ 301, 2141, 93, 104 });
+	  Throw_P1.PushBack({ 123, 2141, 82, 104 });
+	  Throw_P1.PushBack({ 123, 2141, 82, 104 });
+	  Throw_P1.PushBack({ 301, 2141, 93, 104 });
+	  Throw_P1.PushBack({ 123, 2141, 82, 104 });
+	  Throw_P1.PushBack({ 123, 2141, 82, 104 });
+	  Throw_P1.PushBack({ 301, 2141, 93, 104 });
+	  Throw_P1.PushBack({ 123, 2141, 82, 104 });
+	  Throw_P1.PushBack({ 123, 2141, 82, 104 });
+	  Throw_P1.PushBack({ 301, 2141, 93, 104 });
+	  Throw_P1.PushBack({ 123, 2141, 82, 104 });
+	  Throw_P1.PushBack({ 123, 2141, 82, 104 });
+	  Throw_P1.PushBack({ 301, 2141, 93, 104 });
+	  Throw_P1.PushBack({ 123, 2141, 82, 104 });
+	  Throw_P1.PushBack({ 27, 2141, 89, 104 });
+	  Throw_P1.speed = 0.4f;
+	
 	  //Electric Thunder 
-	  Ethunder_P1.PushBack({});
+	  Ethunder_P1.PushBack({ 27, 1871, 93, 75 });
+	  Ethunder_P1.PushBack({ 130, 1874, 86, 72 });
+	  Ethunder_P1.PushBack({ 27, 1871, 93, 75 });
+	  Ethunder_P1.PushBack({ 130, 1874, 86, 72 });
+	  Ethunder_P1.PushBack({ 27, 1871, 93, 75 });
+	  Ethunder_P1.PushBack({ 130, 1874, 86, 72 });
+	  Ethunder_P1.PushBack({ 228, 1866, 136, 79 });
+	  Ethunder_P1.PushBack({ 375, 1883, 85, 63 });
+	  Ethunder_P1.PushBack({ 228, 1866, 136, 79 });
+	  Ethunder_P1.PushBack({ 228, 1866, 136, 79 });
+	  Ethunder_P1.PushBack({ 228, 1866, 136, 79 });
+	  Ethunder_P1.PushBack({ 228, 1866, 136, 79 });
+	  Ethunder_P1.PushBack({ 375, 1883, 85, 63 });
+	  Ethunder_P1.PushBack({ 375, 1883, 85, 63 });
+	  Ethunder_P1.PushBack({ 228, 1866, 136, 79 });
+	  Ethunder_P1.PushBack({ 228, 1866, 136, 79 });
+	  Ethunder_P1.PushBack({ 228, 1866, 136, 79 });
+	  Ethunder_P1.PushBack({ 375, 1883, 85, 63 });
+	  Ethunder_P1.PushBack({ 375, 1883, 85, 63 });
+	  Ethunder_P1.PushBack({ 27, 1871, 93, 75 });
+	  Ethunder_P1.PushBack({ 130, 1874, 86, 72 });
+	  Ethunder_P1.PushBack({ 27, 1871, 93, 75 });
+
+
 
 	  //Rolling Attack
 	  RollingP1.PushBack({});

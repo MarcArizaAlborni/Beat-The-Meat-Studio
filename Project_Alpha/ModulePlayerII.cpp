@@ -347,6 +347,8 @@ update_status ModulePlayer2::PreUpdate() {
 
 		}
 
+		//ATTACKS
+		//STANDING FAR LP
 		if (currentstateP2 == standingfarLPP2) {
 			if (currentP2_animation->Finished() && !inputplayerP2.Num7_active) {
 				deleteCollider2(attackP2_collider);
