@@ -235,9 +235,6 @@ update_status ModulePlayer2::PreUpdate() {
 		 inputplayerP2.Right_active = false;
 	 }
 
-	 inputplayerP2.Num7_active = App->input->keyboard[SDL_SCANCODE_KP_7] == KEY_REPEAT;
-
-
 	{
 		 //BASIC MOVEMENTS
 
@@ -263,11 +260,7 @@ update_status ModulePlayer2::PreUpdate() {
 				jumpTimer2 = 0;
 				LOG("IDLE to JUMP");
 			}
-			if (inputplayerP2.Num7_active) {
-				currentstateP2 = standingfarLPP2;
-				attackP2_collider = App->collision->AddCollider({ positionP2.x - App->render->camera.x + 55, positionP2.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER2_ATTACK, App->player);
-				LOG("IDLE to LP");
-			}
+
 		}
 		//BACKWARDS STATE
 		if (currentstateP2 == backwardstateP2) {
