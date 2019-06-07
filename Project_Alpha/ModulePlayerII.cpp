@@ -14,7 +14,9 @@
 
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
-
+void deleteCollider2(Collider* coll) {
+	if (coll != nullptr) { coll->to_delete = true; };
+}
 
 
 ModulePlayer2::ModulePlayer2()
@@ -234,6 +236,9 @@ update_status ModulePlayer2::PreUpdate() {
 		 inputplayerP2.Left_active = false;
 		 inputplayerP2.Right_active = false;
 	 }
+	 inputplayerP2.Num7_active = App->input->keyboard[SDL_SCANCODE_KP_7] == KEY_REPEAT;
+
+
 
 	{
 		 //BASIC MOVEMENTS
@@ -259,6 +264,11 @@ update_status ModulePlayer2::PreUpdate() {
 				jumpstart2 = time2;
 				jumpTimer2 = 0;
 				LOG("IDLE to JUMP");
+			}
+			if (inputplayerP2.Num7_active) {
+				currentstateP2 = standingfarLPP2;
+				attackP2_collider = App->collision->AddCollider({ positionP2.x -20 - App->render->camera.x, positionP2.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER2_ATTACK, App->player);
+				LOG("IDLE to LP");
 			}
 
 		}
@@ -296,7 +306,7 @@ update_status ModulePlayer2::PreUpdate() {
 			}
 			if (inputplayerP2.Right_active) {
 				currentstateP2 = backwardstateP2;
-				blockP2_collider = App->collision->AddCollider({ positionP2.x  -App->render->camera.x * 2, positionP2.y - 80 - App->render->camera.y * 2, 10, 30 }, COLLIDER_PLAYER_BLOCK, App->player);
+				
 				LOG("FOR to BACK");
 			}
 
@@ -321,7 +331,6 @@ update_status ModulePlayer2::PreUpdate() {
 				LOG("CROUCH to IDLE");
 			}
 		}
-
 		//JUMP STATE
 		if (jumping2 == true ) {
 
@@ -336,6 +345,16 @@ update_status ModulePlayer2::PreUpdate() {
 
 			}
 
+		}
+
+		if (currentstateP2 == standingfarLPP2) {
+			if (currentP2_animation->Finished() && !inputplayerP2.Num7_active) {
+				deleteCollider2(attackP2_collider);
+				currentstateP2 = idlestateP2;
+				//alreadyHit = false;
+				SLFP_P2.Reset();
+				LOG("LP to IDLE");
+			}
 		}
 	}
 

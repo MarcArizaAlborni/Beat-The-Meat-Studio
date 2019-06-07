@@ -26,6 +26,7 @@ enum STATEP1 {
 	standingfarLPP1,
 	crouchLPP1,
 	jumpLPP1,
+	SdamagedP1,
 
 
 };
