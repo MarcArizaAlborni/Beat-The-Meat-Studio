@@ -821,13 +821,13 @@ update_status ModulePlayer::PreUpdate() {
 			 }
 			 
 			 
-			 if (inputplayerP1.D_active && inputplayerP1.J_active) {
+			 if (inputplayerP1.D_active && inputplayerP1.I_active) {
 
 				 currentstateP1 = rollingattackP1;
 
 			 }
 			 
-			 if (inputplayerP1.D_active && inputplayerP1.K_active) {
+			 if (inputplayerP1.D_active && inputplayerP1.O_active) {
 
 				 currentstateP1 = rollingattackP1;
 
@@ -1170,16 +1170,44 @@ update_status ModulePlayer::PreUpdate() {
 
 		 if (currentstateP1 == rollingattackP1) {
 
-			 if (currentP1_animation->Finished() ) {
+			 if (currentP1_animation->Finished()&& inputplayerP1.D_active && !inputplayerP1.I_active && !inputplayerP1.O_active ) {
 
 				// RollingP1.Reset();
 				 Ethunder_P1.Reset();
-				 currentstateP1 = idlestateP1;
+				 currentstateP1 = forwardstateP1;
 			 }
+		 }
 
+		 if (currentstateP1 == rollingattackP1) {
 
+			 if (currentP1_animation->Finished() && !inputplayerP1.D_active && !inputplayerP1.I_active && !inputplayerP1.O_active) {
 
-		}
+				 // RollingP1.Reset();
+				 Ethunder_P1.Reset();
+				 currentstateP1 =  idlestateP1;
+			 }
+		 }
+
+		 if (currentstateP1 == rollingattackP1) {
+
+			 if (currentP1_animation->Finished() && !inputplayerP1.D_active && !inputplayerP1.I_active && inputplayerP1.O_active) {
+
+				 // RollingP1.Reset();
+				 Ethunder_P1.Reset();
+				 currentstateP1 = standingfarHPP1;
+			 }
+		 }
+
+		 if (currentstateP1 == rollingattackP1) {
+
+			 if (currentP1_animation->Finished() && !inputplayerP1.D_active && inputplayerP1.I_active && !inputplayerP1.O_active) {
+
+				 // RollingP1.Reset();
+				 Ethunder_P1.Reset();
+				 currentstateP1 = standingfarMPP1;
+			 }
+		 }
+		 
 
 		 
 
