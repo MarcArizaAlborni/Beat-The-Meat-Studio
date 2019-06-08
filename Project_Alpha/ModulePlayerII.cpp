@@ -373,7 +373,7 @@ update_status ModulePlayer2::Update()
 	case idlestateP2:
 		playerP2_collider->rect.h = 93;
 		currentP2_animation = &idleP2;
-		LOG("IDLE ANIMATION ACTIVE");
+		//LOG("IDLE ANIMATION ACTIVE");
 		break;
 
 	case backwardstateP2:

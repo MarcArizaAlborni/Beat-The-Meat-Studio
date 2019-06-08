@@ -356,6 +356,7 @@ ModulePlayer::ModulePlayer()
 	  Ethunder_P1.PushBack({ 27, 1871, 93, 75 });
 	  Ethunder_P1.PushBack({ 130, 1874, 86, 72 });
 	  Ethunder_P1.PushBack({ 27, 1871, 93, 75 });
+	  Ethunder_P1.speed = 0.3f;
 
 
 
@@ -421,14 +422,16 @@ update_status ModulePlayer::PreUpdate() {
 	 inputplayerP1.X_active = App->input->keyboard[SDL_SCANCODE_X] == KEY_DOWN;
 	 inputplayerP1.C_active = App->input->keyboard[SDL_SCANCODE_C] == KEY_DOWN;
 	 inputplayerP1.V_active = App->input->keyboard[SDL_SCANCODE_V] == KEY_DOWN;
+	 
 
 	 {
-
+		 bool thundertick = 0;
 		 //BASIC MOVEMENTS
 
 		 //IDLE STATE
 		 if (currentstateP1 == idlestateP1) {
 			 comboInput(' ');
+
 			 if (inputplayerP1.A_active) {
 				 currentstateP1 = backwardstateP1;
 				
@@ -520,7 +523,7 @@ update_status ModulePlayer::PreUpdate() {
 				 LOG("FOR to LP");
 			 }
 		 }
-		 //COUCH STATE
+		 //CROUCH STATE
 		 if (currentstateP1 == crouchstateP1) {
 			 comboInput('s');
 			 if (!inputplayerP1.S_active) {
@@ -558,14 +561,76 @@ update_status ModulePlayer::PreUpdate() {
 		 //ATTACKS
 		 //STANDING FAR LP
 		 if (currentstateP1 == standingfarLPP1) {
-			 if (currentP1_animation->Finished() && !inputplayerP1.U_active) {
+
+			
+			
+			 if (currentP1_animation->Finished()&& !inputplayerP1.U_active) {
 				
 				 currentstateP1 = idlestateP1;
 				 alreadyHit = false;
 				 SFLP_P1.Reset();
+				 thundertick = 1;
 				 LOG("LP to IDLE");
+
+				
 			 }
+
+			  if ( currentP1_animation->Finished()&&inputplayerP1.U_active) {
+
+
+				 currentstateP1 = thunder1P1;
+				 alreadyHit = false;
+				 Ethunder_P1.Reset();
+				 SFLP_P1.Reset();
+				 thundertick = 0;
+				 LOG("LP to Thunder1");
+				 
+			 }
+			/* else {
+
+				 currentstateP1 = idlestateP1;
+				 alreadyHit = false;
+				 SFLP_P1.Reset();
+				 LOG("LP to Idle Via else");
+
+
+			 }*/
 		 }
+
+		 if (currentstateP1 == thunder1P1) {
+
+			 if (currentP1_animation->Finished()&&!inputplayerP1.U_active) {  ////////////////// AQUI ESTA EL PROBLEMA
+				 alreadyHit = false;
+
+				 currentstateP1 = idlestateP1;
+				 SFLP_P1.Reset();
+				 Ethunder_P1.Reset();
+				 LOG("Thunder 1 to IDLE");
+			 }
+
+			/* if (currentP1_animation->Finished() && inputplayerP1.U_active) {
+
+				 currentstateP1 = idlestateP1;
+
+			  }*/
+
+			 //else if (currentP1_animation->Finished() ) {
+			 //    alreadyHit = false;
+				// Ethunder_P1.Reset();
+				// SFLP_P1.Reset();
+				//// currentstateP1 = thunder2P1;
+				// LOG("Thunder 1 to Thunder 2");
+
+			 //}
+
+		 }
+
+		 if (currentstateP1 == thunder2P1) {
+		 
+			 currentstateP1 = idlestateP1;
+			 LOG("GOING BACK TO IDLE == THUNDER2")
+		 }
+
 		 //CROUCH LP
 		 if (currentstateP1 == crouchLPP1) {
 			 if (currentP1_animation->Finished() && !inputplayerP1.U_active && inputplayerP1.S_active) {
@@ -578,7 +643,7 @@ update_status ModulePlayer::PreUpdate() {
 				 currentstateP1 =idlestateP1;
 				 alreadyHit = false;
 				 CLP_P1.Reset();
-				 LOG("LP to CROUCH");
+				 LOG("LP CROUCHED to IDLE");
 			 }
 		 }
 		 if (currentstateP1 == SdamagedP1) {
@@ -599,7 +664,7 @@ update_status ModulePlayer::Update() {
 	case idlestateP1:
 		playerP1_collider->rect.h = 93;
 		currentP1_animation = &idleP1;
-		LOG("IDLE ANIMATION ACTIVE");
+		//LOG("IDLE ANIMATION ACTIVE");
 		break;
 
 	case backwardstateP1:
@@ -649,8 +714,18 @@ update_status ModulePlayer::Update() {
 		break;
 
 	case standingfarLPP1:
-		currentP1_animation = &SFLP_P1;
+		currentP1_animation = &SFLP_P1;         //&SFLP_P1
 		LOG("LP ANIMATION ACTIVE");
+		break;
+
+	case thunder1P1:
+		currentP1_animation = &Ethunder_P1;
+		LOG("THUNDER 1 ANIMATION ACTIVE");
+		break;
+
+	case thunder2P1:
+		
+		LOG("GOING BACK TO IDLE");
 		break;
 
 	case crouchLPP1:

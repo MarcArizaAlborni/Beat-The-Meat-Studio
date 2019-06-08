@@ -28,6 +28,9 @@ enum STATEP1 {
 	jumpLPP1,
 	SdamagedP1,
 	SblockstunP1,
+	thunder1P1,
+	thunder2P1,
+	throwP1
 
 
 };
