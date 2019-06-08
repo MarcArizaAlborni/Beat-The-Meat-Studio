@@ -594,6 +594,7 @@ update_status ModulePlayer::PreUpdate() {
 
 
 				 currentstateP1 = HeadbuttP1;
+				 LOG("BACKWARD TO HEADBUT");
 
 			 }
 
@@ -668,7 +669,7 @@ update_status ModulePlayer::PreUpdate() {
 
 			 if (inputplayerP1.I_active) { //falta CONDICIO COLIDER APROP
 
-
+				 LOG("FORMWARD TO HEADBUT");
 				 currentstateP1 = HeadbuttP1;
 
 			 }
