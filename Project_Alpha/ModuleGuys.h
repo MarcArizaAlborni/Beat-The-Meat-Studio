@@ -14,13 +14,16 @@ public:
 
 	bool Start();
 	update_status Update();
+	update_status PreUpdate();
 	bool CleanUp();
 
 public:
 
 	SDL_Texture* graphics = nullptr;
-	SDL_Texture* graphics2 = nullptr;
-	SDL_Rect building;
 	Animation punch;
+	Animation punch2;
+	Animation punch3;
+	SDL_Rect *cur_anim;
+	SDL_Rect building;
 
 };
