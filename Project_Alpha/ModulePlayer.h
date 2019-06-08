@@ -25,11 +25,24 @@ enum STATEP1 {
 	//Attack
 	standingfarLPP1,
 	standingfarMPP1,
-	standingfarHPP1, // HEAVY PUNCH STATE 
+	standingfarHPP1, 
 	standingfarLKP1,
 	standingfarMKP1,
 	standingfarHKP1,
+	//Close Attacks
+	standingcloseLPP1,
+	standingcloseMPP1,
+	standingcloseHPP1,
+	standingcloseLKP1,
+	standingcloseMKP1,
+	standingcloseHKP1,
+	//Crouch Attacks
 	crouchLPP1,
+	crouchMPP1,
+	crouchHPP1,
+	crouchLKP1,
+	crouchMKP1,
+	crouchHKP1,
 	jumpLPP1,
 	SdamagedP1,
 	SblockstunP1,
