@@ -127,6 +127,7 @@ ModulePlayer2::ModulePlayer2()
 
 		//Standing Damage 
 		SdamageP2.PushBack({});
+		
 
 		//Standing Damage Low Attack
 		SdamagelowP2.PushBack({});
@@ -237,6 +238,7 @@ update_status ModulePlayer2::PreUpdate() {
 		 inputplayerP2.Right_active = false;
 	 }
 	 inputplayerP2.Num7_active = App->input->keyboard[SDL_SCANCODE_KP_7] == KEY_REPEAT;
+	 
 
 
 

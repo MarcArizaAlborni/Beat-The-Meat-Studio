@@ -14,6 +14,7 @@
 #include <iostream>
 
 
+
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
 
@@ -331,7 +332,7 @@ ModulePlayer::ModulePlayer()
 	  Throw_P1.PushBack({ 301, 2141, 93, 104 });
 	  Throw_P1.PushBack({ 123, 2141, 82, 104 });
 	  Throw_P1.PushBack({ 27, 2141, 89, 104 });
-	  Throw_P1.speed = 0.4f;
+	  Throw_P1.speed = 0.1f;
 	
 	  //Electric Thunder 
 	  Ethunder_P1.PushBack({ 27, 1871, 93, 75 });
@@ -422,7 +423,7 @@ update_status ModulePlayer::PreUpdate() {
 	 inputplayerP1.X_active = App->input->keyboard[SDL_SCANCODE_X] == KEY_DOWN;
 	 inputplayerP1.C_active = App->input->keyboard[SDL_SCANCODE_C] == KEY_DOWN;
 	 inputplayerP1.V_active = App->input->keyboard[SDL_SCANCODE_V] == KEY_DOWN;
-	 
+	 inputplayerP1.N_active = App->input->keyboard[SDL_SCANCODE_N] == KEY_DOWN;
 
 	 {
 		 bool thundertick = 0;
@@ -458,6 +459,12 @@ update_status ModulePlayer::PreUpdate() {
 				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
 				 LOG("IDLE to LP");
 			 }
+			 if (inputplayerP1.C_active) {
+
+				 currentstateP1 = HPP1;
+				 LOG("IDLE to HEAVY PUNCH");
+
+			 }
 		 }
 		 //BACKWARDS STATE
 		 if (currentstateP1 == backwardstateP1) {
@@ -488,6 +495,17 @@ update_status ModulePlayer::PreUpdate() {
 				 attackP1_collider= App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
 				 LOG("BACK to LP");
 			 }
+
+			 if (inputplayerP1.C_active) {
+
+				 currentstateP1 = throwP1; // AQUI FALTA LA CONDICIO D'ESTAR APROP AMB ELS COLIDER
+			 }
+
+			 if (inputplayerP1.N_active) {
+
+				 currentstateP1 = throwP1; //AQUI FALTA CONDICIO D'ESTAR APROP AMB ELS COLIDERS
+			 }
+
 		 }
 		 //FORWARD STATE
 		 if (currentstateP1 == forwardstateP1) {
@@ -521,6 +539,16 @@ update_status ModulePlayer::PreUpdate() {
 				 currentstateP1 = standingfarLPP1;
 				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
 				 LOG("FOR to LP");
+			 }
+
+			 if (inputplayerP1.C_active) {
+
+				 currentstateP1 = throwP1; // AQUI FALTA LA CONDICIO D'ESTAR APROP AMB ELS COLIDER
+			 }
+
+			 if (inputplayerP1.N_active) {
+
+				 currentstateP1 = throwP1; //AQUI FALTA CONDICIO D'ESTAR APROP AMB ELS COLIDERS
 			 }
 		 }
 		 //CROUCH STATE
@@ -638,6 +666,29 @@ update_status ModulePlayer::PreUpdate() {
 			 }
 		 }
 
+		 if (currentstateP1 == HPP1) {
+
+			 if (currentP1_animation->Finished() && !inputplayerP1.C_active){
+
+				 currentstateP1 = idlestateP1;
+
+			 }
+			
+	
+		 }
+
+		 if (currentstateP1 == throwP1) {
+
+			 if (currentP1_animation->Finished())
+			 {
+				 Throw_P1.Reset();
+				 
+				 currentstateP1 = idlestateP1;
+
+			 }
+
+		 }
+
 		 //CROUCH LP
 		 if (currentstateP1 == crouchLPP1) {
 			 if (currentP1_animation->Finished() && !inputplayerP1.U_active && inputplayerP1.S_active) {
@@ -734,6 +785,12 @@ update_status ModulePlayer::Update() {
 	case thunder2P1:
 		currentP1_animation = &Ethunder_P1;
 		LOG("THUNDER 2 ANIMATION ACTIVE");
+		break;
+
+	case throwP1:
+		currentP1_animation = &Throw_P1;
+		
+		LOG("THROW ANIMATION ACTIVE");
 		break;
 
 	case crouchLPP1:

@@ -30,7 +30,8 @@ enum STATEP1 {
 	SblockstunP1,
 	thunder1P1,
 	thunder2P1,
-	throwP1
+	throwP1,
+    HPP1 // HEAVY PUNCH STATE 
 
 
 };
@@ -162,6 +163,17 @@ public:
 	
 	int startcombo= 0;
 	int endcombo = 0;
+};
+
+
+class ModulePlayer2 :public Module {
+
+
+	Animation P1SdamageP2; //damage de P2 en P1 ( Es per el throw)
+
+
+
+
 };
 
 
