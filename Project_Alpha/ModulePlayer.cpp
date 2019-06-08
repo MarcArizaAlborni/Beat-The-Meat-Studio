@@ -271,8 +271,6 @@ ModulePlayer::ModulePlayer()
 	  SCHP_P1.PushBack({ 30, 1560, 118, 68 });
 	  SCHP_P1.PushBack({ 155, 1553, 75, 74 });
 	  SCHP_P1.PushBack({ 155, 1553, 75, 74 });
-
-
 	  SCHP_P1.speed = 0.3f;   
 
 	  //Crouch HP
@@ -302,7 +300,28 @@ ModulePlayer::ModulePlayer()
 	  SFLK_P1.PushBack({ 33, 1028, 81, 96 });
 	  SFLK_P1.speed = 0.2f;
 	  SFLK_P1.loop = false;
+
 	  //Standing CLOSE LK
+	  SCLK_P1.PushBack({ 30, 1637, 79, 111 });
+	  SCLK_P1.PushBack({ 30, 1637, 79, 111 });
+	  SCLK_P1.PushBack({ 122, 1644, 66, 104 });
+	  SCLK_P1.PushBack({ 122, 1644, 66, 104 });
+	  SCLK_P1.PushBack({ 196, 1648, 60, 99 });
+	  SCLK_P1.PushBack({ 196, 1648, 60, 99 });
+	  SCLK_P1.PushBack({ 264, 1648, 75, 94 });
+	  SCLK_P1.PushBack({ 264, 1648, 75, 94 });
+	  SCLK_P1.PushBack({ 264, 1648, 75, 94 });
+	  SCLK_P1.PushBack({ 264, 1648, 75, 94 });
+	  SCLK_P1.PushBack({ 264, 1648, 75, 94 });
+	  SCLK_P1.PushBack({ 264, 1648, 75, 94 });
+	  SCLK_P1.PushBack({ 196, 1648, 60, 99 });
+	  SCLK_P1.PushBack({ 196, 1648, 60, 99 });
+	  SCLK_P1.PushBack({ 122, 1644, 66, 104 });
+	  SCLK_P1.PushBack({ 122, 1644, 66, 104 });
+	  SCLK_P1.PushBack({ 30, 1637, 79, 111 });
+	  SCLK_P1.PushBack({ 30, 1637, 79, 111 });
+
+	  SCLK_P1.speed = 0.2f;
 
 	  //Crouch LK
 	  CLK_P1.PushBack({ 610, 980, 74, 78 }); 
@@ -325,7 +344,30 @@ ModulePlayer::ModulePlayer()
 	  SFMK_P1.loop = false;
 
 	  //Standing CLOSE MK
-
+	  SCLK_P1.PushBack({ 30, 1637, 79, 111 });
+	  SCLK_P1.PushBack({ 30, 1637, 79, 111 });
+	  SCLK_P1.PushBack({ 122, 1644, 66, 104 });
+	  SCLK_P1.PushBack({ 122, 1644, 66, 104 });
+	  SCLK_P1.PushBack({ 196, 1648, 60, 99 });
+	  SCLK_P1.PushBack({ 196, 1648, 60, 99 });
+	  SCLK_P1.PushBack({ 196, 1648, 60, 99 });
+	  SCLK_P1.PushBack({ 196, 1648, 60, 99 });
+	  SCLK_P1.PushBack({ 196, 1648, 60, 99 });
+	  SCLK_P1.PushBack({ 196, 1648, 60, 99 });
+	  SCLK_P1.PushBack({ 264, 1648, 75, 94 });
+	  SCLK_P1.PushBack({ 264, 1648, 75, 94 });
+	  SCLK_P1.PushBack({ 264, 1648, 75, 94 });
+	  SCLK_P1.PushBack({ 264, 1648, 75, 94 });
+	  SCLK_P1.PushBack({ 264, 1648, 75, 94 });
+	  SCLK_P1.PushBack({ 264, 1648, 75, 94 });
+	  SCLK_P1.PushBack({ 196, 1648, 60, 99 });
+	  SCLK_P1.PushBack({ 196, 1648, 60, 99 });
+	  SCLK_P1.PushBack({ 122, 1644, 66, 104 });
+	  SCLK_P1.PushBack({ 122, 1644, 66, 104 });
+	  SCLK_P1.PushBack({ 30, 1637, 79, 111 });
+	  SCLK_P1.PushBack({ 30, 1637, 79, 111 });
+	  SCLK_P1.speed = 0.2f;
+	
 	  //Crouch MK
 	  CMK_P1.PushBack({ 610, 980, 74, 78 });
 	  CMK_P1.PushBack({ 702, 978, 74, 78 });
@@ -345,7 +387,24 @@ ModulePlayer::ModulePlayer()
 	  SFHK_P1.PushBack({ 686, 1279, 103, 69 });
 	  SFHK_P1.speed = 0.2f;
 	  SFHK_P1.loop = false;
+
 	  //Standing CLOSE HK
+	  SCHK_P1.PushBack({ 30, 1752, 72, 81 });
+	  SCHK_P1.PushBack({ 30, 1752, 72, 81 });
+	  SCHK_P1.PushBack({ 117, 1757, 91, 76 });
+	  SCHK_P1.PushBack({ 117, 1757, 91, 76 });
+	  SCHK_P1.PushBack({ 214, 1764, 161, 69 });
+	  SCHK_P1.PushBack({ 214, 1764, 161, 69 });
+	  SCHK_P1.PushBack({ 214, 1764, 161, 69 });
+	  SCHK_P1.PushBack({ 214, 1764, 161, 69 });
+	  SCHK_P1.PushBack({ 214, 1764, 161, 69 });
+	  SCHK_P1.PushBack({ 117, 1757, 91, 76 });
+	  SCHK_P1.PushBack({ 117, 1757, 91, 76 });
+	  SCHK_P1.PushBack({ 117, 1757, 91, 76 });
+	  SCHK_P1.PushBack({ 30, 1752, 72, 81 });
+	  SCHK_P1.PushBack({ 30, 1752, 72, 81 });
+	  SCHK_P1.PushBack({ 30, 1752, 72, 81 });
+	  SCHK_P1.speed = 0.4f;
 
 	  //Crouch HK
 	  CHK_P1.PushBack({610, 1078, 72, 80 });
