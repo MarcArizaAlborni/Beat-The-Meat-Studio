@@ -29,6 +29,14 @@ enum STATEP1 {
 	standingfarLKP1,
 	standingfarMKP1,
 	standingfarHKP1,
+	//Close Attacks
+	standingcloseLPP1,
+	standingcloseMPP1,
+	standingcloseHPP1,
+	standingcloseLKP1,
+	standingcloseMKP1,
+	standingcloseHKP1,
+	//Crouch Attacks
 	crouchLPP1,
 	crouchMPP1,
 	crouchHPP1,

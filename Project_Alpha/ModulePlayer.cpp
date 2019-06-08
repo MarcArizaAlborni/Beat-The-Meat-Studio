@@ -600,6 +600,42 @@ update_status ModulePlayer::PreUpdate() {
 				 SFHK_P1.Reset();
 			 }
 		 }
+		 //Close Attacks Check
+		 if (currentstateP1 == standingcloseMPP1) {
+			 if (currentP1_animation->Finished()) {
+				 deleteCollider(attackP1_collider);
+				 currentstateP1 = idlestateP1;
+				 SCMP_P1.Reset();
+			 }
+		 }
+		 if (currentstateP1 == standingcloseHPP1) {
+			 if (currentP1_animation->Finished()) {
+				 deleteCollider(attackP1_collider);
+				 currentstateP1 = idlestateP1;
+				 SCHP_P1.Reset();
+			 }
+		 }
+		 if (currentstateP1 == standingcloseLKP1) {
+			 if (currentP1_animation->Finished()) {
+				 deleteCollider(attackP1_collider);
+				 currentstateP1 = idlestateP1;
+				 SCLK_P1.Reset();
+			 }
+		 }
+		 if (currentstateP1 == standingcloseMKP1) {
+			 if (currentP1_animation->Finished()) {
+				 deleteCollider(attackP1_collider);
+				 currentstateP1 = idlestateP1;
+				 SCMK_P1.Reset();
+			 }
+		 }
+		 if (currentstateP1 == standingcloseHKP1) {
+			 if (currentP1_animation->Finished()) {
+				 deleteCollider(attackP1_collider);
+				 currentstateP1 = idlestateP1;
+				 SCHK_P1.Reset();
+			 }
+		 }
 		 //Crouch attack checks
 		 if (currentstateP1 == crouchMPP1) {
 			 if (currentP1_animation->Finished()) {
@@ -686,6 +722,38 @@ update_status ModulePlayer::PreUpdate() {
 			 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
 				 LOG("IDLE to HEAVY KICK");
 			 }
+			 //Close attacks
+			 //if they are close
+			 /*if (inputplayerP1.U_active) {
+				 currentstateP1 = standingcloseLPP1;
+				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 100, 50 }, COLLIDER_PLAYER_ATTACK, App->player);
+				 LOG("IDLE to LP");
+			 }
+			 if (inputplayerP1.I_active) {
+				 currentstateP1 = standingcloseMPP1;
+				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 100, 35 }, COLLIDER_PLAYER_ATTACK, App->player);
+				 LOG("IDLE to HEAVY PUNCH");
+			 }
+			 if (inputplayerP1.O_active) {
+				 currentstateP1 = standingcloseHPP1;
+				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
+				 LOG("IDLE to HEAVY PUNCH");
+			 }
+			 if (inputplayerP1.J_active) {
+				 currentstateP1 = standingcloseLKP1;
+				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 57, 25 }, COLLIDER_PLAYER_ATTACK, App->player);
+				 LOG("IDLE to HEAVY PUNCH");
+			 }
+			 if (inputplayerP1.K_active) {
+				 currentstateP1 = standingcloseMKP1;
+				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 75, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
+				 LOG("IDLE to HEAVY PUNCH");
+			 }
+			 if (inputplayerP1.L_active) {
+				 currentstateP1 = standingcloseHKP1;
+				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
+				 LOG("IDLE to HEAVY KICK");
+			 }*/
 			
 		 }
 		 //BACKWARDS STATE
@@ -1197,6 +1265,30 @@ update_status ModulePlayer::Update() {
 		LOG("HK ANIMATION ACTIVE");
 		break;
 
+	case standingcloseLPP1:
+		currentP1_animation = &SCLP_P1;         
+		LOG("HK ANIMATION ACTIVE");
+		break;
+	case standingcloseMPP1:
+		currentP1_animation = &SCMP_P1;
+		LOG("HK ANIMATION ACTIVE");
+		break; 
+	case standingcloseHPP1:
+		currentP1_animation = &SCHP_P1;
+		LOG("HK ANIMATION ACTIVE");
+		break;
+	case standingcloseLKP1:
+		currentP1_animation = &SCLK_P1;
+		LOG("HK ANIMATION ACTIVE");
+		break;
+	case standingcloseMKP1:
+		currentP1_animation = &SCMK_P1;
+		LOG("HK ANIMATION ACTIVE");
+		break;
+	case standingcloseHKP1:
+		currentP1_animation = &SCHK_P1;
+		LOG("HK ANIMATION ACTIVE");
+		break;
 	case thunder1P1:
 		currentP1_animation = &SFLP_P1;
 		LOG("THUNDER 1 ANIMATION ACTIVE");
