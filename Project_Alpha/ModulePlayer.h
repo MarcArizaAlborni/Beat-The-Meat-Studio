@@ -33,9 +33,18 @@ enum STATEP1 {
 	jumpLPP1,
 	SdamagedP1,
 	SblockstunP1,
+
+	//COMBO
+
 	thunder1P1,
 	thunder2P1,
 	throwP1,
+	HeadbuttP1,
+	rollingattackP1,
+	faintrollingattackP1,
+	verticalrollingattackP1,
+	dashforwardP1,
+	dashBackwardP1
     
 
 
