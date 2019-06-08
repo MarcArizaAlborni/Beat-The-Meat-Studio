@@ -134,6 +134,9 @@
     <ClInclude Include="ModuleFadeToBlack.h">
       <Filter>Modules\Scenes\Fade_To_Black</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleGuys.h">
+      <Filter>Modules\Scenes\Intro</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -216,6 +219,9 @@
     </ClCompile>
     <ClCompile Include="ModuleFadeToBlack.cpp">
       <Filter>Modules\Scenes\Fade_To_Black</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleGuys.cpp">
+      <Filter>Modules\Scenes\Intro</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

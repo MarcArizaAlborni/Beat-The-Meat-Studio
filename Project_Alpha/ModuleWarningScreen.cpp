@@ -8,7 +8,7 @@
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "MemLeaks.h"
-#include "ModuleIcoinScreen.h"
+#include "ModuleGuys.h"
 #include "ModuleWarningScreen.h"
 
 ModuleWarningScreen::ModuleWarningScreen()
@@ -45,7 +45,7 @@ update_status ModuleWarningScreen::Update()
 	
 	App->render->Blit(graphics, 0, 0, &warning_screen, 0.75f);
 
-	App->fade->FadeToBlack(App->warning_screen, App->icoin_screen, 5.0f);
+	App->fade->FadeToBlack(App->warning_screen, App->guys_screen, 5.0f);
 
 	return UPDATE_CONTINUE;
 }

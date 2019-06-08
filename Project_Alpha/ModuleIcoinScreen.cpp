@@ -32,7 +32,7 @@ bool ModuleIcoinScreen::Start()
 {
 	LOG("Loading Welcome screen");
 	graphics = App->textures->Load("Sprites/StartScreenIII_II.png");
-	//insert_coin = App->audio->LoadMus("Audios/Music/02 Credit.ogg");
+	insert_coin = App->audio->LoadMus("Audios/Music/02 Credit.ogg");
 	return true;
 }
 
@@ -41,7 +41,7 @@ bool ModuleIcoinScreen::CleanUp()
 {
 	LOG("Unloading Introduce coin Screen");
 	App->textures->Unload(graphics);
-	//App->audio->UnLoadMusic(insert_coin);
+	App->audio->UnLoadMusic(insert_coin);
 	return true;
 }
 
@@ -54,7 +54,7 @@ update_status ModuleIcoinScreen::Update()
 	
 	if (App->input->keyboard[SDL_SCANCODE_F3] || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_1] == KEY_DOWN || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_2] == KEY_DOWN) {
 
-		//App->audio->PlayMusic(insert_coin, NULL);
+		App->audio->PlayMusic(insert_coin, NULL);
 		App->audio->FinishMusic(1000);
 		
 		coin_inserted = true;

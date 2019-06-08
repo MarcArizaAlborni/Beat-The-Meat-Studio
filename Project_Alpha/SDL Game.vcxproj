@@ -82,6 +82,7 @@
     <ClInclude Include="ModuleCongratScreen.h" />
     <ClInclude Include="ModuleFadeToBlack.h" />
     <ClInclude Include="ModuleFonts.h" />
+    <ClInclude Include="ModuleGuys.h" />
     <ClInclude Include="ModuleIcoinScreen.h" />
     <ClInclude Include="ModuleInput.h" />
     <ClInclude Include="ModuleLoseScreen.h" />
@@ -112,6 +113,7 @@
     <ClCompile Include="ModuleCongratScreen.cpp" />
     <ClCompile Include="ModuleFadeToBlack.cpp" />
     <ClCompile Include="ModuleFonts.cpp" />
+    <ClCompile Include="ModuleGuys.cpp" />
     <ClCompile Include="ModuleIcoinScreen.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
     <ClCompile Include="ModuleLoseScreen.cpp" />
