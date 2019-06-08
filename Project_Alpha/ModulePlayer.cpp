@@ -700,17 +700,24 @@ update_status ModulePlayer::PreUpdate() {
 				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
 				 LOG("IDLE to HEAVY KICK");
 			 }
-			 if (inputplayerP1.U_active) {
+			 
+			 
+			 if (inputplayerP1.D_active && inputplayerP1.J_active) {
 
-				 currentstateP1 = throwP1; // AQUI FALTA LA CONDICIO D'ESTAR APROP AMB ELS COLIDER
+				 currentstateP1 = rollingattackP1;
+
+			 }
+			 
+			 if (inputplayerP1.D_active && inputplayerP1.K_active) {
+
+				 currentstateP1 = rollingattackP1;
+
 			 }
 
-			 if (inputplayerP1.J_active) {
+			
+			
 
-				 currentstateP1 = throwP1; //AQUI FALTA CONDICIO D'ESTAR APROP AMB ELS COLIDERS
-			 }
-
-			 if (inputplayerP1.I_active) { //falta CONDICIO COLIDER APROP
+			 if (inputplayerP1.I_active && !inputplayerP1.D_active) { //falta CONDICIO COLIDER APROP
 
 
 				 currentstateP1 = HeadbuttP1;
@@ -819,20 +826,7 @@ update_status ModulePlayer::PreUpdate() {
 				 currentstateP1 = throwP1;
 			 }
 
-			/* if (inputplayerP1.D_active && inputplayerP1.I_active) {
-
-				 currentstateP1 = rollingattackP1;
-			 }
-
-			 if (inputplayerP1.D_active && inputplayerP1.U_active) {
-
-				 currentstateP1 = rollingattackP1;
-			 }
-
-			 if (inputplayerP1.D_active && inputplayerP1.O_active) {
-
-				 currentstateP1 = rollingattackP1;
-			 }*/
+			
 		 }
 		 //CROUCH STATE
 		 if (currentstateP1 == crouchstateP1) {
@@ -1027,10 +1021,11 @@ update_status ModulePlayer::PreUpdate() {
 
 		 if (currentstateP1 == rollingattackP1) {
 
-			 if (currentP1_animation->Finished()) {
+			 if (currentP1_animation->Finished() ) {
 
-				 RollingP1.Reset();
-				 
+				// RollingP1.Reset();
+				 Ethunder_P1.Reset();
+				 currentstateP1 = idlestateP1;
 			 }
 
 
@@ -1162,10 +1157,10 @@ update_status ModulePlayer::Update() {
 		break;
 
 
-	//case rollingattackP1:
-	//	currentP1_animation = &Headbut_P1; //FALTA ANIM FLOOR PUNCH
-	//	LOG("ROLLING ANIMATION ACTIVE");
-	//	break;
+	case rollingattackP1:
+		currentP1_animation = &Ethunder_P1;
+		LOG("ROLLING ANIMATION ACTIVE");
+		break;
 	}
 
 
