@@ -20,6 +20,8 @@ ModuleIcoinScreen::ModuleIcoinScreen()
 	icoin_screen.y = 0;
 	icoin_screen.w = SCREEN_WIDTH;
 	icoin_screen.h = SCREEN_HEIGHT;
+
+	
 }
 
 ModuleIcoinScreen::~ModuleIcoinScreen()
@@ -33,6 +35,7 @@ bool ModuleIcoinScreen::Start()
 	LOG("Loading Welcome screen");
 	graphics = App->textures->Load("Sprites/StartScreenIII_II.png");
 	insert_coin = App->audio->LoadMus("Audios/Music/02 Credit.ogg");
+	App->render->camera.y = 0;
 	return true;
 }
 

@@ -25,5 +25,8 @@ public:
 	Animation punch3;
 	SDL_Rect *cur_anim;
 	SDL_Rect building;
+	SDL_Rect sky;
+	Animation people;
 
+	float speed = 2.5f;
 };

@@ -24,7 +24,7 @@ typedef unsigned int uint;
 
 // Configuration -----------
 #define SCREEN_SIZE 2 /// poseu 2 si voleu NO FULLSCREN ----- 1 SI VOLEU FULLSCREEN
-#define SCREEN_WIDTH  398  //398
+#define SCREEN_WIDTH  384  //384
 #define SCREEN_HEIGHT  224 //224
 #define WIN_FULLSCREEN 0
 #define WIN_FULLSCREEN_DESKTOP 0

@@ -7,12 +7,20 @@
 #include "ModuleRender.h"
 #include "ModuleGuys.h"
 #include "Animation.h"
+#include "ModuleFadeToBlack.h"
+#include "ModuleIcoinScreen.h"
 
 
 ModuleGuys::ModuleGuys()
 {
 
-	building = { 285, 725, SCREEN_WIDTH, SCREEN_HEIGHT };
+	sky = { 669, 598, SCREEN_WIDTH, 351 };
+
+	building = { 285, 374, SCREEN_WIDTH, 575 };
+
+	people.PushBack({ 285, 949, 384, 224 });
+	people.PushBack({ 669, 949, 384, 224 });
+	people.speed = 0.02; 
 
 	punch.PushBack({ 1053, 53, 384, 224 });
 	punch.PushBack({ 1437, 53, 384, 224 });
@@ -97,7 +105,7 @@ ModuleGuys::ModuleGuys()
 	punch2.PushBack({ 2205, 2293, 384, 224 });
 	punch2.PushBack({ 2589, 2293, 384, 224 });
 	punch2.PushBack({ 2973, 2293, 384, 224 });
-	punch2.speed = 0.4f;
+	punch2.speed = 0.8f;
 
 	punch3.PushBack({ 1053, 2517, 384, 224 });
 	punch3.PushBack({ 1437, 2517, 384, 224 });
@@ -158,8 +166,6 @@ ModuleGuys::ModuleGuys()
 	punch3.PushBack({ 2973, 53, 384, 224 });
 	punch3.PushBack({ 2973, 53, 384, 224 });
 
-
-
 	punch3.speed = 0.4f;
 }
 
@@ -192,9 +198,9 @@ update_status ModuleGuys::PreUpdate()
 	}
 
 	if(punch2.Finished())
-	{
+	{ 
 		cur_anim = &punch3.GetCurrentFrame();
-		App->render->camera.y -= 2.5f;
+		App->render->camera.y -= speed;
 	}
 
 	if (punch3.Finished())
@@ -210,9 +216,20 @@ update_status ModuleGuys::PreUpdate()
 }
 update_status ModuleGuys::Update()
 {
-	App->render->Blit(graphics, 0, 0, &building, 0.75f);
+	SDL_Rect r = people.GetCurrentFrame();
+
+	App->render->Blit(graphics, 0, -127, &sky, 0.272f);
+	App->render->Blit(graphics, 0, -351, &building, 0.75f);
+	App->render->Blit(graphics, 0, 0, &r, 0.75f);
 	App->render->Blit(graphics, 0, 0, cur_anim, 0.75f);
 
+	if (App->render->camera.y <=  -935) {
+
+		speed = 0;
+		
+		App->fade->FadeToBlack(App->guys_screen, App->icoin_screen, 3.f);
+
+	}
 
 	return UPDATE_CONTINUE;
 }
