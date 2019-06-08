@@ -96,6 +96,7 @@ public:
 	Uint8 alphaka = 255;
 	int groundLevel = 205;
 	int maxHeight = 120;
+	bool close = false;
 	bool SblockingP1 = false;
 	bool crouchBlockingP1 = false;
 	bool airkick = true;
