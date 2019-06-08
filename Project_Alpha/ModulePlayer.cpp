@@ -718,6 +718,18 @@ update_status ModulePlayer::PreUpdate() {
 
 			 }
 
+			 if (inputplayerP1.O_active) {
+
+
+				 currentstateP1 = throwP1;
+
+			 }
+
+			 if (inputplayerP1.L_active) {
+
+				 currentstateP1 = throwP1;
+			 }
+
 		 }
 		 //FORWARD STATE
 		 if (currentstateP1 == forwardstateP1) {
@@ -794,6 +806,19 @@ update_status ModulePlayer::PreUpdate() {
 				 LOG("FORWARD TO HEADBUT");
 
 			 }
+
+			 if (inputplayerP1.O_active) {
+
+
+				 currentstateP1 = throwP1;
+			 }
+			 
+			 if (inputplayerP1.L_active) {
+
+
+				 currentstateP1 = throwP1;
+			 }
+
 			/* if (inputplayerP1.D_active && inputplayerP1.I_active) {
 
 				 currentstateP1 = rollingattackP1;
@@ -1118,7 +1143,7 @@ update_status ModulePlayer::Update() {
 
 	case throwP1:
 		currentP1_animation = &Throw_P1;
-		App->player2->currentP2_animation = &SdamageP1;
+		//App->player2->currentP2_animation = &SdamageP1;
 		LOG("THROW ANIMATION ACTIVE");
 		break;
 
