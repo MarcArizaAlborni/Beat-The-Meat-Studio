@@ -157,7 +157,18 @@ ModulePlayer::ModulePlayer()
 	  SFLP_P1.loop = false;
 
 	  //Standing CLOSE LP
-	  SCLP_P1.PushBack({});
+	  SCLP_P1.PushBack({ 30, 1365, 110, 93 });
+	  SCLP_P1.PushBack({ 149, 1360, 149, 98 });
+	  SCLP_P1.PushBack({ 149, 1360, 149, 98 });
+	  SCLP_P1.PushBack({ 149, 1360, 149, 98 });
+	  SCLP_P1.PushBack({ 149, 1360, 149, 98 });
+	  SCLP_P1.PushBack({ 149, 1360, 149, 98 });
+	  SCLP_P1.PushBack({ 149, 1360, 149, 98 });
+	  SCLP_P1.PushBack({ 306, 1359, 135, 99 });
+	  SCLP_P1.PushBack({ 306, 1359, 135, 99 });
+	  SCLP_P1.PushBack({ 149, 1360, 149, 98 });
+	  SCLP_P1.PushBack({ 30, 1365, 110, 93 });
+	  SCLP_P1.speed = 0.2f;
 
 	  //Crouch LP
 	  CLP_P1.PushBack({610, 709, 109, 56 });
@@ -177,16 +188,28 @@ ModulePlayer::ModulePlayer()
 	  SFMP_P1.speed = 0.2f;
 		
 	  //Standing CLOSE MP
-	  SCMP_P1.PushBack({ 610, 792, 82, 64 });
-	  SCMP_P1.PushBack({ 703, 794, 140, 62 });
-	  SCMP_P1.PushBack({ 851, 790, 147, 66 });
-	  SCMP_P1.PushBack({ 1005, 786, 140, 70 });
-	  SCMP_P1.PushBack({ 851, 790, 147, 66 });
-	  SCMP_P1.PushBack({ 703, 794, 140, 62 });
-	  SCMP_P1.PushBack({ 610, 792, 82, 64 });
+	  SCMP_P1.PushBack({ 30, 1365, 110, 93 });
+	  SCMP_P1.PushBack({ 149, 1360, 149, 98 });
+	  SCMP_P1.PushBack({ 149, 1360, 149, 98 });
+	  SCMP_P1.PushBack({ 149, 1360, 149, 98 });
+	  SCMP_P1.PushBack({ 149, 1360, 149, 98 });
+	  SCMP_P1.PushBack({ 149, 1360, 149, 98 });
+	  SCMP_P1.PushBack({ 149, 1360, 149, 98 });
+	  SCMP_P1.PushBack({ 306, 1359, 135, 99 });
+	  SCMP_P1.PushBack({ 306, 1359, 135, 99 });
+	  SCMP_P1.PushBack({ 149, 1360, 149, 98 });
+	  SCMP_P1.PushBack({ 30, 1365, 110, 93 });
 	  SCMP_P1.speed = 0.2f;
 
 	  //Crouch MP
+	  CMP_P1.PushBack({ 610, 792, 82, 64 });
+	  CMP_P1.PushBack({ 703, 794, 140, 62 });
+	  CMP_P1.PushBack({ 851, 790, 147, 66 });
+	  CMP_P1.PushBack({ 1005, 786, 140, 70 });
+	  CMP_P1.PushBack({ 851, 790, 147, 66 });
+	  CMP_P1.PushBack({ 703, 794, 140, 62 });
+	  CMP_P1.PushBack({ 610, 792, 82, 64 });
+	  CMP_P1.speed = 0.2f;
 
 	  //Jump MP
 
@@ -212,7 +235,45 @@ ModulePlayer::ModulePlayer()
 	  SFHP_P1.PushBack({ 27, 929, 107, 95 });
 	  SFHP_P1.speed = 0.5f;
 	  SFHP_P1.loop = false;
+
 	  //Standing CLOSE HP
+	  SCHP_P1.PushBack({ 30, 1471, 104, 70 });
+	  SCHP_P1.PushBack({ 30, 1471, 104, 70 });
+	  SCHP_P1.PushBack({ 141, 1473, 67, 68 });
+	  SCHP_P1.PushBack({ 141, 1473, 67, 68 });
+	  SCHP_P1.PushBack({ 218, 1482, 76, 59 });
+	  SCHP_P1.PushBack({ 218, 1482, 76, 59 });
+	  SCHP_P1.PushBack({ 308, 1471, 88, 70 });
+	  SCHP_P1.PushBack({ 308, 1471, 88, 70 });
+	  SCHP_P1.PushBack({ 407, 1463, 88, 86 });
+	  SCHP_P1.PushBack({ 30, 1560, 118, 68 });
+	  SCHP_P1.PushBack({ 30, 1560, 118, 68 });
+	  SCHP_P1.PushBack({ 30, 1560, 118, 68 });
+	  SCHP_P1.PushBack({ 30, 1560, 118, 68 });
+	  SCHP_P1.PushBack({ 30, 1560, 118, 68 });
+	  SCHP_P1.PushBack({ 30, 1560, 118, 68 });
+	  SCHP_P1.PushBack({ 30, 1560, 118, 68 });
+	  SCHP_P1.PushBack({ 30, 1560, 118, 68 });
+	  SCHP_P1.PushBack({ 155, 1553, 75, 74 });
+	  SCHP_P1.PushBack({ 155, 1553, 75, 74 });
+	  SCHP_P1.PushBack({ 141, 1473, 67, 68 });
+	  SCHP_P1.PushBack({ 141, 1473, 67, 68 });
+	  SCHP_P1.PushBack({ 141, 1473, 67, 68 });
+	  SCHP_P1.PushBack({ 218, 1482, 76, 59 });
+	  SCHP_P1.PushBack({ 218, 1482, 76, 59 });
+	  SCHP_P1.PushBack({ 308, 1471, 88, 70 });
+	  SCHP_P1.PushBack({ 308, 1471, 88, 70 });
+	  SCHP_P1.PushBack({ 407, 1463, 88, 86 });
+	  SCHP_P1.PushBack({ 30, 1560, 118, 68 });
+	  SCHP_P1.PushBack({ 30, 1560, 118, 68 });
+	  SCHP_P1.PushBack({ 30, 1560, 118, 68 });
+	  SCHP_P1.PushBack({ 30, 1560, 118, 68 });
+	  SCHP_P1.PushBack({ 30, 1560, 118, 68 });
+	  SCHP_P1.PushBack({ 155, 1553, 75, 74 });
+	  SCHP_P1.PushBack({ 155, 1553, 75, 74 });
+
+
+	  SCHP_P1.speed = 0.3f;   
 
 	  //Crouch HP
 	  CHP_P1.PushBack({ 612, 895, 84, 58 });
