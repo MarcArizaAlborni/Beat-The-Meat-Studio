@@ -721,7 +721,7 @@ update_status ModulePlayer::PreUpdate() {
 		 }
 		 //FORWARD STATE
 		 if (currentstateP1 == forwardstateP1) {
-			 comboInput('d');
+			 
 			 if (!inputplayerP1.D_active) {
 				 //blockP1_collider->to_delete = true;
 				 currentstateP1 = idlestateP1;
@@ -752,10 +752,10 @@ update_status ModulePlayer::PreUpdate() {
 				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
 				 LOG("FOR to LP");
 			 }
-			 //if (inputplayerP1.I_active) { //AQUI FALTA CONDICIO DE NO S'ESTAN TOCANT ELS COLIDERS
-				// currentstateP1 = standingfarMPP1;
-				// attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
-				// LOG("IDLE to HEAVY PUNCH");
+			 //if (inputplayerp1.i_active) { //aqui falta condicio de no s'estan tocant els coliders
+				// currentstatep1 = standingfarmpp1;
+				// attackp1_collider = app->collision->addcollider({ positionp1.x - app->render->camera.x + 55, positionp1.y - 80 - app->render->camera.y * 2, 50, 15 }, collider_player_attack, app->player);
+				// log("idle to heavy punch");
 			 //}
 			 if (inputplayerP1.O_active) {
 				 currentstateP1 = standingfarHPP1;
@@ -789,11 +789,12 @@ update_status ModulePlayer::PreUpdate() {
 
 			 if (inputplayerP1.I_active) { //falta CONDICIO COLIDER APROP
 
-				 LOG("FORMWARD TO HEADBUT");
+
 				 currentstateP1 = HeadbuttP1;
+				 LOG("FORWARD TO HEADBUT");
 
 			 }
-			 if (inputplayerP1.D_active && inputplayerP1.I_active) {
+			/* if (inputplayerP1.D_active && inputplayerP1.I_active) {
 
 				 currentstateP1 = rollingattackP1;
 			 }
@@ -806,7 +807,7 @@ update_status ModulePlayer::PreUpdate() {
 			 if (inputplayerP1.D_active && inputplayerP1.O_active) {
 
 				 currentstateP1 = rollingattackP1;
-			 }
+			 }*/
 		 }
 		 //CROUCH STATE
 		 if (currentstateP1 == crouchstateP1) {
@@ -964,14 +965,39 @@ update_status ModulePlayer::PreUpdate() {
 		 //HEADBUTT
 		 if (currentstateP1 == HeadbuttP1) {
 
-			 if (currentP1_animation->Finished()) {
+			
+			 if (currentP1_animation->Finished() && inputplayerP1.I_active && !inputplayerP1.A_active && !inputplayerP1.D_active) {
 
 				 Headbut_P1.Reset();
-				 
-				 currentstateP1 = idlestateP1;
+
+				 currentstateP1 = standingfarMPP1;
 
 			 }
 
+			 if (currentP1_animation->Finished() && !inputplayerP1.I_active && !inputplayerP1.A_active && !inputplayerP1.D_active) {
+
+				 Headbut_P1.Reset();
+
+				 currentstateP1 = idlestateP1;
+
+			 }
+			  
+			 if (currentP1_animation->Finished() && !inputplayerP1.I_active && !inputplayerP1.A_active && inputplayerP1.D_active) {
+
+				 Headbut_P1.Reset();
+
+				 currentstateP1 = forwardstateP1;
+
+			 }
+			 if (currentP1_animation->Finished() && !inputplayerP1.I_active && inputplayerP1.A_active && !inputplayerP1.D_active) {
+
+				 Headbut_P1.Reset();
+
+				 currentstateP1 = backwardstateP1;
+
+			 }
+
+			
 		 }
 
 		 if (currentstateP1 == rollingattackP1) {
@@ -1106,15 +1132,15 @@ update_status ModulePlayer::Update() {
 		break;
 
 	case HeadbuttP1:
-		currentP1_animation = &Throw_P1; // falta ANIMACIO HEADBUTT
+		currentP1_animation = &Headbut_P1; // falta ANIMACIO HEADBUTT
 		LOG("HEADBUTT ANIMATION ACTIVE");
 		break;
 
 
-	case rollingattackP1:
-		currentP1_animation = &Throw_P1; //FALTA ANIM FLOOR PUNCH
-		LOG("ROLLING ANIMATION ACTIVE");
-		break;
+	//case rollingattackP1:
+	//	currentP1_animation = &Headbut_P1; //FALTA ANIM FLOOR PUNCH
+	//	LOG("ROLLING ANIMATION ACTIVE");
+	//	break;
 	}
 
 
