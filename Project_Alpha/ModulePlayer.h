@@ -24,6 +24,11 @@ enum STATEP1 {
 
 	//Attack
 	standingfarLPP1,
+	standingfarMPP1,
+	standingfarHPP1, // HEAVY PUNCH STATE 
+	standingfarLKP1,
+	standingfarMKP1,
+	standingfarHKP1,
 	crouchLPP1,
 	jumpLPP1,
 	SdamagedP1,
@@ -31,7 +36,7 @@ enum STATEP1 {
 	thunder1P1,
 	thunder2P1,
 	throwP1,
-    HPP1 // HEAVY PUNCH STATE 
+    
 
 
 };
@@ -44,12 +49,12 @@ struct InputP1 {
 	bool S_active; //Crouch
 
 	bool U_active; //Light Punch LP
-	bool X_active; //Medium Punch MP
-	bool C_active; //Hard Punch Hp
+	bool I_active; //Medium Punch MP
+	bool O_active; //Hard Punch Hp
 
-	bool V_active; //Light Kick LK
-	bool B_active; //Medium Kick MK
-	bool N_active; //Hard Kick HK
+	bool J_active; //Light Kick LK
+	bool K_active; //Medium Kick MK
+	bool L_active; //Hard Kick HK
 };
 
 class ModulePlayer : public Module

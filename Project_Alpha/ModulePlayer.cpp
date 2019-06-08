@@ -174,13 +174,13 @@ ModulePlayer::ModulePlayer()
 	  //Jumping LP
 	  JLP_P1.PushBack({});
 	   
-	  //Standing FAR MP
+	  //Standing FAR MP 
 	  SFMP_P1.PushBack({31, 765, 88, 104 }); 
 	  SFMP_P1.PushBack({134, 788, 120, 108 });
 	  SFMP_P1.PushBack({264, 799, 130, 97 });
-	  SFMP_P1.PushBack({403, 803, 103, 93});
+	  SFMP_P1.PushBack({403, 803, 103, 93}); //This is not correct I think
 	  SFMP_P1.speed = 0.2f;
-	 
+		
 	  //Standing CLOSE MP
 	  SCMP_P1.PushBack({ 610, 792, 82, 64 });
 	  SCMP_P1.PushBack({ 703, 794, 140, 62 });
@@ -215,8 +215,8 @@ ModulePlayer::ModulePlayer()
 	  SFHP_P1.PushBack({ 27, 929, 107, 95 });
 	  SFHP_P1.PushBack({ 27, 929, 107, 95 });
 	  SFHP_P1.PushBack({ 27, 929, 107, 95 });
-	  SFHP_P1.speed = 0.2f;
-
+	  SFHP_P1.speed = 0.5f;
+	  SFHP_P1.loop = false;
 	  //Standing CLOSE HP
 
 	  //Crouch HP
@@ -245,7 +245,7 @@ ModulePlayer::ModulePlayer()
 	  SFLK_P1.PushBack({ 124, 1031, 97, 94 });
 	  SFLK_P1.PushBack({ 33, 1028, 81, 96 });
 	  SFLK_P1.speed = 0.2f;
-
+	  SFLK_P1.loop = false;
 	  //Standing CLOSE LK
 
 	  //Crouch LK
@@ -266,6 +266,7 @@ ModulePlayer::ModulePlayer()
 	  SFMK_P1.PushBack({ 129, 1135, 101, 85 });
 	  SFMK_P1.PushBack({ 28, 1135, 92, 85 });
 	  SFMK_P1.speed = 0.2f;
+	  SFMK_P1.loop = false;
 
 	  //Standing CLOSE MK
 
@@ -287,7 +288,7 @@ ModulePlayer::ModulePlayer()
 	  SFHK_P1.PushBack({ 536, 1250, 138, 98 });
 	  SFHK_P1.PushBack({ 686, 1279, 103, 69 });
 	  SFHK_P1.speed = 0.2f;
-
+	  SFHK_P1.loop = false;
 	  //Standing CLOSE HK
 
 	  //Crouch HK
@@ -423,15 +424,49 @@ update_status ModulePlayer::PreUpdate() {
 	 inputplayerP1.A_active = App->input->keyboard[SDL_SCANCODE_A] == KEY_REPEAT || SDL_GameControllerGetButton(App->input->controller_player_1, SDL_CONTROLLER_BUTTON_DPAD_LEFT)|| SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTX) <= -10000;
 	 inputplayerP1.S_active = App->input->keyboard[SDL_SCANCODE_S] == KEY_REPEAT || SDL_GameControllerGetButton(App->input->controller_player_1, SDL_CONTROLLER_BUTTON_DPAD_DOWN) || SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTY) >= 10000;
 	 inputplayerP1.W_active = App->input->keyboard[SDL_SCANCODE_W] == KEY_REPEAT || SDL_GameControllerGetButton(App->input->controller_player_1, SDL_CONTROLLER_BUTTON_DPAD_UP) || SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTY) <= -10000;
+	 
 	 inputplayerP1.U_active = App->input->keyboard[SDL_SCANCODE_U] == KEY_DOWN || SDL_GameControllerGetButton(App->input->controller_player_1, SDL_CONTROLLER_BUTTON_X);
-	 inputplayerP1.X_active = App->input->keyboard[SDL_SCANCODE_X] == KEY_DOWN;
-	 inputplayerP1.C_active = App->input->keyboard[SDL_SCANCODE_C] == KEY_DOWN;
-	 inputplayerP1.V_active = App->input->keyboard[SDL_SCANCODE_V] == KEY_DOWN;
-	 inputplayerP1.N_active = App->input->keyboard[SDL_SCANCODE_N] == KEY_DOWN;
-
+	 inputplayerP1.I_active = App->input->keyboard[SDL_SCANCODE_I] == KEY_DOWN;
+	 inputplayerP1.O_active = App->input->keyboard[SDL_SCANCODE_O] == KEY_DOWN;
+	 inputplayerP1.J_active = App->input->keyboard[SDL_SCANCODE_J] == KEY_DOWN;
+	 inputplayerP1.K_active = App->input->keyboard[SDL_SCANCODE_K] == KEY_DOWN;
+	 inputplayerP1.L_active = App->input->keyboard[SDL_SCANCODE_L] == KEY_DOWN;
 	 {
 		 bool thundertick = 0;
-		 //BASIC MOVEMENTS
+		 
+		 //Standing Far Attacks Animation check
+		 if (currentstateP1 == standingfarMPP1) {
+			 if (currentP1_animation->Finished()) {
+				 currentstateP1 = idlestateP1;
+				 SFMP_P1.Reset();
+			 }
+		 }
+		 if (currentstateP1 == standingfarHPP1) {
+			 if (currentP1_animation->Finished()) {
+				 currentstateP1 = idlestateP1;
+				 SFHP_P1.Reset();
+			 }
+		 }
+		 if (currentstateP1 == standingfarLKP1) {
+			 if (currentP1_animation->Finished()) {
+				 currentstateP1 = idlestateP1;
+				 SFLK_P1.Reset();
+			 }
+		 }
+		 if (currentstateP1 == standingfarMKP1) {
+			 if (currentP1_animation->Finished()) {
+				 currentstateP1 = idlestateP1;
+				 SFMK_P1.Reset();
+			 }
+		 }
+		 if (currentstateP1 == standingfarHKP1) {
+
+			 if (currentP1_animation->Finished()) {
+				 LOG("HK to IDLE");
+				 currentstateP1 = idlestateP1;
+				 SFHK_P1.Reset();
+			 }
+		 }
 
 		 //IDLE STATE
 		 if (currentstateP1 == idlestateP1) {
@@ -458,16 +493,24 @@ update_status ModulePlayer::PreUpdate() {
 				 jumpTimer = 0;
 				 LOG("IDLE to JUMP");
 			 }
-			 if (inputplayerP1.U_active) {
-				 currentstateP1 = standingfarLPP1;
+			 if (inputplayerP1.U_active) {currentstateP1 = standingfarLPP1;
 				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
 				 LOG("IDLE to LP");
 			 }
-			 if (inputplayerP1.C_active) {
-
-				 currentstateP1 = HPP1;
+			 if (inputplayerP1.I_active) { currentstateP1 = standingfarMPP1;
 				 LOG("IDLE to HEAVY PUNCH");
-
+			 }
+			 if (inputplayerP1.O_active) {currentstateP1 = standingfarHPP1;
+				 LOG("IDLE to HEAVY PUNCH");
+			 }
+			 if (inputplayerP1.J_active) { currentstateP1 = standingfarLKP1;
+				 LOG("IDLE to HEAVY PUNCH");
+			 }
+			 if (inputplayerP1.K_active) { currentstateP1 = standingfarMKP1;
+				 LOG("IDLE to HEAVY PUNCH");
+			 }
+			 if (inputplayerP1.L_active) {currentstateP1 = standingfarHKP1;
+				 LOG("IDLE to HEAVY KICK");
 			 }
 		 }
 		 //BACKWARDS STATE
@@ -500,12 +543,12 @@ update_status ModulePlayer::PreUpdate() {
 				 LOG("BACK to LP");
 			 }
 
-			 if (inputplayerP1.C_active) {
+			 if (inputplayerP1.U_active) {
 
 				 currentstateP1 = throwP1; // AQUI FALTA LA CONDICIO D'ESTAR APROP AMB ELS COLIDER
 			 }
 
-			 if (inputplayerP1.N_active) {
+			 if (inputplayerP1.J_active) {
 
 				 currentstateP1 = throwP1; //AQUI FALTA CONDICIO D'ESTAR APROP AMB ELS COLIDERS
 			 }
@@ -545,12 +588,12 @@ update_status ModulePlayer::PreUpdate() {
 				 LOG("FOR to LP");
 			 }
 
-			 if (inputplayerP1.C_active) {
+			 if (inputplayerP1.U_active) {
 
 				 currentstateP1 = throwP1; // AQUI FALTA LA CONDICIO D'ESTAR APROP AMB ELS COLIDER
 			 }
 
-			 if (inputplayerP1.N_active) {
+			 if (inputplayerP1.J_active) {
 
 				 currentstateP1 = throwP1; //AQUI FALTA CONDICIO D'ESTAR APROP AMB ELS COLIDERS
 			 }
@@ -593,22 +636,14 @@ update_status ModulePlayer::PreUpdate() {
 		 //ATTACKS
 		 //STANDING FAR LP
 		 if (currentstateP1 == standingfarLPP1) {
-
-			
-			
-			 if (currentP1_animation->Finished()&& !inputplayerP1.U_active) {
-				
+			 if (currentP1_animation->Finished() && !inputplayerP1.U_active) {
 				 currentstateP1 = idlestateP1;
 				 alreadyHit = false;
 				 SFLP_P1.Reset();
-				 
 				 LOG("LP to IDLE");
-
-				
 			 }
 
-			  if ( currentP1_animation->Finished()&&inputplayerP1.U_active) {
-
+			  if ( currentP1_animation->Finished() && inputplayerP1.U_active) {
 
 				 currentstateP1 = thunder1P1;
 				 alreadyHit = false;
@@ -616,10 +651,9 @@ update_status ModulePlayer::PreUpdate() {
 				 SFLP_P1.Reset();
 				 thundertick = 1;
 				 LOG("LP to Thunder1");
-				 
-				 
-			 }
-			if (currentP1_animation->Finished()&&inputplayerP1.U_active&&thundertick==1){
+
+			  }
+			if (currentP1_animation->Finished()&&inputplayerP1.U_active && thundertick==1){
 
 				 currentstateP1 =thunder2P1;
 				 alreadyHit = false;
@@ -670,9 +704,9 @@ update_status ModulePlayer::PreUpdate() {
 			 }
 		 }
 
-		 if (currentstateP1 == HPP1) {
+		 /*if (currentstateP1 == standingfarHPP1) {
 
-			 if (currentP1_animation->Finished() && !inputplayerP1.C_active){
+			 if (currentP1_animation->Finished() && !inputplayerP1.J_active){
 
 				 currentstateP1 = idlestateP1;
 
@@ -680,7 +714,7 @@ update_status ModulePlayer::PreUpdate() {
 			
 	
 		 }
-
+*/
 		 if (currentstateP1 == throwP1) {
 
 			 if (currentP1_animation->Finished())
@@ -714,6 +748,8 @@ update_status ModulePlayer::PreUpdate() {
 				 SdamageP1.Reset();
 			 }
 		 }
+
+		
 		return UPDATE_CONTINUE;
 	}
 }
@@ -780,6 +816,29 @@ update_status ModulePlayer::Update() {
 		LOG("LP ANIMATION ACTIVE");
 		break;
 
+	case standingfarMPP1:
+		currentP1_animation = &SFMP_P1;         //&SFMP_P1
+		LOG("LP ANIMATION ACTIVE");
+		break;
+	case standingfarHPP1:
+		currentP1_animation = &SFHP_P1;         //&SFHP_P1
+		LOG("LP ANIMATION ACTIVE");
+		break;
+	case standingfarLKP1:
+		currentP1_animation = &SFLK_P1;         //&SFLK_P1
+		LOG("LP ANIMATION ACTIVE");
+		break;
+
+	case standingfarMKP1:
+		currentP1_animation = &SFMK_P1;         //&SFMK_P1
+		LOG("LP ANIMATION ACTIVE");
+		break;
+
+	case standingfarHKP1:
+		currentP1_animation = &SFHK_P1;         //&SFHK_P1
+		LOG("HK ANIMATION ACTIVE");
+		break;
+
 	case thunder1P1:
 		currentP1_animation = &SFLP_P1;
 		LOG("THUNDER 1 ANIMATION ACTIVE");
@@ -804,6 +863,7 @@ update_status ModulePlayer::Update() {
 	
 	case SdamagedP1:
 		currentP1_animation = &SdamageP1;
+		break;
 	}
 
 	if ( currentstateP1 != crouchstateP1) {
