@@ -136,6 +136,8 @@ ModulePlayer::ModulePlayer()
 		SdamageP1.loop = false;
 		SdamageP1.speed = 0.05;
 
+		
+
 		//Standing Damage Low Attack
 		SdamagelowP1.PushBack({});
 
@@ -366,6 +368,8 @@ ModulePlayer::ModulePlayer()
 
 	}
 }
+
+
 
 ModulePlayer::~ModulePlayer()
 {}
@@ -789,7 +793,7 @@ update_status ModulePlayer::Update() {
 
 	case throwP1:
 		currentP1_animation = &Throw_P1;
-		
+		App->player2->currentP2_animation =&SdamageP1;
 		LOG("THROW ANIMATION ACTIVE");
 		break;
 

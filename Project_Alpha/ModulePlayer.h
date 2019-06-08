@@ -88,10 +88,12 @@ public:
 	SDL_Texture* graphicsP1 = nullptr;
 	//test
 	Animation* currentP1_animation = nullptr;
+	
 	int font_score = -1;
 	char score_text[10];
 	uint score = 0;
 	STATEP1 currentstateP1;
+	
 
 	//Basic Movements Animations
 	Animation idleP1;        //Idle
@@ -166,15 +168,7 @@ public:
 };
 
 
-class ModulePlayer2 :public Module {
 
-
-	Animation P1SdamageP2; //damage de P2 en P1 ( Es per el throw)
-
-
-
-
-};
 
 
 

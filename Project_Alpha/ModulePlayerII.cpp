@@ -126,7 +126,10 @@ ModulePlayer2::ModulePlayer2()
 		CblockP2.PushBack({ 630, 2100, 100, 63 });
 
 		//Standing Damage 
-		SdamageP2.PushBack({});
+		SdamageP2.PushBack({ 730, 2169, 100, 96 });  //AQUEST ESTA MALAMENT ES PER ANAR PROVANT MENTRES POSEU EL BO
+		SdamageP2.PushBack({ 630, 2169, 100, 96 });//AQUEST ESTA MALAMENT ES PER ANAR PROVANT MENTRES POSEU EL BO
+		SdamageP2.loop = false;//AQUEST ESTA MALAMENT ES PER ANAR PROVANT MENTRES POSEU EL BO
+		SdamageP2.speed = 0.05;//AQUEST ESTA MALAMENT ES PER ANAR PROVANT MENTRES POSEU EL BO
 		
 
 		//Standing Damage Low Attack
