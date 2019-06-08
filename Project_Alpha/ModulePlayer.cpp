@@ -305,7 +305,23 @@ ModulePlayer::ModulePlayer()
 
 
 	  //Headbut
-	  Headbut_P1.PushBack({});
+	  Headbut_P1.PushBack({ 616, 1954, 90, 100 });
+	  Headbut_P1.PushBack({ 616, 1954, 90, 100 });
+	  Headbut_P1.PushBack({ 717, 1959, 90, 95 });
+	  Headbut_P1.PushBack({ 717, 1959, 90, 95 });
+	  Headbut_P1.PushBack({ 717, 1959, 90, 95 });
+	  Headbut_P1.PushBack({ 717, 1959, 90, 95 });
+	  Headbut_P1.PushBack({ 717, 1959, 90, 95 });
+	  Headbut_P1.PushBack({ 820, 1978, 106, 76 });
+	  Headbut_P1.PushBack({ 820, 1978, 106, 76 });
+	  Headbut_P1.PushBack({ 913, 1999, 126, 55 });
+	  Headbut_P1.PushBack({ 820, 1978, 106, 76 });
+	  Headbut_P1.PushBack({ 820, 1978, 106, 76 });
+	  Headbut_P1.PushBack({ 717, 1959, 90, 95 });
+	  Headbut_P1.PushBack({ 717, 1959, 90, 95 });
+	  Headbut_P1.PushBack({ 616, 1954, 90, 100 });
+	  Headbut_P1.PushBack({ 616, 1954, 90, 100 });
+	  Headbut_P1.speed = 0.2f;
 
 	  //Throw
 	  Throw_P1.PushBack({ 27, 2141, 89, 104 });
