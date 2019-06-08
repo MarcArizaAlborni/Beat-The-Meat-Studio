@@ -894,27 +894,27 @@ update_status ModulePlayer::PreUpdate() {
 			 }
 			 if (inputplayerP1.I_active) {
 				 currentstateP1 = crouchMPP1;
-				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
+				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 93, 20 }, COLLIDER_PLAYER_ATTACK, App->player);
 				 LOG("IDLE to HEAVY PUNCH");
 			 }
 			 if (inputplayerP1.O_active) {
 				 currentstateP1 = crouchHPP1;
-				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
+				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 100, 20 }, COLLIDER_PLAYER_ATTACK, App->player);
 				 LOG("IDLE to HEAVY PUNCH");
 			 }
 			 if (inputplayerP1.J_active) {
 				 currentstateP1 = crouchLKP1;
-				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
+				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 79, 22 }, COLLIDER_PLAYER_ATTACK, App->player);
 				 LOG("IDLE to HEAVY PUNCH");
 			 }
 			 if (inputplayerP1.K_active) {
 				 currentstateP1 = crouchMKP1;
-				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
+				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 100, 22 }, COLLIDER_PLAYER_ATTACK, App->player);
 				 LOG("IDLE to HEAVY PUNCH");
 			 }
 			 if (inputplayerP1.L_active) {
 				 currentstateP1 = crouchHKP1;
-				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
+				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 100, 22 }, COLLIDER_PLAYER_ATTACK, App->player);
 				 LOG("IDLE to HEAVY KICK");
 			 }
 		 }
@@ -1217,37 +1217,42 @@ update_status ModulePlayer::Update() {
 	case crouchLPP1:
 		playerP1_collider->rect.h = 65;
 		playerP1_collider->SetPos(positionP1.x - App->render->camera.x * 2, positionP1.y - 68 - App->render->camera.y * 2);
-
+		
 		currentP1_animation = &CLP_P1;
 		LOG("CROUCH LP ANIMATION ACTIVE");
 		break;
 	case crouchMPP1:
 		playerP1_collider->rect.h = 65;
 		playerP1_collider->SetPos(positionP1.x - App->render->camera.x * 2, positionP1.y - 68 - App->render->camera.y * 2);
+		attackP1_collider->SetPos(positionP1.x + 55, positionP1.y - 55);
 		currentP1_animation = &CMP_P1;
 		LOG("CROUCH LP ANIMATION ACTIVE");
 		break;
 	case crouchHPP1:
 		playerP1_collider->rect.h = 65;
 		playerP1_collider->SetPos(positionP1.x - App->render->camera.x * 2, positionP1.y - 68 - App->render->camera.y * 2);
+		attackP1_collider->SetPos(positionP1.x + 65, positionP1.y - 65);
 		currentP1_animation = &CHP_P1;
 		LOG("CROUCH LP ANIMATION ACTIVE");
 		break;
 	case crouchLKP1:
 		playerP1_collider->rect.h = 65;
 		playerP1_collider->SetPos(positionP1.x - App->render->camera.x * 2, positionP1.y - 68 - App->render->camera.y * 2);
+		attackP1_collider->SetPos(positionP1.x + 48, positionP1.y - 25);
 		currentP1_animation = &CLK_P1;
 		LOG("CROUCH LP ANIMATION ACTIVE");
 		break;
 	case crouchMKP1:
 		playerP1_collider->rect.h = 65;
 		playerP1_collider->SetPos(positionP1.x - App->render->camera.x * 2, positionP1.y - 68 - App->render->camera.y * 2);
+		attackP1_collider->SetPos(positionP1.x + 48, positionP1.y - 25);
 		currentP1_animation = &CMK_P1;
 		LOG("CROUCH LP ANIMATION ACTIVE");
 		break;
 	case crouchHKP1:
 		playerP1_collider->rect.h = 65;
 		playerP1_collider->SetPos(positionP1.x - App->render->camera.x * 2, positionP1.y - 68 - App->render->camera.y * 2);
+		attackP1_collider->SetPos(positionP1.x + 60, positionP1.y - 25);
 		currentP1_animation = &CHK_P1;
 		LOG("CROUCH LP ANIMATION ACTIVE");
 		break;
