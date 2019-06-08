@@ -569,7 +569,7 @@ update_status ModulePlayer::PreUpdate() {
 				 currentstateP1 = idlestateP1;
 				 alreadyHit = false;
 				 SFLP_P1.Reset();
-				 thundertick = 1;
+				 
 				 LOG("LP to IDLE");
 
 				
@@ -582,19 +582,21 @@ update_status ModulePlayer::PreUpdate() {
 				 alreadyHit = false;
 				 Ethunder_P1.Reset();
 				 SFLP_P1.Reset();
-				 thundertick = 0;
+				 thundertick = 1;
 				 LOG("LP to Thunder1");
 				 
+				 
 			 }
-			/* else {
+			if (currentP1_animation->Finished()&&inputplayerP1.U_active&&thundertick==1){
 
-				 currentstateP1 = idlestateP1;
+				 currentstateP1 =thunder2P1;
 				 alreadyHit = false;
 				 SFLP_P1.Reset();
-				 LOG("LP to Idle Via else");
+				 Ethunder_P1.Reset();
+				 LOG("Thunder1 to Thunder2");
 
 
-			 }*/
+			 }
 		 }
 
 		 if (currentstateP1 == thunder1P1) {
@@ -627,8 +629,13 @@ update_status ModulePlayer::PreUpdate() {
 
 		 if (currentstateP1 == thunder2P1) {
 		 
-			 currentstateP1 = idlestateP1;
-			 LOG("GOING BACK TO IDLE == THUNDER2")
+
+			 if (currentP1_animation->Finished()&& !inputplayerP1.U_active) {
+				 currentstateP1 = idlestateP1;
+				 Ethunder_P1.Reset();
+				 SFLP_P1.Reset();
+				 LOG("GOING BACK TO IDLE ");
+			 }
 		 }
 
 		 //CROUCH LP
@@ -719,13 +726,14 @@ update_status ModulePlayer::Update() {
 		break;
 
 	case thunder1P1:
-		currentP1_animation = &Ethunder_P1;
+		currentP1_animation = &SFLP_P1;
 		LOG("THUNDER 1 ANIMATION ACTIVE");
+		
 		break;
 
 	case thunder2P1:
-		
-		LOG("GOING BACK TO IDLE");
+		currentP1_animation = &Ethunder_P1;
+		LOG("THUNDER 2 ANIMATION ACTIVE");
 		break;
 
 	case crouchLPP1:
