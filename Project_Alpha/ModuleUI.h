@@ -28,9 +28,22 @@ public:
 	SDL_Rect score;
 	SDL_Rect timer;
 	SDL_Rect characterGrid;
+	SDL_Rect characterIcon;
+	SDL_Rect countryFlag;
+	SDL_Rect countryFlagII;
+	SDL_Rect plane;
 
 	bool stage;
 	bool character_select;
+
+	bool brazil;
+	bool usa;
+	bool usaII;
+	bool urss;
+	bool india;
+	bool china;
+	bool japan;
+	bool japanII;
 	
 };
 

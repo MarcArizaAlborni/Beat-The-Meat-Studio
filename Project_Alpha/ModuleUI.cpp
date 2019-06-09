@@ -53,10 +53,97 @@ ModuleUI::ModuleUI() : Module()
 	timer.h = 15;
 
 	//Character Grid
-	characterGrid.x = 360;
-	characterGrid.y = 126;
+	characterGrid.x = 225;
+	characterGrid.y = 340;
 	characterGrid.w = 128;
 	characterGrid.h = 64;
+
+	//Character Icon
+
+
+	//CountryFlag
+	if (brazil)
+	{
+		countryFlag.x = 338;
+		countryFlag.y = 202;
+		countryFlag.w = 25;
+		countryFlag.h = 13;
+	}
+
+	if (usa)
+	{
+		countryFlag.x = 366;
+		countryFlag.y = 202;
+		countryFlag.w = 25;
+		countryFlag.h = 13;
+	}
+
+	if (usaII)
+	{
+		countryFlag.x = 366;
+		countryFlag.y = 202;
+		countryFlag.w = 25;
+		countryFlag.h = 13;
+	}
+
+	if (urss)
+	{
+		countryFlag.x = 282;
+		countryFlag.y = 202;
+		countryFlag.w = 25;
+		countryFlag.h = 13;
+	}
+
+	if (india)
+	{
+		countryFlag.x = 310;
+		countryFlag.y = 202;
+		countryFlag.w = 25;
+		countryFlag.h = 13;
+	}
+
+	if (china)
+	{
+		countryFlag.x = 254;
+		countryFlag.y = 202;
+		countryFlag.w = 25;
+		countryFlag.h = 13;
+	}
+
+	if (japan)
+	{
+		countryFlag.x = 225;
+		countryFlag.y = 202;
+		countryFlag.w = 25;
+		countryFlag.h = 13;
+	}
+
+	if (japanII)
+	{
+		countryFlag.x = 225;
+		countryFlag.y = 202;
+		countryFlag.w = 25;
+		countryFlag.h = 13;
+	}
+
+	//CountryFlagII
+	countryFlag.x = 366;
+	countryFlag.y = 202;
+	countryFlag.w = 25;
+	countryFlag.h = 13;
+
+	//Plane
+	//Vertical
+	plane.x = 264;
+	plane.y = 27;
+	plane.w = 14;
+	plane.h = 15;
+
+	//Turning right
+	plane.x = 280;
+	plane.y = 27;
+	plane.w = 15;
+	plane.h = 13;
 }
 
 // Destructor
