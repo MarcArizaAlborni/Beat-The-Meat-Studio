@@ -24,6 +24,8 @@ enum STATEP2 {
 
 	//Attack
 	standingfarLPP2,
+	standingfarMPP2,
+	standingfarHPP2,
 	crouchLPP2,
 	jumpLPP2,
 
@@ -101,6 +103,8 @@ public:
 
 	//Attack Animations
 	Animation SLFP_P2;        //Standing LP (light punch) 
+	Animation SFMP_P2;
+	Animation SFHP_P2;
 	Animation CLP_P2;        //Crouch LP
 	Animation SLCP_P2;       //Standing CLOSE LP 
 	Animation JLP_P2;        //Jumping LP
