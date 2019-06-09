@@ -66,7 +66,7 @@ update_status ModuleRender::Update()
 		{
 			if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled() || App->scene_guile->IsEnabled())
 			{
-				camera.y += speed;
+				camera.y += speed*2;
 			}
 			else
 			{
@@ -78,7 +78,7 @@ update_status ModuleRender::Update()
 		{
 			if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled() || App->scene_guile->IsEnabled())
 			{
-				camera.y -= speed;
+				camera.y -= speed*2;
 			}
 			else
 			{
@@ -90,7 +90,7 @@ update_status ModuleRender::Update()
 		{
 			if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled() || App->scene_guile->IsEnabled())
 			{
-				camera.x -= speed;
+				camera.x -= speed*2;
 			}
 			else
 			{
@@ -102,7 +102,7 @@ update_status ModuleRender::Update()
 		{
 			if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled() || App->scene_guile->IsEnabled())
 			{
-				camera.x += speed;
+				camera.x += speed*2;
 			}
 			else
 			{
@@ -111,12 +111,12 @@ update_status ModuleRender::Update()
 		}
 	} 
 	
-	if (camera.x <= -225) {
-		camera.x = -225;
+	if (camera.x <= -290 * SCREEN_SIZE / 2) { //225
+		camera.x = -290* SCREEN_SIZE/2;
 	}
 
-	if (camera.x >= 235) {
-		camera.x = 235;
+	if (camera.x >= 235 * SCREEN_SIZE / 2) {
+		camera.x = 235 * SCREEN_SIZE / 2;
 	}
 
 	

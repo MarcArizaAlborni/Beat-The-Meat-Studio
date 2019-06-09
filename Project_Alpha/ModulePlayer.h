@@ -99,6 +99,7 @@ public:
 
 public:
 	int speed = 3;
+	float camx, camy;
 	Uint8 alphaka = 255;
 	int groundLevel = 205;
 	int maxHeight = 120;

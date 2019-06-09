@@ -23,6 +23,7 @@ enum update_status
 typedef unsigned int uint;
 
 // Configuration -----------
+#define SCREEN_ADD 2.5
 
 #define SCREEN_SIZE 5 /// poseu 2 si voleu NO FULLSCREN ----- 1 SI VOLEU FULLSCREEN
 #define SCREEN_WIDTH  384  //384
