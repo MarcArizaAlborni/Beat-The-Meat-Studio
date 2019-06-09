@@ -557,7 +557,26 @@ ModulePlayer::ModulePlayer()
 	  Ethunder_P1.speed = 0.3f;
 
 	  //Rolling Attack
-	  RollingP1.PushBack({});
+	  RollingP1.PushBack({ 27, 1965, 67, 68 });
+	  RollingP1.PushBack({ 107, 1974, 76, 59 });
+	  RollingP1.PushBack({ 191, 1978, 88, 55 });
+	  RollingP1.PushBack({ 288, 1977, 82, 56 });
+	  RollingP1.PushBack({ 383, 1965, 67, 68 });
+	  RollingP1.PushBack({ 458, 1974, 76, 59 });
+	  RollingP1.PushBack({ 27, 2053, 88, 55 });
+	  RollingP1.PushBack({ 120, 2052, 82, 55 });
+	  RollingP1.PushBack({ 212, 2040, 67, 68 });
+	  RollingP1.PushBack({ 107, 1974, 76, 59 });
+	  RollingP1.PushBack({ 191, 1978, 88, 55 });
+	  RollingP1.PushBack({ 288, 1977, 82, 56 });
+	  RollingP1.PushBack({ 383, 1965, 67, 68 });
+	  RollingP1.PushBack({ 458, 1974, 76, 59 });
+	  RollingP1.PushBack({ 27, 2053, 88, 55 });
+	  RollingP1.PushBack({ 120, 2052, 82, 55 });
+	  RollingP1.PushBack({ 107, 1974, 76, 59 });
+	  RollingP1.speed = 0.5f;
+	  RollingP1.loop = true;
+
 
 	}
 }
