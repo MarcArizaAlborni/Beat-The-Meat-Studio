@@ -1419,16 +1419,24 @@ update_status ModulePlayer::Update() {
 	shadowP1 = {796,27,100,20};
 	
 	//close check
-	if (positionP1.x + 70 > App->player2->positionP2.x) {
-		close = true;
+	if (!flipP1) {
+		if (positionP1.x + 70 > App->player2->positionP2.x) {
+			close = true;
+		}
+		else {
+			close = false;
+		}
 	}
 	else {
-		close = false;
+		if (positionP1.x - App->player2->positionP2.x - 70 < 10) {
+			close = true;
+		}
+		else {
+			close = false;
+		}
 	}
-
-	if (positionP1.x + 60 > App->player2->positionP2.x) {
-		positionP1.x = App->player2->positionP2.x - 60;
-	}
+	
+	
 
 	//Jumping boolean
 
@@ -1437,7 +1445,7 @@ update_status ModulePlayer::Update() {
 		playerP1_collider->SetPos(positionP1.x - App->render->camera.x * 2, positionP1.y - 80 - App->render->camera.y * 2);
 	}
 	//Flip of the players when they change sides
-	if (playerP1_collider->rect.x < App->player2->playerP2_collider->rect.x ) {
+	if (positionP1.x +35 < App->player2->positionP2.x +35 ) {
 		flipP1 = false;
 		App->render->Blit(graphicsP1, positionP1.x - 5, groundLevel-15, &shadowP1, 1.0f, true,SDL_FLIP_NONE);
 		App->render->Blit(graphicsP1, positionP1.x, positionP1.y - r.h, &r, 1.0f, true, SDL_FLIP_NONE);
@@ -1446,6 +1454,18 @@ update_status ModulePlayer::Update() {
 		flipP1 = true;
 		App->render->Blit(graphicsP1, positionP1.x +7, groundLevel -15, &shadowP1, 1.0f, true, SDL_FLIP_HORIZONTAL);
 		App->render->Blit(graphicsP1, positionP1.x, positionP1.y - r.h, &r, 1.0f, true, SDL_FLIP_HORIZONTAL);
+	}
+	if (!jumping) {
+		if (!flipP1) {
+			if (positionP1.x + 35 > App->player2->positionP2.x) {
+				positionP1.x = App->player2->positionP2.x - 35;
+			}
+		}
+		else {
+			if (App->player2->positionP2.x > positionP1.x - 35) {
+				App->player2->positionP2.x = positionP1.x - 35;
+			}
+		}
 	}
 
 	if (positionP1.x <= (App->render->camera.x ))
