@@ -1589,9 +1589,28 @@ update_status ModulePlayer::Update() {
 
 	case rollingreboundP1:
 	
+		int positionstart = positionP1.x;
 		currentP1_animation = &RollingRebP1;
-		//positionP1.y = groundLevel - (yvel*jumpTimer) + (4*(gravity) * (jumpTimer*jumpTimer)); //MRUA
 		
+		
+		//positionP1.x -= speed;
+		//positionP1.y = groundLevel - (yvel*jumpTimer) + (0.5*(gravity) * (jumpTimer*jumpTimer)); //MRUA
+		
+		positionP1.x -= speed*4;
+		//positionP1.y = groundLevel + (yvel*jumpTimer*3) + (-9*(gravity) * (9*jumpTimer*jumpTimer)); //MRUA
+		
+		
+		
+			positionP1.y -= 7;
+		
+		
+
+		
+
+			
+		
+		/*positionP1.y  -= 5;
+		positionP1.x -= 12;*/
 		
 		LOG("ROLLING REBOUND ANIMATION ACTIVE");
 		break;
