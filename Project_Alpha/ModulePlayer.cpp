@@ -946,7 +946,7 @@ update_status ModulePlayer::PreUpdate() {
 			
 			
 
-			 if (inputplayerP1.I_active && !inputplayerP1.D_active) { //falta CONDICIO COLIDER APROP
+			 if (inputplayerP1.I_active && !inputplayerP1.D_active && close) { //falta CONDICIO COLIDER APROP
 
 
 				 currentstateP1 = HeadbuttP1;
@@ -954,14 +954,14 @@ update_status ModulePlayer::PreUpdate() {
 
 			 }
 
-			 if (inputplayerP1.O_active) {
+			 if (inputplayerP1.O_active && close) {
 
 
 				 currentstateP1 = throwP1;
 
 			 }
 
-			 if (inputplayerP1.L_active) {
+			 if (inputplayerP1.L_active && close) {
 
 				 currentstateP1 = throwP1;
 			 }
@@ -1036,7 +1036,7 @@ update_status ModulePlayer::PreUpdate() {
 				 currentstateP1 = throwP1; //AQUI FALTA CONDICIO D'ESTAR APROP AMB ELS COLIDERS
 			 }
 
-			 if (inputplayerP1.I_active) { //falta CONDICIO COLIDER APROP
+			 if (inputplayerP1.I_active && close ) { //falta CONDICIO COLIDER APROP
 
 
 				 currentstateP1 = HeadbuttP1;
@@ -1044,13 +1044,13 @@ update_status ModulePlayer::PreUpdate() {
 
 			 }
 
-			 if (inputplayerP1.O_active) {
+			 if (inputplayerP1.O_active && close) {
 
 
 				 currentstateP1 = throwP1;
 			 }
 			 
-			 if (inputplayerP1.L_active) {
+			 if (inputplayerP1.L_active && close) {
 
 
 				 currentstateP1 = throwP1;
