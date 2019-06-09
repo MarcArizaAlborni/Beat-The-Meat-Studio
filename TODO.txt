@@ -5,4 +5,14 @@
 -Hitstun
 -Score that adds
 -Time limit which actually shows time
--Players collide
+-Players collider
+-Start and End Round
+-Change Rounds
+-Timer (Numbers)
+-Sistema de Puntuacion 
+-Sonidos todos
+-Flip bien hecho
+-Damage dealt bien hecho
+-Dizyy
+-Inser Coins
+-Particules de damage
