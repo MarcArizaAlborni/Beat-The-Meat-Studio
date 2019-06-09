@@ -197,7 +197,7 @@ bool ModulePlayer2::Start()
 	currentstateP2 = idlestateP2;
 
 	//Player 2 stest collider
-	playerP2_collider = App->collision->AddCollider({ positionP2.x, positionP2.y - 100, 56, 93 }, COLLIDER_PLAYER2, App->player2);
+	playerP2_collider = App->collision->AddCollider({ positionP2.x, positionP2.y - 100, 56, 93 }, COLLIDER_PLAYER2,NOATTACK, App->player2);
 	attackP2_collider = nullptr;
 	return true;
 }
@@ -241,8 +241,8 @@ update_status ModulePlayer2::PreUpdate() {
 		 inputplayerP2.Right_active = false;
 	 }
 	 inputplayerP2.Num7_active = App->input->keyboard[SDL_SCANCODE_KP_7] == KEY_REPEAT;
-	 
-
+	 inputplayerP2.Num8_active = App->input->keyboard[SDL_SCANCODE_KP_8] == KEY_REPEAT;
+	 inputplayerP2.Num9_active = App->input->keyboard[SDL_SCANCODE_KP_9] == KEY_REPEAT;
 
 
 	{
@@ -252,7 +252,6 @@ update_status ModulePlayer2::PreUpdate() {
 		if (currentstateP2 == idlestateP2) {
 			if (inputplayerP2.Right_active) {
 				currentstateP2 = backwardstateP2;
-				blockP2_collider = App->collision->AddCollider({ positionP2.x +50 -App->render->camera.x * 2, positionP2.y - 80 - App->render->camera.y * 2, 10, 30 }, COLLIDER_PLAYER_BLOCK, App->player);
 				LOG("IDLE TO BACK");
 			}
 			if (inputplayerP2.Left_active) {
@@ -272,7 +271,17 @@ update_status ModulePlayer2::PreUpdate() {
 			}
 			if (inputplayerP2.Num7_active) {
 				currentstateP2 = standingfarLPP2;
-				attackP2_collider = App->collision->AddCollider({ positionP2.x -20 - App->render->camera.x, positionP2.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER2_ATTACK, App->player);
+				attackP2_collider = App->collision->AddCollider({ positionP2.x -20 - App->render->camera.x, positionP2.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER2_ATTACK,SFLP, App->player);
+				LOG("IDLE to LP");
+			}
+			if (inputplayerP2.Num8_active) {
+				//currentstateP2 = standingfarMPP2;
+				attackP2_collider = App->collision->AddCollider({ positionP2.x - 20 - App->render->camera.x, positionP2.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER2_ATTACK,SFMP, App->player);
+				LOG("IDLE to LP");
+			}
+			if (inputplayerP2.Num9_active) {
+				//currentstateP2 = standingfarHPP2;
+				attackP2_collider = App->collision->AddCollider({ positionP2.x - 20 - App->render->camera.x, positionP2.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER2_ATTACK,SFHP, App->player);
 				LOG("IDLE to LP");
 			}
 
@@ -280,23 +289,23 @@ update_status ModulePlayer2::PreUpdate() {
 		//BACKWARDS STATE
 		if (currentstateP2 == backwardstateP2) {
 			if (!inputplayerP2.Right_active) {
-				blockP2_collider->to_delete = true;
+				
 				currentstateP2 = idlestateP2;
 				LOG("BACK to IDLE");
 			}
 			if (inputplayerP2.Down_active) {
-				blockP2_collider->to_delete = true;
+				
 				currentstateP2 = crouchstateP2;
 				LOG("BACK to CROUCH");
 			}
 			if (inputplayerP2.Left_active) {
-				blockP2_collider->to_delete = true;
+				
 				currentstateP2 = forwardstateP2;
 				LOG("BACK to FORWARD");
 			}
 			if (inputplayerP2.Up_active) {
 				jumping2 = true;
-				blockP2_collider->to_delete = true;
+				
 				jumpstart2 = time2;
 				jumpTimer2 = 0;
 				currentstateP2 = BjumpstateP2;
@@ -321,7 +330,7 @@ update_status ModulePlayer2::PreUpdate() {
 			}
 			if (inputplayerP2.Up_active) {
 				jumping2 = true;
-				if (blockP2_collider != nullptr) { blockP2_collider->to_delete = true;}
+				
 				jumpstart2 = time2;
 				jumpTimer2 = 0;
 				currentstateP2 = FjumpstateP2;
@@ -356,7 +365,7 @@ update_status ModulePlayer2::PreUpdate() {
 		//STANDING FAR LP
 		if (currentstateP2 == standingfarLPP2) {
 			if (currentP2_animation->Finished() && !inputplayerP2.Num7_active) {
-				deleteCollider2(attackP2_collider);
+				
 				currentstateP2 = idlestateP2;
 				//alreadyHit = false;
 				SLFP_P2.Reset();
@@ -383,7 +392,7 @@ update_status ModulePlayer2::Update()
 
 	case backwardstateP2:
 		playerP2_collider->rect.h = 93;
-		blockP2_collider->SetPos(positionP2.x - App->render->camera.x * 2, positionP2.y - 80 - App->render->camera.y * 2);
+		
 		
 		currentP2_animation = &backwardP2;
 		positionP2.x += speedII;

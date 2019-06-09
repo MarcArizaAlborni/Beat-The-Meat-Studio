@@ -19,17 +19,44 @@ enum COLLIDER_TYPE
 	COLLIDER_PLAYER2_BLOCK,
 	COLLIDER_MAX
 };
+enum ATTACK_TYPE 
+{
+	NOATTACK,
+	SFLP,
+	SFMP,
+	SFHP,
+	SFLK,
+	SFMK,
+	SFHK,
+	SCLP,
+	SCMP,
+	SCHP,
+	SCLK,
+	SCMK,
+	SCHK,
+	CLP,
+	CMP,
+	CHP,
+	CLK,
+	CMK,
+	CHK
+
+};
+
+
 
 struct Collider
 {
 	SDL_Rect rect;
 	bool to_delete = false;
 	COLLIDER_TYPE type;
+	ATTACK_TYPE attack;
 	Module* callback = nullptr;
 
-	Collider(SDL_Rect rectangle, COLLIDER_TYPE type, Module* callback = nullptr) :
+	Collider(SDL_Rect rectangle, COLLIDER_TYPE type,  ATTACK_TYPE attack, Module* callback = nullptr ) :
 		rect(rectangle),
 		type(type),
+		attack(attack),
 		callback(callback)
 	{}
 
@@ -53,7 +80,7 @@ public:
 	update_status Update() override;
 	bool CleanUp() override;
 
-	Collider* AddCollider(SDL_Rect rect, COLLIDER_TYPE type, Module* callback = nullptr);
+	Collider* AddCollider(SDL_Rect rect, COLLIDER_TYPE type,  ATTACK_TYPE attackModule , Module* callback = nullptr);
 	void DebugDraw();
 	bool debug = true;
 private:

@@ -135,7 +135,7 @@ ModulePlayer::ModulePlayer()
 		SdamageLP1.PushBack({ 265, 2450, 101, 98 });
 		SdamageLP1.PushBack({ 265, 2450, 101, 98 });
 		SdamageLP1.loop = false;
-		SdamageLP1.speed = 0.05;
+		SdamageLP1.speed = 0.5;
 
 		//Standing Damage Medium
 		SdamageMP1.PushBack({ 170, 2451, 88, 101 });
@@ -146,7 +146,7 @@ ModulePlayer::ModulePlayer()
 		SdamageMP1.PushBack({ 265, 2450, 101, 98 });
 		SdamageMP1.PushBack({ 32, 2459, 120, 86 });
 		SdamageMP1.PushBack({ 32, 2459, 120, 86 });
-		SdamageMP1.speed = 0.05f;
+		SdamageMP1.speed = 0.3f;
 
 		//Standing Damage Hard
 		SdamageHP1.PushBack({ 170, 2451, 88, 101 });
@@ -159,7 +159,7 @@ ModulePlayer::ModulePlayer()
 		SdamageHP1.PushBack({ 32, 2459, 120, 86 });
 		SdamageHP1.PushBack({ 377, 2458, 86, 86 });
 		SdamageHP1.PushBack({ 377, 2458, 86, 86 });
-		SdamageHP1.speed = 0.05f;
+		SdamageHP1.speed = 0.1f;
 
 
 		//Standing Damage Low Attack Light
@@ -384,7 +384,7 @@ ModulePlayer::ModulePlayer()
 	  SCLK_P1.PushBack({ 30, 1637, 79, 111 });
 	  SCLK_P1.PushBack({ 30, 1637, 79, 111 });
 
-	  SCLK_P1.speed = 0.2f;
+	  SCLK_P1.speed = 0.7f;
 
 	  //Crouch LK
 	  CLK_P1.PushBack({ 610, 980, 74, 78 }); 
@@ -407,29 +407,29 @@ ModulePlayer::ModulePlayer()
 	  SFMK_P1.loop = false;
 
 	  //Standing CLOSE MK
-	  SCLK_P1.PushBack({ 30, 1637, 79, 111 });
-	  SCLK_P1.PushBack({ 30, 1637, 79, 111 });
-	  SCLK_P1.PushBack({ 122, 1644, 66, 104 });
-	  SCLK_P1.PushBack({ 122, 1644, 66, 104 });
-	  SCLK_P1.PushBack({ 196, 1648, 60, 99 });
-	  SCLK_P1.PushBack({ 196, 1648, 60, 99 });
-	  SCLK_P1.PushBack({ 196, 1648, 60, 99 });
-	  SCLK_P1.PushBack({ 196, 1648, 60, 99 });
-	  SCLK_P1.PushBack({ 196, 1648, 60, 99 });
-	  SCLK_P1.PushBack({ 196, 1648, 60, 99 });
-	  SCLK_P1.PushBack({ 264, 1648, 75, 94 });
-	  SCLK_P1.PushBack({ 264, 1648, 75, 94 });
-	  SCLK_P1.PushBack({ 264, 1648, 75, 94 });
-	  SCLK_P1.PushBack({ 264, 1648, 75, 94 });
-	  SCLK_P1.PushBack({ 264, 1648, 75, 94 });
-	  SCLK_P1.PushBack({ 264, 1648, 75, 94 });
-	  SCLK_P1.PushBack({ 196, 1648, 60, 99 });
-	  SCLK_P1.PushBack({ 196, 1648, 60, 99 });
-	  SCLK_P1.PushBack({ 122, 1644, 66, 104 });
-	  SCLK_P1.PushBack({ 122, 1644, 66, 104 });
-	  SCLK_P1.PushBack({ 30, 1637, 79, 111 });
-	  SCLK_P1.PushBack({ 30, 1637, 79, 111 });
-	  SCLK_P1.speed = 0.2f;
+	  SCMK_P1.PushBack({ 30, 1637, 79, 111 });
+	  SCMK_P1.PushBack({ 30, 1637, 79, 111 });
+	  SCMK_P1.PushBack({ 122, 1644, 66, 104 });
+	  SCMK_P1.PushBack({ 122, 1644, 66, 104 });
+	  SCMK_P1.PushBack({ 196, 1648, 60, 99 });
+	  SCMK_P1.PushBack({ 196, 1648, 60, 99 });
+	  SCMK_P1.PushBack({ 196, 1648, 60, 99 });
+	  SCMK_P1.PushBack({ 196, 1648, 60, 99 });
+	  SCMK_P1.PushBack({ 196, 1648, 60, 99 });
+	  SCMK_P1.PushBack({ 196, 1648, 60, 99 });
+	  SCMK_P1.PushBack({ 264, 1648, 75, 94 });
+	  SCMK_P1.PushBack({ 264, 1648, 75, 94 });
+	  SCMK_P1.PushBack({ 264, 1648, 75, 94 });
+	  SCMK_P1.PushBack({ 264, 1648, 75, 94 });
+	  SCMK_P1.PushBack({ 264, 1648, 75, 94 });
+	  SCMK_P1.PushBack({ 264, 1648, 75, 94 });
+	  SCMK_P1.PushBack({ 196, 1648, 60, 99 });
+	  SCMK_P1.PushBack({ 196, 1648, 60, 99 });
+	  SCMK_P1.PushBack({ 122, 1644, 66, 104 });
+	  SCMK_P1.PushBack({ 122, 1644, 66, 104 });
+	  SCMK_P1.PushBack({ 30, 1637, 79, 111 });
+	  SCMK_P1.PushBack({ 30, 1637, 79, 111 });
+	  SCMK_P1.speed = 0.5f;
 	
 	  //Crouch MK
 	  CMK_P1.PushBack({ 610, 980, 74, 78 });
@@ -598,7 +598,7 @@ bool ModulePlayer::Start()
 	*finishC = combo[0];
 
 	//Player 2 stest collider
-	playerP1_collider = App->collision->AddCollider({ positionP1.x , positionP1.y - 100, 60, 93 }, COLLIDER_PLAYER, App->player);
+	playerP1_collider = App->collision->AddCollider({ positionP1.x , positionP1.y - 100, 60, 93 }, COLLIDER_PLAYER,NOATTACK, App->player);
 	attackP1_collider = nullptr;
 	return true;
 }
@@ -782,32 +782,32 @@ update_status ModulePlayer::PreUpdate() {
 			 if (!close) {
 				 if (inputplayerP1.U_active) {
 					 currentstateP1 = standingfarLPP1;
-					 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 100, 50 }, COLLIDER_PLAYER_ATTACK, App->player);
+					 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 100, 50 }, COLLIDER_PLAYER_ATTACK,SFLP, App->player);
 					 LOG("IDLE to LP");
 				 }
 				 if (inputplayerP1.I_active) {
 					 currentstateP1 = standingfarMPP1;
-					 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 100, 35 }, COLLIDER_PLAYER_ATTACK, App->player);
+					 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 100, 35 }, COLLIDER_PLAYER_ATTACK,SFMP, App->player);
 					 LOG("IDLE to HEAVY PUNCH");
 				 }
 				 if (inputplayerP1.O_active) {
 					 currentstateP1 = standingfarHPP1;
-					 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 80, 18 }, COLLIDER_PLAYER_ATTACK, App->player);
+					 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 80, 18 }, COLLIDER_PLAYER_ATTACK,SFHP, App->player);
 					 LOG("IDLE to HEAVY PUNCH");
 				 }
 				 if (inputplayerP1.J_active) {
 					 currentstateP1 = standingfarLKP1;
-					 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 57, 25 }, COLLIDER_PLAYER_ATTACK, App->player);
+					 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 57, 25 }, COLLIDER_PLAYER_ATTACK,SFLK, App->player);
 					 LOG("IDLE to HEAVY PUNCH");
 				 }
 				 if (inputplayerP1.K_active) {
 					 currentstateP1 = standingfarMKP1;
-					 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 75, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
+					 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 75, 15 }, COLLIDER_PLAYER_ATTACK,SFMK, App->player);
 					 LOG("IDLE to HEAVY PUNCH");
 				 }
 				 if (inputplayerP1.L_active) {
 					 currentstateP1 = standingfarHKP1;
-					 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 75, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
+					 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 75, 15 }, COLLIDER_PLAYER_ATTACK,SFHK, App->player);
 					 LOG("IDLE to HEAVY KICK");
 				 }
 			 }
@@ -816,36 +816,36 @@ update_status ModulePlayer::PreUpdate() {
 			 if (close) {
 				 if (inputplayerP1.U_active) {
 					 currentstateP1 = standingcloseLPP1;
-					 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 100, 50 }, COLLIDER_PLAYER_ATTACK, App->player);
+					 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 100, 50 }, COLLIDER_PLAYER_ATTACK,SCLP, App->player);
 					 LOG("IDLE to LP");
 				 }
 				 if (inputplayerP1.I_active) {
 					 currentstateP1 = standingcloseMPP1;
-					 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 100, 35 }, COLLIDER_PLAYER_ATTACK, App->player);
+					 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 100, 35 }, COLLIDER_PLAYER_ATTACK,SCMP, App->player);
 					 LOG("IDLE to HEAVY PUNCH");
 				 }
 				 if (inputplayerP1.O_active) {
 					 currentstateP1 = standingcloseHPP1;
-					 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
+					 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER_ATTACK,SCHP, App->player);
 					 LOG("IDLE to HEAVY PUNCH");
 				 }
 
 				 if (inputplayerP1.J_active) {
 					 currentstateP1 = standingcloseLKP1;
-					 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 57, 25 }, COLLIDER_PLAYER_ATTACK, App->player);
+					 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 57, 25 }, COLLIDER_PLAYER_ATTACK,SCLK, App->player);
 					 LOG("IDLE to HEAVY PUNCH");
 				 }
 
 				 if (inputplayerP1.L_active) {
 					 currentstateP1 = standingcloseHKP1;
-					 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
+					 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER_ATTACK,SCMK, App->player);
 					 LOG("IDLE to HEAVY KICK");
 				 }
 
 
 				 if (inputplayerP1.K_active) {
 					 currentstateP1 = standingcloseMKP1;
-					 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 75, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
+					 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 75, 15 }, COLLIDER_PLAYER_ATTACK,SCHK, App->player);
 					 LOG("IDLE to HEAVY PUNCH");
 				 }
 			 }
@@ -873,32 +873,32 @@ update_status ModulePlayer::PreUpdate() {
 			 }
 			 if (inputplayerP1.U_active) {
 				 currentstateP1 = standingfarLPP1;
-				 attackP1_collider= App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
+				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 100, 50 }, COLLIDER_PLAYER_ATTACK, SFLP, App->player);
 				 LOG("BACK to LP");
 			 }
 			/* if (inputplayerP1.I_active) {
 				 currentstateP1 = standingfarMPP1;
-				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
+				attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 100, 35 }, COLLIDER_PLAYER_ATTACK,SFMP, App->player);
 				 LOG("IDLE to HEAVY PUNCH");
 			 }*/
 			 if (inputplayerP1.O_active) {
 				 currentstateP1 = standingfarHPP1;
-				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
+				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 80, 18 }, COLLIDER_PLAYER_ATTACK, SFHP, App->player);
 				 LOG("IDLE to HEAVY PUNCH");
 			 }
 			 if (inputplayerP1.J_active) {
 				 currentstateP1 = standingfarLKP1;
-				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
+				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 57, 25 }, COLLIDER_PLAYER_ATTACK, SFLK, App->player);
 				 LOG("IDLE to HEAVY PUNCH");
 			 }
 			 if (inputplayerP1.K_active) {
 				 currentstateP1 = standingfarMKP1;
-				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
+				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 75, 15 }, COLLIDER_PLAYER_ATTACK, SFMK, App->player);
 				 LOG("IDLE to HEAVY PUNCH");
 			 }
 			 if (inputplayerP1.L_active) {
 				 currentstateP1 = standingfarHKP1;
-				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
+				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 75, 15 }, COLLIDER_PLAYER_ATTACK, SFHK, App->player);
 				 LOG("IDLE to HEAVY KICK");
 			 }
 			 
@@ -969,37 +969,38 @@ update_status ModulePlayer::PreUpdate() {
 			 if (inputplayerP1.U_active) {
 				
 				 currentstateP1 = standingfarLPP1;
-				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
+				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 100, 50 }, COLLIDER_PLAYER_ATTACK, SFLP, App->player);
 				 LOG("FOR to LP");
 			 }
 			 //if (inputplayerp1.i_active) { //aqui falta condicio de no s'estan tocant els coliders
 				// currentstatep1 = standingfarmpp1;
-				// attackp1_collider = app->collision->addcollider({ positionp1.x - app->render->camera.x + 55, positionp1.y - 80 - app->render->camera.y * 2, 50, 15 }, collider_player_attack, app->player);
+				// attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 100, 35 }, COLLIDER_PLAYER_ATTACK,SFMP, App->player);
 				// log("idle to heavy punch");
 			 //}
 			 if (inputplayerP1.O_active) {
 				 currentstateP1 = standingfarHPP1;
-				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
+				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 80, 18 }, COLLIDER_PLAYER_ATTACK, SFHP, App->player);
 				 LOG("IDLE to HEAVY PUNCH");
 			 }
 			 if (inputplayerP1.J_active) {
 				 currentstateP1 = standingfarLKP1;
-				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
+				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 57, 25 }, COLLIDER_PLAYER_ATTACK, SFLK, App->player);
 				 LOG("IDLE to HEAVY PUNCH");
 			 }
 			 if (inputplayerP1.K_active) {
 				 currentstateP1 = standingfarMKP1;
-				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
+				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 75, 15 }, COLLIDER_PLAYER_ATTACK, SFMK, App->player);
 				 LOG("IDLE to HEAVY PUNCH");
 			 }
 			 if (inputplayerP1.L_active) {
 				 currentstateP1 = standingfarHKP1;
-				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
+				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 75, 15 }, COLLIDER_PLAYER_ATTACK, SFHK, App->player);
 				 LOG("IDLE to HEAVY KICK");
 			 }
 			 if (inputplayerP1.U_active) {
-
-				 currentstateP1 = throwP1; // AQUI FALTA LA CONDICIO D'ESTAR APROP AMB ELS COLIDER
+				 if (close) {
+					 currentstateP1 = throwP1; // AQUI FALTA LA CONDICIO D'ESTAR APROP AMB ELS COLIDER
+				 }
 			 }
 
 			 if (inputplayerP1.J_active) {
@@ -1051,32 +1052,32 @@ update_status ModulePlayer::PreUpdate() {
 			 }
 			 if (inputplayerP1.U_active) {
 				 currentstateP1 = crouchLPP1;
-				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER_ATTACK, App->player);
+				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER_ATTACK,CLP, App->player);
 				 LOG("IDLE to LP");
 			 }
 			 if (inputplayerP1.I_active) {
 				 currentstateP1 = crouchMPP1;
-				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 93, 20 }, COLLIDER_PLAYER_ATTACK, App->player);
+				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 93, 20 }, COLLIDER_PLAYER_ATTACK,CMP, App->player);
 				 LOG("IDLE to HEAVY PUNCH");
 			 }
 			 if (inputplayerP1.O_active) {
 				 currentstateP1 = crouchHPP1;
-				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 100, 20 }, COLLIDER_PLAYER_ATTACK, App->player);
+				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 100, 20 }, COLLIDER_PLAYER_ATTACK,CHP, App->player);
 				 LOG("IDLE to HEAVY PUNCH");
 			 }
 			 if (inputplayerP1.J_active) {
 				 currentstateP1 = crouchLKP1;
-				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 79, 22 }, COLLIDER_PLAYER_ATTACK, App->player);
+				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 79, 22 }, COLLIDER_PLAYER_ATTACK,CLK, App->player);
 				 LOG("IDLE to HEAVY PUNCH");
 			 }
 			 if (inputplayerP1.K_active) {
 				 currentstateP1 = crouchMKP1;
-				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 100, 22 }, COLLIDER_PLAYER_ATTACK, App->player);
+				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 100, 22 }, COLLIDER_PLAYER_ATTACK,CMK, App->player);
 				 LOG("IDLE to HEAVY PUNCH");
 			 }
 			 if (inputplayerP1.L_active) {
 				 currentstateP1 = crouchHKP1;
-				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 100, 22 }, COLLIDER_PLAYER_ATTACK, App->player);
+				 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 100, 22 }, COLLIDER_PLAYER_ATTACK,CHK, App->player);
 				 LOG("IDLE to HEAVY KICK");
 			 }
 		 }
@@ -1363,7 +1364,7 @@ update_status ModulePlayer::Update() {
 
 	case standingfarMPP1:
 		currentP1_animation = &SFMP_P1;         //&SFMP_P1
-		attackP1_collider->SetPos(positionP1.x+40, positionP1.y-107);
+		attackP1_collider->SetPos(positionP1.x +40, positionP1.y -107);
 		LOG("LP ANIMATION ACTIVE");
 		break;
 	case standingfarHPP1:
@@ -1475,6 +1476,7 @@ update_status ModulePlayer::Update() {
 
 	case SdamagedP1:
 		currentP1_animation = &SdamageLP1;
+		positionP1.x -= 1;
 		break;
 	case SblockstunP1:
 		currentP1_animation = &SblockP1;
@@ -1534,7 +1536,7 @@ update_status ModulePlayer::Update() {
 	else {
 		flipP1 = true;
 		App->render->Blit(graphicsP1, positionP1.x +7, groundLevel -15, &shadowP1, 1.0f, true, SDL_FLIP_HORIZONTAL);
-		App->render->Blit(graphicsP1, positionP1.x, positionP1.y - r.h, &r, 1.0f, true, SDL_FLIP_HORIZONTAL,0.0f,100,100);
+		App->render->Blit(graphicsP1, positionP1.x, positionP1.y - r.h, &r, 1.0f, true, SDL_FLIP_HORIZONTAL);
 	}
 	if (!jumping) {
 		if (!flipP1) {
@@ -1565,11 +1567,15 @@ update_status ModulePlayer::Update() {
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
 	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_PLAYER2_ATTACK) {
+
 		if (!SblockingP1) {
+
 			currentstateP1 = SdamagedP1;
 		}
 		else {
+
 			currentstateP1 = SblockstunP1;
+
 		}
 	}
 
