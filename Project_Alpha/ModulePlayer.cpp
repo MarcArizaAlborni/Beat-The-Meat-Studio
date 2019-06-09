@@ -578,6 +578,16 @@ ModulePlayer::ModulePlayer()
 	  RollingP1.loop = true;
 
 
+	  //Rolling Rebound 
+
+	  RollingRebP1.PushBack({ 27, 1965, 67, 68 });
+	  RollingRebP1.PushBack({ 107, 1974, 76, 59 });
+	  RollingRebP1.PushBack({ 191, 1978, 88, 55 });
+	  RollingRebP1.PushBack({ 288, 1977, 82, 56 });
+	  RollingRebP1.PushBack({ 383, 1965, 67, 68 });
+	  RollingRebP1.speed = 0.5f;
+	  RollingRebP1.loop = true;
+
 	}
 }
 
@@ -1252,45 +1262,125 @@ update_status ModulePlayer::PreUpdate() {
 
 		 if (currentstateP1 == rollingattackP1) {
 
-			 if (currentP1_animation->Finished()&& inputplayerP1.D_active && !inputplayerP1.I_active && !inputplayerP1.O_active ) {
+			 //if (currentP1_animation->Finished()&& inputplayerP1.D_active && !inputplayerP1.I_active && !inputplayerP1.O_active ) {
 
+				
+				//RollingP1.Reset();
+				// currentstateP1 = forwardstateP1;
+			 //}
+
+			 if (positionP1.x + 40 == App->player2->positionP2.x) {
+
+				 currentstateP1 = rollingreboundP1;
+				 RollingP1.Reset();
+
+			 }
+
+		 }
+
+		 if (currentstateP1 == rollingattackP1) {
+
+			 //if (currentP1_animation->Finished() && !inputplayerP1.D_active && !inputplayerP1.I_active && !inputplayerP1.O_active) {
+
+				// // RollingP1.Reset();
+				//RollingP1.Reset();
+				// currentstateP1 =  idlestateP1;
+			 //}
+
+			 if (positionP1.x + 40 >= App->player2->positionP2.x) {
+
+				 currentstateP1 = rollingreboundP1;
+				 RollingP1.Reset();
+
+			 }
+		 }
+
+		 if (currentstateP1 == rollingattackP1) {
+
+			 //if (currentP1_animation->Finished() && !inputplayerP1.D_active && !inputplayerP1.I_active && inputplayerP1.O_active) {
+
+				// // RollingP1.Reset();
 				// RollingP1.Reset();
-				 Ethunder_P1.Reset();
-				 currentstateP1 = forwardstateP1;
+				// currentstateP1 = standingfarHPP1;
+			 //}
+
+			 if (positionP1.x + 40 == App->player2->positionP2.x) {
+
+				 currentstateP1 = rollingreboundP1;
+				 RollingP1.Reset();
+
 			 }
 		 }
 
 		 if (currentstateP1 == rollingattackP1) {
 
-			 if (currentP1_animation->Finished() && !inputplayerP1.D_active && !inputplayerP1.I_active && !inputplayerP1.O_active) {
+			 //if (currentP1_animation->Finished() && !inputplayerP1.D_active && inputplayerP1.I_active && !inputplayerP1.O_active) {
 
-				 // RollingP1.Reset();
-				 Ethunder_P1.Reset();
-				 currentstateP1 =  idlestateP1;
+				// // RollingP1.Reset();
+				// RollingP1.Reset();
+				// currentstateP1 = standingfarMPP1;
+			 //}
+
+			 if (positionP1.x+ 40 == App->player2->positionP2.x) {
+
+				 currentstateP1 = rollingreboundP1;
+				 RollingP1.Reset();
+
 			 }
 		 }
 
-		 if (currentstateP1 == rollingattackP1) {
-
-			 if (currentP1_animation->Finished() && !inputplayerP1.D_active && !inputplayerP1.I_active && inputplayerP1.O_active) {
-
-				 // RollingP1.Reset();
-				 Ethunder_P1.Reset();
-				 currentstateP1 = standingfarHPP1;
-			 }
-		 }
-
-		 if (currentstateP1 == rollingattackP1) {
+		 if (currentstateP1  == rollingreboundP1) {
 
 			 if (currentP1_animation->Finished() && !inputplayerP1.D_active && inputplayerP1.I_active && !inputplayerP1.O_active) {
 
-				 // RollingP1.Reset();
-				 Ethunder_P1.Reset();
-				 currentstateP1 = standingfarMPP1;
-			 }
+			    // RollingP1.Reset();
+				 RollingRebP1.Reset();
+			    currentstateP1 = standingfarMPP1;
+			}
+
+
+		 }
+
+		 if (currentstateP1 == rollingreboundP1) {
+
+
+			 if (currentP1_animation->Finished() && !inputplayerP1.D_active && !inputplayerP1.I_active && inputplayerP1.O_active) {
+
+			    // RollingP1.Reset();
+				 RollingRebP1.Reset();
+			    currentstateP1 = standingfarHPP1;
+			}
+
+
+
+		 }
+
+		 if (currentstateP1 == rollingreboundP1) {
+
+
+			 if (currentP1_animation->Finished()&& inputplayerP1.D_active && !inputplayerP1.I_active && !inputplayerP1.O_active ) {
+
+
+				 RollingRebP1.Reset();
+			    currentstateP1 = forwardstateP1;
+			}
+
+
 		 }
 		 
+		 if (currentstateP1 == rollingreboundP1) {
 
+
+
+			 if (currentP1_animation->Finished() && !inputplayerP1.D_active && !inputplayerP1.I_active && !inputplayerP1.O_active) {
+
+			    // RollingP1.Reset();
+				 RollingRebP1.Reset();
+			    currentstateP1 =  idlestateP1;
+			}
+
+
+		 }
 		 
 
 		
@@ -1305,6 +1395,7 @@ update_status ModulePlayer::Update() {
 
 	case idlestateP1:
 		playerP1_collider->rect.h = 93;
+		positionP1.y = groundLevel;
 		currentP1_animation = &idleP1;
 		//LOG("IDLE ANIMATION ACTIVE");
 		break;
@@ -1486,10 +1577,49 @@ update_status ModulePlayer::Update() {
 
 
 	case rollingattackP1:
-		currentP1_animation = &Ethunder_P1;
+		
+		positionP1.y = 180;
+		positionP1.x += 7;
+		
+		currentP1_animation = &RollingP1;
+		
 		LOG("ROLLING ANIMATION ACTIVE");
 		break;
-	}
+	
+
+	case rollingreboundP1:
+	
+		int positionstart = positionP1.x;
+		currentP1_animation = &RollingRebP1;
+		
+		
+		//positionP1.x -= speed;
+		//positionP1.y = groundLevel - (yvel*jumpTimer) + (0.5*(gravity) * (jumpTimer*jumpTimer)); //MRUA
+		
+		positionP1.x -= speed*4;
+		//positionP1.y = groundLevel + (yvel*jumpTimer*3) + (-9*(gravity) * (9*jumpTimer*jumpTimer)); //MRUA
+		
+		
+		
+			positionP1.y -= 7;
+		
+		
+
+		
+
+			
+		
+		/*positionP1.y  -= 5;
+		positionP1.x -= 12;*/
+		
+		LOG("ROLLING REBOUND ANIMATION ACTIVE");
+		break;
+
+
+
+    }
+
+	
 
 	if ( currentstateP1 != crouchstateP1 && currentstateP1 != crouchLPP1 && currentstateP1 != crouchMPP1 && currentstateP1 != crouchHPP1 && currentstateP1 != crouchLKP1 && currentstateP1 != crouchMKP1 && currentstateP1 != crouchHKP1 ) {
 		playerP1_collider->SetPos(positionP1.x  - App->render->camera.x *2  , positionP1.y - 93 - App->render->camera.y * 2);
