@@ -57,7 +57,8 @@ enum STATEP1 {
 	faintrollingattackP1,
 	verticalrollingattackP1,
 	dashforwardP1,
-	dashBackwardP1
+	dashBackwardP1,
+	rollingreboundP1
     
 
 
@@ -180,6 +181,7 @@ public:
 	Animation Throw_P1;      //Throw
 	Animation Ethunder_P1;   //Electric Thunder 
 	Animation RollingP1;     //Rolling Attack
+	Animation RollingRebP1;  //Rolling Rebot
 
 	iPoint positionP1;
 	InputP1 inputplayerP1;
