@@ -146,7 +146,7 @@ ModulePlayer::ModulePlayer()
 		SdamageMP1.PushBack({ 265, 2450, 101, 98 });
 		SdamageMP1.PushBack({ 32, 2459, 120, 86 });
 		SdamageMP1.PushBack({ 32, 2459, 120, 86 });
-		SdamageMP1.speed = 0.3f;
+		SdamageMP1.speed = 0.35f;
 
 		//Standing Damage Hard
 		SdamageHP1.PushBack({ 170, 2451, 88, 101 });
@@ -159,7 +159,7 @@ ModulePlayer::ModulePlayer()
 		SdamageHP1.PushBack({ 32, 2459, 120, 86 });
 		SdamageHP1.PushBack({ 377, 2458, 86, 86 });
 		SdamageHP1.PushBack({ 377, 2458, 86, 86 });
-		SdamageHP1.speed = 0.1f;
+		SdamageHP1.speed = 0.3f;
 
 
 		//Standing Damage Low Attack Light
@@ -763,7 +763,25 @@ update_status ModulePlayer::PreUpdate() {
 				 CHK_P1.Reset();
 			 }
 		 }
-		
+		 //Damaged chack
+		 if (currentstateP1 == SdamagedLP1) {
+			 if (currentP1_animation->Finished()) {
+				 currentstateP1 = idlestateP1;
+				 SdamageLP1.Reset();
+			 }
+		 }
+		 if (currentstateP1 == SdamagedMP1) {
+			 if (currentP1_animation->Finished()) {
+				 currentstateP1 = idlestateP1;
+				 SdamageMP1.Reset();
+			 }
+		 }
+		 if (currentstateP1 == SdamagedHP1) {
+			 if (currentP1_animation->Finished()) {
+				 currentstateP1 = idlestateP1;
+				 SdamageHP1.Reset();
+			 }
+		 }
 		 
 		 //IDLE STATE
 		 if (currentstateP1 == idlestateP1) {
@@ -1564,9 +1582,17 @@ update_status ModulePlayer::Update() {
 		currentP1_animation = &CHK_P1;
 		LOG("CROUCH LP ANIMATION ACTIVE");
 		break;
-
-	case SdamagedP1:
+	//damaged
+	case SdamagedLP1:
 		currentP1_animation = &SdamageLP1;
+		positionP1.x -= 1;
+		break;
+	case SdamagedMP1:
+		currentP1_animation = &SdamageMP1;
+		positionP1.x -= 1;
+		break;
+	case SdamagedHP1:
+		currentP1_animation = &SdamageHP1;
 		positionP1.x -= 1;
 		break;
 	case SblockstunP1:
@@ -1687,7 +1713,7 @@ update_status ModulePlayer::Update() {
 	}
 	if (positionP1.x >= (App->render->camera.x) + SCREEN_WIDTH -100)
 	{
-		positionP1.x = (App->render->camera.x) +SCREEN_WIDTH -100;
+		positionP1.x = (App->render->camera.x) + SCREEN_WIDTH -100;
 	}
 
 	return UPDATE_CONTINUE;
@@ -1697,15 +1723,19 @@ update_status ModulePlayer::Update() {
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
 	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_PLAYER2_ATTACK) {
+		
+		if (c2->attack == SFLP || c2->attack == SFLK) {
+			currentstateP1 = SdamagedLP1;
+			deleteCollider(App->player2->attackP2_collider);
 
-		if (!SblockingP1) {
-
-			currentstateP1 = SdamagedP1;
 		}
-		else {
-
-			currentstateP1 = SblockstunP1;
-
+		else if (c2->attack == SFMP || c2->attack == SFMK) {
+			currentstateP1 = SdamagedMP1;
+			deleteCollider(App->player2->attackP2_collider);
+		}
+		else if (c2->attack == SFHP || c2->attack == SFHK){
+			currentstateP1 = SdamagedHP1;
+			deleteCollider(App->player2->attackP2_collider);
 		}
 	}
 

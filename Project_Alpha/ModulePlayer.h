@@ -44,6 +44,11 @@ enum STATEP1 {
 	crouchMKP1,
 	crouchHKP1,
 	jumpLPP1,
+	//Standing damaged
+	SdamagedLP1,
+	SdamagedMP1,
+	SdamagedHP1,
+	
 	SdamagedP1,
 	SblockstunP1,
 

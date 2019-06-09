@@ -144,6 +144,8 @@ ModulePlayer2::ModulePlayer2()
 		//Recovery
 		RecoveryP2.PushBack({});
 
+		
+
 	}
 
 	{ //ATTACKS ANIMATIONS
@@ -154,6 +156,36 @@ ModulePlayer2::ModulePlayer2()
 		SLFP_P2.PushBack({ 275, 658, 123, 105 });
 		SLFP_P2.speed = 0.2f;
 		SLFP_P2.loop = false;
+
+		//Standing FAR HP
+		SFHP_P2.PushBack({ 27, 929, 107, 95 });
+		SFHP_P2.PushBack({ 140, 926, 128, 98 });
+		SFHP_P2.PushBack({ 140, 926, 128, 98 });
+		SFHP_P2.PushBack({ 275, 906, 99, 118 });
+		SFHP_P2.PushBack({ 275, 906, 99, 118 });
+		SFHP_P2.PushBack({ 275, 906, 99, 118 });
+		SFHP_P2.PushBack({ 275, 906, 99, 118 });
+		SFHP_P2.PushBack({ 275, 906, 99, 118 });
+		SFHP_P2.PushBack({ 140, 926, 128, 98 });
+		SFHP_P2.PushBack({ 140, 926, 128, 98 });
+		SFHP_P2.PushBack({ 140, 926, 128, 98 });
+		SFHP_P2.PushBack({ 140, 926, 128, 98 });
+		SFHP_P2.PushBack({ 140, 926, 128, 98 });
+		SFHP_P2.PushBack({ 140, 926, 128, 98 });
+		SFHP_P2.PushBack({ 140, 926, 128, 98 });
+		SFHP_P2.PushBack({ 27, 929, 107, 95 });
+		SFHP_P2.PushBack({ 27, 929, 107, 95 });
+		SFHP_P2.PushBack({ 27, 929, 107, 95 });
+		SFHP_P2.PushBack({ 27, 929, 107, 95 });
+		SFHP_P2.speed = 0.5f;
+		SFHP_P2.loop = false;
+
+		//Standing FAR MP 
+		SFMP_P2.PushBack({ 31, 765, 88, 104 });
+		SFMP_P2.PushBack({ 134, 788, 120, 108 });
+		SFMP_P2.PushBack({ 264, 799, 130, 97 });
+		SFMP_P2.PushBack({ 403, 803, 103, 93 }); //This is not correct I think
+		SFMP_P2.speed = 0.2f;
 
 		//Crouch LP
 		CLP_P2.PushBack({ 610, 709, 109, 56 });
@@ -247,6 +279,32 @@ update_status ModulePlayer2::PreUpdate() {
 
 	{
 		 //BASIC MOVEMENTS
+		 if (currentstateP2 == standingfarLPP2) {
+			 if (currentP2_animation->Finished()) {
+				 deleteCollider2(attackP2_collider);
+				 currentstateP2 = idlestateP2;
+				 SLFP_P2.Reset();
+			 }
+		 }
+		 if (currentstateP2 == standingfarMPP1) {
+			 if (currentP2_animation->Finished()) {
+				 deleteCollider2(attackP2_collider);
+				 currentstateP2 = idlestateP2;
+				 SFMP_P2.Reset();
+			 }
+		 }
+		 if (currentstateP2 == standingfarHPP1) {
+			 if (currentP2_animation->Finished()) {
+				 deleteCollider2(attackP2_collider);
+				 currentstateP2 = idlestateP2;
+				 SFHP_P2.Reset();
+			 }
+		 }
+
+
+
+
+
 
 		//IDLE STATE
 		if (currentstateP2 == idlestateP2) {
@@ -275,12 +333,12 @@ update_status ModulePlayer2::PreUpdate() {
 				LOG("IDLE to LP");
 			}
 			if (inputplayerP2.Num8_active) {
-				//currentstateP2 = standingfarMPP2;
+				currentstateP2 = standingfarMPP2;
 				attackP2_collider = App->collision->AddCollider({ positionP2.x - 20 - App->render->camera.x, positionP2.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER2_ATTACK,SFMP, App->player);
 				LOG("IDLE to LP");
 			}
 			if (inputplayerP2.Num9_active) {
-				//currentstateP2 = standingfarHPP2;
+				currentstateP2 = standingfarHPP2;
 				attackP2_collider = App->collision->AddCollider({ positionP2.x - 20 - App->render->camera.x, positionP2.y - 80 - App->render->camera.y * 2, 50, 15 }, COLLIDER_PLAYER2_ATTACK,SFHP, App->player);
 				LOG("IDLE to LP");
 			}
@@ -441,6 +499,18 @@ update_status ModulePlayer2::Update()
 	case standingfarLPP2:
 
 		currentP2_animation = &SLFP_P2;
+
+		LOG(" NEUTRAL JUMP ANIMATION ACTIVE");
+		break;
+	case standingfarMPP2:
+
+		currentP2_animation = &SFMP_P2;
+
+		LOG(" NEUTRAL JUMP ANIMATION ACTIVE");
+		break;
+	case standingfarHPP2:
+
+		currentP2_animation = &SFHP_P2;
 
 		LOG(" NEUTRAL JUMP ANIMATION ACTIVE");
 		break;
