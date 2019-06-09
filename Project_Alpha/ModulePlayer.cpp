@@ -37,9 +37,9 @@ ModulePlayer::ModulePlayer()
 
 		//Idle animation (arcade sprite sheet)
 		idleP1.PushBack({ 233, 27, 100, 100 }); 
-		idleP1.PushBack({ 32, 27, 105, 100 }); 
+		idleP1.PushBack({ 32, 27, 100, 100 }); 
 		idleP1.PushBack({ 135, 27, 100, 100 }); 
-		idleP1.PushBack({ 32, 27, 105, 100 }); 
+		idleP1.PushBack({ 32, 27, 100, 100 }); 
 	
 		idleP1.speed = 0.08f;
 
@@ -1448,12 +1448,12 @@ update_status ModulePlayer::Update() {
 	if (positionP1.x +35 < App->player2->positionP2.x +35 ) {
 		flipP1 = false;
 		App->render->Blit(graphicsP1, positionP1.x - 5, groundLevel-15, &shadowP1, 1.0f, true,SDL_FLIP_NONE);
-		App->render->Blit(graphicsP1, positionP1.x, positionP1.y - r.h, &r, 1.0f, true, SDL_FLIP_NONE);
+		App->render->Blit(graphicsP1, positionP1.x, positionP1.y - r.h, &r, 1.0f, true, SDL_FLIP_NONE,0.0f);
 	}
 	else {
 		flipP1 = true;
 		App->render->Blit(graphicsP1, positionP1.x +7, groundLevel -15, &shadowP1, 1.0f, true, SDL_FLIP_HORIZONTAL);
-		App->render->Blit(graphicsP1, positionP1.x, positionP1.y - r.h, &r, 1.0f, true, SDL_FLIP_HORIZONTAL);
+		App->render->Blit(graphicsP1, positionP1.x, positionP1.y - r.h, &r, 1.0f, true, SDL_FLIP_HORIZONTAL,0.0f,100,100);
 	}
 	if (!jumping) {
 		if (!flipP1) {
