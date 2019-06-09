@@ -854,7 +854,7 @@ update_status ModulePlayer::PreUpdate() {
 				 }
 				 if (inputplayerP1.I_active) {
 					 currentstateP1 = standingcloseMPP1;
-					 attackP1_collider = App->collision->AddCollider({ 0,0, 100, 35 }, COLLIDER_PLAYER_ATTACK,SCMP, App->player);
+					 attackP1_collider = App->collision->AddCollider({ 0,0, 100, 30 }, COLLIDER_PLAYER_ATTACK,SCMP, App->player);
 					 LOG("IDLE to HEAVY PUNCH");
 				 }
 				 if (inputplayerP1.O_active) {
@@ -869,18 +869,20 @@ update_status ModulePlayer::PreUpdate() {
 					 LOG("IDLE to HEAVY PUNCH");
 				 }
 
+				 if (inputplayerP1.K_active) {
+					 currentstateP1 = standingcloseMKP1;
+					 attackP1_collider = App->collision->AddCollider({ 0,0, 100, 22 }, COLLIDER_PLAYER_ATTACK, SCMK, App->player);
+					 LOG("IDLE to HEAVY PUNCH");
+				 }
+
 				 if (inputplayerP1.L_active) {
 					 currentstateP1 = standingcloseHKP1;
-					 attackP1_collider = App->collision->AddCollider({ 0,0, 50, 15 }, COLLIDER_PLAYER_ATTACK,SCMK, App->player);
+					 attackP1_collider = App->collision->AddCollider({ 0,0, 100, 22 }, COLLIDER_PLAYER_ATTACK,SCHK, App->player);
 					 LOG("IDLE to HEAVY KICK");
 				 }
 
 
-				 if (inputplayerP1.K_active) {
-					 currentstateP1 = standingcloseMKP1;
-					 attackP1_collider = App->collision->AddCollider({ 0,0, 75, 15 }, COLLIDER_PLAYER_ATTACK,SCHK, App->player);
-					 LOG("IDLE to HEAVY PUNCH");
-				 }
+				
 			 }
 		 }
 		 //BACKWARDS STATE
@@ -1111,7 +1113,7 @@ update_status ModulePlayer::PreUpdate() {
 		 //JUMP STATE
 		 if (jumping == true) {
 			 comboInput('w');
-			 if (positionP1.y >= groundLevel + 5) {
+			 if (positionP1.y >= groundLevel + 1) {
 				 positionP1.y = groundLevel;
 				 currentstateP1 = idlestateP1;
 				 NjumpP1.Reset();
@@ -1197,12 +1199,8 @@ update_status ModulePlayer::PreUpdate() {
 		 /*if (currentstateP1 == standingfarHPP1) {
 
 			 if (currentP1_animation->Finished() && !inputplayerP1.J_active){
-
 				 currentstateP1 = idlestateP1;
-
 			 }
-			
-	
 		 }
 */
 		 //THROW
@@ -1399,9 +1397,6 @@ update_status ModulePlayer::PreUpdate() {
 
 
 		 }
-		 
-
-		
 		return UPDATE_CONTINUE;
 	}
 }
@@ -1499,27 +1494,33 @@ update_status ModulePlayer::Update() {
 		break;
 
 	case standingcloseLPP1:
-		currentP1_animation = &SCLP_P1;         
+		currentP1_animation = &SCLP_P1;  
+		attackP1_collider->SetPos(positionP1.x + 60 - camx, positionP1.y - 85 - camy);
 		LOG("HK ANIMATION ACTIVE");
 		break;
 	case standingcloseMPP1:
 		currentP1_animation = &SCMP_P1;
+		attackP1_collider->SetPos(positionP1.x + 50 - camx, positionP1.y - 85 - camy);
 		LOG("HK ANIMATION ACTIVE");
 		break; 
 	case standingcloseHPP1:
 		currentP1_animation = &SCHP_P1;
+		attackP1_collider->SetPos(positionP1.x + 60 - camx, positionP1.y - 85 - camy);
 		LOG("HK ANIMATION ACTIVE");
 		break;
 	case standingcloseLKP1:
 		currentP1_animation = &SCLK_P1;
+		attackP1_collider->SetPos(positionP1.x + 60 - camx, positionP1.y - 85 - camy);
 		LOG("HK ANIMATION ACTIVE");
 		break;
 	case standingcloseMKP1:
 		currentP1_animation = &SCMK_P1;
+		attackP1_collider->SetPos(positionP1.x + 60 - camx, positionP1.y - 85 - camy);
 		LOG("HK ANIMATION ACTIVE");
 		break;
 	case standingcloseHKP1:
 		currentP1_animation = &SCHK_P1;
+		attackP1_collider->SetPos(positionP1.x + 60 - camx, positionP1.y - 25 - camy);
 		LOG("HK ANIMATION ACTIVE");
 		break;
 	case thunder1P1:
@@ -1728,13 +1729,13 @@ update_status ModulePlayer::Update() {
 		}
 	}
 
-	if (positionP1.x <= (App->render->camera.x / 2.5 ))
+	if (positionP1.x <= App->render->camera.x /5)
 	{
-		positionP1.x = (App->render->camera.x / 2.5 );
+		positionP1.x = App->render->camera.x /5;
 	}
-	if (positionP1.x >= ((App->render->camera.x / 2.5) + SCREEN_WIDTH -100) )
+	if (positionP1.x >= ((App->render->camera.x / 5) + SCREEN_WIDTH -100) )
 	{
-		positionP1.x = ((App->render->camera.x / 2.5) + SCREEN_WIDTH - 100) ;
+		positionP1.x = ((App->render->camera.x / 5) + SCREEN_WIDTH - 100) ;
 	}
 
 	return UPDATE_CONTINUE;
@@ -1745,16 +1746,16 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
 	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_PLAYER2_ATTACK) {
 		
-		if (c2->attack == SFLP || c2->attack == SFLK) {
+		if (c2->attack == SFLP || c2->attack == SFLK || c2->attack == SCLP || c2->attack == SCLK) {
 			currentstateP1 = SdamagedLP1;
 			deleteCollider(App->player2->attackP2_collider);
 
 		}
-		else if (c2->attack == SFMP || c2->attack == SFMK) {
+		else if (c2->attack == SFMP || c2->attack == SFMK || c2->attack == SCMP || c2->attack == SCMK) {
 			currentstateP1 = SdamagedMP1;
 			deleteCollider(App->player2->attackP2_collider);
 		}
-		else if (c2->attack == SFHP || c2->attack == SFHK){
+		else if (c2->attack == SFHP || c2->attack == SFHK || c2->attack == SCHP || c2->attack == SCHK){
 			currentstateP1 = SdamagedHP1;
 			deleteCollider(App->player2->attackP2_collider);
 		}

@@ -165,7 +165,7 @@ bool ModuleUI::Start()
 }
 update_status ModuleUI::Update()
 {
-	char timechar[2];
+	
 	
 	int timerint = 100 - App->scene_guile->timeLimit;
 	timechar[0] = timerint / 10 + '0';

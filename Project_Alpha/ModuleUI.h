@@ -37,7 +37,7 @@ public:
 
 	bool stage;
 	bool character_select;
-
+	char timechar[2];
 	bool brazil;
 	bool usa;
 	bool usaII;
