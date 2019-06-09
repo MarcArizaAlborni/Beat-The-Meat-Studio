@@ -935,16 +935,21 @@ update_status ModulePlayer::PreUpdate() {
 				 LOG("IDLE to HEAVY KICK");
 			 }
 			 
-			 
+			 if (inputplayerP1.D_active && inputplayerP1.U_active) {
+
+				 currentstateP1 = rollingattackP1LIGHT;
+
+
+			 }
 			 if (inputplayerP1.D_active && inputplayerP1.I_active) {
 
-				 currentstateP1 = rollingattackP1;
+				 currentstateP1 = rollingattackP1MEDIUM;
 
 			 }
 			 
 			 if (inputplayerP1.D_active && inputplayerP1.O_active) {
 
-				 currentstateP1 = rollingattackP1;
+				 currentstateP1 = rollingattackP1HEAVY;
 
 			 }
 
@@ -1030,16 +1035,9 @@ update_status ModulePlayer::PreUpdate() {
 				 attackP1_collider = App->collision->AddCollider({ 0,0, 75, 15 }, COLLIDER_PLAYER_ATTACK, SFHK, App->player);
 				 LOG("IDLE to HEAVY KICK");
 			 }
-			 if (inputplayerP1.U_active) {
-				 if (close) {
-					 currentstateP1 = throwP1; // AQUI FALTA LA CONDICIO D'ESTAR APROP AMB ELS COLIDER
-				 }
-			 }
+			
 
-			 if (inputplayerP1.J_active) {
-
-				 currentstateP1 = throwP1; //AQUI FALTA CONDICIO D'ESTAR APROP AMB ELS COLIDERS
-			 }
+			
 
 			 if (inputplayerP1.I_active && close ) { //falta CONDICIO COLIDER APROP
 
@@ -1055,11 +1053,7 @@ update_status ModulePlayer::PreUpdate() {
 				 currentstateP1 = throwP1;
 			 }
 			 
-			 if (inputplayerP1.L_active && close) {
-
-
-				 currentstateP1 = throwP1;
-			 }
+			 
 
 			
 		 }
@@ -1284,7 +1278,7 @@ update_status ModulePlayer::PreUpdate() {
 			
 		 }
 
-		 if (currentstateP1 == rollingattackP1) {
+		 if (currentstateP1 == rollingattackP1LIGHT) {
 
 			 //if (currentP1_animation->Finished()&& inputplayerP1.D_active && !inputplayerP1.I_active && !inputplayerP1.O_active ) {
 
@@ -1302,7 +1296,7 @@ update_status ModulePlayer::PreUpdate() {
 
 		 }
 
-		 if (currentstateP1 == rollingattackP1) {
+		 if (currentstateP1 == rollingattackP1MEDIUM) {
 
 			 //if (currentP1_animation->Finished() && !inputplayerP1.D_active && !inputplayerP1.I_active && !inputplayerP1.O_active) {
 
@@ -1319,7 +1313,7 @@ update_status ModulePlayer::PreUpdate() {
 			 }
 		 }
 
-		 if (currentstateP1 == rollingattackP1) {
+		 if (currentstateP1 == rollingattackP1HEAVY) {
 
 			 //if (currentP1_animation->Finished() && !inputplayerP1.D_active && !inputplayerP1.I_active && inputplayerP1.O_active) {
 
@@ -1336,22 +1330,22 @@ update_status ModulePlayer::PreUpdate() {
 			 }
 		 }
 
-		 if (currentstateP1 == rollingattackP1) {
+		 //if (currentstateP1 == rollingattackP1) {
 
-			 //if (currentP1_animation->Finished() && !inputplayerP1.D_active && inputplayerP1.I_active && !inputplayerP1.O_active) {
+			// //if (currentP1_animation->Finished() && !inputplayerP1.D_active && inputplayerP1.I_active && !inputplayerP1.O_active) {
 
-				// // RollingP1.Reset();
-				// RollingP1.Reset();
-				// currentstateP1 = standingfarMPP1;
-			 //}
+			//	// // RollingP1.Reset();
+			//	// RollingP1.Reset();
+			//	// currentstateP1 = standingfarMPP1;
+			// //}
 
-			 if (positionP1.x+ 40 == App->player2->positionP2.x) {
+			// if (positionP1.x+ 40 == App->player2->positionP2.x) {
 
-				 currentstateP1 = rollingreboundP1;
-				 RollingP1.Reset();
+			//	 currentstateP1 = rollingreboundP1;
+			//	 RollingP1.Reset();
 
-			 }
-		 }
+			// }
+		 //}
 
 		 if (currentstateP1  == rollingreboundP1) {
 
@@ -1609,7 +1603,7 @@ update_status ModulePlayer::Update() {
 		break;
 
 
-	case rollingattackP1:
+	case rollingattackP1LIGHT:
 		
 		positionP1.y = 180;
 		positionP1.x += 7;
@@ -1618,7 +1612,29 @@ update_status ModulePlayer::Update() {
 		
 		LOG("ROLLING ANIMATION ACTIVE");
 		break;
+
+
+	case rollingattackP1MEDIUM:
+
+		positionP1.y = 180;
+		positionP1.x += 7;
+
+		currentP1_animation = &RollingP1;
+
+		LOG("ROLLING ANIMATION ACTIVE");
+		break;
 	
+
+	case rollingattackP1HEAVY:
+
+		positionP1.y = 180;
+		positionP1.x += 7;
+
+		currentP1_animation = &RollingP1;
+
+		LOG("ROLLING ANIMATION ACTIVE");
+		break;
+
 
 	case rollingreboundP1:
 	
