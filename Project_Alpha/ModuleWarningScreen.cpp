@@ -10,6 +10,8 @@
 #include "MemLeaks.h"
 #include "ModuleGuys.h"
 #include "ModuleWarningScreen.h"
+#include "ModuleSounds.h"
+#include "ModuleStartScreen.h"
 
 ModuleWarningScreen::ModuleWarningScreen()
 {
@@ -46,6 +48,12 @@ update_status ModuleWarningScreen::Update()
 	App->render->Blit(graphics, 0, 0, &warning_screen, 0.75f);
 
 	App->fade->FadeToBlack(App->warning_screen, App->guys_screen, 5.0f);
+
+	if (App->sounds->coin_inserted == true) {
+
+		App->fade->FadeToBlack(App->warning_screen, App->start_screen, 5.0f);
+
+	}
 
 	return UPDATE_CONTINUE;
 }

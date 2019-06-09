@@ -84,7 +84,6 @@ bool Application::Init()
 	start_screen->Disable();
 	lose_screen->Disable();
 	ui->Disable();
-	sounds->Disable();
 	guys_screen->Disable();
 	//welcome_screen->Disable();
 

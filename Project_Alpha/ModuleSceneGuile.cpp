@@ -15,6 +15,7 @@
 #include "ModuleWinScreen.h"
 #include "ModuleLoseScreen.h"
 #include "MemLeaks.h"
+#include "ModuleAudio.h"
 #include "ModuleSounds.h"
 
 
@@ -74,6 +75,8 @@ bool ModuleSceneGuile::Start()
 {
 	LOG("Loading Guile scene");
 	graphics = App->textures->Load("Sprites/guile_stage.png");
+	background_music = App->audio->LoadMus("Audios/Music/10 U.S.A. (Guile) I.ogg");
+	App->audio->PlayMusic(background_music, 0);
 	
 	App->player->currentstateP1 = idlestateP1;
 	App->player->positionP1.x = 50;
@@ -147,26 +150,26 @@ update_status ModuleSceneGuile::Update()
 	if (App->input->keyboard[SDL_SCANCODE_F3] == 1) //Insta-Win Input Button
 	{
 		App->fade->FadeToBlack(App->scene_guile, App->win_screen, 1.0f);
-
+		App->audio->FinishMusic(1000);
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_F4] == 1) //Insta-Lose Input Button
 	{
 		App->fade->FadeToBlack(App->scene_guile, App->lose_screen, 1.0f);
-	
+		App->audio->FinishMusic(1000);
 	}
 
 	//Win/Lose condition taking into account the remaining health.
 	if (App->ui->health.x <= 45) //45 instead of 0 because it doesnt exactly fit.
 	{
 		App->fade->FadeToBlack(App->scene_guile, App->lose_screen, 1.0f);
-		
+		App->audio->FinishMusic(1000);
 	}
 
 	if (App->ui->health2.w <= 0)
 	{
 		App->fade->FadeToBlack(App->scene_guile, App->win_screen, 1.0f);
-	
+		App->audio->FinishMusic(1000);
 	}
 
 	//Win/lose condition using time:
@@ -178,6 +181,7 @@ update_status ModuleSceneGuile::Update()
 		if (App->ui->health.x == App->ui->health2.w + 45)
 		{
 			App->fade->FadeToBlack(App->scene_guile, App->win_screen, 1.0f);
+			App->audio->FinishMusic(1000);
 		}
 
 		if (App->ui->health.x - 45 != App->ui->health2.w) //p1 and p2 have the same amount of hp.
@@ -185,11 +189,13 @@ update_status ModuleSceneGuile::Update()
 			if (App->ui->health.x > App->ui->health2.w + 45) //p1 has more  health than p2
 			{
 				App->fade->FadeToBlack(App->scene_guile, App->win_screen, 1.0f);
+				App->audio->FinishMusic(1000);
 			}
 
 			if (App->ui->health.x < App->ui->health2.w + 45)//p2 has more  health than p1
 			{
 				App->fade->FadeToBlack(App->scene_guile, App->lose_screen, 1.0f);
+				App->audio->FinishMusic(1000);
 			}
 		}
 	}

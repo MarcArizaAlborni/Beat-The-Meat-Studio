@@ -21,7 +21,7 @@ public:
 public:
 
 	SDL_Texture* graphics = nullptr;
-	SDL_Rect welcome_screen;
+	SDL_Rect welcome_screen;	
 
 };
 

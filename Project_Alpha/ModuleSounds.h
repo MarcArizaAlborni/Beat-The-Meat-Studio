@@ -12,6 +12,6 @@ public:
 	bool CleanUp();
 	update_status Update();
 
-	bool GuileStage = false;
-	Mix_Music* GuileStage_Sound;
+	Mix_Music* coin_Music;
+	bool coin_inserted = false;
 };
