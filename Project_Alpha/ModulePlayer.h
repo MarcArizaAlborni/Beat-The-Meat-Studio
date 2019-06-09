@@ -135,8 +135,12 @@ public:
 	Animation CturnP1;       //Crouch Turn
 	Animation SblockP1;      //Standing Block
 	Animation CblockP1;      //Crouch Block
-	Animation SdamageP1;     //Standing Damage 
-	Animation SdamagelowP1;  //Standing Damage Low Attack
+	Animation SdamageLP1;    //Standing Damage L
+	Animation SdamageMP1;    //Standing Damage M
+	Animation SdamageHP1;    //Standing Damage H
+	Animation SdamagelowLP1; //Standing Damage Low Attack Light
+	Animation SdamagelowMP1; //Standing Damage Low Attack Medium
+	Animation SdamagelowHP1; //Standing Damage Low Attacl Hard
 	Animation CdamageP1;     //Crouch Damage
 	Animation ETdamgeP1;     //Electric Thunder Damage
 	Animation RecoveryP1;    //Recovery After Damage

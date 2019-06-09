@@ -127,16 +127,77 @@ ModulePlayer::ModulePlayer()
 		CblockP1.PushBack({ 730, 2100, 100, 63 });
 		CblockP1.PushBack({ 630, 2100, 100, 63 });
 
-	    //Standing Damage 
-		SdamageP1.PushBack({ 730, 2169, 100, 96 });
-		SdamageP1.PushBack({ 630, 2169, 100, 96 });
-		SdamageP1.loop = false;
-		SdamageP1.speed = 0.05;
+	    //Standing Damage Light
+		SdamageLP1.PushBack({ 170, 2451, 88, 101 });
+		SdamageLP1.PushBack({ 170, 2451, 88, 101 });
+		SdamageLP1.PushBack({ 170, 2451, 88, 101 });
+		SdamageLP1.PushBack({ 170, 2451, 88, 101 });
+		SdamageLP1.PushBack({ 265, 2450, 101, 98 });
+		SdamageLP1.PushBack({ 265, 2450, 101, 98 });
+		SdamageLP1.loop = false;
+		SdamageLP1.speed = 0.05;
 
-		
+		//Standing Damage Medium
+		SdamageMP1.PushBack({ 170, 2451, 88, 101 });
+		SdamageMP1.PushBack({ 170, 2451, 88, 101 });
+		SdamageMP1.PushBack({ 170, 2451, 88, 101 });
+		SdamageMP1.PushBack({ 170, 2451, 88, 101 });
+		SdamageMP1.PushBack({ 265, 2450, 101, 98 });
+		SdamageMP1.PushBack({ 265, 2450, 101, 98 });
+		SdamageMP1.PushBack({ 32, 2459, 120, 86 });
+		SdamageMP1.PushBack({ 32, 2459, 120, 86 });
+		SdamageMP1.speed = 0.05f;
 
-		//Standing Damage Low Attack
-		SdamagelowP1.PushBack({});
+		//Standing Damage Hard
+		SdamageHP1.PushBack({ 170, 2451, 88, 101 });
+		SdamageHP1.PushBack({ 170, 2451, 88, 101 });
+		SdamageHP1.PushBack({ 170, 2451, 88, 101 });
+		SdamageHP1.PushBack({ 170, 2451, 88, 101 });
+		SdamageHP1.PushBack({ 265, 2450, 101, 98 });
+		SdamageHP1.PushBack({ 265, 2450, 101, 98 });
+		SdamageHP1.PushBack({ 32, 2459, 120, 86 });
+		SdamageHP1.PushBack({ 32, 2459, 120, 86 });
+		SdamageHP1.PushBack({ 377, 2458, 86, 86 });
+		SdamageHP1.PushBack({ 377, 2458, 86, 86 });
+		SdamageHP1.speed = 0.05f;
+
+
+		//Standing Damage Low Attack Light
+		SdamagelowLP1.PushBack({ 30, 2278, 96, 85 });
+		SdamagelowLP1.PushBack({ 30, 2278, 96, 85 });
+		SdamagelowLP1.PushBack({ 30, 2278, 96, 85 });
+		SdamagelowLP1.PushBack({ 30, 2278, 96, 85 });
+		SdamagelowLP1.PushBack({ 30, 2278, 96, 85 });
+		SdamagelowLP1.PushBack({ 30, 2363, 100, 79 });
+		SdamagelowLP1.PushBack({ 30, 2363, 100, 79 });
+		SdamagelowLP1.speed = 0.05f;
+
+		//Standing Damage Low Attack Medium
+		SdamagelowMP1.PushBack({ 30, 2278, 96, 85 });
+		SdamagelowMP1.PushBack({ 30, 2278, 96, 85 });
+		SdamagelowMP1.PushBack({ 30, 2278, 96, 85 });
+		SdamagelowMP1.PushBack({ 30, 2278, 96, 85 });
+		SdamagelowMP1.PushBack({ 30, 2278, 96, 85 });
+		SdamagelowMP1.PushBack({ 30, 2363, 100, 79 });
+		SdamagelowMP1.PushBack({ 30, 2363, 100, 79 });
+		SdamagelowMP1.PushBack({ 133, 2363, 106, 72 });
+		SdamagelowMP1.PushBack({ 133, 2363, 106, 72 });
+		SdamagelowMP1.speed = 0.05f;
+
+
+		//Sranding Damage Low Attack Hard
+		SdamagelowHP1.PushBack({ 30, 2278, 96, 85 });
+		SdamagelowHP1.PushBack({ 30, 2278, 96, 85 });
+		SdamagelowHP1.PushBack({ 30, 2278, 96, 85 });
+		SdamagelowHP1.PushBack({ 30, 2278, 96, 85 });
+		SdamagelowHP1.PushBack({ 30, 2278, 96, 85 });
+		SdamagelowHP1.PushBack({ 30, 2363, 100, 79 });
+		SdamagelowHP1.PushBack({ 30, 2363, 100, 79 });
+		SdamagelowHP1.PushBack({ 133, 2363, 106, 72 });
+		SdamagelowHP1.PushBack({ 133, 2363, 106, 72 });
+		SdamagelowHP1.PushBack({ 377, 2458, 86, 86 });
+		SdamagelowHP1.PushBack({ 377, 2458, 86, 86 });
+		SdamagelowHP1.speed = 0.05f;
 
 		//Crouch Damage
 		CdamageP1.PushBack({});
@@ -1128,7 +1189,7 @@ update_status ModulePlayer::PreUpdate() {
 		 if (currentstateP1 == SdamagedP1) {
 			 if (currentP1_animation->Finished()) {
 				 currentstateP1 = idlestateP1;
-				 SdamageP1.Reset();
+				 SdamageLP1.Reset();
 			 }
 		 }
 
@@ -1394,7 +1455,7 @@ update_status ModulePlayer::Update() {
 		break;
 
 	case SdamagedP1:
-		currentP1_animation = &SdamageP1;
+		currentP1_animation = &SdamageLP1;
 		break;
 	case SblockstunP1:
 		currentP1_animation = &SblockP1;
