@@ -216,11 +216,11 @@ update_status ModuleGuys::PreUpdate()
 update_status ModuleGuys::Update()
 {
 	SDL_Rect r = people.GetCurrentFrame();
-
-	App->render->Blit(graphics, 0, -127, &sky, 0.272f);
-	App->render->Blit(graphics, 0, -351, &building, 0.75f);
-	App->render->Blit(graphics, 0, 0, &r, 0.75f);
-	App->render->Blit(graphics, 0, 0, cur_anim, 0.75f);
+	
+	App->render->Blit(graphics, 0, -127, &sky, 0.67f);
+	App->render->Blit(graphics, 0, -351, &building, 1.87f);
+	App->render->Blit(graphics, 0, 0, &r, 1.75f);
+	App->render->Blit(graphics, 0, 0, cur_anim, 1.75f);
 	
 
 	if (App->render->camera.y <=  -935) {
