@@ -1716,9 +1716,9 @@ update_status ModulePlayer::Update() {
 	{
 		positionP1.x = (App->render->camera.x / 2.5 );
 	}
-	if (positionP1.x >= ((App->render->camera.x) + SCREEN_WIDTH -100) /2.5)
+	if (positionP1.x >= ((App->render->camera.x / 2.5) + SCREEN_WIDTH -100) )
 	{
-		positionP1.x = ((App->render->camera.x) + SCREEN_WIDTH - 100) / 2.5;
+		positionP1.x = ((App->render->camera.x / 2.5) + SCREEN_WIDTH - 100) ;
 	}
 
 	return UPDATE_CONTINUE;
