@@ -68,7 +68,7 @@ update_status ModuleIcoinScreen::PreUpdate()
 		cur_anim = &icon_screen2;
 	}
 
-
+	return UPDATE_CONTINUE;
 }
 
 // Update: draw background

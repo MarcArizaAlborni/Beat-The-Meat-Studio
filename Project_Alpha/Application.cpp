@@ -82,8 +82,8 @@ bool Application::Init()
 	start_screen->Disable();
 	lose_screen->Disable();
 	ui->Disable();
-	//guys_screen->Disable();
-	welcome_screen->Disable();
+	guys_screen->Disable();
+	//welcome_screen->Disable();
 
 	for(int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->Init();
