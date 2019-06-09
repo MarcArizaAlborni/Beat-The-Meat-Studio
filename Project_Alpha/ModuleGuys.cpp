@@ -7,8 +7,10 @@
 #include "ModuleRender.h"
 #include "ModuleGuys.h"
 #include "Animation.h"
+#include "ModuleUI.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleIcoinScreen.h"
+
 
 
 ModuleGuys::ModuleGuys()
@@ -165,7 +167,6 @@ ModuleGuys::ModuleGuys()
 	punch3.PushBack({ 2973, 53, 384, 224 });
 	punch3.PushBack({ 2973, 53, 384, 224 });
 	punch3.PushBack({ 2973, 53, 384, 224 });
-
 	punch3.speed = 0.4f;
 }
 
@@ -175,7 +176,8 @@ bool ModuleGuys::Start()
 {
 	LOG("Loading Building Screen");
 	graphics = App->textures->Load("Sprites/Guys.png");
-
+	App->ui->Enable();
+	App->ui->insert_coin = true;
 	return true;
 }
 
@@ -208,9 +210,6 @@ update_status ModuleGuys::PreUpdate()
 		cur_anim = 0;
 	}
 
-
-
-
 	return UPDATE_CONTINUE;
 
 }
@@ -222,12 +221,13 @@ update_status ModuleGuys::Update()
 	App->render->Blit(graphics, 0, -351, &building, 0.75f);
 	App->render->Blit(graphics, 0, 0, &r, 0.75f);
 	App->render->Blit(graphics, 0, 0, cur_anim, 0.75f);
+	
 
 	if (App->render->camera.y <=  -935) {
 
 		speed = 0;
 		
-		App->fade->FadeToBlack(App->guys_screen, App->icoin_screen, 3.f);
+		App->fade->FadeToBlack(App->guys_screen, App->icoin_screen, 4.f);
 
 	}
 

@@ -17,14 +17,20 @@ public:
 
 	bool Start();
 	update_status Update();
+	update_status PreUpdate();
 	bool CleanUp();
 
 public:
 
 	SDL_Texture* graphics = nullptr;
+	SDL_Texture* graphics2 = nullptr;
 	SDL_Rect icoin_screen;
-	Mix_Music *insert_coin;
-	bool coin_inserted = false;
+	SDL_Rect icon_screen2;
+	SDL_Rect *cur_anim;
+	Animation small_turn;
+	Animation big_turn;
+	Animation horitzontal_dis;
+
 
 };
 
