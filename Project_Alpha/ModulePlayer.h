@@ -102,8 +102,8 @@ public:
 	bool airkick = true;
 	bool alreadyHit = false;
 	bool flipP1 = false;
-	float yvel = 12.0f;
-	float gravity = 0.7f;
+	float yvel = 12.5f;
+	float gravity = 0.72f;
 	uint time = 0;
 	uint jumpTimer = 0;
 	uint jumpstart;
