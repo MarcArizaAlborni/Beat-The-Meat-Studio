@@ -144,6 +144,8 @@ ModuleUI::ModuleUI() : Module()
 	plane.y = 27;
 	plane.w = 15;
 	plane.h = 13;
+
+	coin = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 }
 
 // Destructor
@@ -156,6 +158,8 @@ bool ModuleUI::Start()
 	LOG("Loading UI assets");
 	bool ret = true;
 	graphicsUI = App->textures->Load("Sprites/UI_Spritesheet.png");
+	graphics = App->textures->Load("Sprites/StreetFighter.png");
+	
 	return ret;
 }
 update_status ModuleUI::Update()
@@ -178,6 +182,17 @@ update_status ModuleUI::Update()
 		App->render->Blit(graphicsUI, 128, 143, &characterGrid, 1.0f, false); //Character Grid.
 	}
 
+	if (insert_coin) 
+	{
+		if (App->guys_screen != nullptr) {
+			App->render->Blit(graphics, 0, -351, &coin, 0.75f); //Street Fighter
+		}
+		else 
+		{
+			App->render->Blit(graphics, 0, 0, &coin, 0.75f); //Street Fighter
+		}
+		
+	}
 	return update_status::UPDATE_CONTINUE;
 }
 
@@ -186,6 +201,7 @@ bool ModuleUI::CleanUp()
 {
 	LOG("Unloading UI assets");
 	App->textures->Unload(graphicsUI);
+	App->textures->Unload(graphics);
 
 	return true;
 }

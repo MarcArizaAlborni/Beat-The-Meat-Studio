@@ -28,30 +28,31 @@
 
 Application::Application()
 {
-	modules[0] = window = new ModuleWindow();
-	modules[1] = render = new ModuleRender();
-	modules[2] = input = new ModuleInput();
-	modules[3] = textures = new ModuleTextures();
-	modules[4] = welcome_screen = new ModuleWelcomeScreen();
-	modules[5] = guys_screen = new ModuleGuys();
-	modules[6] = warning_screen = new ModuleWarningScreen();
-	modules[7] = icoin_screen = new ModuleIcoinScreen();
-	modules[8] = start_screen = new ModuleStartScreen();
-	modules[9] = character_select = new ModuleCharacterSelect();
-	modules[10] = scene_honda = new ModuleSceneHonda();
-	modules[11] = scene_guile = new ModuleSceneGuile();
-	modules[12] = scene_ryu = new ModuleSceneRyu();
-	modules[13] = win_screen = new ModuleWinScreen();
-	modules[14] = lose_screen = new ModuleLoseScreen();
-	modules[15] = player = new ModulePlayer();
-	modules[16] = player2 = new ModulePlayer2();
-	modules[17] = congrat_screen = new ModuleCongratScreen();
-	modules[18] = particles = new ModuleParticles();
-	modules[19] = collision = new ModuleCollision();
-	modules[20] = fade = new ModuleFadeToBlack();
-	modules[21] = ui = new ModuleUI();
-	modules[22] = fonts = new ModuleFonts();
-	modules[23] = audio = new ModuleAudio();
+	int i = 0;
+	modules[i++] = window = new ModuleWindow();
+	modules[i++] = render = new ModuleRender();
+	modules[i++] = input = new ModuleInput();
+	modules[i++] = textures = new ModuleTextures();
+	modules[i++] = welcome_screen = new ModuleWelcomeScreen();
+	modules[i++] = guys_screen = new ModuleGuys();
+	modules[i++] = warning_screen = new ModuleWarningScreen();
+	modules[i++] = start_screen = new ModuleStartScreen();
+	modules[i++] = character_select = new ModuleCharacterSelect();
+	modules[i++] = scene_honda = new ModuleSceneHonda();
+	modules[i++] = scene_guile = new ModuleSceneGuile();
+	modules[i++] = scene_ryu = new ModuleSceneRyu();
+	modules[i++] = win_screen = new ModuleWinScreen();
+	modules[i++] = lose_screen = new ModuleLoseScreen();
+	modules[i++] = player = new ModulePlayer();
+	modules[i++] = player2 = new ModulePlayer2();
+	modules[i++] = congrat_screen = new ModuleCongratScreen();
+	modules[i++] = particles = new ModuleParticles();
+	modules[i++] = collision = new ModuleCollision();
+	modules[i++] = fade = new ModuleFadeToBlack();
+	modules[i++] = icoin_screen = new ModuleIcoinScreen();
+	modules[i++] = ui = new ModuleUI();
+	modules[i++] = fonts = new ModuleFonts();
+	modules[i++] = audio = new ModuleAudio();
 
 }	
 
@@ -81,7 +82,8 @@ bool Application::Init()
 	start_screen->Disable();
 	lose_screen->Disable();
 	ui->Disable();
-	guys_screen->Disable();
+	//guys_screen->Disable();
+	welcome_screen->Disable();
 
 	for(int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->Init();

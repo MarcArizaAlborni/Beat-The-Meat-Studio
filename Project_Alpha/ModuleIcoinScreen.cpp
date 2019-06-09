@@ -13,15 +13,13 @@
 #include "ModuleStartScreen.h"
 #include "Animation.h"
 #include "ModuleSceneRyu.h"
+#include "ModuleUI.h"
 
 ModuleIcoinScreen::ModuleIcoinScreen()
 {
-	icoin_screen.x = 0;
-	icoin_screen.y = 0;
-	icoin_screen.w = SCREEN_WIDTH;
-	icoin_screen.h = SCREEN_HEIGHT;
-
+	icoin_screen = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 	
+	small_turn.PushBack({});
 }
 
 ModuleIcoinScreen::~ModuleIcoinScreen()
@@ -33,9 +31,11 @@ ModuleIcoinScreen::~ModuleIcoinScreen()
 bool ModuleIcoinScreen::Start()
 {
 	LOG("Loading Welcome screen");
-	graphics = App->textures->Load("Sprites/StartScreenIII_II.png");
-	insert_coin = App->audio->LoadMus("Audios/Music/02 Credit.ogg");
+	graphics = App->textures->Load("Sprites/StreetFighter.png");
+	graphics2 = App->textures->Load("Sprites/StartScreenIII_I.png");
 	App->render->camera.y = 0;
+	App->ui->Enable();
+	App->ui->insert_coin = true;
 	return true;
 }
 
@@ -44,29 +44,39 @@ bool ModuleIcoinScreen::CleanUp()
 {
 	LOG("Unloading Introduce coin Screen");
 	App->textures->Unload(graphics);
-	App->audio->UnLoadMusic(insert_coin);
+	App->ui->Disable();
+	App->ui->insert_coin = false;
 	return true;
+}
+
+update_status ModuleIcoinScreen::PreUpdate()
+{
+	cur_anim = &small_turn.GetCurrentFrame();
+
+	if (small_turn.Finished()) {
+
+		cur_anim = &big_turn.GetCurrentFrame();
+	}
+
+	if (big_turn.Finished()) 
+	{
+		cur_anim = &horitzontal_dis.GetCurrentFrame();
+	}
+
+	if (horitzontal_dis.Finished())
+	{
+		cur_anim = &icon_screen2;
+	}
+
+
 }
 
 // Update: draw background
 update_status ModuleIcoinScreen::Update()
 {
-
-
-	App->render->Blit(graphics, 0, 0, &icoin_screen, 0.75f);
 	
-	if (App->input->keyboard[SDL_SCANCODE_F3] || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_1] == KEY_DOWN || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_2] == KEY_DOWN) {
+	App->render->Blit(graphics, 0, 0, &icoin_screen);
+	App->render->Blit(graphics2, 0, 0, cur_anim);
 
-		App->audio->PlayMusic(insert_coin, NULL);
-		App->audio->FinishMusic(1000);
-		
-		coin_inserted = true;
-
-		if (coin_inserted == true) {
-			App->fade->FadeToBlack(App->icoin_screen, App->start_screen, 0.5f);
-		}
-	}
-
-	
 	return UPDATE_CONTINUE;
 }

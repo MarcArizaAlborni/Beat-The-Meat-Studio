@@ -20,6 +20,7 @@ public:
 public:
 
 	SDL_Texture* graphicsUI = nullptr;
+	SDL_Texture* graphics = nullptr;
 	SDL_Rect healthbar;
 	SDL_Rect health;
 	SDL_Rect health2;
@@ -32,6 +33,7 @@ public:
 	SDL_Rect countryFlag;
 	SDL_Rect countryFlagII;
 	SDL_Rect plane;
+	SDL_Rect coin;
 
 	bool stage;
 	bool character_select;
@@ -44,6 +46,8 @@ public:
 	bool china;
 	bool japan;
 	bool japanII;
+
+	bool insert_coin = false;
 	
 };
 
