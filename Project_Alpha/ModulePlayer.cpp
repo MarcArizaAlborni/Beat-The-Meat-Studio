@@ -1650,7 +1650,7 @@ update_status ModulePlayer::Update() {
 	
 
 	if ( currentstateP1 != crouchstateP1 && currentstateP1 != crouchLPP1 && currentstateP1 != crouchMPP1 && currentstateP1 != crouchHPP1 && currentstateP1 != crouchLKP1 && currentstateP1 != crouchMKP1 && currentstateP1 != crouchHKP1 ) {
-		playerP1_collider->SetPos(positionP1.x  - App->render->camera.x *2  , positionP1.y - 93 - App->render->camera.y * 2);
+		playerP1_collider->SetPos(positionP1.x - App->render->camera.x , positionP1.y - 93 - App->render->camera.y / 5);
 	}
 
 	SDL_Rect r = currentP1_animation->GetCurrentFrame();

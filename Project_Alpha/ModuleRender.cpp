@@ -61,7 +61,7 @@ update_status ModuleRender::Update()
 	int speed = 2;
 	int still = 0;
 
-	/*if (!App->collision->debug) {
+	if (!App->collision->debug) {
 		if (App->input->keyboard[SDL_SCANCODE_KP_2] == KEY_REPEAT)
 		{
 			if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled() || App->scene_guile->IsEnabled())
@@ -109,7 +109,7 @@ update_status ModuleRender::Update()
 				camera.x += still;
 			}
 		}
-	} */
+	} 
 	
 	if (camera.x <= -225) {
 		camera.x = -225;
