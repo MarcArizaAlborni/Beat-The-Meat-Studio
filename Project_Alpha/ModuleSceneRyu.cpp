@@ -14,7 +14,7 @@
 #include "ModuleWinScreen.h"
 #include "ModuleLoseScreen.h"
 #include "MemLeaks.h"
-#include "ModuleAudio.h"
+
 
 
 Uint32 timeLimit = 0;
@@ -95,9 +95,9 @@ bool ModuleSceneRyu::Start()
 	LOG("Loading Ryu scene");
 	graphics = App->textures->Load("Sprites/ryu_stage.png");
 	graphics2 = App->textures->Load("Sprites/UI_Spritesheet.png");
-	Background_Sound = App->audio->LoadMus("Audios/Music/05 Japan (Ryu) I.ogg");
+	
 
-	App->audio->PlayMusic(Background_Sound, 0);
+	
 
 	App->player->currentstateP1 = idlestateP1;
 	App->player->positionP1.x = 50;
@@ -131,7 +131,7 @@ bool ModuleSceneRyu::CleanUp()
 	App->player2->Disable();
 	App->collision->Disable();
 	App->particles->Disable();
-	App->audio->UnLoadMusic(Background_Sound);
+	
 
 	//Resets the healthbars at the end of the duel / scene.
 	health.x = 189;
@@ -177,7 +177,7 @@ update_status ModuleSceneRyu::Update()
 	if (health.x <= 45) //45 instead of 0 because it doesnt exactly fit. If the duel ends then reset the healthbars
 	{
 		App->fade->FadeToBlack(App->scene_ryu, App->lose_screen, 1.0f);
-		App->audio->FinishMusic(1000);
+		
 	}
 	if (App->input->keyboard[SDL_SCANCODE_F6] == 1) //Health-substracting button
 	{
@@ -186,19 +186,18 @@ update_status ModuleSceneRyu::Update()
 	if (health2.w <= 0) //If the duel ends then reset the healthbars
 	{
 		App->fade->FadeToBlack(App->scene_ryu, App->win_screen, 1.0f);
-		App->audio->FinishMusic(1000);
+	
 	}
 	if (App->input->keyboard[SDL_SCANCODE_F3] == 1) //Insta-Win Input Button
 	{
 		App->fade->FadeToBlack(App->scene_ryu, App->win_screen, 1.0f);
 		
-		App->audio->FinishMusic(1000);
 	}
 	 
 	if (App->input->keyboard[SDL_SCANCODE_F4] == 1) //Insta-Lose Input Button
 	{
 		App->fade->FadeToBlack(App->scene_ryu, App->lose_screen, 1.0f);
-		App->audio->FinishMusic(1000);
+	
 	}
 
 	

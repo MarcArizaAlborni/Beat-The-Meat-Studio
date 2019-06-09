@@ -2,7 +2,7 @@
 #define __APPLICATION_H__
 #include "Globals.h"
 
-#define NUM_MODULES 24
+#define NUM_MODULES 25
 
 class ModuleWindow;
 class ModuleInput;
@@ -28,7 +28,7 @@ class ModuleLoseScreen;
 class ModuleUI;
 class ModuleFonts;
 class ModuleAudio;
-
+class ModuleSounds;
 
 class Module;
 
@@ -62,6 +62,7 @@ public:
 	ModuleUI * ui;
 	ModuleFonts* fonts;
 	ModuleAudio* audio;
+	ModuleSounds* sounds;
 	
 
 public:

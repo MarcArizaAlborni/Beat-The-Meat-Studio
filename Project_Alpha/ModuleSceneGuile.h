@@ -4,7 +4,7 @@
 #include "Module.h"
 #include "Animation.h"
 #include "Globals.h"
-#include "ModuleAudio.h"
+
 
 struct SDL_Texture;
 
@@ -37,7 +37,6 @@ public:
 	Animation left_guys;
 	Animation mid_guys;
 	Animation right_guys;
-	Mix_Music* Background_Sound;
 	
 
 	Uint32 timeLimit = 0;

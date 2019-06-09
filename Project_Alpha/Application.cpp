@@ -24,6 +24,7 @@
 #include "ModuleUI.h"
 #include "ModuleFonts.h"
 #include "ModuleAudio.h"
+#include "ModuleSounds.h"
 
 
 Application::Application()
@@ -48,6 +49,7 @@ Application::Application()
 	modules[i++] = congrat_screen = new ModuleCongratScreen();
 	modules[i++] = particles = new ModuleParticles();
 	modules[i++] = collision = new ModuleCollision();
+	modules[i++] = sounds = new ModuleSounds();
 	modules[i++] = fade = new ModuleFadeToBlack();
 	modules[i++] = icoin_screen = new ModuleIcoinScreen();
 	modules[i++] = ui = new ModuleUI();
@@ -82,6 +84,7 @@ bool Application::Init()
 	start_screen->Disable();
 	lose_screen->Disable();
 	ui->Disable();
+	sounds->Disable();
 	guys_screen->Disable();
 	//welcome_screen->Disable();
 

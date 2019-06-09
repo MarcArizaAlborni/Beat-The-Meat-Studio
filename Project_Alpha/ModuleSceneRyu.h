@@ -4,7 +4,7 @@
 #include "Module.h"
 #include "Animation.h"
 #include "Globals.h"
-#include "ModuleAudio.h"
+
 
 struct SDL_Texture;
 
@@ -34,7 +34,7 @@ public:
 	SDL_Rect score;
 	SDL_Rect timer;
 	Animation cartel;
-	Mix_Music* Background_Sound;
+
 
 	
 	

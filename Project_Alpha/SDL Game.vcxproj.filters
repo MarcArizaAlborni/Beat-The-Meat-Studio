@@ -137,6 +137,9 @@
     <ClInclude Include="ModuleGuys.h">
       <Filter>Modules\Scenes\Intro</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleSounds.h">
+      <Filter>Modules\Audio</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -222,6 +225,9 @@
     </ClCompile>
     <ClCompile Include="ModuleGuys.cpp">
       <Filter>Modules\Scenes\Intro</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleSounds.cpp">
+      <Filter>Modules\Audio</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
