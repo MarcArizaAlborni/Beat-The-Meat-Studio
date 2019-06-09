@@ -39,8 +39,7 @@ ModulePlayer::ModulePlayer()
 		idleP1.PushBack({ 233, 27, 100, 100 }); 
 		idleP1.PushBack({ 32, 27, 100, 100 }); 
 		idleP1.PushBack({ 135, 27, 100, 100 }); 
-		idleP1.PushBack({ 32, 27, 100, 100 }); 
-	
+		idleP1.PushBack({ 32, 27, 100, 100 });
 		idleP1.speed = 0.08f;
 
 		//Walk FORWARD Animation
@@ -1397,7 +1396,9 @@ update_status ModulePlayer::Update() {
 	case SdamagedP1:
 		currentP1_animation = &SdamageP1;
 		break;
-
+	case SblockstunP1:
+		currentP1_animation = &SblockP1;
+		break;
 	case HeadbuttP1:
 		currentP1_animation = &Headbut_P1; // falta ANIMACIO HEADBUTT
 		LOG("HEADBUTT ANIMATION ACTIVE");
@@ -1488,9 +1489,8 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			currentstateP1 = SdamagedP1;
 		}
 		else {
-			//currentstateP1 = ;
+			currentstateP1 = SblockstunP1;
 		}
-
 	}
 
 }
