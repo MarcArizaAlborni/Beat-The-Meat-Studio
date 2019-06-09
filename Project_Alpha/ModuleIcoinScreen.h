@@ -23,9 +23,7 @@ public:
 public:
 
 	SDL_Texture* graphics = nullptr;
-	SDL_Texture* graphics2 = nullptr;
 	SDL_Rect icoin_screen;
-	SDL_Rect icon_screen2;
 	SDL_Rect *cur_anim;
 	Animation small_turn;
 	Animation big_turn;
