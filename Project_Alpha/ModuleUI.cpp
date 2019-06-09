@@ -9,6 +9,7 @@
 #include "ModuleInput.h"
 #include "ModulePlayer.h"
 #include "ModulePlayerII.h"
+#include "ModuleFonts.h"
 
 ModuleUI::ModuleUI() : Module()
 {
@@ -159,11 +160,17 @@ bool ModuleUI::Start()
 	bool ret = true;
 	graphicsUI = App->textures->Load("Sprites/UI_Spritesheet.png");
 	graphics = App->textures->Load("Sprites/StreetFighter.png");
-	
+	App->fonts->Load("Fonts/numbers.png", "0123456789aaaaaaaaaa",1);
 	return ret;
 }
 update_status ModuleUI::Update()
 {
+	char timechar[2];
+	
+	int timerint = 100 - App->scene_guile->timeLimit;
+	timechar[0] = timerint / 10 + '0';
+	timechar[1] = timerint % 10 + '0';
+
 	//Blits
 	if (stage)
 	{
@@ -174,7 +181,8 @@ update_status ModuleUI::Update()
 		App->render->Blit(graphicsUI, 32, 34, &name, 1.0f, false); //name p1
 		App->render->Blit(graphicsUI, 322, 34, &name2, 1.0f, false); //name p2
 		App->render->Blit(graphicsUI, 6, 1, &score, 1.0f, false); //score
-		App->render->Blit(graphicsUI, 178, 34, &timer, 1.0f, false); //timer
+		App->fonts->BlitText(178, 36, 0, timechar); //timer
+		//App->render->Blit(graphicsUI, 178, 34, &timer, 1.0f, false); //timer
 	}
 	
 	if (character_select)
