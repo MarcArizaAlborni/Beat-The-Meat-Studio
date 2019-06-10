@@ -1200,26 +1200,16 @@ update_status ModulePlayer::PreUpdate() {
 				 LOG("LP to IDLE");
 			 }
 
-			  if ( currentP1_animation->Finished() && inputplayerP1.U_active) {
+			  if ( !currentP1_animation->Finished() && inputplayerP1.U_active) {
 
 				 currentstateP1 = thunder1P1;
 				 alreadyHit = false;
-				 Ethunder_P1.Reset();
 				 SFLP_P1.Reset();
 				 thundertick = 1;
 				 LOG("LP to Thunder1");
 
 			  }
-			if (currentP1_animation->Finished()&&inputplayerP1.U_active && thundertick==1){
-
-				 currentstateP1 =thunder2P1;
-				 alreadyHit = false;
-				 SFLP_P1.Reset();
-				 Ethunder_P1.Reset();
-				 LOG("Thunder1 to Thunder2");
-
-
-			 }
+			
 		 }
 		 //THUNDER
 		 if (currentstateP1 == thunder1P1) {
@@ -1233,20 +1223,16 @@ update_status ModulePlayer::PreUpdate() {
 				 LOG("Thunder 1 to IDLE");
 			 }
 
-			/* if (currentP1_animation->Finished() && inputplayerP1.U_active) {
+			 if (!currentP1_animation->Finished() && inputplayerP1.U_active) {
 
-				 currentstateP1 = idlestateP1;
+				 currentstateP1 = thunder2P1;
+				 alreadyHit = false;
+				 SFLP_P1.Reset();
+				
+				 LOG("Thunder1 to Thunder2");
 
-			  }*/
 
-			 //else if (currentP1_animation->Finished() ) {
-			 //    alreadyHit = false;
-				// Ethunder_P1.Reset();
-				// SFLP_P1.Reset();
-				//// currentstateP1 = thunder2P1;
-				// LOG("Thunder 1 to Thunder 2");
-
-			 //}
+			 }
 
 		 }
 
@@ -1254,7 +1240,7 @@ update_status ModulePlayer::PreUpdate() {
 		 if (currentstateP1 == thunder2P1) {
 		 
 
-			 if (currentP1_animation->Finished()&& !inputplayerP1.U_active) {
+			 if (currentP1_animation->Finished()) {
 				 currentstateP1 = idlestateP1;
 				 Ethunder_P1.Reset();
 				 SFLP_P1.Reset();
