@@ -43,6 +43,7 @@ bool ModuleCharacterSelect::Start()
 	App->ui->p2_pointerPosY = 173;
 
 	//character_screen = App->audio->LoadMus("Audios/Music/02 Credit.ogg");
+
 	return true;
 }
 
@@ -61,11 +62,6 @@ bool ModuleCharacterSelect::CleanUp()
 update_status ModuleCharacterSelect::Update()
 {
 	App->render->Blit(graphics, 0, 0, &character_screen, 0.75f);
-
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_1] == KEY_DOWN) 
-	{
-		App->fade->FadeToBlack(App->character_select, App->scene_guile, 5.0f);
-	}
 
 	//Pointer player 1
 	if (App->input->keyboard[SDL_SCANCODE_UP] == 1)
@@ -92,6 +88,12 @@ update_status ModuleCharacterSelect::Update()
 		else { App->ui->p1_pointerPosX = 225; }
 	}
 
+	if (App->ui->p1_pointerPosX == 129 && App->ui->p1_pointerPosY == 141) { App->ui->ryuIconP1 = true; }
+	else{ App->ui->ryuIconP1 = false; }
+
+	if (App->ui->p1_pointerPosX == 193 && App->ui->p1_pointerPosY == 141) { App->ui->blankaIconP1 = true; App->ui->brazilP1 = true; }
+	else { App->ui->blankaIconP1 = false; App->ui->brazilP1 = false; }
+
 	//Pointer player 2
 	if (App->input->keyboard[SDL_SCANCODE_U] == 1)
 	{
@@ -117,7 +119,44 @@ update_status ModuleCharacterSelect::Update()
 		else { App->ui->p2_pointerPosX = 225; }
 	}
 
+	if (App->ui->p2_pointerPosX == 129 && App->ui->p2_pointerPosY == 141) { App->ui->ryuIconP2 = true; }
+	else{ App->ui->ryuIconP2 = false; }
+
+	if (App->ui->p2_pointerPosX == 193 && App->ui->p2_pointerPosY == 141) { App->ui->blankaIconP2 = true; App->ui->brazilP2 = true; }
+	else { App->ui->blankaIconP2 = false; App->ui->brazilP2 = false;}
+
 	//Pointer Flags
+	if (App->ui->p1_pointerPosX == 193 && App->ui->p1_pointerPosY == 141 && App->input->keyboard[SDL_SCANCODE_A] == 1)
+	{
+		App->ui->p1_characterSelect = true;
+	}
+
+	if (App->ui->p2_pointerPosX == 193 && App->ui->p2_pointerPosY == 141 && App->input->keyboard[SDL_SCANCODE_A] == 1)
+	{
+		App->ui->p2_characterSelect = true;
+	}
+
+	if (App->ui->p1_characterSelect == true && App->ui->p2_characterSelect == true)
+	{
+		App->ui->stageFlag = true;
+
+		deltaTimeCh = SDL_GetTicks() / 1000;
+		startTimeCh = deltaTimeCh;
+		timeLimitCh = deltaTimeCh - startTimeCh;
+
+		if (timeLimitCh >= 3)
+		{
+			App->fade->FadeToBlack(App->character_select, App->scene_guile, 5.0f);
+		}
+	}
+
+	deltaTimeCh = SDL_GetTicks() / 1000; //GetTicks counts the amount of milliseconds that have elapsed since the SDL_library has been executed. Milliseconds to seconds.
+	
+
+	if (App->input->keyboard[SDL_SCANCODE_SPACE] || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_1] == KEY_DOWN)
+	{
+		App->fade->FadeToBlack(App->character_select, App->scene_guile, 5.0f);
+	}
 
 
 	return UPDATE_CONTINUE;
