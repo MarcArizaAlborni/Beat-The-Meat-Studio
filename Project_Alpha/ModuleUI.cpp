@@ -60,7 +60,26 @@ ModuleUI::ModuleUI() : Module()
 	characterGrid.h = 64;
 
 	//Character Icon
+	p1_pointer.x = 226;
+	p1_pointer.y = 84;
+	p1_pointer.w = 32;
+	p1_pointer.h = 36;
 
+	p2_pointer.x = 265;
+	p2_pointer.y = 84;
+	p2_pointer.w = 32;
+	p2_pointer.h = 36;
+
+	p1_pointerAnim.PushBack({ 226, 84, 32, 36 });
+	p1_pointerAnim.PushBack({ 226, 84, 32, 36 });
+	p1_pointerAnim.PushBack({ 302, 84 ,32, 36 });
+	p1_pointerAnim.PushBack({ 302, 84 ,32, 36 });
+	
+
+	p2_pointerAnim.PushBack({ 265, 84, 32, 36 });
+	p2_pointerAnim.PushBack({ 265, 84, 32, 36 });
+	p2_pointerAnim.PushBack({ 340, 84, 32, 36 });
+	p2_pointerAnim.PushBack({ 340, 84, 32, 36 });
 
 	//CountryFlag
 	if (brazil)
@@ -187,7 +206,11 @@ update_status ModuleUI::Update()
 	
 	if (character_select)
 	{
-		App->render->Blit(graphicsUI, 128, 143, &characterGrid, 1.0f, false); //Character Grid.
+		App->render->Blit(graphicsUI, 128, 144, &characterGrid, 1.0f, false); //Character Grid.
+		//App->render->Blit(graphicsUI, 128, 140, &p1_pointer, 1.0f, false); //Character Pointer 1.
+		//App->render->Blit(graphicsUI, 128, 172, &p2_pointer, 1.0f, false); //Character Pointer 2.
+		App->render->Blit(graphicsUI, 128, 140 , &(p1_pointerAnim.GetCurrentFrame()));
+		App->render->Blit(graphicsUI, 128, 172, &(p2_pointerAnim.GetCurrentFrame()));
 	}
 
 	if (insert_coin) 
