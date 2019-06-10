@@ -61,43 +61,43 @@ update_status ModuleRender::Update()
 	int speed = 2;
 	int still = 0;
 
-	if (!App->collision->debug) {
-		/*if (App->input->keyboard[SDL_SCANCODE_KP_2] == KEY_REPEAT)
-		{
-			if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled() || App->scene_guile->IsEnabled())
-			{
-				camera.y += speed*2;
-			}
-			else
-			{
-				camera.y += still;
-			}
-		}*/
+	//if (!App->collision->debug) {
+	//	/*if (App->input->keyboard[SDL_SCANCODE_KP_2] == KEY_REPEAT)
+	//	{
+	//		if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled() || App->scene_guile->IsEnabled())
+	//		{
+	//			camera.y += speed*2;
+	//		}
+	//		else
+	//		{
+	//			camera.y += still;
+	//		}
+	//	}*/
 
-		/*if (App->input->keyboard[SDL_SCANCODE_KP_8] == KEY_REPEAT)
-		{
-			if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled() || App->scene_guile->IsEnabled())
-			{
-				camera.y -= speed*2;
-			}
-			else
-			{
-				camera.y -= still;
-			}
-		}*/
+	//	/*if (App->input->keyboard[SDL_SCANCODE_KP_8] == KEY_REPEAT)
+	//	{
+	//		if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled() || App->scene_guile->IsEnabled())
+	//		{
+	//			camera.y -= speed*2;
+	//		}
+	//		else
+	//		{
+	//			camera.y -= still;
+	//		}
+	//	}*/
 
-		if (App->input->keyboard[SDL_SCANCODE_KP_4] == KEY_REPEAT)
-		{
-			if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled() || App->scene_guile->IsEnabled())	{camera.x -= speed*2;}
-			else{camera.x -= still;}
-		}
+	//	if (App->input->keyboard[SDL_SCANCODE_KP_4] == KEY_REPEAT)
+	//	{
+	//		if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled() || App->scene_guile->IsEnabled())	{camera.x -= speed*2;}
+	//		else{camera.x -= still;}
+	//	}
 
-		if (App->input->keyboard[SDL_SCANCODE_KP_6] == KEY_REPEAT)
-		{
-			if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled() || App->scene_guile->IsEnabled())	{camera.x += speed*2;}
-			else{camera.x += still;}
-		}
-	} 
+	//	if (App->input->keyboard[SDL_SCANCODE_KP_6] == KEY_REPEAT)
+	//	{
+	//		if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled() || App->scene_guile->IsEnabled())	{camera.x += speed*2;}
+	//		else{camera.x += still;}
+	//	}
+	//} 
 	
 	if (camera.x <= -290 * SCREEN_SIZE / 2) { //225
 		camera.x = -290* SCREEN_SIZE/2;
