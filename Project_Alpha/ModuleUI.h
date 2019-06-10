@@ -3,7 +3,6 @@
 
 #include "Module.h"
 #include "Animation.h"
-#include "p2Point.h"
 #include "Globals.h"
 
 struct SDL_Texture;
@@ -38,6 +37,14 @@ public:
 	SDL_Rect plane;
 	SDL_Rect Logo;
 
+	//Flag Pointer
+	int p1_FlagPosX = 0;
+	int p1_FlagPosY = 0;
+
+	int p2_FlagPosX = 0;
+	int p2_FlagPosY = 0;
+
+	//Character Pointer
 	Animation p1_pointerAnim;
 	int p1_pointerPosX = 0;
 	int p1_pointerPosY = 0;
@@ -45,9 +52,6 @@ public:
 	Animation p2_pointerAnim;
 	int p2_pointerPosX = 0;
 	int p2_pointerPosY = 0;
-
-
-	iPoint positionPointerP1;
 
 	bool stage;
 	bool character_select;
