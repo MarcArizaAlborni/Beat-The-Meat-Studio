@@ -1301,6 +1301,7 @@ update_status ModulePlayer::PreUpdate() {
 		 if (jumping == true) {
 			 comboInput('w');
 			 if (positionP1.y >= groundLevel + 1) {
+				 deleteCollider(attackP1_collider);
 				 positionP1.y = groundLevel;
 				 currentstateP1 = idlestateP1;
 				 NjumpP1.Reset();
@@ -1327,33 +1328,40 @@ update_status ModulePlayer::PreUpdate() {
 				 
 				 if (inputplayerP1.U_active) {
 					 currentstateP1 = jumpLPP1;
+					 attackP1_collider = App->collision->AddCollider({ 0,0, 57, 25 }, COLLIDER_PLAYER_ATTACK, SFLK, App->player);
 					 airkick = false;
 				 }
 				 if (inputplayerP1.I_active) {
 					 currentstateP1 = jumpMPP1;
+					 attackP1_collider = App->collision->AddCollider({ 0,0, 57, 25 }, COLLIDER_PLAYER_ATTACK, SFLK, App->player);
 					 airkick = false;
 				 }
 				 if (inputplayerP1.J_active) {
 					 currentstateP1 = jumpLKP1;
+					 attackP1_collider = App->collision->AddCollider({ 0,0, 57, 25 }, COLLIDER_PLAYER_ATTACK, SFLK, App->player);
 					 airkick = false;
 				 }
 				 if (inputplayerP1.K_active) {
 					 currentstateP1 = jumpMKP1;
+					 attackP1_collider = App->collision->AddCollider({ 0,0, 57, 25 }, COLLIDER_PLAYER_ATTACK, SFLK, App->player);
 					 airkick = false;
 				 }
 				 if (inputplayerP1.L_active) {
 					 currentstateP1 = jumpHKP1;
+					 attackP1_collider = App->collision->AddCollider({ 0,0, 57, 25 }, COLLIDER_PLAYER_ATTACK, SFLK, App->player);
 					 airkick = false;
 				 }
 				 if (currentstateP1 == FjumpstateP1 || currentstateP1 == BjumpstateP1) {
 					 if (inputplayerP1.O_active) {
 						 currentstateP1 = DjumpHPP1;
+						 attackP1_collider = App->collision->AddCollider({ 0,0, 57, 25 }, COLLIDER_PLAYER_ATTACK, SFLK, App->player);
 						 airkick = false;
 					 }
 				 }
 				 else {
 					 if (inputplayerP1.O_active) {
 						 currentstateP1 = NjumpHPP1;
+						 attackP1_collider = App->collision->AddCollider({ 0,0, 57, 25 }, COLLIDER_PLAYER_ATTACK, SFLK, App->player);
 						 airkick = false;
 					 }
 				 }
