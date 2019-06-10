@@ -124,6 +124,7 @@ public:
 	SDL_Texture* graphicsP1 = nullptr;
 	//test
 	Animation* currentP1_animation = nullptr;
+	int thundertick = 0;
 	
 	int font_score = -1;
 	char score_text[10];
