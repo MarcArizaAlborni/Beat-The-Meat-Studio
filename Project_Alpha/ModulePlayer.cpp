@@ -1334,12 +1334,12 @@ update_status ModulePlayer::PreUpdate() {
 				 LOG("CROUCH to LP");
 				 
 			 }
-			 if (inputplayerP1.A_active) {
+			 /*if (inputplayerP1.A_active) {
 				 crouchBlockingP1 = true;
 			 }
 			 if (!inputplayerP1.A_active ) {
 				 crouchBlockingP1 = false;
-			 }
+			 }*/
 			 if (inputplayerP1.U_active) {
 				 currentstateP1 = crouchLPP1;
 				 attackP1_collider = App->collision->AddCollider({ 0,0, 93, 20 }, COLLIDER_PLAYER_ATTACK,CLP, App->player);
@@ -1699,10 +1699,10 @@ update_status ModulePlayer::PreUpdate() {
 }
 
 update_status ModulePlayer::Update() {
-
+	SblockingP1 = false;
+	CblockingP1 = false;
 	switch (currentstateP1)
 	{
-
 	case idlestateP1:
 		playerP1_collider->rect.h = 93;
 		positionP1.y = groundLevelP1;
@@ -1714,13 +1714,16 @@ update_status ModulePlayer::Update() {
 		playerP1_collider->rect.h = 93;
 		currentP1_animation = &backwardP1;
 		positionP1.x -= speedP1;
+		if (!flipP1) { SblockingP1 = true; }
+		else { SblockingP1 = false; }
 		LOG("BACK ANIMATION ACTIVE");
 		break;
 
 	case forwardstateP1:
 
 		currentP1_animation = &forwardP1;
-
+		if (!flipP1) { SblockingP1 = false; }
+		else { SblockingP1 = true; }
 		positionP1.x += speedP1;
 		LOG("FORWARD ANIMATION ACTIVE");
 		break;
@@ -1729,6 +1732,14 @@ update_status ModulePlayer::Update() {
 		currentP1_animation = &crouchP1;
 		playerP1_collider->rect.h = 65;
 		playerP1_collider->SetPos(positionP1.x + 15 - camxP1, positionP1.y - 65 - camyP1);
+		if (!flipP1) {
+			if (inputplayerP1.A_active) { SblockingP1 = true; }
+			else { CblockingP1 = false; }
+		}
+		else {
+			if (inputplayerP1.D_active) { SblockingP1 = true; }
+			else { CblockingP1 = false; }
+		}
 
 		LOG("CROUCHED ANIMATION ACTIVE");
 		break;
@@ -2054,15 +2065,20 @@ update_status ModulePlayer::Update() {
 	//damaged
 	case SdamagedLP1:
 		currentP1_animation = &SdamageLP1;
-		positionP1.x -= 1;
+		if (flipP1) {
+			positionP1.x += 1;
+		}
+		else {positionP1.x -= 1;}
 		break;
 	case SdamagedMP1:
 		currentP1_animation = &SdamageMP1;
-		positionP1.x -= 1;
+		if (flipP1) {	positionP1.x += 1;}
+		else {positionP1.x -= 1;}
 		break;
 	case SdamagedHP1:
 		currentP1_animation = &SdamageHP1;
-		positionP1.x -= 1;
+		if (flipP1) {positionP1.x += 1;}
+		else {positionP1.x -= 1;}
 		break;
 	case SblockstunP1:
 		currentP1_animation = &SblockP1;

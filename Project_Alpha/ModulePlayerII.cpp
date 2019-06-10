@@ -677,7 +677,7 @@ bool ModulePlayer2::Start()
 	*finishCP2 = comboP2[0];
 
 	//Player 2 stest collider
-	playerP2_collider = App->collision->AddCollider({ positionP2.x , positionP2.y,47,200 }, COLLIDER_PLAYER2, NOATTACK, App->player);
+	playerP2_collider = App->collision->AddCollider({ positionP2.x , positionP2.y,47,200 }, COLLIDER_PLAYER2, NOATTACK, App->player2);
 	attackP2_collider = nullptr;
 	return true;
 }
@@ -1270,12 +1270,12 @@ update_status ModulePlayer2::PreUpdate() {
 				 LOG("CROUCH to LP");
 
 			 }
-			 if (inputplayerP2.Left_active) {
+			/* if (inputplayerP2.Left_active) {
 				 crouchBlockingP2 = true;
 			 }
 			 if (!inputplayerP2.Left_active) {
 				 crouchBlockingP2 = false;
-			 }
+			 }*/
 			 if (inputplayerP2.Num7_active) {
 				 currentstateP2 = crouchLPP2;
 				 attackP2_collider = App->collision->AddCollider({ 0,-100, 93, 20 }, COLLIDER_PLAYER2_ATTACK, CLP, App->player);
@@ -1637,7 +1637,8 @@ update_status ModulePlayer2::PreUpdate() {
 // Update: draw background
 update_status ModulePlayer2::Update()
 {
-
+	SblockingP2 = false;
+	CblockingP2 = false;
 	switch (currentstateP2)
 	{
 
@@ -1650,16 +1651,19 @@ update_status ModulePlayer2::Update()
 
 	case backwardstateP2:
 		playerP2_collider->rect.h = 93;
-		currentP2_animation = &backwardP2;
+		currentP2_animation = &forwardP2;
 		positionP2.x -= speedP2;
+		if (!App->player->flipP1) { SblockingP2 = false; }
+		else { SblockingP2 = true; }
 		LOG("BACK ANIMATION ACTIVE");
 		break;
 
 	case forwardstateP2:
 
-		currentP2_animation = &forwardP2;
-
+		currentP2_animation = &backwardP2;
 		positionP2.x += speedP2;
+		if (!App->player->flipP1) { SblockingP2 = true; }
+		else { SblockingP2 = false; }
 		LOG("FORWARD ANIMATION ACTIVE");
 		break;
 
@@ -1992,15 +1996,22 @@ update_status ModulePlayer2::Update()
 		//damaged
 	case SdamagedLP2:
 		currentP2_animation = &SdamageLP2;
-		positionP2.x -= 1;
+		if (App->player->flipP1){
+			positionP2.x -= 1;
+		}
+		else {
+			positionP2.x += 1;
+		}
 		break;
 	case SdamagedMP2:
 		currentP2_animation = &SdamageMP2;
-		positionP2.x -= 1;
+		if (App->player->flipP1) {positionP2.x -= 1;}
+		else {positionP2.x += 1;}
 		break;
 	case SdamagedHP2:
 		currentP2_animation = &SdamageHP2;
-		positionP2.x -= 1;
+		if (App->player->flipP1) {	positionP2.x -= 1;}
+		else {positionP2.x += 1;}
 		break;
 	case SblockstunP2:
 		currentP2_animation = &SblockP2;
@@ -2026,23 +2037,17 @@ update_status ModulePlayer2::Update()
 		attackP2_collider->SetPos(positionP2.x - camxP2, positionP2.y - 60 - camyP2);
 		positionP2.y = 180;
 		positionP2.x += 7;
-
 		currentP2_animation = &RollingP2;
-
 		LOG("ROLLING ANIMATION ACTIVE");
 		break;
-
 
 	case rollingattackP2HEAVY:
 		attackP2_collider->SetPos(positionP2.x - camxP2, positionP2.y - 60 - camyP2);
 		positionP2.y = 180;
 		positionP2.x += 7;
-
 		currentP2_animation = &RollingP2;
-
 		LOG("ROLLING ANIMATION ACTIVE");
 		break;
-
 
 	case rollingreboundP2:
 
@@ -2116,14 +2121,21 @@ update_status ModulePlayer2::Update()
 
 void ModulePlayer2::OnCollision(Collider* c1, Collider* c2)
 {
-	//if(c1->type == COLLIDER_PLAYER2 && c2->type == COLLIDER_PLAYER && inputplayerP2.Left_active ){
+	if (c1->type == COLLIDER_PLAYER2 && c2->type == COLLIDER_PLAYER_ATTACK) {
 
-	//	speedII = 0;
-	//}
-	//else
-	//{
-	//	speedII = 3;
-	//}
+		if (c2->attack == SFLP || c2->attack == SFLK || c2->attack == SCLP || c2->attack == SCLK) {
+			currentstateP2 = SdamagedLP2;
+			deleteCollider2(App->player->attackP1_collider);
+		}
+		else if (c2->attack == SFMP || c2->attack == SFMK || c2->attack == SCMP || c2->attack == SCMK) {
+			currentstateP2 = SdamagedMP2;
+			deleteCollider2(App->player->attackP1_collider);
+		}
+		else if (c2->attack == SFHP || c2->attack == SFHK || c2->attack == SCHP || c2->attack == SCHK) {
+			currentstateP2 = SdamagedHP2;
+			deleteCollider2(App->player->attackP1_collider);
+		}
+	}
 
 }
 

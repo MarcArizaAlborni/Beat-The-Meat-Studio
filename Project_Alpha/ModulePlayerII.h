@@ -114,7 +114,7 @@ public:
 	int maxHeightP2 = 120;
 	bool closeP2 = false;
 	bool SblockingP2 = false;
-	bool crouchBlockingP2 = false;
+	bool CblockingP2 = false;
 	bool airkickP2 = true;
 	bool alreadyHitP2 = false;
 	bool flipP2 = false;
