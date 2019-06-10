@@ -1731,7 +1731,7 @@ update_status ModulePlayer::Update() {
 	
 	//close check
 	if (!flipP1) {
-		if (positionP1.x + 70 > App->player2->positionP2.x) {
+		if (positionP1.x + 50 > App->player2->positionP2.x) {
 			close = true;
 		}
 		else {
@@ -1739,7 +1739,7 @@ update_status ModulePlayer::Update() {
 		}
 	}
 	else {
-		if (positionP1.x - App->player2->positionP2.x - 70 < 10) {
+		if (positionP1.x - App->player2->positionP2.x - 50 < 10) {
 			close = true;
 		}
 		else {
