@@ -770,6 +770,17 @@ update_status ModulePlayer::PreUpdate() {
 				 SCMP_P1.Reset();
 			 }
 		 }
+
+		 if (currentstateP1 == standingcloseLPP1) {
+			 if (currentP1_animation->Finished()) {
+
+				 deleteCollider(attackP1_collider);
+				 currentstateP1 = idlestateP1;
+				 SCLP_P1.Reset();
+			 }
+
+
+		 }
 		 if (currentstateP1 == standingcloseHPP1) {
 			 if (currentP1_animation->Finished()) {
 				 deleteCollider(attackP1_collider);
@@ -1548,35 +1559,40 @@ update_status ModulePlayer::Update() {
 		attackP1_collider->SetPos(positionP1.x + 60 - camx, positionP1.y - 85 - camy);
 		LOG("HK ANIMATION ACTIVE");
 		break;
+
 	case standingcloseMPP1:
 		currentP1_animation = &SCMP_P1;
 		attackP1_collider->SetPos(positionP1.x + 50 - camx, positionP1.y - 85 - camy);
 		LOG("HK ANIMATION ACTIVE");
 		break; 
+
 	case standingcloseHPP1:
 		currentP1_animation = &SCHP_P1;
 		attackP1_collider->SetPos(positionP1.x + 60 - camx, positionP1.y - 85 - camy);
 		LOG("HK ANIMATION ACTIVE");
 		break;
+
 	case standingcloseLKP1:
 		currentP1_animation = &SCLK_P1;
 		attackP1_collider->SetPos(positionP1.x + 60 - camx, positionP1.y - 85 - camy);
 		LOG("HK ANIMATION ACTIVE");
 		break;
+
 	case standingcloseMKP1:
 		currentP1_animation = &SCMK_P1;
 		attackP1_collider->SetPos(positionP1.x + 60 - camx, positionP1.y - 85 - camy);
 		LOG("HK ANIMATION ACTIVE");
 		break;
+
 	case standingcloseHKP1:
 		currentP1_animation = &SCHK_P1;
 		attackP1_collider->SetPos(positionP1.x + 60 - camx, positionP1.y - 25 - camy);
 		LOG("HK ANIMATION ACTIVE");
 		break;
+
 	case thunder1P1:
 		currentP1_animation = &SFLP_P1;
 		LOG("THUNDER 1 ANIMATION ACTIVE");
-
 		break;
 
 	case thunder2P1:
