@@ -29,8 +29,9 @@ ModuleStartScreen::~ModuleStartScreen()
 bool ModuleStartScreen::Start()
 {
 	LOG("Loading Welcome screen");
-	graphics = App->textures->Load("Sprites/Start_Game.png");
-
+	graphics = App->textures->Load("Sprites/Start_GameII.png");
+	App->render->camera.y = 0;
+	
 	return true;
 }
 
@@ -49,11 +50,12 @@ update_status ModuleStartScreen::Update()
 
 	App->sounds->coin_inserted = true;
 
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_1] == KEY_DOWN || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_2] == KEY_DOWN) {
+	if (App->input->keyboard[SDL_SCANCODE_F2] || App->input->keyboard[SDL_SCANCODE_F1] || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_1] == KEY_DOWN || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_2] == KEY_DOWN) {
 
 		App->fade->FadeToBlack(App->start_screen, App->character_select, 1.0f );
 
 	}
+
 
 	return UPDATE_CONTINUE;
 }

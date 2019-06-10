@@ -8,6 +8,8 @@
 #include "ModuleGuys.h"
 #include "Animation.h"
 #include "ModuleUI.h"
+#include "ModuleSounds.h"
+#include "ModuleStartScreen.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleIcoinScreen.h"
 
@@ -228,6 +230,12 @@ update_status ModuleGuys::Update()
 		speed = 0;
 		
 		App->fade->FadeToBlack(App->guys_screen, App->icoin_screen, 4.f);
+
+	}
+
+	if (App->sounds->coin_inserted == true) {
+
+		App->fade->FadeToBlack(App->guys_screen, App->start_screen, 5.0f);
 
 	}
 

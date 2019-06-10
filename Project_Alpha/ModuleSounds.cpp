@@ -57,7 +57,6 @@ update_status ModuleSounds::Update(){
 
 			if (!App->warning_screen->IsEnabled()) {
 
-			
 			SDL_Rect r = insert_coin.GetCurrentFrame();
 
 			App->render->Blit(graphics, 0, 0, &r, 0, false);
