@@ -12,13 +12,14 @@
 #include "ModulePlayerII.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleParticles.h"
-#include "ModuleWelcomeScreen.h"
-#include "ModuleGuys.h"
-#include "ModuleCharacterSelect.h"
-#include "ModuleCongratScreen.h"
-#include "ModuleIcoinScreen.h"
 #include "ModuleStartScreen.h"
 #include "ModuleWarningScreen.h"
+#include "ModuleWelcomeScreen.h"
+#include "ModuleGuys.h"
+#include "ModuleIcoinScreen.h"
+#include "ModuleCharacterSelect.h"
+#include "ModuleVsScreen.h"
+#include "ModuleCongratScreen.h"
 #include "ModuleWinScreen.h"
 #include "ModuleLoseScreen.h"
 #include "ModuleUI.h"
@@ -38,7 +39,9 @@ Application::Application()
 	modules[i++] = guys_screen = new ModuleGuys();
 	modules[i++] = warning_screen = new ModuleWarningScreen();
 	modules[i++] = start_screen = new ModuleStartScreen();
+	modules[i++] = icoin_screen = new ModuleIcoinScreen();
 	modules[i++] = character_select = new ModuleCharacterSelect();
+	modules[i++] = vs_screen = new ModuleVsScreen();
 	modules[i++] = scene_honda = new ModuleSceneHonda();
 	modules[i++] = scene_guile = new ModuleSceneGuile();
 	modules[i++] = scene_ryu = new ModuleSceneRyu();
@@ -51,7 +54,6 @@ Application::Application()
 	modules[i++] = collision = new ModuleCollision();
 	modules[i++] = sounds = new ModuleSounds();
 	modules[i++] = fade = new ModuleFadeToBlack();
-	modules[i++] = icoin_screen = new ModuleIcoinScreen();
 	modules[i++] = ui = new ModuleUI();
 	modules[i++] = fonts = new ModuleFonts();
 	modules[i++] = audio = new ModuleAudio();
@@ -76,13 +78,14 @@ bool Application::Init()
 	scene_honda->Disable();
 	scene_guile->Disable();
 	scene_ryu->Disable();
-	congrat_screen->Disable();
-	icoin_screen->Disable();
-	warning_screen->Disable();
-	character_select->Disable();
-	win_screen->Disable();
 	start_screen->Disable();
+	warning_screen->Disable();
+	icoin_screen->Disable();
+	character_select->Disable();
+	vs_screen->Disable();
+	win_screen->Disable();
 	lose_screen->Disable();
+	congrat_screen->Disable();
 	ui->Disable();
 	guys_screen->Disable();
 	//welcome_screen->Disable();

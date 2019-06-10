@@ -45,6 +45,7 @@ public:
 	Uint32 startTime = 0;
 
 	int damage = 10;
+	int damageUnit = 1;
 	float background_pos;
 	bool forward;
 };

@@ -11,7 +11,7 @@
 #include "ModuleStartScreen.h"
 #include "ModuleCharacterSelect.h"
 #include "Animation.h"
-#include "ModuleSceneGuile.h"
+#include "ModuleVsScreen.h"
 #include "ModuleUI.h"
 
 ModuleCharacterSelect::ModuleCharacterSelect()
@@ -211,14 +211,14 @@ update_status ModuleCharacterSelect::Update()
 
 			if (lapseVs >= 3)
 			{
-				App->fade->FadeToBlack(App->character_select, App->scene_guile, 5.0f);
+				App->fade->FadeToBlack(App->character_select, App->vs_screen, 5.0f);
 			}
 		}
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_1] == KEY_DOWN)
 	{
-		App->fade->FadeToBlack(App->character_select, App->scene_guile, 5.0f);
+		App->fade->FadeToBlack(App->character_select, App->vs_screen, 5.0f);
 
 	}
 

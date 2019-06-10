@@ -14,7 +14,7 @@
     <ProjectGuid>{746CC4C3-787F-4B0E-AA66-E388FE3FF4F6}</ProjectGuid>
     <RootNamespace>SDLGame</RootNamespace>
     <ProjectName>Alpha</ProjectName>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -98,6 +98,7 @@
     <ClInclude Include="ModuleTextures.h" />
     <ClInclude Include="ModuleTimer.h" />
     <ClInclude Include="ModuleUI.h" />
+    <ClInclude Include="ModuleVsScreen.h" />
     <ClInclude Include="ModuleWarningScreen.h" />
     <ClInclude Include="ModuleWelcomeScreen.h" />
     <ClInclude Include="ModuleWindow.h" />
@@ -130,6 +131,7 @@
     <ClCompile Include="ModuleTextures.cpp" />
     <ClCompile Include="ModuleTimer.cpp" />
     <ClCompile Include="ModuleUI.cpp" />
+    <ClCompile Include="ModuleVsScreen.cpp" />
     <ClCompile Include="ModuleWarningScreen.cpp" />
     <ClCompile Include="ModuleWelcomeScreen.cpp" />
     <ClCompile Include="ModuleWindow.cpp" />

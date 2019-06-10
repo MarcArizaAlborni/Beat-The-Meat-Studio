@@ -140,6 +140,9 @@
     <ClInclude Include="ModuleSounds.h">
       <Filter>Modules\Audio</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleVsScreen.h">
+      <Filter>Modules\Scenes\Pre/Post_Battle</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -228,6 +231,9 @@
     </ClCompile>
     <ClCompile Include="ModuleSounds.cpp">
       <Filter>Modules\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleVsScreen.cpp">
+      <Filter>Modules\Scenes\Pre/Post_Battle</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -2,7 +2,7 @@
 #define __APPLICATION_H__
 #include "Globals.h"
 
-#define NUM_MODULES 25
+#define NUM_MODULES 26
 
 class ModuleWindow;
 class ModuleInput;
@@ -11,20 +11,21 @@ class ModuleRender;
 class ModuleParticles;
 class ModuleSceneRyu;
 class ModuleSceneHonda;
-class ModuleSceneGuile;
 class ModulePlayer;
 class ModulePlayer2;
 class ModuleFadeToBlack;
 class ModuleCollision;
-class ModuleWelcomeScreen;
-class ModuleCongratScreen;
-class ModuleGuys;
-class ModuleIcoinScreen;
 class ModuleStartScreen;
 class ModuleWarningScreen;
+class ModuleGuys;
+class ModuleWelcomeScreen;
+class ModuleIcoinScreen;
 class ModuleCharacterSelect;
+class ModuleVsScreen;
+class ModuleSceneGuile;
 class ModuleWinScreen;
 class ModuleLoseScreen;
+class ModuleCongratScreen;
 class ModuleUI;
 class ModuleFonts;
 class ModuleAudio;
@@ -44,7 +45,6 @@ public:
 	ModuleTextures* textures;
 	ModuleSceneRyu* scene_ryu;
 	ModuleSceneHonda* scene_honda;
-	ModuleSceneGuile* scene_guile;
 	ModuleCollision* collision;
 	ModulePlayer* player;
 	ModulePlayer2* player2;
@@ -56,6 +56,8 @@ public:
 	ModuleIcoinScreen* icoin_screen;
 	ModuleStartScreen* start_screen;
 	ModuleCharacterSelect * character_select;
+	ModuleVsScreen * vs_screen;
+	ModuleSceneGuile* scene_guile;
 	ModuleWinScreen * win_screen;
 	ModuleLoseScreen * lose_screen;
 	ModuleCongratScreen * congrat_screen;

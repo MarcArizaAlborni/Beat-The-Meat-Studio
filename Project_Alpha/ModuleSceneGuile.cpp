@@ -139,12 +139,22 @@ update_status ModuleSceneGuile::Update()
 	//Debug mode
 	if (App->input->keyboard[SDL_SCANCODE_F5] == 1) //Health-substracting button
 	{
-		App->ui->health.x -= damage;
+		//App->ui->health.x -= damage;
+
+		for (int i = 0; i < 10; i++)
+		{
+			App->ui->health.x -= damageUnit;
+		}
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_F6] == 1) //Health-substracting button
 	{
-		App->ui->health2.w -= damage;
+		//App->ui->health2.w -= damage;
+
+		for (int i = 0; i < 10; i++)
+		{
+			App->ui->health2.w -= damageUnit;
+		}
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_F3] == 1) //Insta-Win Input Button
