@@ -4,7 +4,7 @@
 #include "Module.h"
 #include "Animation.h"
 #include "Globals.h"
-
+#include "ModuleAudio.h"
 
 struct SDL_Texture;
 
@@ -38,6 +38,7 @@ public:
 	Animation mid_guys;
 	Animation right_guys;
 	
+	Mix_Music* background_music;
 
 	Uint32 timeLimit = 0;
 	Uint32 deltaTime = SDL_GetTicks() / 1000;;

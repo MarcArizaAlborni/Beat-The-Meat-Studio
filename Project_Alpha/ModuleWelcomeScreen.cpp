@@ -31,9 +31,8 @@ bool ModuleWelcomeScreen::Start()
 {
 	LOG("Loading Welcome screen");
 	graphics = App->textures->Load("Sprites/First_text.png");
-	
-	App->sounds->Enable();
-	App->sounds->GuileStage = true;
+
+
 	return true;
 }
 
@@ -42,7 +41,7 @@ bool ModuleWelcomeScreen::CleanUp()
 {
 	LOG("Unloading Welcome Screen");
 	App->textures->Unload(graphics);
-	App->sounds->Disable();
+	
 	return true;
 }
 
@@ -58,15 +57,16 @@ update_status ModuleWelcomeScreen::Update()
 	}
 	
 	
+	
 	if (SDL_GetTicks() > 3000)
 	{
 		App->fade->FadeToBlack(App->welcome_screen, App->warning_screen, 2.0f);
-		App->sounds->GuileStage = false;
+		
 	}
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_1] == KEY_DOWN || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_2] == KEY_DOWN) {
 
 		App->fade->FadeToBlack(App->welcome_screen, App->scene_guile, 1.0f);
-		App->sounds->GuileStage = false;
+		
 	}
 
 	return UPDATE_CONTINUE;

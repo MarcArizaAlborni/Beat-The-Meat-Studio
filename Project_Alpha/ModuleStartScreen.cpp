@@ -11,6 +11,7 @@
 #include "ModuleWelcomeScreen.h"
 #include "ModuleStartScreen.h"
 #include "ModuleCharacterSelect.h"
+#include "ModuleSounds.h"
 
 
 ModuleStartScreen::ModuleStartScreen()
@@ -45,6 +46,9 @@ bool ModuleStartScreen::CleanUp()
 update_status ModuleStartScreen::Update()
 {
 	App->render->Blit(graphics, 0, 0, &start_screen, 0.75f);
+
+	App->sounds->coin_inserted = true;
+
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_1] == KEY_DOWN || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_2] == KEY_DOWN) {
 
 		App->fade->FadeToBlack(App->start_screen, App->character_select, 1.0f );

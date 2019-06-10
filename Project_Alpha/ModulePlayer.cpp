@@ -859,7 +859,7 @@ update_status ModulePlayer::PreUpdate() {
 				 }
 				 if (inputplayerP1.O_active) {
 					 currentstateP1 = standingcloseHPP1;
-					 attackP1_collider = App->collision->AddCollider({ 0,0, 50, 15 }, COLLIDER_PLAYER_ATTACK,SCHP, App->player);
+					 attackP1_collider = App->collision->AddCollider({ 0,0, 60, 25 }, COLLIDER_PLAYER_ATTACK,SCHP, App->player);
 					 LOG("IDLE to HEAVY PUNCH");
 				 }
 
@@ -871,7 +871,7 @@ update_status ModulePlayer::PreUpdate() {
 
 				 if (inputplayerP1.K_active) {
 					 currentstateP1 = standingcloseMKP1;
-					 attackP1_collider = App->collision->AddCollider({ 0,0, 100, 22 }, COLLIDER_PLAYER_ATTACK, SCMK, App->player);
+					 attackP1_collider = App->collision->AddCollider({ 0,0, 57, 25 }, COLLIDER_PLAYER_ATTACK, SCMK, App->player);
 					 LOG("IDLE to HEAVY PUNCH");
 				 }
 
