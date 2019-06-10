@@ -29,9 +29,13 @@ public:
 	SDL_Rect score;
 	SDL_Rect timer;
 	SDL_Rect characterGrid;
-	SDL_Rect characterIcon;
-	SDL_Rect countryFlag;
-	SDL_Rect countryFlagII;
+	SDL_Rect characterIconP1;
+	SDL_Rect characterIconP1II;
+	SDL_Rect characterIconP2;
+	SDL_Rect characterIconP2II;
+	SDL_Rect countryFlagP1;
+	SDL_Rect countryFlagP2;
+	SDL_Rect countryFlagStage;
 	SDL_Rect p1_pointer;
 	SDL_Rect p2_pointer;
 	SDL_Rect plane;
@@ -46,24 +50,32 @@ public:
 
 	//Character Pointer
 	Animation p1_pointerAnim;
-	int p1_pointerPosX = 0;
-	int p1_pointerPosY = 0;
+	int p1_pointerPosX = 129;
+	int p1_pointerPosY = 141;
 
 	Animation p2_pointerAnim;
-	int p2_pointerPosX = 0;
-	int p2_pointerPosY = 0;
+	int p2_pointerPosX = 129;
+	int p2_pointerPosY = 173;
 
 	bool stage;
 	bool character_select;
 	char timechar[2];
-	bool brazil;
-	bool usa;
-	bool usaII;
-	bool urss;
-	bool india;
-	bool china;
-	bool japan;
-	bool japanII;
+
+	//Flags
+	bool brazilP1 = false;
+	bool brazilP2 = false;
+	bool stageFlag = false;
+
+	//Flag Markers
+	bool p1_characterSelect = false;
+	bool p2_characterSelect = false;
+
+	//Character Icons
+	bool ryuIconP1 = false;
+	bool blankaIconP1 = false;
+	bool ryuIconP2 = false;
+	bool blankaIconP2 = false;
+	
 
 	bool StreetLogo = false;
 	

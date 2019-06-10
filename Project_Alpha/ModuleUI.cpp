@@ -59,7 +59,7 @@ ModuleUI::ModuleUI() : Module()
 	characterGrid.w = 129;
 	characterGrid.h = 65;
 
-	//Character Icon
+	//Character Pointers
 	p1_pointer.x = 226;
 	p1_pointer.y = 84;
 	p1_pointer.w = 32;
@@ -83,76 +83,48 @@ ModuleUI::ModuleUI() : Module()
 	p2_pointerAnim.PushBack({ 340, 84, 32, 36 });
 	p2_pointerAnim.PushBack({ 340, 84, 32, 36 });
 
+	//Character Icons
+
+	//Ryu P1
+	characterIconP1.x = 28;
+	characterIconP1.y = 474;
+	characterIconP1.w = 96;
+	characterIconP1.h = 111;
+	
+	//Blanka P1
+	characterIconP1II.x = 28;
+	characterIconP1II.y = 611;
+	characterIconP1II.w = 96;
+	characterIconP1II.h = 111;
+
+	//Ryu P2
+	characterIconP2.x = 126;
+	characterIconP2.y = 474;
+	characterIconP2.w = 96;
+	characterIconP2.h = 111;
+
+	//Blanka P2
+	characterIconP2II.x = 126;
+	characterIconP2II.y = 611;
+	characterIconP2II.w = 96;
+	characterIconP2II.h = 111;
+
 	//CountryFlag
-	if (brazil)
-	{
-		countryFlag.x = 338;
-		countryFlag.y = 202;
-		countryFlag.w = 25;
-		countryFlag.h = 13;
-	}
+	countryFlagP1.x = 364;
+	countryFlagP1.y = 431;
+	countryFlagP1.w = 32;
+	countryFlagP1.h = 24;
 
-	if (usa)
-	{
-		countryFlag.x = 366;
-		countryFlag.y = 202;
-		countryFlag.w = 25;
-		countryFlag.h = 13;
-	}
+	countryFlagP2.x = 364;
+	countryFlagP2.y = 431;
+	countryFlagP2.w = 32;
+	countryFlagP2.h = 24;
 
-	if (usaII)
-	{
-		countryFlag.x = 366;
-		countryFlag.y = 202;
-		countryFlag.w = 25;
-		countryFlag.h = 13;
-	}
-
-	if (urss)
-	{
-		countryFlag.x = 282;
-		countryFlag.y = 202;
-		countryFlag.w = 25;
-		countryFlag.h = 13;
-	}
-
-	if (india)
-	{
-		countryFlag.x = 310;
-		countryFlag.y = 202;
-		countryFlag.w = 25;
-		countryFlag.h = 13;
-	}
-
-	if (china)
-	{
-		countryFlag.x = 254;
-		countryFlag.y = 202;
-		countryFlag.w = 25;
-		countryFlag.h = 13;
-	}
-
-	if (japan)
-	{
-		countryFlag.x = 225;
-		countryFlag.y = 202;
-		countryFlag.w = 25;
-		countryFlag.h = 13;
-	}
-
-	if (japanII)
-	{
-		countryFlag.x = 225;
-		countryFlag.y = 202;
-		countryFlag.w = 25;
-		countryFlag.h = 13;
-	}
-
-	//CountryFlagII
-	countryFlag.x = 366;
-	countryFlag.y = 202;
-	countryFlag.w = 25;
-	countryFlag.h = 13;
+	//Stage's Country Flag 
+	countryFlagStage.x = 400;
+	countryFlagStage.y = 431;
+	countryFlagStage.w = 30;
+	countryFlagStage.h = 24;
 
 	//Plane
 	//Vertical
@@ -209,13 +181,23 @@ update_status ModuleUI::Update()
 	if (character_select)
 	{
 		App->render->Blit(graphicsUI, 128, 144, &characterGrid, 1.0f, false); //Character Grid.
-		App->render->Blit(graphicsUI, 128, 140, &p1_pointer, 1.0f, false); //Character Pointer 1.
-		App->render->Blit(graphicsUI, 128, 172, &p2_pointer, 1.0f, false); //Character Pointer 2.
 		App->render->Blit(graphicsUI, p1_pointerPosX, p1_pointerPosY, &(p1_pointerAnim.GetCurrentFrame())); //Character Pointer 1.
 		App->render->Blit(graphicsUI, p2_pointerPosX, p2_pointerPosY, &(p2_pointerAnim.GetCurrentFrame())); //Character Pointer 2.
+
+		if (brazilP1) { App->render->Blit(graphicsUI, 264, 95, &countryFlagP1, 1.0f, false); } //Country Flag
+		if (brazilP2) { App->render->Blit(graphicsUI, 264, 95, &countryFlagP2, 1.0f, false); } //Country Flag
+		if (stageFlag) { App->render->Blit(graphicsUI, 282, 59, &countryFlagStage, 1.0f, false); } //Stage Flag
+
+		if (p1_characterSelect) { App->render->Blit(graphicsUI, 264, 87, &p1_pointer, 1.0f, false); } //Flag Marker P1
+		if (p2_characterSelect) { App->render->Blit(graphicsUI, 264, 87, &p2_pointer, 1.0f, false); } //Flag Marker P2
+
+		if (ryuIconP1) { App->render->Blit(graphicsUI, 0, 113, &characterIconP1, 1.0f, false); } // P1 Ryu Icon
+		if (blankaIconP1) { App->render->Blit(graphicsUI, 0, 113, &characterIconP1II, 1.0f, false); } //P1 Blanka Icon
+		if (ryuIconP2) { App->render->Blit(graphicsUI, 288, 113, &characterIconP2, 1.0f, false); } //P2 Ryu Icon
+		if (blankaIconP2) { App->render->Blit(graphicsUI, 288, 113, &characterIconP2II, 1.0f, false); } //P2 Blanka Icon
 	}
 
-	if (StreetLogo) 
+	if (StreetLogo)   
 	{
 		if (App->guys_screen != nullptr) {
 			App->render->Blit(graphics, 0, -351, &Logo, 0.75f); //Street Fighter
