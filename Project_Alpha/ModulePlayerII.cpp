@@ -1020,33 +1020,33 @@ update_status ModulePlayer2::PreUpdate() {
 			 if (!App->player->closeP1) {
 				 if (inputplayerP2.Num7_active) {
 					 currentstateP2 = standingfarLPP2;
-					 attackP2_collider = App->collision->AddCollider({ 0,-100, 70, 20 }, COLLIDER_PLAYER2_ATTACK, SFLP, App->player);
+					 attackP2_collider = App->collision->AddCollider({ 0,-100, 70, 20 }, COLLIDER_PLAYER2_ATTACK, SL, App->player);
 					 LOG("IDLE to LP");
 
 				 }
 				 if (inputplayerP2.Num8_active) {
 					 currentstateP2 = standingfarMPP2;
-					 attackP2_collider = App->collision->AddCollider({ 0,-100, 100, 35 }, COLLIDER_PLAYER2_ATTACK, SFMP, App->player);
+					 attackP2_collider = App->collision->AddCollider({ 0,-100, 100, 35 }, COLLIDER_PLAYER2_ATTACK, SM, App->player);
 					 LOG("IDLE to HEAVY PUNCH");
 				 }
 				 if (inputplayerP2.Num9_active) {
 					 currentstateP2 = standingfarHPP2;
-					 attackP2_collider = App->collision->AddCollider({ 0,-100, 80, 18 }, COLLIDER_PLAYER2_ATTACK, SFHP, App->player);
+					 attackP2_collider = App->collision->AddCollider({ 0,-100, 80, 18 }, COLLIDER_PLAYER2_ATTACK, SH, App->player);
 					 LOG("IDLE to HEAVY PUNCH");
 				 }
 				 if (inputplayerP2.Num4_active) {
 					 currentstateP2 = standingfarLKP2;
-					 attackP2_collider = App->collision->AddCollider({ 0,-100, 57, 25 }, COLLIDER_PLAYER2_ATTACK, SFLK, App->player);
+					 attackP2_collider = App->collision->AddCollider({ 0,-100, 57, 25 }, COLLIDER_PLAYER2_ATTACK, SL, App->player);
 					 LOG("IDLE to HEAVY PUNCH");
 				 }
 				 if (inputplayerP2.Num5_active) {
 					 currentstateP2 = standingfarMKP2;
-					 attackP2_collider = App->collision->AddCollider({ 0,-100, 75, 15 }, COLLIDER_PLAYER2_ATTACK, SFMK, App->player);
+					 attackP2_collider = App->collision->AddCollider({ 0,-100, 75, 15 }, COLLIDER_PLAYER2_ATTACK, SM, App->player);
 					 LOG("IDLE to HEAVY PUNCH");
 				 }
 				 if (inputplayerP2.Num6_active) {
 					 currentstateP2 = standingfarHKP2;
-					 attackP2_collider = App->collision->AddCollider({ 0,-100, 75, 15 }, COLLIDER_PLAYER2_ATTACK, SFHK, App->player);
+					 attackP2_collider = App->collision->AddCollider({ 0,-100, 75, 15 }, COLLIDER_PLAYER2_ATTACK, SH, App->player);
 					 LOG("IDLE to HEAVY KICK");
 				 }
 			 }
@@ -1055,35 +1055,35 @@ update_status ModulePlayer2::PreUpdate() {
 			 if (App->player->closeP1) {
 				 if (inputplayerP2.Num7_active) {
 					 currentstateP2 = standingcloseLPP2;
-					 attackP2_collider = App->collision->AddCollider({ 0,-100, 100, 50 }, COLLIDER_PLAYER2_ATTACK, SCLP, App->player);
+					 attackP2_collider = App->collision->AddCollider({ 0,-100, 100, 50 }, COLLIDER_PLAYER2_ATTACK, SL, App->player);
 					 LOG("IDLE to LP");
 				 }
 				 if (inputplayerP2.Num8_active) {
 					 currentstateP2 = standingcloseMPP2;
-					 attackP2_collider = App->collision->AddCollider({ 0,-100, 100, 30 }, COLLIDER_PLAYER2_ATTACK, SCMP, App->player);
+					 attackP2_collider = App->collision->AddCollider({ 0,-100, 100, 30 }, COLLIDER_PLAYER2_ATTACK, SM, App->player);
 					 LOG("IDLE to HEAVY PUNCH");
 				 }
 				 if (inputplayerP2.Num9_active) {
 					 currentstateP2 = standingcloseHPP2;
-					 attackP2_collider = App->collision->AddCollider({ 0,-100, 60, 25 }, COLLIDER_PLAYER2_ATTACK, SCHP, App->player);
+					 attackP2_collider = App->collision->AddCollider({ 0,-100, 60, 25 }, COLLIDER_PLAYER2_ATTACK, SH, App->player);
 					 LOG("IDLE to HEAVY PUNCH");
 				 }
 
 				 if (inputplayerP2.Num4_active) {
 					 currentstateP2 = standingcloseLKP2;
-					 attackP2_collider = App->collision->AddCollider({ 0,-100, 57, 25 }, COLLIDER_PLAYER2_ATTACK, SCLK, App->player);
+					 attackP2_collider = App->collision->AddCollider({ 0,-100, 57, 25 }, COLLIDER_PLAYER2_ATTACK, SL, App->player);
 					 LOG("IDLE to HEAVY PUNCH");
 				 }
 
 				 if (inputplayerP2.Num5_active) {
 					 currentstateP2 = standingcloseMKP2;
-					 attackP2_collider = App->collision->AddCollider({ 0,-100, 57, 25 }, COLLIDER_PLAYER2_ATTACK, SCMK, App->player);
+					 attackP2_collider = App->collision->AddCollider({ 0,-100, 57, 25 }, COLLIDER_PLAYER2_ATTACK, SM, App->player);
 					 LOG("IDLE to HEAVY PUNCH");
 				 }
 
 				 if (inputplayerP2.Num6_active) {
 					 currentstateP2 = standingcloseHKP2;
-					 attackP2_collider = App->collision->AddCollider({ 0,-100, 100, 22 }, COLLIDER_PLAYER2_ATTACK, SCHK, App->player);
+					 attackP2_collider = App->collision->AddCollider({ 0,-100, 100, 22 }, COLLIDER_PLAYER2_ATTACK, CH, App->player);
 					 LOG("IDLE to HEAVY KICK");
 				 }
 
@@ -1115,34 +1115,34 @@ update_status ModulePlayer2::PreUpdate() {
 			 }
 			 if (inputplayerP2.Num7_active) {
 				 currentstateP2 = standingfarLPP2;
-				 attackP2_collider = App->collision->AddCollider({ 0,-100, 70, 20 }, COLLIDER_PLAYER2_ATTACK, SFLP, App->player);
+				 attackP2_collider = App->collision->AddCollider({ 0,-100, 70, 20 }, COLLIDER_PLAYER2_ATTACK, SL, App->player);
 				 LOG("BACK to LP");
 			 }
 			 if (inputplayerP2.Num8_active) {
 				 if (!App->player->closeP1) {
 					 currentstateP2 = standingfarMPP2;
-					 attackP2_collider = App->collision->AddCollider({0, -100, 100, 35 }, COLLIDER_PLAYER2_ATTACK, SFMP, App->player);
+					 attackP2_collider = App->collision->AddCollider({0, -100, 100, 35 }, COLLIDER_PLAYER2_ATTACK, SM, App->player);
 					 LOG("IDLE to HEAVY PUNCH");
 				 }
 			 }
 			 if (inputplayerP2.Num9_active) {
 				 currentstateP2 = standingfarHPP2;
-				 attackP2_collider = App->collision->AddCollider({ 0,-100, 80, 18 }, COLLIDER_PLAYER2_ATTACK, SFHP, App->player);
+				 attackP2_collider = App->collision->AddCollider({ 0,-100, 80, 18 }, COLLIDER_PLAYER2_ATTACK, SH, App->player);
 				 LOG("IDLE to HEAVY PUNCH");
 			 }
 			 if (inputplayerP2.Num4_active) {
 				 currentstateP2 = standingfarLKP2;
-				 attackP2_collider = App->collision->AddCollider({ 0,-100, 57, 25 }, COLLIDER_PLAYER2_ATTACK, SFLK, App->player);
+				 attackP2_collider = App->collision->AddCollider({ 0,-100, 57, 25 }, COLLIDER_PLAYER2_ATTACK, SL, App->player);
 				 LOG("IDLE to HEAVY PUNCH");
 			 }
 			 if (inputplayerP2.Num5_active) {
 				 currentstateP2 = standingfarMKP2;
-				 attackP2_collider = App->collision->AddCollider({ 0,-100, 75, 15 }, COLLIDER_PLAYER2_ATTACK, SFMK, App->player);
+				 attackP2_collider = App->collision->AddCollider({ 0,-100, 75, 15 }, COLLIDER_PLAYER2_ATTACK, SM, App->player);
 				 LOG("IDLE to HEAVY PUNCH");
 			 }
 			 if (inputplayerP2.Num6_active) {
 				 currentstateP2 = standingfarHKP2;
-				 attackP2_collider = App->collision->AddCollider({ 0,-100, 75, 15 }, COLLIDER_PLAYER2_ATTACK, SFHK, App->player);
+				 attackP2_collider = App->collision->AddCollider({ 0,-100, 75, 15 }, COLLIDER_PLAYER2_ATTACK, SH, App->player);
 				 LOG("IDLE to HEAVY KICK");
 			 }
 
@@ -1213,36 +1213,36 @@ update_status ModulePlayer2::PreUpdate() {
 			 if (inputplayerP2.Num7_active) {
 
 				 currentstateP2 = standingfarLPP2;
-				 attackP2_collider = App->collision->AddCollider({ 0,-100, 70, 20 }, COLLIDER_PLAYER2_ATTACK, SFLP, App->player);
+				 attackP2_collider = App->collision->AddCollider({ 0,-100, 70, 20 }, COLLIDER_PLAYER2_ATTACK, SL, App->player);
 				 LOG("FOR to LP");
 			 }
 			 if (inputplayerP2.Num8_active) { //aqui falta condicio de no s'estan tocant els coliders
 				 if (!App->player->closeP1) {
 					 currentstateP2 = standingfarMPP2;
-					 attackP2_collider = App->collision->AddCollider({ 0,-100, 100, 35 }, COLLIDER_PLAYER2_ATTACK, SFMP, App->player);
+					 attackP2_collider = App->collision->AddCollider({ 0,-100, 100, 35 }, COLLIDER_PLAYER2_ATTACK, SM, App->player);
 					 LOG("idle to heavy punch");
 				 }
 			 }
 			 if (inputplayerP2.Num9_active && !App->player->closeP1) {
 
 				 currentstateP2 = standingfarHPP2;
-				 attackP2_collider = App->collision->AddCollider({ 0,-100, 80, 18 }, COLLIDER_PLAYER2_ATTACK, SFHP, App->player);
+				 attackP2_collider = App->collision->AddCollider({ 0,-100, 80, 18 }, COLLIDER_PLAYER2_ATTACK, SH, App->player);
 				 LOG("IDLE to HEAVY PUNCH");
 
 			 }
 			 if (inputplayerP2.Num4_active) {
 				 currentstateP2 = standingfarLKP2;
-				 attackP2_collider = App->collision->AddCollider({ 0,-100, 57, 25 }, COLLIDER_PLAYER2_ATTACK, SFLK, App->player);
+				 attackP2_collider = App->collision->AddCollider({ 0,-100, 57, 25 }, COLLIDER_PLAYER2_ATTACK, SL, App->player);
 				 LOG("IDLE to HEAVY PUNCH");
 			 }
 			 if (inputplayerP2.Num5_active) {
 				 currentstateP2 = standingfarMKP2;
-				 attackP2_collider = App->collision->AddCollider({ 0,-100, 75, 15 }, COLLIDER_PLAYER2_ATTACK, SFMK, App->player);
+				 attackP2_collider = App->collision->AddCollider({ 0,-100, 75, 15 }, COLLIDER_PLAYER2_ATTACK, SM, App->player);
 				 LOG("IDLE to HEAVY PUNCH");
 			 }
 			 if (inputplayerP2.Num6_active) {
 				 currentstateP2 = standingfarHKP2;
-				 attackP2_collider = App->collision->AddCollider({ 0,-100, 75, 15 }, COLLIDER_PLAYER2_ATTACK, SFHK, App->player);
+				 attackP2_collider = App->collision->AddCollider({ 0,-100, 75, 15 }, COLLIDER_PLAYER2_ATTACK, SH, App->player);
 				 LOG("IDLE to HEAVY KICK");
 			 }
 
@@ -1278,32 +1278,32 @@ update_status ModulePlayer2::PreUpdate() {
 			 }*/
 			 if (inputplayerP2.Num7_active) {
 				 currentstateP2 = crouchLPP2;
-				 attackP2_collider = App->collision->AddCollider({ 0,-100, 93, 20 }, COLLIDER_PLAYER2_ATTACK, CLP, App->player);
+				 attackP2_collider = App->collision->AddCollider({ 0,-100, 93, 20 }, COLLIDER_PLAYER2_ATTACK, CL, App->player);
 				 LOG("IDLE to LP");
 			 }
 			 if (inputplayerP2.Num8_active) {
 				 currentstateP2 = crouchMPP2;
-				 attackP2_collider = App->collision->AddCollider({ 0,-100, 93, 20 }, COLLIDER_PLAYER2_ATTACK, CMP, App->player);
+				 attackP2_collider = App->collision->AddCollider({ 0,-100, 93, 20 }, COLLIDER_PLAYER2_ATTACK, CM, App->player);
 				 LOG("IDLE to HEAVY PUNCH");
 			 }
 			 if (inputplayerP2.Num9_active) {
 				 currentstateP2 = crouchHPP2;
-				 attackP2_collider = App->collision->AddCollider({ 0,-100, 100, 20 }, COLLIDER_PLAYER2_ATTACK, CHP, App->player);
+				 attackP2_collider = App->collision->AddCollider({ 0,-100, 100, 20 }, COLLIDER_PLAYER2_ATTACK, CH, App->player);
 				 LOG("IDLE to HEAVY PUNCH");
 			 }
 			 if (inputplayerP2.Num4_active) {
 				 currentstateP2 = crouchLKP2;
-				 attackP2_collider = App->collision->AddCollider({ 0,-100, 79, 22 }, COLLIDER_PLAYER2_ATTACK, CLK, App->player);
+				 attackP2_collider = App->collision->AddCollider({ 0,-100, 79, 22 }, COLLIDER_PLAYER2_ATTACK, CL, App->player);
 				 LOG("IDLE to HEAVY PUNCH");
 			 }
 			 if (inputplayerP2.Num5_active) {
 				 currentstateP2 = crouchMKP2;
-				 attackP2_collider = App->collision->AddCollider({ 0,-100, 100, 22 }, COLLIDER_PLAYER2_ATTACK, CMK, App->player);
+				 attackP2_collider = App->collision->AddCollider({ 0,-100, 100, 22 }, COLLIDER_PLAYER2_ATTACK, CM, App->player);
 				 LOG("IDLE to HEAVY PUNCH");
 			 }
 			 if (inputplayerP2.Num6_active) {
 				 currentstateP2 = crouchHKP2;
-				 attackP2_collider = App->collision->AddCollider({ 0,-100, 100, 22 }, COLLIDER_PLAYER2_ATTACK, CHK, App->player);
+				 attackP2_collider = App->collision->AddCollider({ 0,-100, 100, 22 }, COLLIDER_PLAYER2_ATTACK, CH, App->player);
 				 LOG("IDLE to HEAVY KICK");
 			 }
 		 }
@@ -1338,40 +1338,40 @@ update_status ModulePlayer2::PreUpdate() {
 
 				 if (inputplayerP2.Num7_active) {
 					 currentstateP2 = jumpLPP2;
-					 attackP2_collider = App->collision->AddCollider({ 0,-100, 55, 23 }, COLLIDER_PLAYER2_ATTACK, SFLK, App->player);
+					 attackP2_collider = App->collision->AddCollider({ 0,-100, 55, 23 }, COLLIDER_PLAYER2_ATTACK, SL, App->player);
 					 airkickP2 = false;
 				 }
 				 if (inputplayerP2.Num8_active) {
 					 currentstateP2 = jumpMPP2;
-					 attackP2_collider = App->collision->AddCollider({ 0,-100, 65, 33 }, COLLIDER_PLAYER2_ATTACK, SFLK, App->player);
+					 attackP2_collider = App->collision->AddCollider({ 0,-100, 65, 33 }, COLLIDER_PLAYER2_ATTACK, SM, App->player);
 					 airkickP2 = false;
 				 }
 				 if (inputplayerP2.Num4_active) {
 					 currentstateP2 = jumpLKP2;
-					 attackP2_collider = App->collision->AddCollider({ 0,-100, 70, 23 }, COLLIDER_PLAYER2_ATTACK, SFLK, App->player);
+					 attackP2_collider = App->collision->AddCollider({ 0,-100, 70, 23 }, COLLIDER_PLAYER2_ATTACK, SL, App->player);
 					 airkickP2 = false;
 				 }
 				 if (inputplayerP2.Num5_active) {
 					 currentstateP2 = jumpMKP2;
-					 attackP2_collider = App->collision->AddCollider({ 0,-100, 57, 25 }, COLLIDER_PLAYER2_ATTACK, SFLK, App->player);
+					 attackP2_collider = App->collision->AddCollider({ 0,-100, 57, 25 }, COLLIDER_PLAYER2_ATTACK, SM, App->player);
 					 airkickP2 = false;
 				 }
 				 if (inputplayerP2.Num6_active) {
 					 currentstateP2 = jumpHKP2;
-					 attackP2_collider = App->collision->AddCollider({ 0,-100, 70, 33 }, COLLIDER_PLAYER2_ATTACK, SFLK, App->player);
+					 attackP2_collider = App->collision->AddCollider({ 0,-100, 70, 33 }, COLLIDER_PLAYER2_ATTACK, SH, App->player);
 					 airkickP2 = false;
 				 }
 				 if (currentstateP2 == FjumpstateP2 || currentstateP2 == BjumpstateP2) {
 					 if (inputplayerP2.Num9_active) {
 						 currentstateP2 = DjumpHPP2;
-						 attackP2_collider = App->collision->AddCollider({ 0,-100, 70, 50 }, COLLIDER_PLAYER2_ATTACK, SFLK, App->player);
+						 attackP2_collider = App->collision->AddCollider({ 0,-100, 70, 50 }, COLLIDER_PLAYER2_ATTACK, SH, App->player);
 						 airkickP2 = false;
 					 }
 				 }
 				 else {
 					 if (inputplayerP2.Num9_active) {
 						 currentstateP2 = NjumpHPP2;
-						 attackP2_collider = App->collision->AddCollider({ 0,-100, 100, 25 }, COLLIDER_PLAYER2_ATTACK, SFLK, App->player);
+						 attackP2_collider = App->collision->AddCollider({ 0,-100, 100, 25 }, COLLIDER_PLAYER2_ATTACK, SH, App->player);
 						 airkickP2 = false;
 					 }
 				 }
@@ -2122,19 +2122,26 @@ update_status ModulePlayer2::Update()
 void ModulePlayer2::OnCollision(Collider* c1, Collider* c2)
 {
 	if (c1->type == COLLIDER_PLAYER2 && c2->type == COLLIDER_PLAYER_ATTACK) {
+		
+			if (!SblockingP2) {
+				if (c2->attack == SL) {
+					currentstateP2 = SdamagedLP2;
+					deleteCollider2(App->player->attackP1_collider);
+				}
+				else if (c2->attack == SM) {
+					currentstateP2 = SdamagedMP2;
+					deleteCollider2(App->player->attackP1_collider);
+				}
+				else if (c2->attack == SH) {
+					currentstateP2 = SdamagedHP2;
+					deleteCollider2(App->player->attackP1_collider);
+				}
+			}
+			else {
 
-		if (c2->attack == SFLP || c2->attack == SFLK || c2->attack == SCLP || c2->attack == SCLK) {
-			currentstateP2 = SdamagedLP2;
-			deleteCollider2(App->player->attackP1_collider);
-		}
-		else if (c2->attack == SFMP || c2->attack == SFMK || c2->attack == SCMP || c2->attack == SCMK) {
-			currentstateP2 = SdamagedMP2;
-			deleteCollider2(App->player->attackP1_collider);
-		}
-		else if (c2->attack == SFHP || c2->attack == SFHK || c2->attack == SCHP || c2->attack == SCHK) {
-			currentstateP2 = SdamagedHP2;
-			deleteCollider2(App->player->attackP1_collider);
-		}
+			}
+
+		
 	}
 
 }

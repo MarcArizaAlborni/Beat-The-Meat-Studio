@@ -22,24 +22,13 @@ enum COLLIDER_TYPE
 enum ATTACK_TYPE 
 {
 	NOATTACK,
-	SFLP,
-	SFMP,
-	SFHP,
-	SFLK,
-	SFMK,
-	SFHK,
-	SCLP,
-	SCMP,
-	SCHP,
-	SCLK,
-	SCMK,
-	SCHK,
-	CLP,
-	CMP,
-	CHP,
-	CLK,
-	CMK,
-	CHK
+	SL,
+	SM,
+	SH,
+	CL,
+	CM,
+	CH
+	
 
 };
 
