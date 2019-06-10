@@ -38,7 +38,7 @@ bool ModuleWarningScreen::CleanUp()
 {
 	LOG("Unloading Warning Screen");
 	App->textures->Unload(graphics);
-
+	App->sounds->coin_inserted = false;
 	return true;
 }
 

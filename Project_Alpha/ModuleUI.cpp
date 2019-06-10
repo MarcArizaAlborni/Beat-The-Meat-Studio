@@ -209,8 +209,8 @@ update_status ModuleUI::Update()
 	if (character_select)
 	{
 		App->render->Blit(graphicsUI, 128, 144, &characterGrid, 1.0f, false); //Character Grid.
-		//App->render->Blit(graphicsUI, 128, 140, &p1_pointer, 1.0f, false); //Character Pointer 1.
-		//App->render->Blit(graphicsUI, 128, 172, &p2_pointer, 1.0f, false); //Character Pointer 2.
+		App->render->Blit(graphicsUI, 128, 140, &p1_pointer, 1.0f, false); //Character Pointer 1.
+		App->render->Blit(graphicsUI, 128, 172, &p2_pointer, 1.0f, false); //Character Pointer 2.
 		App->render->Blit(graphicsUI, p1_pointerPosX, p1_pointerPosY, &(p1_pointerAnim.GetCurrentFrame())); //Character Pointer 1.
 		App->render->Blit(graphicsUI, p2_pointerPosX, p2_pointerPosY, &(p2_pointerAnim.GetCurrentFrame())); //Character Pointer 2.
 	}

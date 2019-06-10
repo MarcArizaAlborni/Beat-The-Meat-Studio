@@ -14,6 +14,7 @@
 #include "Animation.h"
 #include "ModuleSceneRyu.h"
 #include "ModuleUI.h"
+#include "ModuleSounds.h"
 
 ModuleIcoinScreen::ModuleIcoinScreen()
 {
@@ -174,6 +175,7 @@ update_status ModuleIcoinScreen::PreUpdate()
 	if (horitzontal_dis.Finished())
 	{
 		cur_anim = &icoin_screen;
+
 	}
 
 
@@ -187,7 +189,7 @@ update_status ModuleIcoinScreen::Update()
 	
 	App->render->Blit(graphics, 0, 0, cur_anim);
 
-	if (App->input->keyboard[SDL_SCANCODE_F3] || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_1] == KEY_DOWN || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_2] == KEY_DOWN) {
+	if (App->sounds->coin_inserted == true) {
 
 		App->fade->FadeToBlack(App->icoin_screen, App->start_screen, 1.0f);
 

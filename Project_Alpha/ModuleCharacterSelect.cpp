@@ -82,12 +82,14 @@ update_status ModuleCharacterSelect::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_LEFT] == 1)
 	{
-		App->ui->p1_pointerPosX -= 32;
+		if (App->ui->p1_pointerPosX != 129) { App->ui->p1_pointerPosX -= 32; }
+		else { App->ui->p1_pointerPosX != 129; }
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == 1)
 	{
-		App->ui->p1_pointerPosX += 32;
+		if (App->ui->p1_pointerPosX != 225) { App->ui->p1_pointerPosX += 32; }
+		else { App->ui->p1_pointerPosX = 225; }
 	}
 
 	//Pointer player 2
@@ -99,18 +101,24 @@ update_status ModuleCharacterSelect::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_J] == 1)
 	{
-		App->ui->p2_pointerPosY += 32;
+		if (App->ui->p2_pointerPosY != 173) { App->ui->p2_pointerPosY += 32; }
+		else { App->ui->p2_pointerPosY = 173; }
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_H] == 1)
 	{
-		App->ui->p2_pointerPosX -= 32;
+		if (App->ui->p2_pointerPosX != 129) { App->ui->p2_pointerPosX -= 32; }
+		else { App->ui->p2_pointerPosX = 129; }
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_K] == 1)
 	{
-		App->ui->p2_pointerPosX += 32;
+		if (App->ui->p2_pointerPosX != 225) { App->ui->p2_pointerPosX += 32; }
+		else { App->ui->p2_pointerPosX = 225; }
 	}
+
+	//Pointer Flags
+
 
 	return UPDATE_CONTINUE;
 }

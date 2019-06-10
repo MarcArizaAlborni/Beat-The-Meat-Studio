@@ -40,7 +40,7 @@ bool ModuleWelcomeScreen::CleanUp()
 {
 	LOG("Unloading Welcome Screen");
 	App->textures->Unload(graphics);
-	
+	App->sounds->coin_inserted = false;
 	return true;
 }
 
@@ -48,6 +48,7 @@ bool ModuleWelcomeScreen::CleanUp()
 update_status ModuleWelcomeScreen::Update()
 {
 	App->render->Blit(graphics, 0, 0, &welcome_screen, 0.75f); 
+
 	
 	if (App->input->keyboard[SDL_SCANCODE_A] || App->input->game_pad[SDL_CONTROLLER_BUTTON_Y][GAME_PAD_1] == KEY_DOWN || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_2] == KEY_DOWN) {
 

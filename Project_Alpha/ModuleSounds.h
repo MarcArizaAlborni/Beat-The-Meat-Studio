@@ -16,6 +16,9 @@ public:
 	update_status Update();
 
 	SDL_Texture* graphics = nullptr;
+	
+	SDL_Rect credits1;
+	SDL_Rect credits2;
 
 	Animation insert_coin;
 
