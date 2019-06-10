@@ -235,7 +235,7 @@ update_status ModuleGuys::Update()
 
 	if (App->sounds->coin_inserted == true) {
 
-		App->fade->FadeToBlack(App->guys_screen, App->start_screen, 5.0f);
+		App->fade->FadeToBlack(App->guys_screen, App->start_screen, 0.f);
 
 	}
 
