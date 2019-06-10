@@ -200,14 +200,96 @@ ModulePlayer::ModulePlayer()
 		SdamagelowHP1.PushBack({ 377, 2458, 86, 86 });
 		SdamagelowHP1.speed = 0.05f;
 
-		//Crouch Damage
-		CdamageP1.PushBack({});
+		//Crouch Damage L
+		CdamageLP1.PushBack({ 30, 2573, 84, 93 });
+		CdamageLP1.PushBack({ 30, 2573, 84, 93 });
+		CdamageLP1.speed = 0.05f;
+
+		//Crouch Damage M
+		CdamageMP1.PushBack({ 30, 2573, 84, 93 });
+		CdamageMP1.PushBack({ 30, 2573, 84, 93 });
+		CdamageMP1.PushBack({ 128, 2573,101, 90 });
+		CdamageMP1.PushBack({ 128, 2573,101, 90 });
+		CdamageMP1.speed = 0.05f;
+
+		//Crouch Damage H
+		CdamageHP1.PushBack({ 30, 2573, 84, 93 });
+		CdamageHP1.PushBack({ 30, 2573, 84, 93 });
+		CdamageHP1.PushBack({ 128, 2573,101, 90 });
+		CdamageHP1.PushBack({ 128, 2573,101, 90 });
+		CdamageHP1.PushBack({ 248, 2585,109, 78 });
+		CdamageHP1.PushBack({ 248, 2585,109, 78 });
+		CdamageHP1.speed = 0.05f;
 
 		//Electric Thunder Damage
 		ETdamgeP1.PushBack({});
 
-		//Recovery
-		RecoveryP1.PushBack({});
+		//Jump Damage
+		JdamageP1.PushBack({ 30, 2278, 96, 85 });
+		JdamageP1.PushBack({ 258, 2282,114, 62 });
+		JdamageP1.PushBack({ 275, 2348, 76, 59 });
+		JdamageP1.PushBack({ 212, 2040, 67, 68 });
+		JdamageP1.PushBack({ 120, 2052, 82, 55 });
+		JdamageP1.PushBack({ 27, 2053, 88, 55 });
+		JdamageP1.PushBack({ 458, 1974, 76, 59 });
+		JdamageP1.PushBack({ 383, 1965, 67, 68 });
+		JdamageP1.PushBack({ 288, 1977, 82, 56 });
+		JdamageP1.PushBack({ 191, 1978, 88, 55 });
+		JdamageP1.PushBack({ 384, 2573,127, 68 });
+		JdamageP1.PushBack({ 316, 1250, 122, 99 });
+		JdamageP1.PushBack({ 445, 1221, 88, 127 });
+		JdamageP1.PushBack({ 536, 1250, 138, 98 });
+		JdamageP1.PushBack({ 258, 2282,114, 62 });
+		
+		//Death 
+		DeathP1.PushBack({ 30, 2278, 96, 85 });
+		DeathP1.PushBack({ 134, 2283, 118, 66 });
+		DeathP1.PushBack({ 384, 2573, 127, 68 });
+		DeathP1.PushBack({ 182, 2824, 163, 52 });
+		DeathP1.PushBack({ 384, 2573, 127, 68 });
+		DeathP1.PushBack({ 357, 2837, 177, 39 });
+		DeathP1.speed = 0.04f;
+
+		//Victory 1
+		Victory1P1.PushBack({ 639, 2542, 80,113 });
+		Victory1P1.PushBack({ 725, 2525, 94,130 });
+		Victory1P1.PushBack({ 819, 2504, 87,151 });
+		Victory1P1.PushBack({ 725, 2525, 94,130 });
+		Victory1P1.PushBack({ 819, 2504, 87,151 });
+		Victory1P1.PushBack({ 725, 2525, 94,130 });
+		Victory1P1.PushBack({ 639, 2542, 80,113 });
+		Victory1P1.PushBack({ 725, 2525, 94,130 });
+		Victory1P1.PushBack({ 819, 2504, 87,151 });
+		Victory1P1.PushBack({ 725, 2525, 94,130 });
+		Victory1P1.PushBack({ 819, 2504, 87,151 });
+		Victory1P1.PushBack({ 725, 2525, 94,130 });
+		Victory1P1.PushBack({ 639, 2542, 80,113 });
+		Victory1P1.PushBack({ 725, 2525, 94,130 });
+		Victory1P1.PushBack({ 819, 2504, 87,151 });
+		Victory1P1.PushBack({ 725, 2525, 94,130 });
+		Victory1P1.PushBack({ 819, 2504, 87,151 });
+		Victory1P1.PushBack({ 819, 2504, 87,151 });
+		Victory1P1.PushBack({ 819, 2504, 87,151 });
+		Victory1P1.PushBack({ 819, 2504, 87,151 });
+		Victory1P1.PushBack({ 819, 2504, 87,151 });
+		Victory1P1.speed = 0.09f;
+
+		//Victory 2
+		Victory2P1.PushBack({ 622, 351, 85, 63 });
+		Victory2P1.PushBack({ 528, 343, 86, 64 });
+		Victory2P1.PushBack({ 432, 328, 93, 87 });
+		Victory2P1.PushBack({ 47, 530, 121, 72 });
+		Victory2P1.PushBack({ 725, 2706, 91, 86 });
+		Victory2P1.PushBack({ 191, 1978, 88, 55 });
+		Victory2P1.PushBack({ 107, 1974, 76, 59 });
+		Victory2P1.PushBack({ 27, 1965, 67, 68 });
+		Victory2P1.PushBack({ 1053,2700, 91, 86 });
+		Victory2P1.PushBack({ 634, 2830, 104, 70 });
+		Victory2P1.PushBack({ 432, 328, 93, 87 });
+		Victory2P1.speed = 0.4f;
+		Victory2P1.loop = true;
+		
+		
 
 	}
 
@@ -502,7 +584,7 @@ ModulePlayer::ModulePlayer()
 	  //Standing FAR HK
 	  SFHK_P1.PushBack({ 34, 1263, 90, 85 });
 	  SFHK_P1.PushBack({ 143, 1263, 163, 85 });
-	  SFHK_P1.PushBack({ 316, 1249, 122, 99 });
+	  SFHK_P1.PushBack({ 316, 1250, 122, 99 });
 	  SFHK_P1.PushBack({ 445, 1221, 88, 127 });
 	  SFHK_P1.PushBack({ 536, 1250, 138, 98 });
 	  SFHK_P1.PushBack({ 686, 1279, 103, 69 });
