@@ -88,26 +88,14 @@ update_status ModuleRender::Update()
 
 		if (App->input->keyboard[SDL_SCANCODE_KP_4] == KEY_REPEAT)
 		{
-			if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled() || App->scene_guile->IsEnabled())
-			{
-				camera.x -= speed*2;
-			}
-			else
-			{
-				camera.x -= still;
-			}
+			if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled() || App->scene_guile->IsEnabled())	{camera.x -= speed*2;}
+			else{camera.x -= still;}
 		}
 
 		if (App->input->keyboard[SDL_SCANCODE_KP_6] == KEY_REPEAT)
 		{
-			if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled() || App->scene_guile->IsEnabled())
-			{
-				camera.x += speed*2;
-			}
-			else
-			{
-				camera.x += still;
-			}
+			if (App->scene_honda->IsEnabled() || App->scene_ryu->IsEnabled() || App->scene_guile->IsEnabled())	{camera.x += speed*2;}
+			else{camera.x += still;}
 		}
 	} 
 	
