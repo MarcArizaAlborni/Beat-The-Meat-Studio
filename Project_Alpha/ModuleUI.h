@@ -3,6 +3,7 @@
 
 #include "Module.h"
 #include "Animation.h"
+#include "p2Point.h"
 #include "Globals.h"
 
 struct SDL_Texture;
@@ -39,6 +40,8 @@ public:
 
 	Animation p1_pointerAnim;
 	Animation p2_pointerAnim;
+
+	iPoint positionPointerP1;
 
 	bool stage;
 	bool character_select;

@@ -53,7 +53,6 @@ update_status ModuleWelcomeScreen::Update()
 	if (App->input->keyboard[SDL_SCANCODE_A] || App->input->game_pad[SDL_CONTROLLER_BUTTON_Y][GAME_PAD_1] == KEY_DOWN || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_2] == KEY_DOWN) {
 
 		App->fade->FadeToBlack(App->welcome_screen, App->character_select, 1.0f);
-		App->sounds->GuileStage = false;
 	}
 	
 	
