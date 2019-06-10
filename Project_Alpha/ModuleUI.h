@@ -39,7 +39,13 @@ public:
 	SDL_Rect coin;
 
 	Animation p1_pointerAnim;
+	int p1_pointerPosX = 0;
+	int p1_pointerPosY = 0;
+
 	Animation p2_pointerAnim;
+	int p2_pointerPosX = 0;
+	int p2_pointerPosY = 0;
+
 
 	iPoint positionPointerP1;
 
