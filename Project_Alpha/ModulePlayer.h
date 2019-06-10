@@ -106,40 +106,40 @@ public:
 	update_status PreUpdate();
 
 public:
-	int extradis = 40;
-	int speed = 3;
-	float camx, camy;
-	Uint8 alphaka = 255;
-	int groundLevel = 205;
+	Uint8 alphakaP1 = 255;
+	int extradisP1 = 40;
+	int speedP1 = 3;
+	float camxP1, camyP1;
+	int groundLevelP1 = 205;
 	bool neutralJumpP1 = false;
 	bool forwardJumpP1 = false;
 	bool backwardJumpP1 = false;
-	int maxHeight = 120;
+	int maxHeightP1 = 120;
 	bool closeP1 = false;
 	bool SblockingP1 = false;
 	bool crouchBlockingP1 = false;
 	bool airkickP1 = true;
 	bool alreadyHitP1 = false;
 	bool flipP1 = false;
-	float yvel = 12.5f;
-	float gravity = 0.72f;
-	uint time = 0;
-	uint jumpTimer = 0;
-	uint jumpstart;
-	bool jumping = false;
-	char combo[100];
-	char* startC = new char();
-	char* finishC = new char();
+	float yvelP1 = 12.5f;
+	float gravityP1 = 0.72f;
+	uint timeP1 = 0;
+	uint jumpTimerP1 = 0;
+	uint jumpstartP1;
+	bool jumpingP1 = false;
+	char comboP1[100];
+	char* startCP1 = new char();
+	char* finishCP1 = new char();
 	SDL_Rect healthP1;
 	SDL_Rect shadowP1;
 	SDL_Texture* graphicsP1 = nullptr;
 	//test
 	Animation* currentP1_animation = nullptr;
-	int thundertick = 0;
+	int thundertickP1 = 0;
 	
-	int font_score = -1;
-	char score_text[10];
-	uint score = 0;
+	int font_scoreP1 = -1;
+	char score_textP1[10];
+	uint scoreP1 = 0;
 	STATEP1 currentstateP1;
 	
 
@@ -214,11 +214,11 @@ public:
 
 
 
-	void comboInput(char comboInput);
-	bool comboActive();
+	void comboInputP1(char comboInput);
+	bool comboActiveP1();
 	
-	int startcombo= 0;
-	int endcombo = 0;
+	int startcomboP1 = 0;
+	int endcomboP1 = 0;
 };
 
 

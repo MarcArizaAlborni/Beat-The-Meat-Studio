@@ -542,12 +542,12 @@ update_status ModulePlayer2::Update()
 
 
 	if (!App->player->flipP1) {
-		App->render->Blit(graphicsP2, positionP2.x + 10, App->player->groundLevel - 15, &shadowP2, 1.0f, true,SDL_FLIP_HORIZONTAL);
+		App->render->Blit(graphicsP2, positionP2.x + 10, App->player->groundLevelP1 - 15, &shadowP2, 1.0f, true,SDL_FLIP_HORIZONTAL);
 		App->render->Blit(graphicsP2, positionP2.x, positionP2.y - r.h, &r, 1.0f, true, SDL_FLIP_HORIZONTAL);
 	}
 	else
 	{
-		App->render->Blit(graphicsP2, positionP2.x + 10, App->player->groundLevel - 15, &shadowP2, 1.0f, true, SDL_FLIP_NONE);
+		App->render->Blit(graphicsP2, positionP2.x + 10, App->player->groundLevelP1 - 15, &shadowP2, 1.0f, true, SDL_FLIP_NONE);
 		App->render->Blit(graphicsP2, positionP2.x, positionP2.y - r.h, &r, 1.0f, true, SDL_FLIP_NONE);
 	}
 

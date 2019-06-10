@@ -26,7 +26,7 @@ ModulePlayer::ModulePlayer()
 	graphicsP1 = NULL;
 	currentP1_animation = NULL;
 
-	score = 0;
+	scoreP1 = 0;
 
 	healthP1.x = 100;
 	healthP1.y = 400;
@@ -668,9 +668,9 @@ bool ModulePlayer::Start()
 
 	graphicsP1 = App->textures->Load("Sprites/BlankaP1.png"); // JA TE LA FOTO BONA
 	currentstateP1 = idlestateP1;
-	combo[0] = ' ';
-	*startC = combo[0];
-	*finishC = combo[0];
+	comboP1[0] = ' ';
+	*startCP1 = comboP1[0];
+	*finishCP1 = comboP1[0];
 
 	//Player 2 stest collider
 	playerP1_collider = App->collision->AddCollider({ positionP1.x , positionP1.y,47,200 }, COLLIDER_PLAYER,NOATTACK, App->player);
@@ -689,9 +689,9 @@ bool ModulePlayer::CleanUp()
 }
 
 update_status ModulePlayer::PreUpdate() {
-	time = SDL_GetTicks() / 20;
-	camx = App->render->camera.x / SCREEN_ADD;
-	camy = App->render->camera.y / SCREEN_ADD;
+	timeP1 = SDL_GetTicks() / 20;
+	camxP1 = App->render->camera.x / SCREEN_ADD;
+	camyP1 = App->render->camera.y / SCREEN_ADD;
 	
 
 	//MOVE BACKWARD
@@ -746,11 +746,11 @@ update_status ModulePlayer::PreUpdate() {
 				 deleteCollider(attackP1_collider);
 				 SFMP_P1.Reset();
 				 LOG("LP to IDLE");
-				 ++thundertick;
+				 ++thundertickP1;
 			 }
 
 			 if (!currentP1_animation->Finished() && inputplayerP1.I_active && !inputplayerP1.D_active && !inputplayerP1.A_active) {
-				 if (thundertick > 3) {
+				 if (thundertickP1 > 3) {
 					 currentstateP1 = thunder1P1;
 					 deleteCollider(attackP1_collider);
 					
@@ -772,11 +772,11 @@ update_status ModulePlayer::PreUpdate() {
 				 deleteCollider(attackP1_collider);
 				 SFHP_P1.Reset();
 				 LOG("LP to IDLE");
-				 ++thundertick;
+				 ++thundertickP1;
 			 }
 
 			 if (!currentP1_animation->Finished() && inputplayerP1.O_active && !inputplayerP1.D_active && !inputplayerP1.A_active) {
-				 if (thundertick > 3) {
+				 if (thundertickP1 > 3) {
 					 currentstateP1 = thunder1P1;
 					 deleteCollider(attackP1_collider);
 
@@ -982,7 +982,7 @@ update_status ModulePlayer::PreUpdate() {
 		 
 		 //IDLE STATE
 		 if (currentstateP1 == idlestateP1) {
-			 comboInput(' ');
+			 comboInputP1(' ');
 
 			 if (inputplayerP1.A_active) {
 				 currentstateP1 = backwardstateP1;
@@ -999,12 +999,12 @@ update_status ModulePlayer::PreUpdate() {
 			 }
 			 
 			 if (inputplayerP1.W_active) {
-				 jumping = true;
+				 jumpingP1 = true;
 				 neutralJumpP1 = true;
 				 
 				 currentstateP1 = NjumpstateP1;
-				 jumpstart = time;
-				 jumpTimer = 0;
+				 jumpstartP1 = timeP1;
+				 jumpTimerP1 = 0;
 				 LOG("IDLE to JUMP");
 			 }
 			 if (!closeP1) {
@@ -1083,8 +1083,8 @@ update_status ModulePlayer::PreUpdate() {
 		 }
 		 //BACKWARDS STATE
 		 if (currentstateP1 == backwardstateP1) {
-			 comboInput('n');
-			 comboInput('m');
+			 comboInputP1('n');
+			 comboInputP1('m');
 			 if (!inputplayerP1.A_active) {
 				 currentstateP1 = idlestateP1;
 				
@@ -1096,11 +1096,11 @@ update_status ModulePlayer::PreUpdate() {
 			 }
 			 if (inputplayerP1.W_active) {
 				 
-				 jumping = true;
+				 jumpingP1 = true;
 				 backwardJumpP1 = true;
 				 currentstateP1 = BjumpstateP1;
-				 jumpstart = time;
-				 jumpTimer = 0;
+				 jumpstartP1 = timeP1;
+				 jumpTimerP1 = 0;
 				 LOG("IDLE to CROUCH");
 			 }
 			 if (inputplayerP1.U_active) {
@@ -1199,11 +1199,11 @@ update_status ModulePlayer::PreUpdate() {
 			 }
 			 if (inputplayerP1.W_active){
 				
-				 jumping = true;
+				 jumpingP1 = true;
 				 forwardJumpP1 = true;
 				 currentstateP1 = FjumpstateP1;
-				 jumpstart = time;
-				 jumpTimer = 0;
+				 jumpstartP1 = timeP1;
+				 jumpTimerP1 = 0;
 				 LOG("FOR to CROUCH");
 			 }
 			 if (inputplayerP1.U_active) {
@@ -1254,7 +1254,7 @@ update_status ModulePlayer::PreUpdate() {
 		 }
 		 //CROUCH STATE
 		 if (currentstateP1 == crouchstateP1) {
-			 comboInput('s');
+			 comboInputP1('s');
 			 if (!inputplayerP1.S_active) {
 				 crouchP1.Reset();
 				 currentstateP1 = idlestateP1;
@@ -1304,11 +1304,11 @@ update_status ModulePlayer::PreUpdate() {
 			 }
 		 }
 		 //JUMP STATE
-		 if (jumping == true) {
-			 comboInput('w');
-			 if (positionP1.y >= groundLevel + 1) {
+		 if (jumpingP1 == true) {
+			 comboInputP1('w');
+			 if (positionP1.y >= groundLevelP1 + 1) {
 				 deleteCollider(attackP1_collider);
-				 positionP1.y = groundLevel;
+				 positionP1.y = groundLevelP1;
 				 currentstateP1 = idlestateP1;
 				 NjumpP1.Reset();
 				 FjumpP1.Reset();
@@ -1320,16 +1320,16 @@ update_status ModulePlayer::PreUpdate() {
 				 JLK_P1.Reset();
 				 JMK_P1.Reset();
 				 JHK_P1.Reset();
-				 jumping = false;
+				 jumpingP1 = false;
 				 airkickP1 = true;
 				 neutralJumpP1 = false;
 				 forwardJumpP1 = false;
 				 backwardJumpP1 = false;
-				 jumpTimer = 0;
+				 jumpTimerP1 = 0;
 
 			 }
 		 }
-		 if (jumping == true) {
+		 if (jumpingP1 == true) {
 			 if (airkickP1 == true) {
 				 
 				 if (inputplayerP1.U_active) {
@@ -1385,11 +1385,11 @@ update_status ModulePlayer::PreUpdate() {
 				 alreadyHitP1 = false;
 				 SFLP_P1.Reset();
 				 LOG("LP to IDLE");
-				 ++thundertick;
+				 ++thundertickP1;
 			 }
 
 			  if ( !currentP1_animation->Finished() && inputplayerP1.U_active && !inputplayerP1.D_active && !inputplayerP1.A_active) {
-				  if (thundertick > 3) {
+				  if (thundertickP1 > 3) {
 					  deleteCollider(attackP1_collider);
 					  SFLP_P1.Reset();
 
@@ -1637,7 +1637,7 @@ update_status ModulePlayer::Update() {
 
 	case idlestateP1:
 		playerP1_collider->rect.h = 93;
-		positionP1.y = groundLevel;
+		positionP1.y = groundLevelP1;
 		currentP1_animation = &idleP1;
 		//LOG("IDLE ANIMATION ACTIVE");
 		break;
@@ -1645,7 +1645,7 @@ update_status ModulePlayer::Update() {
 	case backwardstateP1:
 		playerP1_collider->rect.h = 93;
 		currentP1_animation = &backwardP1;
-		positionP1.x -= speed;
+		positionP1.x -= speedP1;
 		LOG("BACK ANIMATION ACTIVE");
 		break;
 
@@ -1653,14 +1653,14 @@ update_status ModulePlayer::Update() {
 
 		currentP1_animation = &forwardP1;
 
-		positionP1.x += speed;
+		positionP1.x += speedP1;
 		LOG("FORWARD ANIMATION ACTIVE");
 		break;
 
 	case crouchstateP1:
 		currentP1_animation = &crouchP1;
 		playerP1_collider->rect.h = 65;
-		playerP1_collider->SetPos(positionP1.x + 15 - camx, positionP1.y - 65 - camy);
+		playerP1_collider->SetPos(positionP1.x + 15 - camxP1, positionP1.y - 65 - camyP1);
 
 		LOG("CROUCHED ANIMATION ACTIVE");
 		break;
@@ -1674,26 +1674,22 @@ update_status ModulePlayer::Update() {
 	case FjumpstateP1:
 		if (!flipP1) { currentP1_animation = &FjumpP1; }
 		else { currentP1_animation = &BjumpP1; }
-		//positionP1.x += speed;
-		//positionP1.y = groundLevel - (yvel*jumpTimer) + (0.5*(gravity) * (jumpTimer*jumpTimer)); //MRUA
 		LOG(" FORWARD JUMP ANIMATION ACTIVE");
 		break;
 
 	case BjumpstateP1:
 		if (!flipP1) { currentP1_animation = &BjumpP1; }
 		else { currentP1_animation = &FjumpP1; }
-		//positionP1.x -= speed;
-		//positionP1.y = groundLevel - (yvel*jumpTimer) + (0.5*(gravity) * (jumpTimer*jumpTimer)); //MRUA
 		LOG(" BACKWARD JUMP ANIMATION ACTIVE");
 		break;
 
 	case standingfarLPP1:
 		currentP1_animation = &SFLP_P1;         //&SFLP_P1
 		if (!flipP1) {
-			attackP1_collider->SetPos(positionP1.x + 40 - camx, positionP1.y - 90 - camy);
+			attackP1_collider->SetPos(positionP1.x + 40 - camxP1, positionP1.y - 90 - camyP1);
 		}
 		else{
-			attackP1_collider->SetPos(positionP1.x - extradis - camx, positionP1.y - 90 - camy);
+			attackP1_collider->SetPos(positionP1.x - extradisP1 - camxP1, positionP1.y - 90 - camyP1);
 		}
 		LOG("LP ANIMATION ACTIVE");
 		break;
@@ -1701,10 +1697,10 @@ update_status ModulePlayer::Update() {
 	case standingfarMPP1:
 		currentP1_animation = &SFMP_P1;         //&SFMP_P1
 		if (!flipP1) {
-			attackP1_collider->SetPos(positionP1.x + 40 - camx, positionP1.y - 107 - camy);
+			attackP1_collider->SetPos(positionP1.x + 40 - camxP1, positionP1.y - 107 - camyP1);
 		}
 		else {
-			attackP1_collider->SetPos(positionP1.x - extradis - camx, positionP1.y - 107 - camy);
+			attackP1_collider->SetPos(positionP1.x - extradisP1 - camxP1, positionP1.y - 107 - camyP1);
 		}
 		
 		LOG("LP ANIMATION ACTIVE");
@@ -1712,10 +1708,10 @@ update_status ModulePlayer::Update() {
 	case standingfarHPP1:
 		currentP1_animation = &SFHP_P1;         //&SFHP_P1
 		if (!flipP1) {
-			attackP1_collider->SetPos(positionP1.x + 55 - camx, positionP1.y - 90 - camy);
+			attackP1_collider->SetPos(positionP1.x + 55 - camxP1, positionP1.y - 90 - camyP1);
 		}
 		else {
-			attackP1_collider->SetPos(positionP1.x - extradis - camx, positionP1.y - 90 - camy);
+			attackP1_collider->SetPos(positionP1.x - extradisP1 - camxP1, positionP1.y - 90 - camyP1);
 		}
 		
 		LOG("LP ANIMATION ACTIVE");
@@ -1723,10 +1719,10 @@ update_status ModulePlayer::Update() {
 	case standingfarLKP1:
 		currentP1_animation = &SFLK_P1;         //&SFLK_P1
 		if (!flipP1) {
-			attackP1_collider->SetPos(positionP1.x + 80 - camx, positionP1.y - 75 - camy);
+			attackP1_collider->SetPos(positionP1.x + 80 - camxP1, positionP1.y - 75 - camyP1);
 		}
 		else {
-			attackP1_collider->SetPos(positionP1.x - extradis - camx, positionP1.y - 75 - camy);
+			attackP1_collider->SetPos(positionP1.x - extradisP1 - camxP1, positionP1.y - 75 - camyP1);
 		}
 		
 		LOG("LP ANIMATION ACTIVE");
@@ -1736,10 +1732,10 @@ update_status ModulePlayer::Update() {
 		currentP1_animation = &SFMK_P1;         //&SFMK_P1
 		
 		if (!flipP1) {
-			attackP1_collider->SetPos(positionP1.x + 60 - camx, positionP1.y - 85 - camy);
+			attackP1_collider->SetPos(positionP1.x + 60 - camxP1, positionP1.y - 85 - camyP1);
 		}
 		else {
-			attackP1_collider->SetPos(positionP1.x - extradis - camx, positionP1.y - 85 - camy);
+			attackP1_collider->SetPos(positionP1.x - extradisP1 - camxP1, positionP1.y - 85 - camyP1);
 		}
 		LOG("LP ANIMATION ACTIVE");
 		break;
@@ -1747,10 +1743,10 @@ update_status ModulePlayer::Update() {
 	case standingfarHKP1:
 		currentP1_animation = &SFHK_P1;         //&SFHK_P1
 		if (!flipP1) {
-			attackP1_collider->SetPos(positionP1.x + 60 - camx, positionP1.y - 85 - camy);
+			attackP1_collider->SetPos(positionP1.x + 60 - camxP1, positionP1.y - 85 - camyP1);
 		}
 		else {
-			attackP1_collider->SetPos(positionP1.x - extradis - camx, positionP1.y - 85 - camy);
+			attackP1_collider->SetPos(positionP1.x - extradisP1 - camxP1, positionP1.y - 85 - camyP1);
 		}
 		LOG("HK ANIMATION ACTIVE");
 		break;
@@ -1758,10 +1754,10 @@ update_status ModulePlayer::Update() {
 	case standingcloseLPP1:
 		currentP1_animation = &SCLP_P1;  
 		if (!flipP1) {
-			attackP1_collider->SetPos(positionP1.x + 60 - camx, positionP1.y - 85 - camy);
+			attackP1_collider->SetPos(positionP1.x + 60 - camxP1, positionP1.y - 85 - camyP1);
 		}
 		else {
-			attackP1_collider->SetPos(positionP1.x - extradis - camx, positionP1.y - 85 - camy);
+			attackP1_collider->SetPos(positionP1.x - extradisP1 - camxP1, positionP1.y - 85 - camyP1);
 		}
 		LOG("HK ANIMATION ACTIVE");
 		break;
@@ -1770,10 +1766,10 @@ update_status ModulePlayer::Update() {
 		currentP1_animation = &SCMP_P1;
 		
 		if (!flipP1) {
-			attackP1_collider->SetPos(positionP1.x + 50 - camx, positionP1.y - 85 - camy);
+			attackP1_collider->SetPos(positionP1.x + 50 - camxP1, positionP1.y - 85 - camyP1);
 		}
 		else {
-			attackP1_collider->SetPos(positionP1.x - extradis - camx, positionP1.y - 85 - camy);
+			attackP1_collider->SetPos(positionP1.x - extradisP1 - camxP1, positionP1.y - 85 - camyP1);
 		}
 		LOG("HK ANIMATION ACTIVE");
 		break; 
@@ -1781,10 +1777,10 @@ update_status ModulePlayer::Update() {
 	case standingcloseHPP1:
 		currentP1_animation = &SCHP_P1;
 		if (!flipP1) {
-			attackP1_collider->SetPos(positionP1.x + 60 - camx, positionP1.y - 85 - camy);
+			attackP1_collider->SetPos(positionP1.x + 60 - camxP1, positionP1.y - 85 - camyP1);
 		}
 		else {
-			attackP1_collider->SetPos(positionP1.x - extradis - camx, positionP1.y - 85 - camy);
+			attackP1_collider->SetPos(positionP1.x - extradisP1 - camxP1, positionP1.y - 85 - camyP1);
 		}
 		LOG("HK ANIMATION ACTIVE");
 		break;
@@ -1793,10 +1789,10 @@ update_status ModulePlayer::Update() {
 		currentP1_animation = &SCLK_P1;
 		
 		if (!flipP1) {
-			attackP1_collider->SetPos(positionP1.x + 60 - camx, positionP1.y - 85 - camy);
+			attackP1_collider->SetPos(positionP1.x + 60 - camxP1, positionP1.y - 85 - camyP1);
 		}
 		else {
-			attackP1_collider->SetPos(positionP1.x - extradis - camx, positionP1.y - 85 - camy);
+			attackP1_collider->SetPos(positionP1.x - extradisP1 - camxP1, positionP1.y - 85 - camyP1);
 		}
 		LOG("HK ANIMATION ACTIVE");
 		break;
@@ -1805,10 +1801,10 @@ update_status ModulePlayer::Update() {
 		currentP1_animation = &SCMK_P1;
 		
 		if (!flipP1) {
-			attackP1_collider->SetPos(positionP1.x + 60 - camx, positionP1.y - 85 - camy);
+			attackP1_collider->SetPos(positionP1.x + 60 - camxP1, positionP1.y - 85 - camyP1);
 		}
 		else {
-			attackP1_collider->SetPos(positionP1.x- extradis - camx, positionP1.y - 85 - camy);
+			attackP1_collider->SetPos(positionP1.x- extradisP1 - camxP1, positionP1.y - 85 - camyP1);
 		}
 		LOG("HK ANIMATION ACTIVE");
 		break;
@@ -1816,10 +1812,10 @@ update_status ModulePlayer::Update() {
 	case standingcloseHKP1:
 		currentP1_animation = &SCHK_P1;
 		if (!flipP1) {
-			attackP1_collider->SetPos(positionP1.x + 60 - camx, positionP1.y - 25 - camy);
+			attackP1_collider->SetPos(positionP1.x + 60 - camxP1, positionP1.y - 25 - camyP1);
 		}
 		else {
-			attackP1_collider->SetPos(positionP1.x - extradis - camx, positionP1.y - 25 - camy);
+			attackP1_collider->SetPos(positionP1.x - extradisP1 - camxP1, positionP1.y - 25 - camyP1);
 		}
 		LOG("HK ANIMATION ACTIVE");
 		break;
@@ -1836,153 +1832,154 @@ update_status ModulePlayer::Update() {
 
 	case throwP1:
 		currentP1_animation = &Throw_P1;
-		/*App->player2->currentstateP2 = SdamagedHP2;
-		App->player2->currentP2_animation = SdamageHP1;*/
+		
 		LOG("THROW ANIMATION ACTIVE");
 		break;
+
 		//crouch attacks
 	case crouchLPP1:
 		playerP1_collider->rect.h = 65;
-		playerP1_collider->SetPos(positionP1.x + 15 - camx, positionP1.y - 65 - camy);
+		playerP1_collider->SetPos(positionP1.x + 15 - camxP1, positionP1.y - 65 - camyP1);
 		
 		if (!flipP1) {
-			attackP1_collider->SetPos(positionP1.x + 55 - camx, positionP1.y - 55 - camy);
+			attackP1_collider->SetPos(positionP1.x + 55 - camxP1, positionP1.y - 55 - camyP1);
 		}
 		else {
-			attackP1_collider->SetPos(positionP1.x - extradis - camx, positionP1.y - 55 - camy);
+			attackP1_collider->SetPos(positionP1.x - extradisP1 - camxP1, positionP1.y - 55 - camyP1);
 		}
 		currentP1_animation = &CLP_P1;
 		LOG("CROUCH LP ANIMATION ACTIVE");
 		break;
 	case crouchMPP1:
 		playerP1_collider->rect.h = 65;
-		playerP1_collider->SetPos(positionP1.x + 15 - camx, positionP1.y - 65 - camy);
+		playerP1_collider->SetPos(positionP1.x + 15 - camxP1, positionP1.y - 65 - camyP1);
 		
 		if (!flipP1) {
-			attackP1_collider->SetPos(positionP1.x + 55 - camx, positionP1.y - 55 - camy);
+			attackP1_collider->SetPos(positionP1.x + 55 - camxP1, positionP1.y - 55 - camyP1);
 		}
 		else {
-			attackP1_collider->SetPos(positionP1.x- extradis - camx, positionP1.y - 55 - camy);
+			attackP1_collider->SetPos(positionP1.x- extradisP1 - camxP1, positionP1.y - 55 - camyP1);
 		}
 		currentP1_animation = &CMP_P1;
 		LOG("CROUCH LP ANIMATION ACTIVE");
 		break;
 	case crouchHPP1:
 		playerP1_collider->rect.h = 65;
-		playerP1_collider->SetPos(positionP1.x + 15 - camx, positionP1.y - 65 - camy);
+		playerP1_collider->SetPos(positionP1.x + 15 - camxP1, positionP1.y - 65 - camyP1);
 		
 		if (!flipP1) {
-			attackP1_collider->SetPos(positionP1.x + 65 - camx, positionP1.y - 65 - camy);
+			attackP1_collider->SetPos(positionP1.x + 65 - camxP1, positionP1.y - 65 - camyP1);
 		}
 		else {
-			attackP1_collider->SetPos(positionP1.x - extradis - camx, positionP1.y - 65 - camy);
+			attackP1_collider->SetPos(positionP1.x - extradisP1 - camxP1, positionP1.y - 65 - camyP1);
 		}
 		currentP1_animation = &CHP_P1;
 		LOG("CROUCH LP ANIMATION ACTIVE");
 		break;
 	case crouchLKP1:
 		playerP1_collider->rect.h = 65;
-		playerP1_collider->SetPos(positionP1.x + 15 - camx, positionP1.y - 65 - camy);
+		playerP1_collider->SetPos(positionP1.x + 15 - camxP1, positionP1.y - 65 - camyP1);
 		
 		if (!flipP1) {
-			attackP1_collider->SetPos(positionP1.x + 48 - camx, positionP1.y - 25);
+			attackP1_collider->SetPos(positionP1.x + 48 - camxP1, positionP1.y - 25);
 		}
 		else {
-			attackP1_collider->SetPos(positionP1.x - extradis - camx, positionP1.y - 25);
+			attackP1_collider->SetPos(positionP1.x - extradisP1 - camxP1, positionP1.y - 25);
 		}
 		currentP1_animation = &CLK_P1;
 		LOG("CROUCH LP ANIMATION ACTIVE");
 		break;
 	case crouchMKP1:
 		playerP1_collider->rect.h = 65;
-		playerP1_collider->SetPos(positionP1.x + 15 - camx, positionP1.y - 65 - camy);
+		playerP1_collider->SetPos(positionP1.x + 15 - camxP1, positionP1.y - 65 - camyP1);
 		
 		if (!flipP1) {
-			attackP1_collider->SetPos(positionP1.x + 48 - camx, positionP1.y - 25 - camy);
+			attackP1_collider->SetPos(positionP1.x + 48 - camxP1, positionP1.y - 25 - camyP1);
 		}
 		else {
-			attackP1_collider->SetPos(positionP1.x - extradis - camx, positionP1.y - 25 - camy);
+			attackP1_collider->SetPos(positionP1.x - extradisP1 - camxP1, positionP1.y - 25 - camyP1);
 		}
 		currentP1_animation = &CMK_P1;
 		LOG("CROUCH LP ANIMATION ACTIVE");
 		break;
 	case crouchHKP1:
 		playerP1_collider->rect.h = 65;
-		playerP1_collider->SetPos(positionP1.x + 15 - camx, positionP1.y - 65 - camy);
+		playerP1_collider->SetPos(positionP1.x + 15 - camxP1, positionP1.y - 65 - camyP1);
 		
 		if (!flipP1) {
-			attackP1_collider->SetPos(positionP1.x + 60 - camx, positionP1.y - 25 - camy);
+			attackP1_collider->SetPos(positionP1.x + 60 - camxP1, positionP1.y - 25 - camyP1);
 		}
 		else {
-			attackP1_collider->SetPos(positionP1.x - extradis - camx, positionP1.y - 25 - camy);
+			attackP1_collider->SetPos(positionP1.x - extradisP1 - camxP1, positionP1.y - 25 - camyP1);
 		}
 		currentP1_animation = &CHK_P1;
 		LOG("CROUCH LP ANIMATION ACTIVE");
 		break;
+
 	//Jumping attacks
 	case jumpLPP1:
 		currentP1_animation = &JLP_P1;
 		
 		if (!flipP1) {
-			attackP1_collider->SetPos(positionP1.x + 60 - camx, positionP1.y - 45 - camy);
+			attackP1_collider->SetPos(positionP1.x + 60 - camxP1, positionP1.y - 45 - camyP1);
 		}
 		else {
-			attackP1_collider->SetPos(positionP1.x- extradis - camx, positionP1.y - 45 - camy);
+			attackP1_collider->SetPos(positionP1.x- extradisP1 - camxP1, positionP1.y - 45 - camyP1);
 		}
 		break;
 	case jumpMPP1:
 		currentP1_animation = &JMP_P1;
 		
 		if (!flipP1) {
-			attackP1_collider->SetPos(positionP1.x + 60 - camx, positionP1.y - 50 - camy);
+			attackP1_collider->SetPos(positionP1.x + 60 - camxP1, positionP1.y - 50 - camyP1);
 		}
 		else {
-			attackP1_collider->SetPos(positionP1.x- extradis - camx, positionP1.y - 50 - camy);
+			attackP1_collider->SetPos(positionP1.x- extradisP1 - camxP1, positionP1.y - 50 - camyP1);
 		}
 		break;
 	case NjumpHPP1:
 		currentP1_animation = &JHPN_P1;
 		if (!flipP1) {
-			attackP1_collider->SetPos(positionP1.x + 60 - camx, positionP1.y - 45 - camy);
+			attackP1_collider->SetPos(positionP1.x + 60 - camxP1, positionP1.y - 45 - camyP1);
 		}
 		else {
-			attackP1_collider->SetPos(positionP1.x- extradis - camx, positionP1.y - 45 - camy);
+			attackP1_collider->SetPos(positionP1.x- extradisP1 - camxP1, positionP1.y - 45 - camyP1);
 		}
 		break;
 	case DjumpHPP1:
 		currentP1_animation = &JHPFB_P1;
 		if (!flipP1) {
-			attackP1_collider->SetPos(positionP1.x + 60 - camx, positionP1.y - 45 - camy);
+			attackP1_collider->SetPos(positionP1.x + 60 - camxP1, positionP1.y - 45 - camyP1);
 		}
 		else {
-			attackP1_collider->SetPos(positionP1.x - extradis - camx, positionP1.y - 45 - camy);
+			attackP1_collider->SetPos(positionP1.x - extradisP1 - camxP1, positionP1.y - 45 - camyP1);
 		}
 		break;
 	case jumpLKP1:
 		currentP1_animation = &JLK_P1;
 		if (!flipP1) {
-			attackP1_collider->SetPos(positionP1.x + 60 - camx, positionP1.y - 25 - camy);
+			attackP1_collider->SetPos(positionP1.x + 60 - camxP1, positionP1.y - 25 - camyP1);
 		}
 		else {
-			attackP1_collider->SetPos(positionP1.x- extradis - camx, positionP1.y - 25 - camy);
+			attackP1_collider->SetPos(positionP1.x- extradisP1 - camxP1, positionP1.y - 25 - camyP1);
 		}
 		break;
 	case jumpMKP1:
 		currentP1_animation = &JMK_P1;
 		if (!flipP1) {
-			attackP1_collider->SetPos(positionP1.x + 60 - camx, positionP1.y - 25 - camy);
+			attackP1_collider->SetPos(positionP1.x + 60 - camxP1, positionP1.y - 25 - camyP1);
 		}
 		else {
-			attackP1_collider->SetPos(positionP1.x- extradis - camx, positionP1.y - 25 - camy);
+			attackP1_collider->SetPos(positionP1.x- extradisP1 - camxP1, positionP1.y - 25 - camyP1);
 		}
 		break;
 	case jumpHKP1:
 		currentP1_animation = &JHK_P1;
 		if (!flipP1) {
-			attackP1_collider->SetPos(positionP1.x + 60 - camx, positionP1.y - 25 - camy);
+			attackP1_collider->SetPos(positionP1.x + 60 - camxP1, positionP1.y - 25 - camyP1);
 		}
 		else {
-			attackP1_collider->SetPos(positionP1.x - extradis - camx, positionP1.y - 25 - camy);
+			attackP1_collider->SetPos(positionP1.x - extradisP1 - camxP1, positionP1.y - 25 - camyP1);
 		}
 		break;
 
@@ -2012,7 +2009,7 @@ update_status ModulePlayer::Update() {
 		
 		positionP1.y = 180;
 		positionP1.x += 7;
-		attackP1_collider->SetPos(positionP1.x  - camx, positionP1.y - 60 - camy);
+		attackP1_collider->SetPos(positionP1.x  - camxP1, positionP1.y - 60 - camyP1);
 		currentP1_animation = &RollingP1;
 		
 		LOG("ROLLING ANIMATION ACTIVE");
@@ -2020,7 +2017,7 @@ update_status ModulePlayer::Update() {
 
 
 	case rollingattackP1MEDIUM:
-		attackP1_collider->SetPos(positionP1.x  - camx, positionP1.y - 60 - camy);
+		attackP1_collider->SetPos(positionP1.x  - camxP1, positionP1.y - 60 - camyP1);
 		positionP1.y = 180;
 		positionP1.x += 7;
 
@@ -2031,7 +2028,7 @@ update_status ModulePlayer::Update() {
 	
 
 	case rollingattackP1HEAVY:
-		attackP1_collider->SetPos(positionP1.x - camx, positionP1.y - 60 - camy);
+		attackP1_collider->SetPos(positionP1.x - camxP1, positionP1.y - 60 - camyP1);
 		positionP1.y = 180;
 		positionP1.x += 7;
 
@@ -2049,7 +2046,7 @@ update_status ModulePlayer::Update() {
 		//positionP1.x -= speed;
 		//positionP1.y = groundLevel - (yvel*jumpTimer) + (0.5*(gravity) * (jumpTimer*jumpTimer)); //MRUA
 		
-		positionP1.x -= speed*4;
+		positionP1.x -= speedP1 *4;
 		//positionP1.y = groundLevel + (yvel*jumpTimer*3) + (-9*(gravity) * (9*jumpTimer*jumpTimer)); //MRUA
 		
 		positionP1.y -= 7;
@@ -2093,30 +2090,30 @@ update_status ModulePlayer::Update() {
 	}
 	
 	//Jumping boolean
-	if (jumping) {
-		jumpTimer = time - jumpstart;
+	if (jumpingP1) {
+		jumpTimerP1 = timeP1 - jumpstartP1;
 		playerP1_collider->SetPos(positionP1.x + 15 - App->render->camera.x / SCREEN_ADD, positionP1.y - 93 - App->render->camera.y / SCREEN_ADD);
-		positionP1.y = groundLevel - (yvel*jumpTimer) + (0.5*(gravity) * (jumpTimer*jumpTimer));
+		positionP1.y = groundLevelP1 - (yvelP1*jumpTimerP1) + (0.5*(gravityP1) * (jumpTimerP1*jumpTimerP1));
 		if (forwardJumpP1 == true) {
-			positionP1.x += speed;
+			positionP1.x += speedP1;
 		}
 		if (backwardJumpP1 == true) {
-			positionP1.x -= speed;
+			positionP1.x -= speedP1;
 		}
 	}
 
 	//Flip of the players when they change sides
 	if (positionP1.x +35 < App->player2->positionP2.x + 35 ) {
 		flipP1 = false;
-		App->render->Blit(graphicsP1, positionP1.x - 5, groundLevel-15, &shadowP1, 1.0f, true,SDL_FLIP_NONE);
+		App->render->Blit(graphicsP1, positionP1.x - 5, groundLevelP1 -15, &shadowP1, 1.0f, true,SDL_FLIP_NONE);
 		App->render->Blit(graphicsP1, positionP1.x, positionP1.y - r.h, &r, 1.0f, true, SDL_FLIP_NONE,0.0f);
 	}
 	else {
 		flipP1 = true;
-		App->render->Blit(graphicsP1, positionP1.x +7, groundLevel -15, &shadowP1, 1.0f, true, SDL_FLIP_HORIZONTAL);
+		App->render->Blit(graphicsP1, positionP1.x +7, groundLevelP1 -15, &shadowP1, 1.0f, true, SDL_FLIP_HORIZONTAL);
 		App->render->Blit(graphicsP1, positionP1.x, positionP1.y - r.h, &r, 1.0f, true, SDL_FLIP_HORIZONTAL);
 	}
-	if (!jumping) {
+	if (!jumpingP1) {
 		if (!flipP1) {
 			if (positionP1.x + 35 > App->player2->positionP2.x) {
 				positionP1.x = App->player2->positionP2.x - 35;
@@ -2143,7 +2140,7 @@ update_status ModulePlayer::Update() {
 
 		if(App->player2->positionP2.x <= (180 + App->render->camera.x / 5) + 120){ // player2 is close right camera
 
-			App->render->camera.x -= speed *2.5; //Move screen left
+			App->render->camera.x -= speedP1 *2.5; //Move screen left
 		}
 	}
 
@@ -2151,7 +2148,7 @@ update_status ModulePlayer::Update() {
 
 		if (App->player2->positionP2.x >= (App->render->camera.x / 5 )) { //player2 is close to left camera
 
-			App->render->camera.x += speed * 2.5; // Move camera right
+			App->render->camera.x += speedP1 * 2.5; // Move camera right
 		}
 	}
 
@@ -2166,7 +2163,6 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		if (c2->attack == SFLP || c2->attack == SFLK || c2->attack == SCLP || c2->attack == SCLK) {
 			currentstateP1 = SdamagedLP1;
 			deleteCollider(App->player2->attackP2_collider);
-
 		}
 		else if (c2->attack == SFMP || c2->attack == SFMK || c2->attack == SCMP || c2->attack == SCMK) {
 			currentstateP1 = SdamagedMP1;
@@ -2180,29 +2176,29 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 }
 
-bool ModulePlayer::comboActive() {
+bool ModulePlayer::comboActiveP1() {
 
 	//Input button combination for special attack	
 	int i = 0;
-	int j = startcombo;
+	int j = startcomboP1;
 	int done = 0; //If done = 3. Special attack = true 
 
 	while (i < 100) {
 		switch (done) {
 		case 0:
-			if (combo[j] == 'c')//punch
+			if (comboP1[j] == 'c')//punch
 				done++;
 			break;
 		case 1:
-			if (combo[j] == 'd')//forward
+			if (comboP1[j] == 'd')//forward
 				done++;
 			break;
 		case 2:
-			if (combo[j] == 'n' && 'm') // enredere
+			if (comboP1[j] == 'n' && 'm') // enredere
 				done++;
 			break;
 		case 3:
-			if (combo[j] == 's') //down
+			if (comboP1[j] == 's') //down
 				return true;
 		default:
 			//Special attack is false
@@ -2220,17 +2216,17 @@ bool ModulePlayer::comboActive() {
 }
 
 
-void ModulePlayer::comboInput(char comboInput) {
-	combo[*finishC] = comboInput; //We add the newInput to the last inputs array
+void ModulePlayer::comboInputP1(char comboInput) {
+	comboP1[*finishCP1] = comboInput; //We add the newInput to the last inputs array
 
-	if (*finishC < 99) //We change last pointer's position 
-		(*finishC)++;
+	if (*finishCP1 < 99) //We change last pointer's position 
+		(*finishCP1)++;
 	else
-		*finishC = 0;
+		*finishCP1 = 0;
 
 	//We change first pointer's position 
-	if (*startC == *startC && *startC < 99)
-		(*startC)++;
-	else if (*startC == *finishC && *startC >= 99)
-		* startC = 0;
+	if (*startCP1 == *startCP1 && *startCP1 < 99)
+		(*startCP1)++;
+	else if (*startCP1 == *finishCP1 && *startCP1 >= 99)
+		* startCP1 = 0;
 }
