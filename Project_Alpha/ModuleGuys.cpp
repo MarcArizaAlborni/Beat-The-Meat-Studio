@@ -177,7 +177,7 @@ bool ModuleGuys::Start()
 	LOG("Loading Building Screen");
 	graphics = App->textures->Load("Sprites/Guys.png");
 	App->ui->Enable();
-	App->ui->insert_coin = true;
+	App->ui->StreetLogo = true;
 	return true;
 }
 

@@ -143,7 +143,7 @@ bool ModuleIcoinScreen::Start()
 	graphics = App->textures->Load("Sprites/SFanimation.png");
 	App->render->camera.y = 0;
 	App->ui->Enable();
-	App->ui->insert_coin = true;
+	App->ui->StreetLogo = true;
 	return true;
 }
 
@@ -153,7 +153,7 @@ bool ModuleIcoinScreen::CleanUp()
 	LOG("Unloading Introduce coin Screen");
 	App->textures->Unload(graphics);
 	App->ui->Disable();
-	App->ui->insert_coin = false;
+	App->ui->StreetLogo = false;
 	return true;
 }
 

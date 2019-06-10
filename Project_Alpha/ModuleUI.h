@@ -36,7 +36,7 @@ public:
 	SDL_Rect p1_pointer;
 	SDL_Rect p2_pointer;
 	SDL_Rect plane;
-	SDL_Rect coin;
+	SDL_Rect Logo;
 
 	Animation p1_pointerAnim;
 	Animation p2_pointerAnim;
@@ -55,7 +55,7 @@ public:
 	bool japan;
 	bool japanII;
 
-	bool insert_coin = false;
+	bool StreetLogo = false;
 	
 };
 

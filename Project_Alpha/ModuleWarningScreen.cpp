@@ -38,6 +38,7 @@ bool ModuleWarningScreen::CleanUp()
 {
 	LOG("Unloading Warning Screen");
 	App->textures->Unload(graphics);
+
 	return true;
 }
 

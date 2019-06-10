@@ -165,7 +165,7 @@ ModuleUI::ModuleUI() : Module()
 	plane.w = 15;
 	plane.h = 13;
 
-	coin = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
+	Logo = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 }
 
 // Destructor
@@ -213,14 +213,14 @@ update_status ModuleUI::Update()
 		App->render->Blit(graphicsUI, 128, 172, &(p2_pointerAnim.GetCurrentFrame())); //Character Pointer 2.
 	}
 
-	if (insert_coin) 
+	if (StreetLogo) 
 	{
 		if (App->guys_screen != nullptr) {
-			App->render->Blit(graphics, 0, -351, &coin, 0.75f); //Street Fighter
+			App->render->Blit(graphics, 0, -351, &Logo, 0.75f); //Street Fighter
 		}
 		else 
 		{
-			App->render->Blit(graphics, 0, 0, &coin, 0.75f); //Street Fighter
+			App->render->Blit(graphics, 0, 0, &Logo, 0.75f); //Street Fighter
 		}
 		
 	}
