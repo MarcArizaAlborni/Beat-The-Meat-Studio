@@ -1083,7 +1083,7 @@ update_status ModulePlayer::PreUpdate() {
 				// attackP1_collider = App->collision->AddCollider({ 0,0, 100, 35 }, COLLIDER_PLAYER_ATTACK,SFMP, App->player);
 				// log("idle to heavy punch");
 			 //}
-			 if (inputplayerP1.O_active) {
+			 if (inputplayerP1.O_active && !inputplayerP1.D_active) {
 				 currentstateP1 = standingfarHPP1;
 				 attackP1_collider = App->collision->AddCollider({ 0,0, 80, 18 }, COLLIDER_PLAYER_ATTACK, SFHP, App->player);
 				 LOG("IDLE to HEAVY PUNCH");
@@ -1200,7 +1200,7 @@ update_status ModulePlayer::PreUpdate() {
 				 LOG("LP to IDLE");
 			 }
 
-			  if ( !currentP1_animation->Finished() && inputplayerP1.U_active) {
+			  if ( !currentP1_animation->Finished() && inputplayerP1.U_active && !inputplayerP1.D_active && !inputplayerP1.A_active) {
 
 				 currentstateP1 = thunder1P1;
 				 alreadyHit = false;
@@ -1223,14 +1223,13 @@ update_status ModulePlayer::PreUpdate() {
 				 LOG("Thunder 1 to IDLE");
 			 }
 
-			 if (!currentP1_animation->Finished() && inputplayerP1.U_active) {
+			 if (!currentP1_animation->Finished() && inputplayerP1.U_active && !inputplayerP1.D_active && !inputplayerP1.A_active) {
 
 				 currentstateP1 = thunder2P1;
 				 alreadyHit = false;
 				 SFLP_P1.Reset();
 				
-				 LOG("Thunder1 to Thunder2");
-
+				 LOG("LP to Thunder1");
 
 			 }
 
@@ -1243,7 +1242,6 @@ update_status ModulePlayer::PreUpdate() {
 			 if (currentP1_animation->Finished()) {
 				 currentstateP1 = idlestateP1;
 				 Ethunder_P1.Reset();
-				 SFLP_P1.Reset();
 				 LOG("GOING BACK TO IDLE ");
 			 }
 		 }
