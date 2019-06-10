@@ -157,9 +157,14 @@ public:
 	Animation SdamagelowLP1; //Standing Damage Low Attack Light
 	Animation SdamagelowMP1; //Standing Damage Low Attack Medium
 	Animation SdamagelowHP1; //Standing Damage Low Attacl Hard
-	Animation CdamageP1;     //Crouch Damage
+	Animation CdamageLP1;    //Crouch Damage L
+	Animation CdamageMP1;    //Crouch Damage M
+	Animation CdamageHP1;    //Crouch Damage H
 	Animation ETdamgeP1;     //Electric Thunder Damage
-	Animation RecoveryP1;    //Recovery After Damage
+	Animation JdamageP1;     //Jumping Damage
+	Animation DeathP1;
+	Animation Victory1P1;
+	Animation Victory2P1;
 
 	//Attack Animations
 	Animation SFLP_P1;       //Standing FAR LP (light punch) 
