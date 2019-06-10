@@ -32,8 +32,13 @@ public:
 	SDL_Rect characterIcon;
 	SDL_Rect countryFlag;
 	SDL_Rect countryFlagII;
+	SDL_Rect p1_pointer;
+	SDL_Rect p2_pointer;
 	SDL_Rect plane;
 	SDL_Rect coin;
+
+	Animation p1_pointerAnim;
+	Animation p2_pointerAnim;
 
 	bool stage;
 	bool character_select;
