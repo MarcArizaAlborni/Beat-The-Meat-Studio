@@ -106,6 +106,7 @@ public:
 	update_status PreUpdate();
 
 public:
+	int extradis = 40;
 	int speed = 3;
 	float camx, camy;
 	Uint8 alphaka = 255;
