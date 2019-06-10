@@ -894,6 +894,7 @@ update_status ModulePlayer::PreUpdate() {
 					 currentstateP1 = standingfarLPP1;
 					 attackP1_collider = App->collision->AddCollider({ 0,0, 100, 50 }, COLLIDER_PLAYER_ATTACK,SFLP, App->player);
 					 LOG("IDLE to LP");
+					
 				 }
 				 if (inputplayerP1.I_active) {
 					 currentstateP1 = standingfarMPP1;
@@ -1209,16 +1210,17 @@ update_status ModulePlayer::PreUpdate() {
 				 alreadyHit = false;
 				 SFLP_P1.Reset();
 				 LOG("LP to IDLE");
+				 ++thundertick;
 			 }
 
 			  if ( !currentP1_animation->Finished() && inputplayerP1.U_active && !inputplayerP1.D_active && !inputplayerP1.A_active) {
-
-				 currentstateP1 = thunder1P1;
-				 alreadyHit = false;
-				 SFLP_P1.Reset();
-				 thundertick = 1;
-				 LOG("LP to Thunder1");
-
+				  if (thundertick > 3) {
+					  currentstateP1 = thunder1P1;
+					  alreadyHit = false;
+					  SFLP_P1.Reset();
+					  thundertick = 1;
+					  LOG("LP to Thunder1");
+				  }
 			  }
 			
 		 }
