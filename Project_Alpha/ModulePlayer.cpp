@@ -2174,7 +2174,7 @@ update_status ModulePlayer::Update() {
 	if (positionP1.x +35 < App->player2->positionP2.x + 35 ) {
 		flipP1 = false;
 		App->render->Blit(graphicsP1, positionP1.x - 5, groundLevelP1 -15, &shadowP1, 1.0f, true,SDL_FLIP_NONE);
-		App->render->Blit(graphicsP1, positionP1.x, positionP1.y - r.h, &r, 1.0f, true, SDL_FLIP_NONE,0.0f);
+		App->render->Blit(graphicsP1, positionP1.x, positionP1.y - r.h, &r, 1.0f, true, SDL_FLIP_NONE);
 	}
 	else {
 		flipP1 = true;
