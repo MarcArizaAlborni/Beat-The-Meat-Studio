@@ -136,10 +136,10 @@ update_status ModuleCharacterSelect::Update()
 		App->ui->p2_characterSelect = true;
 	}
 
-	if (App->ui->p1_characterSelect == true && App->ui->p2_characterSelect == true)
-	{
-		App->ui->stageFlag = true;
+	if (App->ui->p1_characterSelect == true && App->ui->p2_characterSelect == true) { App->ui->stageFlag = true; }
 
+	if (App->ui->stageFlag)
+	{
 		deltaTimeCh = SDL_GetTicks() / 1000;
 		startTimeCh = deltaTimeCh;
 		timeLimitCh = deltaTimeCh - startTimeCh;
@@ -149,8 +149,6 @@ update_status ModuleCharacterSelect::Update()
 			App->fade->FadeToBlack(App->character_select, App->scene_guile, 5.0f);
 		}
 	}
-
-	deltaTimeCh = SDL_GetTicks() / 1000; //GetTicks counts the amount of milliseconds that have elapsed since the SDL_library has been executed. Milliseconds to seconds.
 	
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_1] == KEY_DOWN)
