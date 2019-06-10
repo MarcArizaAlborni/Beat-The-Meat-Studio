@@ -259,7 +259,7 @@ ModulePlayer::ModulePlayer()
 	  SFMP_P1.PushBack({134, 788, 120, 108 });
 	  SFMP_P1.PushBack({264, 799, 130, 97 });
 	  SFMP_P1.PushBack({403, 803, 103, 93}); //This is not correct I think
-	  SFMP_P1.speed = 0.2f;
+	  SFMP_P1.speed = 0.17f;
 		
 	  //Standing CLOSE MP
 	  SCMP_P1.PushBack({ 30, 1365, 110, 93 });
@@ -372,7 +372,7 @@ ModulePlayer::ModulePlayer()
 	  CHP_P1.PushBack({ 612, 895, 84, 58 });
 	  CHP_P1.PushBack({ 612, 895, 84, 58 });
 	  CHP_P1.PushBack({ 612, 895, 84, 58 });
-	  CHP_P1.speed = 0.2f;
+	  CHP_P1.speed = 0.3f;
 
 	  //Jump HP F and B
 	  JHPFB_P1.PushBack({ 610, 1462, 85, 117 });
@@ -1534,18 +1534,11 @@ update_status ModulePlayer::PreUpdate() {
 				 currentstateP1 = backwardstateP1;
 
 			 }
-
-			
 		 }
 
 		 if (currentstateP1 == rollingattackP1LIGHT) {
 
-			 //if (currentP1_animation->Finished()&& inputplayerP1.D_active && !inputplayerP1.I_active && !inputplayerP1.O_active ) {
-
-				
-				//RollingP1.Reset();
-				// currentstateP1 = forwardstateP1;
-			 //}
+			
 
 			 if (positionP1.x + 40 == App->player2->positionP2.x) {
 
@@ -1553,17 +1546,9 @@ update_status ModulePlayer::PreUpdate() {
 				 RollingP1.Reset();
 
 			 }
-
 		 }
 
 		 if (currentstateP1 == rollingattackP1MEDIUM) {
-
-			 //if (currentP1_animation->Finished() && !inputplayerP1.D_active && !inputplayerP1.I_active && !inputplayerP1.O_active) {
-
-				// // RollingP1.Reset();
-				//RollingP1.Reset();
-				// currentstateP1 =  idlestateP1;
-			 //}
 
 			 if (positionP1.x + 40 >= App->player2->positionP2.x) {
 
@@ -1575,18 +1560,11 @@ update_status ModulePlayer::PreUpdate() {
 
 		 if (currentstateP1 == rollingattackP1HEAVY) {
 
-			 //if (currentP1_animation->Finished() && !inputplayerP1.D_active && !inputplayerP1.I_active && inputplayerP1.O_active) {
-
-				// // RollingP1.Reset();
-				// RollingP1.Reset();
-				// currentstateP1 = standingfarHPP1;
-			 //}
 
 			 if (positionP1.x + 40 == App->player2->positionP2.x) {
 
 				 currentstateP1 = rollingreboundP1;
 				 RollingP1.Reset();
-
 			 }
 		 }
 
@@ -1612,53 +1590,42 @@ update_status ModulePlayer::PreUpdate() {
 			 if (currentP1_animation->Finished() && !inputplayerP1.D_active && inputplayerP1.I_active && !inputplayerP1.O_active) {
 
 			    // RollingP1.Reset();
+				 deleteCollider(attackP1_collider);
 				 RollingRebP1.Reset();
 			    currentstateP1 = standingfarMPP1;
-			}
-
-
+			 }
 		 }
 
 		 if (currentstateP1 == rollingreboundP1) {
-
 
 			 if (currentP1_animation->Finished() && !inputplayerP1.D_active && !inputplayerP1.I_active && inputplayerP1.O_active) {
 
 			    // RollingP1.Reset();
+				 deleteCollider(attackP1_collider);
 				 RollingRebP1.Reset();
-			    currentstateP1 = standingfarHPP1;
-			}
-
-
-
+				 currentstateP1 = standingfarHPP1;
+			 }
 		 }
 
 		 if (currentstateP1 == rollingreboundP1) {
-
 
 			 if (currentP1_animation->Finished()&& inputplayerP1.D_active && !inputplayerP1.I_active && !inputplayerP1.O_active ) {
-
-
+				 deleteCollider(attackP1_collider);
 				 RollingRebP1.Reset();
 			    currentstateP1 = forwardstateP1;
-			}
-
-
+			 }
 		 }
-		 
+
 		 if (currentstateP1 == rollingreboundP1) {
 
-
-
 			 if (currentP1_animation->Finished() && !inputplayerP1.D_active && !inputplayerP1.I_active && !inputplayerP1.O_active) {
-
+				 deleteCollider(attackP1_collider);
 			    // RollingP1.Reset();
 				 RollingRebP1.Reset();
 			    currentstateP1 =  idlestateP1;
-			}
-
-
+			 }
 		 }
+
 		return UPDATE_CONTINUE;
 	}
 }
@@ -1677,7 +1644,6 @@ update_status ModulePlayer::Update() {
 
 	case backwardstateP1:
 		playerP1_collider->rect.h = 93;
-
 		currentP1_animation = &backwardP1;
 		positionP1.x -= speed;
 		LOG("BACK ANIMATION ACTIVE");
@@ -2046,7 +2012,7 @@ update_status ModulePlayer::Update() {
 		
 		positionP1.y = 180;
 		positionP1.x += 7;
-		
+		attackP1_collider->SetPos(positionP1.x  - camx, positionP1.y - 60 - camy);
 		currentP1_animation = &RollingP1;
 		
 		LOG("ROLLING ANIMATION ACTIVE");
@@ -2054,7 +2020,7 @@ update_status ModulePlayer::Update() {
 
 
 	case rollingattackP1MEDIUM:
-
+		attackP1_collider->SetPos(positionP1.x  - camx, positionP1.y - 60 - camy);
 		positionP1.y = 180;
 		positionP1.x += 7;
 
@@ -2065,7 +2031,7 @@ update_status ModulePlayer::Update() {
 	
 
 	case rollingattackP1HEAVY:
-
+		attackP1_collider->SetPos(positionP1.x - camx, positionP1.y - 60 - camy);
 		positionP1.y = 180;
 		positionP1.x += 7;
 
