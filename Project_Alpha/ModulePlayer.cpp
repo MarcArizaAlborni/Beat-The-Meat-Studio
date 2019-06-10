@@ -21,7 +21,7 @@
 using namespace std;
 void deleteCollider(Collider* coll) {
 	if (coll != nullptr) { coll->to_delete = true; };
-}
+};
 
 
 ModulePlayer::ModulePlayer()
@@ -770,7 +770,6 @@ update_status ModulePlayer::PreUpdate() {
 				 SCMP_P1.Reset();
 			 }
 		 }
-
 		 if (currentstateP1 == standingcloseLPP1) {
 			 if (currentP1_animation->Finished()) {
 
@@ -778,8 +777,6 @@ update_status ModulePlayer::PreUpdate() {
 				 currentstateP1 = idlestateP1;
 				 SCLP_P1.Reset();
 			 }
-
-
 		 }
 		 if (currentstateP1 == standingcloseHPP1) {
 			 if (currentP1_animation->Finished()) {
@@ -845,6 +842,71 @@ update_status ModulePlayer::PreUpdate() {
 				 CHK_P1.Reset();
 			 }
 		 }
+		 //Jumping attack check
+		 if (currentstateP1 == jumpLPP1) {
+			 if (currentP1_animation->Finished()) {
+				 deleteCollider(attackP1_collider);
+				 if (neutralJump == true) { currentstateP1 = NjumpstateP1; }
+				 if (forwardJump == true) { currentstateP1 = FjumpstateP1; }
+				 if (backwardJump == true) { currentstateP1 = BjumpstateP1; }
+				 JLP_P1.Reset();
+			 }
+		 }
+		 if (currentstateP1 == jumpMPP1) {
+			 if (currentP1_animation->Finished()) {
+				 deleteCollider(attackP1_collider);
+				 if (neutralJump == true) { currentstateP1 = NjumpstateP1; }
+				 if (forwardJump == true) { currentstateP1 = FjumpstateP1; }
+				 if (backwardJump == true) { currentstateP1 = BjumpstateP1; }
+				 JMP_P1.Reset();
+			 }
+		 }
+		 if (currentstateP1 == NjumpHPP1) {
+			 if (currentP1_animation->Finished()) {
+				 
+				 deleteCollider(attackP1_collider);
+				 if (neutralJump == true) { currentstateP1 = NjumpstateP1; }
+				 if (forwardJump == true) { currentstateP1 = FjumpstateP1; }
+				 if (backwardJump == true) { currentstateP1 = BjumpstateP1; }
+				 JHPN_P1.Reset();
+			 }
+		 }
+		 if (currentstateP1 == DjumpHPP1) {
+			 if (currentP1_animation->Finished()) {
+				 deleteCollider(attackP1_collider);
+				 if (neutralJump == true) { currentstateP1 = NjumpstateP1; }
+				 if (forwardJump == true) { currentstateP1 = FjumpstateP1; }
+				 if (backwardJump == true) { currentstateP1 = BjumpstateP1; }
+				 JHPFB_P1.Reset();
+			 }
+		 }
+		 if (currentstateP1 == jumpLKP1) {
+			 if (currentP1_animation->Finished()) {
+				 deleteCollider(attackP1_collider);
+				 if (neutralJump == true) { currentstateP1 = NjumpstateP1; }
+				 if (forwardJump == true) { currentstateP1 = FjumpstateP1; }
+				 if (backwardJump == true) { currentstateP1 = BjumpstateP1; }
+				 JLK_P1.Reset();
+			 }
+		 }
+		 if (currentstateP1 == jumpMKP1) {
+			 if (currentP1_animation->Finished()) {
+				 deleteCollider(attackP1_collider);
+				 if (neutralJump == true) { currentstateP1 = NjumpstateP1; }
+				 if (forwardJump == true) { currentstateP1 = FjumpstateP1; }
+				 if (backwardJump == true) { currentstateP1 = BjumpstateP1; }
+				 JMK_P1.Reset();
+			 }
+		 }
+		 if (currentstateP1 == jumpHKP1) {
+			 if (currentP1_animation->Finished()) {
+				 deleteCollider(attackP1_collider);
+				 if (neutralJump == true) { currentstateP1 = NjumpstateP1; }
+				 if (forwardJump == true) { currentstateP1 = FjumpstateP1; }
+				 if (backwardJump == true) { currentstateP1 = BjumpstateP1; }
+				 JHK_P1.Reset();
+			 }
+		 }
 		 //Damaged chack
 		 if (currentstateP1 == SdamagedLP1) {
 			 if (currentP1_animation->Finished()) {
@@ -882,8 +944,11 @@ update_status ModulePlayer::PreUpdate() {
 				 currentstateP1 = crouchstateP1;
 				 LOG("IDLE to CROUCH");
 			 }
+			 
 			 if (inputplayerP1.W_active) {
 				 jumping = true;
+				 neutralJump = true;
+				 
 				 currentstateP1 = NjumpstateP1;
 				 jumpstart = time;
 				 jumpTimer = 0;
@@ -978,6 +1043,7 @@ update_status ModulePlayer::PreUpdate() {
 			 if (inputplayerP1.W_active) {
 				 
 				 jumping = true;
+				 backwardJump = true;
 				 currentstateP1 = BjumpstateP1;
 				 jumpstart = time;
 				 jumpTimer = 0;
@@ -1078,6 +1144,7 @@ update_status ModulePlayer::PreUpdate() {
 			 if (inputplayerP1.W_active){
 				
 				 jumping = true;
+				 forwardJump = true;
 				 currentstateP1 = FjumpstateP1;
 				 jumpstart = time;
 				 jumpTimer = 0;
@@ -1114,27 +1181,16 @@ update_status ModulePlayer::PreUpdate() {
 				 attackP1_collider = App->collision->AddCollider({ 0,0, 75, 15 }, COLLIDER_PLAYER_ATTACK, SFHK, App->player);
 				 LOG("IDLE to HEAVY KICK");
 			 }
-			
-
-			
-
+	
 			 if (inputplayerP1.I_active && close ) { //falta CONDICIO COLIDER APROP
-
-
 				 currentstateP1 = HeadbuttP1;
 				 LOG("FORWARD TO HEADBUT");
 
 			 }
-
 			 if (inputplayerP1.O_active && close) {
-
-
 				 currentstateP1 = throwP1;
 			 }
-			 
-			 
 
-			
 		 }
 		 //CROUCH STATE
 		 if (currentstateP1 == crouchstateP1) {
@@ -1196,11 +1252,64 @@ update_status ModulePlayer::PreUpdate() {
 				 NjumpP1.Reset();
 				 FjumpP1.Reset();
 				 BjumpP1.Reset();
+				 JLP_P1.Reset();
+				 JMP_P1.Reset();
+				 JHPN_P1.Reset();
+				 JHPFB_P1.Reset();
+				 JLK_P1.Reset();
+				 JMK_P1.Reset();
+				 JHK_P1.Reset();
 				 jumping = false;
+				 airkick = true;
+				 neutralJump = false;
+				 forwardJump = false;
+				 backwardJump = false;
 				 jumpTimer = 0;
 
 			 }
 		 }
+		 if (jumping == true) {
+			 if (airkick == true) {
+				 
+				 if (inputplayerP1.U_active) {
+					 currentstateP1 = jumpLPP1;
+					 airkick = false;
+				 }
+				 if (inputplayerP1.I_active) {
+					 currentstateP1 = jumpMPP1;
+					 airkick = false;
+				 }
+				 if (inputplayerP1.J_active) {
+					 currentstateP1 = jumpLKP1;
+					 airkick = false;
+				 }
+				 if (inputplayerP1.K_active) {
+					 currentstateP1 = jumpMKP1;
+					 airkick = false;
+				 }
+				 if (inputplayerP1.L_active) {
+					 currentstateP1 = jumpHKP1;
+					 airkick = false;
+				 }
+				 if (currentstateP1 == FjumpstateP1 || currentstateP1 == BjumpstateP1) {
+					 if (inputplayerP1.O_active) {
+						 currentstateP1 = DjumpHPP1;
+						 airkick = false;
+					 }
+				 }
+				 else {
+					 if (inputplayerP1.O_active) {
+						 currentstateP1 = NjumpHPP1;
+						 airkick = false;
+					 }
+				 }
+				
+			 }
+
+		 }
+
+
+
 		 //ATTACKS
 		 //STANDING FAR LP
 		 if (currentstateP1 == standingfarLPP1) {
@@ -1500,23 +1609,23 @@ update_status ModulePlayer::Update() {
 
 	case NjumpstateP1:
 		currentP1_animation = &NjumpP1;
-		positionP1.y = groundLevel - (yvel*jumpTimer) + (0.5*(gravity) * (jumpTimer*jumpTimer)); //MRUA
+		 //MRUA
 		LOG(" NEUTRAL JUMP ANIMATION ACTIVE");
 		break;
 
 	case FjumpstateP1:
 		if (!flipP1) { currentP1_animation = &FjumpP1; }
 		else { currentP1_animation = &BjumpP1; }
-		positionP1.x += speed;
-		positionP1.y = groundLevel - (yvel*jumpTimer) + (0.5*(gravity) * (jumpTimer*jumpTimer)); //MRUA
+		//positionP1.x += speed;
+		//positionP1.y = groundLevel - (yvel*jumpTimer) + (0.5*(gravity) * (jumpTimer*jumpTimer)); //MRUA
 		LOG(" FORWARD JUMP ANIMATION ACTIVE");
 		break;
 
 	case BjumpstateP1:
 		if (!flipP1) { currentP1_animation = &BjumpP1; }
 		else { currentP1_animation = &FjumpP1; }
-		positionP1.x -= speed;
-		positionP1.y = groundLevel - (yvel*jumpTimer) + (0.5*(gravity) * (jumpTimer*jumpTimer)); //MRUA
+		//positionP1.x -= speed;
+		//positionP1.y = groundLevel - (yvel*jumpTimer) + (0.5*(gravity) * (jumpTimer*jumpTimer)); //MRUA
 		LOG(" BACKWARD JUMP ANIMATION ACTIVE");
 		break;
 
@@ -1649,6 +1758,28 @@ update_status ModulePlayer::Update() {
 		currentP1_animation = &CHK_P1;
 		LOG("CROUCH LP ANIMATION ACTIVE");
 		break;
+	//Jumping attacks
+	case jumpLPP1:
+		currentP1_animation = &JLP_P1;
+		break;
+	case jumpMPP1:
+		currentP1_animation = &JMP_P1;
+		break;
+	case NjumpHPP1:
+		currentP1_animation = &JHPN_P1;
+		break;
+	case DjumpHPP1:
+		currentP1_animation = &JHPFB_P1;
+		break;
+	case jumpLKP1:
+		currentP1_animation = &JLK_P1;
+		break;
+	case jumpMKP1:
+		currentP1_animation = &JMK_P1;
+		break;
+	case jumpHKP1:
+		currentP1_animation = &JHK_P1;
+		break;
 	//damaged
 	case SdamagedLP1:
 		currentP1_animation = &SdamageLP1;
@@ -1771,6 +1902,13 @@ update_status ModulePlayer::Update() {
 	if (jumping) {
 		jumpTimer = time - jumpstart;
 		playerP1_collider->SetPos(positionP1.x - App->render->camera.x / SCREEN_ADD, positionP1.y - 80 - App->render->camera.y / SCREEN_ADD);
+		positionP1.y = groundLevel - (yvel*jumpTimer) + (0.5*(gravity) * (jumpTimer*jumpTimer));
+		if (forwardJump == true) {
+			positionP1.x += speed;
+		}
+		if (backwardJump == true) {
+			positionP1.x -= speed;
+		}
 	}
 	//Flip of the players when they change sides
 	if (positionP1.x +35 < App->player2->positionP2.x + 35 ) {

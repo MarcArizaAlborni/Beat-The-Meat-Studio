@@ -43,7 +43,14 @@ enum STATEP1 {
 	crouchLKP1,
 	crouchMKP1,
 	crouchHKP1,
+	//Jumping attacks
 	jumpLPP1,
+	jumpMPP1,
+	NjumpHPP1,
+	DjumpHPP1,
+	jumpLKP1,
+	jumpMKP1,
+	jumpHKP1,
 	//Standing damaged
 	SdamagedLP1,
 	SdamagedMP1,
@@ -103,6 +110,9 @@ public:
 	float camx, camy;
 	Uint8 alphaka = 255;
 	int groundLevel = 205;
+	bool neutralJump = false;
+	bool forwardJump = false;
+	bool backwardJump = false;
 	int maxHeight = 120;
 	bool close = false;
 	bool SblockingP1 = false;
