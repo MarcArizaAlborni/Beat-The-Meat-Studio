@@ -188,8 +188,8 @@ ModulePlayer::ModulePlayer()
 		SdamagelowMP1.speed = 0.05f;
 
 
-		//Sranding Damage Low Attack Hard
-		SdamagelowHP1.PushBack({ 30, 2278, 96, 85 });
+		//Standing Damage Low Attack Hard
+		SdamagelowHP1.PushBack({ 30, 2278, 96, 85 }); 
 		SdamagelowHP1.PushBack({ 30, 2278, 96, 85 });
 		SdamagelowHP1.PushBack({ 30, 2278, 96, 85 });
 		SdamagelowHP1.PushBack({ 30, 2278, 96, 85 });
@@ -244,7 +244,17 @@ ModulePlayer::ModulePlayer()
 	  CLP_P1.loop = false;
 
 	  //Jumping LP
-	  JLP_P1.PushBack({});
+	  JLP_P1.PushBack({ 610, 1369, 94, 83 });
+	  JLP_P1.PushBack({ 840, 1371, 84, 81 });
+	  JLP_P1.PushBack({ 840, 1371, 84, 81 });
+	  JLP_P1.PushBack({ 712, 1372, 119, 80 });
+	  JLP_P1.PushBack({ 712, 1372, 119, 80 });
+	  JLP_P1.PushBack({ 712, 1372, 119, 80 });
+	  JLP_P1.PushBack({ 712, 1372, 119, 80 });
+	  JLP_P1.PushBack({ 712, 1372, 119, 80 });
+	  JLP_P1.PushBack({ 840, 1371, 84, 81 });
+	  JLP_P1.PushBack({ 610, 1369, 94, 83 });
+	  JLP_P1.speed = 0.09f;
 	   
 	  //Standing FAR MP 
 	  SFMP_P1.PushBack({31, 765, 88, 104 }); 
@@ -278,6 +288,17 @@ ModulePlayer::ModulePlayer()
 	  CMP_P1.speed = 0.2f;
 
 	  //Jump MP
+	  JMP_P1.PushBack({ 610, 1369, 94, 83 });
+	  JMP_P1.PushBack({ 840, 1371, 84, 81 });
+	  JMP_P1.PushBack({ 840, 1371, 84, 81 });
+	  JMP_P1.PushBack({ 712, 1372, 119, 80 });
+	  JMP_P1.PushBack({ 712, 1372, 119, 80 });
+	  JMP_P1.PushBack({ 712, 1372, 119, 80 });
+	  JMP_P1.PushBack({ 712, 1372, 119, 80 });
+	  JMP_P1.PushBack({ 712, 1372, 119, 80 });
+	  JMP_P1.PushBack({ 840, 1371, 84, 81 });
+	  JMP_P1.PushBack({ 610, 1369, 94, 83 });
+	  JMP_P1.speed = 0.09f;
 
 	  //Standing FAR HP
 	  SFHP_P1.PushBack({ 27, 929, 107, 95 });
@@ -355,7 +376,28 @@ ModulePlayer::ModulePlayer()
 	  CHP_P1.PushBack({ 612, 895, 84, 58 });
 	  CHP_P1.speed = 0.2f;
 
-	  //Jump HP
+	  //Jump HP F and B
+	  JHPFB_P1.PushBack({ 610, 1462, 85, 117 });
+	  JHPFB_P1.PushBack({ 610, 1462, 85, 117 });
+	  JHPFB_P1.PushBack({ 610, 1462, 85, 117 });
+	  JHPFB_P1.PushBack({ 699, 1490, 126, 80 });
+	  JHPFB_P1.PushBack({ 699, 1490, 126, 80 });
+	  JHPFB_P1.PushBack({ 826, 1495, 98, 85 });
+	  JHPFB_P1.PushBack({ 826, 1495, 98, 85 });
+	  JHPFB_P1.PushBack({ 826, 1495, 98, 85 });
+	  JHPFB_P1.PushBack({ 925, 1491, 72, 89 });
+	  JHPFB_P1.PushBack({ 925, 1491, 72, 89 });
+	  JHPFB_P1.PushBack({ 925, 1491, 72, 89 });
+	  JHPFB_P1.speed = 0.09f;
+
+	  //Jump Hp N
+	  JHPN_P1.PushBack({ 610, 1587, 136, 84 });
+	  JHPN_P1.PushBack({ 753, 1591, 78, 80 });
+	  JHPN_P1.PushBack({ 857, 1589, 65, 82 });
+	  JHPN_P1.PushBack({ 753, 1591, 78, 80 });
+	  JHPN_P1.PushBack({ 610, 1587, 136, 84 });
+	  JHPN_P1.speed = 0.3f;
+
 
 	  //Standing FAR LK
 	  SFLK_P1.PushBack({ 33, 1028, 81, 96 });
@@ -398,11 +440,17 @@ ModulePlayer::ModulePlayer()
 	  CLK_P1.speed = 0.2f;
 
 	  //Jump LK
+	  JLK_P1.PushBack({ 610, 1690, 80, 79 });
+	  JLK_P1.PushBack({ 702, 1679, 102, 86 });
+	  JLK_P1.PushBack({ 816, 1680, 127, 85 });
+	  JLK_P1.PushBack({ 816, 1680, 127, 85 });
+	  JLK_P1.PushBack({ 816, 1680, 127, 85 });
+	  JLK_P1.speed = 0.3f;
 
 	  //Standing FAR MK
 	  SFMK_P1.PushBack({28, 1135, 92, 85 });
 	  SFMK_P1.PushBack({ 129, 1135, 101, 85 });
-	  SFMK_P1.PushBack({ 236, 1135, 124, 85 }); 
+	  SFMK_P1.PushBack({ 236, 1135, 124, 85 });  
 	  SFMK_P1.PushBack({ 236, 1135, 124, 85 });
 	  SFMK_P1.PushBack({ 129, 1135, 101, 85 });
 	  SFMK_P1.PushBack({ 28, 1135, 92, 85 });
@@ -443,6 +491,15 @@ ModulePlayer::ModulePlayer()
 	  CMK_P1.PushBack({ 610, 980, 74, 78 });
 
 	  //Jump MK
+	  JMK_P1.PushBack({ 610, 1690, 80, 79 });
+	  JMK_P1.PushBack({ 702, 1679, 102, 86 });
+	  JMK_P1.PushBack({ 816, 1680, 127, 85 });
+	  JMK_P1.PushBack({ 816, 1680, 127, 85 });
+	  JMK_P1.PushBack({ 816, 1680, 127, 85 });
+	  JMK_P1.PushBack({ 702, 1679, 102, 86 });
+	  JMK_P1.PushBack({ 610, 1690, 80, 79 });
+	  JMK_P1.speed = 0.06f;
+
 
 	  //Standing FAR HK
 	  SFHK_P1.PushBack({ 34, 1263, 90, 85 });
@@ -488,7 +545,16 @@ ModulePlayer::ModulePlayer()
 	  CHK_P1.speed = 0.2f;
 
 	  //Jump HK
-
+	  JHK_P1.PushBack({ 610, 1787, 96, 79 });
+	  JHK_P1.PushBack({ 706, 1779, 136, 87 });
+	  JHK_P1.PushBack({ 849, 1780, 170, 88 });
+	  JHK_P1.PushBack({ 849, 1780, 170, 88 });
+	  JHK_P1.PushBack({ 849, 1780, 170, 88 });
+	  JHK_P1.PushBack({ 706, 1779, 136, 87 });
+	  JHK_P1.PushBack({ 610, 1787, 96, 79 });
+	  JHK_P1.PushBack({ 610, 1787, 96, 79 });
+	  JHK_P1.PushBack({ 610, 1787, 96, 79 });
+	  JHK_P1.speed = 0.07f;
 
 	  //Headbut
 	  Headbut_P1.PushBack({ 616, 1954, 90, 100 });
