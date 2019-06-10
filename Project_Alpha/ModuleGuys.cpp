@@ -178,6 +178,9 @@ bool ModuleGuys::Start()
 {
 	LOG("Loading Building Screen");
 	graphics = App->textures->Load("Sprites/Guys.png");
+	Title_sound = App->audio->LoadMus("Audios/Music/01 Title.ogg");
+	punch_sound = App->audio->LoadFx("Audios/FX/Hard Punch.wav");
+	App->audio->PlayMusic(Title_sound, 0);
 	App->ui->Enable();
 	App->ui->StreetLogo = true;
 	return true;
@@ -187,7 +190,7 @@ bool ModuleGuys::CleanUp()
 {
 	LOG("Unloading Building Screen");
 	App->textures->Unload(graphics);
-
+	App->audio->UnLoadFX(punch_sound);
 	return true;
 
 }
@@ -199,8 +202,9 @@ update_status ModuleGuys::PreUpdate()
 
 	if (punch.Finished()) {
 		cur_anim = &punch2.GetCurrentFrame();
+		App->audio->PlayFx(punch_sound);
 	}
-
+	
 	if(punch2.Finished())
 	{ 
 		cur_anim = &punch3.GetCurrentFrame();
@@ -230,7 +234,7 @@ update_status ModuleGuys::Update()
 		speed = 0;
 		
 		App->fade->FadeToBlack(App->guys_screen, App->icoin_screen, 4.f);
-
+	
 	}
 
 	if (App->sounds->coin_inserted == true) {

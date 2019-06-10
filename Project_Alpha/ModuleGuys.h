@@ -2,7 +2,7 @@
 #include "Module.h"
 #include "Animation.h"
 #include "Globals.h"
-
+#include "ModuleAudio.h"
 
 struct SDL_Texture;
 
@@ -27,6 +27,9 @@ public:
 	SDL_Rect building;
 	SDL_Rect sky;
 	Animation people;
+
+	Mix_Music* Title_sound;
+	Mix_Chunk* punch_sound;
 
 	float speed = 2.5f;
 };

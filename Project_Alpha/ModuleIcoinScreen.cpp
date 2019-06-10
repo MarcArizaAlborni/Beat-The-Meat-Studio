@@ -15,6 +15,7 @@
 #include "ModuleSceneRyu.h"
 #include "ModuleUI.h"
 #include "ModuleSounds.h"
+#include "ModuleGuys.h"
 
 ModuleIcoinScreen::ModuleIcoinScreen()
 {
@@ -153,6 +154,7 @@ bool ModuleIcoinScreen::CleanUp()
 {
 	LOG("Unloading Introduce coin Screen");
 	App->textures->Unload(graphics);
+	App->audio->UnLoadMusic(App->guys_screen->Title_sound);
 	App->ui->Disable();
 	App->ui->StreetLogo = false;
 	return true;
@@ -192,7 +194,7 @@ update_status ModuleIcoinScreen::Update()
 	if (App->sounds->coin_inserted == true) {
 
 		App->fade->FadeToBlack(App->icoin_screen, App->start_screen, 1.0f);
-
+		App->audio->FinishMusic(0);
 	}
 
 	return UPDATE_CONTINUE;
