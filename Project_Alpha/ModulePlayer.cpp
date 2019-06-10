@@ -1602,7 +1602,8 @@ update_status ModulePlayer::Update() {
 
 	case throwP1:
 		currentP1_animation = &Throw_P1;
-		//App->player2->currentP2_animation = &SdamageP1;
+		/*App->player2->currentstateP2 = SdamagedHP2;
+		App->player2->currentP2_animation = SdamageHP1;*/
 		LOG("THROW ANIMATION ACTIVE");
 		break;
 		//crouch attacks
