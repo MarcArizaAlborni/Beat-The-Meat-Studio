@@ -15,9 +15,6 @@
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
-
-
-
 using namespace std;
 void deleteCollider(Collider* coll) {
 	if (coll != nullptr) { coll->to_delete = true; };
@@ -678,7 +675,7 @@ bool ModulePlayer::Start()
 	*finishC = combo[0];
 
 	//Player 2 stest collider
-	playerP1_collider = App->collision->AddCollider({ positionP1.x , positionP1.y - 100, 60, 93 }, COLLIDER_PLAYER,NOATTACK, App->player);
+	playerP1_collider = App->collision->AddCollider({ positionP1.x , positionP1.y,47,200 }, COLLIDER_PLAYER,NOATTACK, App->player);
 	attackP1_collider = nullptr;
 	return true;
 }
@@ -1349,7 +1346,7 @@ update_status ModulePlayer::PreUpdate() {
 				 }
 				 if (inputplayerP1.L_active) {
 					 currentstateP1 = jumpHKP1;
-					 attackP1_collider = App->collision->AddCollider({ 0,0, 57, 25 }, COLLIDER_PLAYER_ATTACK, SFLK, App->player);
+					 attackP1_collider = App->collision->AddCollider({ 0,0, 70, 33 }, COLLIDER_PLAYER_ATTACK, SFLK, App->player);
 					 airkickP1 = false;
 				 }
 				 if (currentstateP1 == FjumpstateP1 || currentstateP1 == BjumpstateP1) {
@@ -1948,12 +1945,6 @@ update_status ModulePlayer::Update() {
 		
 			positionP1.y -= 7;
 		
-		
-
-		
-
-			
-		
 		/*positionP1.y  -= 5;
 		positionP1.x -= 12;*/
 		
@@ -1967,7 +1958,7 @@ update_status ModulePlayer::Update() {
 	
 
 	if ( currentstateP1 != crouchstateP1 && currentstateP1 != crouchLPP1 && currentstateP1 != crouchMPP1 && currentstateP1 != crouchHPP1 && currentstateP1 != crouchLKP1 && currentstateP1 != crouchMKP1 && currentstateP1 != crouchHKP1 ) {
-		playerP1_collider->SetPos(positionP1.x  - App->render->camera.x / SCREEN_ADD, positionP1.y - 93 - App->render->camera.y / SCREEN_ADD);
+		playerP1_collider->SetPos(positionP1.x +15  - App->render->camera.x / SCREEN_ADD, positionP1.y - 93 - App->render->camera.y / SCREEN_ADD);
 	}
 
 	SDL_Rect r = currentP1_animation->GetCurrentFrame();
@@ -1998,7 +1989,7 @@ update_status ModulePlayer::Update() {
 
 	if (jumping) {
 		jumpTimer = time - jumpstart;
-		playerP1_collider->SetPos(positionP1.x - App->render->camera.x / SCREEN_ADD, positionP1.y - 80 - App->render->camera.y / SCREEN_ADD);
+		playerP1_collider->SetPos(positionP1.x + 15 - App->render->camera.x / SCREEN_ADD, positionP1.y - 93 - App->render->camera.y / SCREEN_ADD);
 		positionP1.y = groundLevel - (yvel*jumpTimer) + (0.5*(gravity) * (jumpTimer*jumpTimer));
 		if (forwardJumpP1 == true) {
 			positionP1.x += speed;
@@ -2007,6 +1998,8 @@ update_status ModulePlayer::Update() {
 			positionP1.x -= speed;
 		}
 	}
+
+
 	//Flip of the players when they change sides
 	if (positionP1.x +35 < App->player2->positionP2.x + 35 ) {
 		flipP1 = false;
@@ -2041,16 +2034,19 @@ update_status ModulePlayer::Update() {
 	}
 
 	//camera Dynamic
-	if (positionP1.x - 30 <= App->render->camera.x / 5 ) {
+	if (positionP1.x - 30 <= App->render->camera.x / 5 ) { // player1 is left screen 
 
-		if(App->player2->positionP2.x <= (180 + App->render->camera.x / 5) + 120){
-		App->render->camera.x -= speed *2.5;
+		if(App->player2->positionP2.x <= (180 + App->render->camera.x / 5) + 120){ // player2 is close right camera
+
+			
+			App->render->camera.x -= speed *2.5;
 		}
 	}
 
-	if (positionP1.x >= ((App->render->camera.x / 5) + SCREEN_WIDTH - 130)){
+	if (positionP1.x >= ((App->render->camera.x / 5) + SCREEN_WIDTH - 130)){ // player1 is right screen
 
-		if (App->player2->positionP2.x >= (App->render->camera.x / 5 )) {
+		if (App->player2->positionP2.x >= (App->render->camera.x / 5 )) { //player2 is close to left camera
+
 			App->render->camera.x += speed * 2.5;
 		}
 	}
