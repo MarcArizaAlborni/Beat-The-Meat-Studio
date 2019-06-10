@@ -60,7 +60,6 @@ enum STATEP1 {
 	SblockstunP1,
 
 	//COMBO
-
 	thunder1P1,
 	thunder2P1,
 	throwP1,
@@ -71,9 +70,6 @@ enum STATEP1 {
 	dashforwardP1,
 	dashBackwardP1,
 	rollingreboundP1
-
-    
-
 
 };
 struct InputP1 {
