@@ -729,18 +729,57 @@ update_status ModulePlayer::PreUpdate() {
 		 
 		 //Standing Far Attacks Animation check
 		 if (currentstateP1 == standingfarMPP1) {
-			 if (currentP1_animation->Finished()) {
+			/* if (currentP1_animation->Finished()) {
 				 deleteCollider(attackP1_collider);
 				 currentstateP1 = idlestateP1;
 				 SFMP_P1.Reset();
+			 }*/
+
+			 if (currentP1_animation->Finished() && !inputplayerP1.I_active) {
+				 currentstateP1 = idlestateP1;
+				 deleteCollider(attackP1_collider);
+				 SFMP_P1.Reset();
+				 LOG("LP to IDLE");
+				 ++thundertick;
+			 }
+
+			 if (!currentP1_animation->Finished() && inputplayerP1.I_active && !inputplayerP1.D_active && !inputplayerP1.A_active) {
+				 if (thundertick > 3) {
+					 currentstateP1 = thunder1P1;
+					 deleteCollider(attackP1_collider);
+					
+					 SFMP_P1.Reset();
+
+					 LOG("LP to Thunder1");
+				 }
 			 }
 		 }
 		 if (currentstateP1 == standingfarHPP1) {
-			 if (currentP1_animation->Finished()) {
+			/* if (currentP1_animation->Finished()) {
 				 deleteCollider(attackP1_collider);
 				 currentstateP1 = idlestateP1;
 				 SFHP_P1.Reset();
+			 }*/
+
+			 if (currentP1_animation->Finished() && !inputplayerP1.O_active) {
+				 currentstateP1 = idlestateP1;
+				 deleteCollider(attackP1_collider);
+				 SFHP_P1.Reset();
+				 LOG("LP to IDLE");
+				 ++thundertick;
 			 }
+
+			 if (!currentP1_animation->Finished() && inputplayerP1.O_active && !inputplayerP1.D_active && !inputplayerP1.A_active) {
+				 if (thundertick > 3) {
+					 currentstateP1 = thunder1P1;
+					 deleteCollider(attackP1_collider);
+
+					 SFHP_P1.Reset();
+
+					 LOG("LP to Thunder1");
+				 }
+			 }
+
 		 }
 		 if (currentstateP1 == standingfarLKP1) {
 			 if (currentP1_animation->Finished()) {
@@ -1337,7 +1376,7 @@ update_status ModulePlayer::PreUpdate() {
 		 //THUNDER
 		 if (currentstateP1 == thunder1P1) {
 
-			 if (currentP1_animation->Finished()&&!inputplayerP1.U_active) {  ////////////////// AQUI ESTA EL PROBLEMA
+			 if (currentP1_animation->Finished()&&!inputplayerP1.U_active && !inputplayerP1.I_active && !inputplayerP1.O_active) {  ////////////////// AQUI ESTA EL PROBLEMA
 				 alreadyHit = false;
 
 				 currentstateP1 = idlestateP1;
@@ -1352,6 +1391,28 @@ update_status ModulePlayer::PreUpdate() {
 				 alreadyHit = false;
 				 SFLP_P1.Reset();
 				
+				 LOG("LP to Thunder1");
+
+			 }
+
+			 if (!currentP1_animation->Finished() && inputplayerP1.I_active && !inputplayerP1.D_active && !inputplayerP1.A_active) {
+
+				 currentstateP1 = thunder2P1;
+				 alreadyHit = false;
+				 SFMP_P1.Reset();
+				 SFLP_P1.Reset();
+				 SFHP_P1.Reset();
+				 LOG("LP to Thunder1");
+
+			 }
+
+			 if (!currentP1_animation->Finished() && inputplayerP1.O_active && !inputplayerP1.D_active && !inputplayerP1.A_active) {
+
+				 currentstateP1 = thunder2P1;
+				 alreadyHit = false;
+				 SFHP_P1.Reset();
+				 SFLP_P1.Reset();
+				 SFMP_P1.Reset();
 				 LOG("LP to Thunder1");
 
 			 }
