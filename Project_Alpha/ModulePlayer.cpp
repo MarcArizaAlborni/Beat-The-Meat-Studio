@@ -55,19 +55,20 @@ ModulePlayer::ModulePlayer()
 		forwardP1.PushBack({ 132, 127, 100, 84 });
 		forwardP1.PushBack({ 29, 127, 105, 84 });
 		forwardP1.loop = true;
-		forwardP1.speed = 0.1f;
+		forwardP1.speed = 0.14f;
 
 		//Walk backwards animation
-		backwardP1.PushBack({ 694, 211, 101, 101 });
-		backwardP1.PushBack({ 609, 211, 85, 101 });
-		backwardP1.PushBack({ 522, 211, 87, 101 });
-		backwardP1.PushBack({ 232, 211, 91, 101 });
-		backwardP1.PushBack({ 322, 211, 105, 101 });
-		backwardP1.PushBack({ 427, 211, 95, 101 });
-		backwardP1.PushBack({ 132, 211, 100, 101 });
-		backwardP1.PushBack({ 29, 211, 104, 101 });
+
+		backwardP1.PushBack({ 29, 211, 104, 101 }); //1
+		backwardP1.PushBack({ 132, 211, 100, 101 }); //2
+		backwardP1.PushBack({ 427, 211, 95, 101 }); //3
+		backwardP1.PushBack({ 322, 211, 105, 101 }); //4
+		backwardP1.PushBack({ 232, 211, 91, 101 }); //5
+		backwardP1.PushBack({ 522, 211, 87, 101 }); //6
+		backwardP1.PushBack({ 609, 211, 85, 101 }); //7
+		backwardP1.PushBack({ 694, 211, 101, 101 }); //8
 		backwardP1.loop = true;
-		backwardP1.speed = 0.1f;
+		backwardP1.speed = 0.14f;
 
 		//Crouch Animation
 		crouchP1.PushBack({ 427, 323, 99, 94 });
@@ -254,7 +255,7 @@ ModulePlayer::ModulePlayer()
 	  JLP_P1.PushBack({ 712, 1372, 119, 80 });
 	  JLP_P1.PushBack({ 840, 1371, 84, 81 });
 	  JLP_P1.PushBack({ 610, 1369, 94, 83 });
-	  JLP_P1.speed = 0.09f;
+	  JLP_P1.speed = 0.5f;
 	   
 	  //Standing FAR MP 
 	  SFMP_P1.PushBack({31, 765, 88, 104 }); 
@@ -298,7 +299,7 @@ ModulePlayer::ModulePlayer()
 	  JMP_P1.PushBack({ 712, 1372, 119, 80 });
 	  JMP_P1.PushBack({ 840, 1371, 84, 81 });
 	  JMP_P1.PushBack({ 610, 1369, 94, 83 });
-	  JMP_P1.speed = 0.09f;
+	  JMP_P1.speed = 0.3f;
 
 	  //Standing FAR HP
 	  SFHP_P1.PushBack({ 27, 929, 107, 95 });
@@ -388,7 +389,7 @@ ModulePlayer::ModulePlayer()
 	  JHPFB_P1.PushBack({ 925, 1491, 72, 89 });
 	  JHPFB_P1.PushBack({ 925, 1491, 72, 89 });
 	  JHPFB_P1.PushBack({ 925, 1491, 72, 89 });
-	  JHPFB_P1.speed = 0.09f;
+	  JHPFB_P1.speed = 0.2f;
 
 	  //Jump Hp N
 	  JHPN_P1.PushBack({ 610, 1587, 136, 84 });
@@ -396,7 +397,7 @@ ModulePlayer::ModulePlayer()
 	  JHPN_P1.PushBack({ 857, 1589, 65, 82 });
 	  JHPN_P1.PushBack({ 753, 1591, 78, 80 });
 	  JHPN_P1.PushBack({ 610, 1587, 136, 84 });
-	  JHPN_P1.speed = 0.3f;
+	  JHPN_P1.speed = 0.1f;
 
 
 	  //Standing FAR LK
@@ -445,7 +446,7 @@ ModulePlayer::ModulePlayer()
 	  JLK_P1.PushBack({ 816, 1680, 127, 85 });
 	  JLK_P1.PushBack({ 816, 1680, 127, 85 });
 	  JLK_P1.PushBack({ 816, 1680, 127, 85 });
-	  JLK_P1.speed = 0.3f;
+	  JLK_P1.speed = 0.2f;
 
 	  //Standing FAR MK
 	  SFMK_P1.PushBack({28, 1135, 92, 85 });
@@ -498,7 +499,7 @@ ModulePlayer::ModulePlayer()
 	  JMK_P1.PushBack({ 816, 1680, 127, 85 });
 	  JMK_P1.PushBack({ 702, 1679, 102, 86 });
 	  JMK_P1.PushBack({ 610, 1690, 80, 79 });
-	  JMK_P1.speed = 0.06f;
+	  JMK_P1.speed = 0.2f;
 
 
 	  //Standing FAR HK
@@ -554,7 +555,7 @@ ModulePlayer::ModulePlayer()
 	  JHK_P1.PushBack({ 610, 1787, 96, 79 });
 	  JHK_P1.PushBack({ 610, 1787, 96, 79 });
 	  JHK_P1.PushBack({ 610, 1787, 96, 79 });
-	  JHK_P1.speed = 0.07f;
+	  JHK_P1.speed = 0.2f;
 
 	  //Headbut
 	  Headbut_P1.PushBack({ 616, 1954, 90, 100 });
@@ -1328,17 +1329,17 @@ update_status ModulePlayer::PreUpdate() {
 				 
 				 if (inputplayerP1.U_active) {
 					 currentstateP1 = jumpLPP1;
-					 attackP1_collider = App->collision->AddCollider({ 0,0, 57, 25 }, COLLIDER_PLAYER_ATTACK, SFLK, App->player);
+					 attackP1_collider = App->collision->AddCollider({ 0,0, 55, 23 }, COLLIDER_PLAYER_ATTACK, SFLK, App->player);
 					 airkickP1 = false;
 				 }
 				 if (inputplayerP1.I_active) {
 					 currentstateP1 = jumpMPP1;
-					 attackP1_collider = App->collision->AddCollider({ 0,0, 57, 25 }, COLLIDER_PLAYER_ATTACK, SFLK, App->player);
+					 attackP1_collider = App->collision->AddCollider({ 0,0, 65, 33 }, COLLIDER_PLAYER_ATTACK, SFLK, App->player);
 					 airkickP1 = false;
 				 }
 				 if (inputplayerP1.J_active) {
 					 currentstateP1 = jumpLKP1;
-					 attackP1_collider = App->collision->AddCollider({ 0,0, 57, 25 }, COLLIDER_PLAYER_ATTACK, SFLK, App->player);
+					 attackP1_collider = App->collision->AddCollider({ 0,0, 70, 23 }, COLLIDER_PLAYER_ATTACK, SFLK, App->player);
 					 airkickP1 = false;
 				 }
 				 if (inputplayerP1.K_active) {
@@ -1354,14 +1355,14 @@ update_status ModulePlayer::PreUpdate() {
 				 if (currentstateP1 == FjumpstateP1 || currentstateP1 == BjumpstateP1) {
 					 if (inputplayerP1.O_active) {
 						 currentstateP1 = DjumpHPP1;
-						 attackP1_collider = App->collision->AddCollider({ 0,0, 57, 25 }, COLLIDER_PLAYER_ATTACK, SFLK, App->player);
+						 attackP1_collider = App->collision->AddCollider({ 0,0, 70, 50 }, COLLIDER_PLAYER_ATTACK, SFLK, App->player);
 						 airkickP1 = false;
 					 }
 				 }
 				 else {
 					 if (inputplayerP1.O_active) {
 						 currentstateP1 = NjumpHPP1;
-						 attackP1_collider = App->collision->AddCollider({ 0,0, 57, 25 }, COLLIDER_PLAYER_ATTACK, SFLK, App->player);
+						 attackP1_collider = App->collision->AddCollider({ 0,0, 100, 25 }, COLLIDER_PLAYER_ATTACK, SFLK, App->player);
 						 airkickP1 = false;
 					 }
 				 }
@@ -2041,11 +2042,14 @@ update_status ModulePlayer::Update() {
 
 	//camera Dynamic
 	if (positionP1.x - 30 <= App->render->camera.x / 5 ) {
+
 		if(App->player2->positionP2.x <= (180 + App->render->camera.x / 5) + 120){
 		App->render->camera.x -= speed *2.5;
 		}
 	}
+
 	if (positionP1.x >= ((App->render->camera.x / 5) + SCREEN_WIDTH - 130)){
+
 		if (App->player2->positionP2.x >= (App->render->camera.x / 5 )) {
 			App->render->camera.x += speed * 2.5;
 		}
