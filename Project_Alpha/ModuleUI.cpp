@@ -56,8 +56,8 @@ ModuleUI::ModuleUI() : Module()
 	//Character Grid
 	characterGrid.x = 225;
 	characterGrid.y = 340;
-	characterGrid.w = 128;
-	characterGrid.h = 64;
+	characterGrid.w = 129;
+	characterGrid.h = 65;
 
 	//Character Icon
 	p1_pointer.x = 226;
@@ -72,10 +72,12 @@ ModuleUI::ModuleUI() : Module()
 
 	p1_pointerAnim.PushBack({ 226, 84, 32, 36 });
 	p1_pointerAnim.PushBack({ 226, 84, 32, 36 });
+	p1_pointerAnim.PushBack({ 226, 84, 32, 36 });
 	p1_pointerAnim.PushBack({ 302, 84 ,32, 36 });
 	p1_pointerAnim.PushBack({ 302, 84 ,32, 36 });
 	
 
+	p2_pointerAnim.PushBack({ 265, 84, 32, 36 });
 	p2_pointerAnim.PushBack({ 265, 84, 32, 36 });
 	p2_pointerAnim.PushBack({ 265, 84, 32, 36 });
 	p2_pointerAnim.PushBack({ 340, 84, 32, 36 });
@@ -207,10 +209,10 @@ update_status ModuleUI::Update()
 	if (character_select)
 	{
 		App->render->Blit(graphicsUI, 128, 144, &characterGrid, 1.0f, false); //Character Grid.
-		//App->render->Blit(graphicsUI, 128, 140, &p1_pointer, 1.0f, false); //Character Pointer 1.
-		//App->render->Blit(graphicsUI, 128, 172, &p2_pointer, 1.0f, false); //Character Pointer 2.
-		App->render->Blit(graphicsUI, 128, 140 , &(p1_pointerAnim.GetCurrentFrame())); //Character Pointer 1.
-		App->render->Blit(graphicsUI, 128, 172, &(p2_pointerAnim.GetCurrentFrame())); //Character Pointer 2.
+		App->render->Blit(graphicsUI, 128, 140, &p1_pointer, 1.0f, false); //Character Pointer 1.
+		App->render->Blit(graphicsUI, 128, 172, &p2_pointer, 1.0f, false); //Character Pointer 2.
+		App->render->Blit(graphicsUI, p1_pointerPosX, p1_pointerPosY, &(p1_pointerAnim.GetCurrentFrame())); //Character Pointer 1.
+		App->render->Blit(graphicsUI, p2_pointerPosX, p2_pointerPosY, &(p2_pointerAnim.GetCurrentFrame())); //Character Pointer 2.
 	}
 
 	if (StreetLogo) 

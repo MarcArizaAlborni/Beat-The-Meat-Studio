@@ -35,6 +35,13 @@ bool ModuleCharacterSelect::Start()
 
 	App->ui->Enable();
 	App->ui->character_select = true;
+
+	App->ui->p1_pointerPosX = 129;
+	App->ui->p1_pointerPosY = 141;
+
+	App->ui->p2_pointerPosX = 129;
+	App->ui->p2_pointerPosY = 173;
+
 	//character_screen = App->audio->LoadMus("Audios/Music/02 Credit.ogg");
 	return true;
 }
@@ -63,46 +70,55 @@ update_status ModuleCharacterSelect::Update()
 	//Pointer player 1
 	if (App->input->keyboard[SDL_SCANCODE_UP] == 1)
 	{
-		//App->ui->p1_pointer.y -= 10;
-		App->ui->positionPointerP1.x -= 10;
+		if (App->ui->p1_pointerPosY != 141) { App->ui->p1_pointerPosY -= 32; }
+		else { App->ui->p1_pointerPosY = 141; }
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_DOWN] == 1)
 	{
-		App->ui->p1_pointer.y += 10;
+		if (App->ui->p1_pointerPosY != 173) { App->ui->p1_pointerPosY += 32; }
+		else { App->ui->p1_pointerPosY = 173; }
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_LEFT] == 1)
 	{
-		App->ui->p1_pointer.x -= 10;
+		if (App->ui->p1_pointerPosX != 129) { App->ui->p1_pointerPosX -= 32; }
+		else { App->ui->p1_pointerPosX != 129; }
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == 1)
 	{
-		App->ui->p1_pointer.x += 10;
+		if (App->ui->p1_pointerPosX != 225) { App->ui->p1_pointerPosX += 32; }
+		else { App->ui->p1_pointerPosX = 225; }
 	}
 
 	//Pointer player 2
 	if (App->input->keyboard[SDL_SCANCODE_U] == 1)
 	{
-		App->ui->p2_pointer.y -= 10;
-		//App->render->Blit(graphicsUI, 128, 172, &p2_pointer, 1.0f, false);
+		if(App->ui->p2_pointerPosY != 141) { App->ui->p2_pointerPosY -= 32; }
+		else { App->ui->p2_pointerPosY = 141; }
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_J] == 1)
 	{
-		App->ui->p2_pointer.y += 10;
+		if (App->ui->p2_pointerPosY != 173) { App->ui->p2_pointerPosY += 32; }
+		else { App->ui->p2_pointerPosY = 173; }
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_H] == 1)
 	{
-		App->ui->p1_pointer.x -= 10;
+		if (App->ui->p2_pointerPosX != 129) { App->ui->p2_pointerPosX -= 32; }
+		else { App->ui->p2_pointerPosX = 129; }
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_K] == 1)
 	{
-		App->ui->p1_pointer.x += 10;
+		if (App->ui->p2_pointerPosX != 225) { App->ui->p2_pointerPosX += 32; }
+		else { App->ui->p2_pointerPosX = 225; }
 	}
+
+	//Pointer Flags
+
 
 	return UPDATE_CONTINUE;
 }
