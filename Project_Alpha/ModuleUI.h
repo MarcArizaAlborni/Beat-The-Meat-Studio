@@ -57,6 +57,9 @@ public:
 	int p2_pointerPosX = 129;
 	int p2_pointerPosY = 173;
 
+	float planePosX = 269.0f;
+	float planePosY = 96.0f;
+
 	bool stage;
 	bool character_select;
 	char timechar[2];

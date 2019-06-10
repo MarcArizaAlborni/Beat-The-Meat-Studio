@@ -28,7 +28,7 @@ ModuleLoseScreen::~ModuleLoseScreen()
 bool ModuleLoseScreen::Start()
 {
 	LOG("Loading Win screen");
-	graphics = App->textures->Load("Sprites/Ken_Wins_Ryu.png");
+	graphics = App->textures->Load("Sprites/Player2_Wins.png");
 	return true;
 }
 

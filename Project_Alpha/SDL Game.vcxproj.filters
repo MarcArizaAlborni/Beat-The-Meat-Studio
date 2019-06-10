@@ -30,9 +30,6 @@
     <Filter Include="Modules\Scenes\Intro">
       <UniqueIdentifier>{82c31111-531b-4606-81a5-ff7eb27eafae}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Modules\Scenes\Post_Battle">
-      <UniqueIdentifier>{76f72011-5b12-4451-9597-c87c1669f4df}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Modules\Mechanics">
       <UniqueIdentifier>{931326a9-0fdd-4146-8980-5d73d5d18687}</UniqueIdentifier>
     </Filter>
@@ -41,6 +38,9 @@
     </Filter>
     <Filter Include="Modules\Scenes\Fade_To_Black">
       <UniqueIdentifier>{44048b27-ea3a-4ccf-a055-cfacf5c30896}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Scenes\Pre/Post_Battle">
+      <UniqueIdentifier>{76f72011-5b12-4451-9597-c87c1669f4df}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -102,13 +102,13 @@
       <Filter>Modules\Audio</Filter>
     </ClInclude>
     <ClInclude Include="ModuleCongratScreen.h">
-      <Filter>Modules\Scenes\Post_Battle</Filter>
+      <Filter>Modules\Scenes\Pre/Post_Battle</Filter>
     </ClInclude>
     <ClInclude Include="ModuleLoseScreen.h">
-      <Filter>Modules\Scenes\Post_Battle</Filter>
+      <Filter>Modules\Scenes\Pre/Post_Battle</Filter>
     </ClInclude>
     <ClInclude Include="ModuleWinScreen.h">
-      <Filter>Modules\Scenes\Post_Battle</Filter>
+      <Filter>Modules\Scenes\Pre/Post_Battle</Filter>
     </ClInclude>
     <ClInclude Include="ModuleCollision.h">
       <Filter>Modules\Mechanics</Filter>
@@ -191,13 +191,13 @@
       <Filter>Modules\Audio</Filter>
     </ClCompile>
     <ClCompile Include="ModuleCongratScreen.cpp">
-      <Filter>Modules\Scenes\Post_Battle</Filter>
+      <Filter>Modules\Scenes\Pre/Post_Battle</Filter>
     </ClCompile>
     <ClCompile Include="ModuleLoseScreen.cpp">
-      <Filter>Modules\Scenes\Post_Battle</Filter>
+      <Filter>Modules\Scenes\Pre/Post_Battle</Filter>
     </ClCompile>
     <ClCompile Include="ModuleWinScreen.cpp">
-      <Filter>Modules\Scenes\Post_Battle</Filter>
+      <Filter>Modules\Scenes\Pre/Post_Battle</Filter>
     </ClCompile>
     <ClCompile Include="ModuleCollision.cpp">
       <Filter>Modules\Mechanics</Filter>

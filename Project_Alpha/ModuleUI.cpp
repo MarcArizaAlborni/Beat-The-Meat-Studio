@@ -128,10 +128,10 @@ ModuleUI::ModuleUI() : Module()
 
 	//Plane
 	//Vertical
-	plane.x = 264;
+	/*plane.x = 264;
 	plane.y = 27;
 	plane.w = 14;
-	plane.h = 15;
+	plane.h = 15;*/
 
 	//Turning right
 	plane.x = 280;
@@ -178,7 +178,7 @@ update_status ModuleUI::Update()
 		//App->render->Blit(graphicsUI, 178, 34, &timer, 1.0f, false); //timer
 	}
 	
-	if (character_select)
+	/*if (character_select)
 	{
 		App->render->Blit(graphicsUI, 128, 144, &characterGrid, 1.0f, false); //Character Grid.
 		App->render->Blit(graphicsUI, p1_pointerPosX, p1_pointerPosY, &(p1_pointerAnim.GetCurrentFrame())); //Character Pointer 1.
@@ -186,7 +186,12 @@ update_status ModuleUI::Update()
 
 		if (brazilP1) { App->render->Blit(graphicsUI, 264, 95, &countryFlagP1, 1.0f, false); } //Country Flag
 		if (brazilP2) { App->render->Blit(graphicsUI, 264, 95, &countryFlagP2, 1.0f, false); } //Country Flag
-		if (stageFlag) { App->render->Blit(graphicsUI, 282, 59, &countryFlagStage, 1.0f, false); } //Stage Flag
+		
+		if (stageFlag) 
+		{ 
+			App->render->Blit(graphicsUI, 282, 59, &countryFlagStage, 1.0f, false); //Stage Flag
+			App->render->Blit(graphicsUI, planePosX, planePosY, &plane, 1.0f, false); //Plane
+		}
 
 		if (p1_characterSelect) { App->render->Blit(graphicsUI, 264, 87, &p1_pointer, 1.0f, false); } //Flag Marker P1
 		if (p2_characterSelect) { App->render->Blit(graphicsUI, 264, 87, &p2_pointer, 1.0f, false); } //Flag Marker P2
@@ -195,7 +200,7 @@ update_status ModuleUI::Update()
 		if (blankaIconP1) { App->render->Blit(graphicsUI, 0, 113, &characterIconP1II, 1.0f, false); } //P1 Blanka Icon
 		if (ryuIconP2) { App->render->Blit(graphicsUI, 288, 113, &characterIconP2, 1.0f, false); } //P2 Ryu Icon
 		if (blankaIconP2) { App->render->Blit(graphicsUI, 288, 113, &characterIconP2II, 1.0f, false); } //P2 Blanka Icon
-	}
+	}*/
 
 	if (StreetLogo)   
 	{

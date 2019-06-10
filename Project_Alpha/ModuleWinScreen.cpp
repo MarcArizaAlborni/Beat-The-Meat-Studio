@@ -29,7 +29,7 @@ ModuleWinScreen::~ModuleWinScreen()
 bool ModuleWinScreen::Start()
 {
 	LOG("Loading Win screen");
-	graphics = App->textures->Load("Sprites/Ryu_Wins_Ken.png");
+	graphics = App->textures->Load("Sprites/Player1_Wins.png");
 	return true;
 }
 
