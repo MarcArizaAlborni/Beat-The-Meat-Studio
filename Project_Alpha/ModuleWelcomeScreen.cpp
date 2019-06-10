@@ -32,7 +32,6 @@ bool ModuleWelcomeScreen::Start()
 	LOG("Loading Welcome screen");
 	graphics = App->textures->Load("Sprites/First_text.png");
 
-
 	return true;
 }
 

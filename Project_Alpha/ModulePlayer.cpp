@@ -893,18 +893,18 @@ update_status ModulePlayer::PreUpdate() {
 		 if (currentstateP1 == jumpLPP1) {
 			 if (currentP1_animation->Finished()) {
 				 deleteCollider(attackP1_collider);
-				 if (neutralJump == true) { currentstateP1 = NjumpstateP1; }
-				 if (forwardJump == true) { currentstateP1 = FjumpstateP1; }
-				 if (backwardJump == true) { currentstateP1 = BjumpstateP1; }
+				 if (neutralJumpP1 == true) { currentstateP1 = NjumpstateP1; }
+				 if (forwardJumpP1 == true) { currentstateP1 = FjumpstateP1; }
+				 if (backwardJumpP1 == true) { currentstateP1 = BjumpstateP1; }
 				 JLP_P1.Reset();
 			 }
 		 }
 		 if (currentstateP1 == jumpMPP1) {
 			 if (currentP1_animation->Finished()) {
 				 deleteCollider(attackP1_collider);
-				 if (neutralJump == true) { currentstateP1 = NjumpstateP1; }
-				 if (forwardJump == true) { currentstateP1 = FjumpstateP1; }
-				 if (backwardJump == true) { currentstateP1 = BjumpstateP1; }
+				 if (neutralJumpP1 == true) { currentstateP1 = NjumpstateP1; }
+				 if (forwardJumpP1 == true) { currentstateP1 = FjumpstateP1; }
+				 if (backwardJumpP1 == true) { currentstateP1 = BjumpstateP1; }
 				 JMP_P1.Reset();
 			 }
 		 }
@@ -912,45 +912,45 @@ update_status ModulePlayer::PreUpdate() {
 			 if (currentP1_animation->Finished()) {
 				 
 				 deleteCollider(attackP1_collider);
-				 if (neutralJump == true) { currentstateP1 = NjumpstateP1; }
-				 if (forwardJump == true) { currentstateP1 = FjumpstateP1; }
-				 if (backwardJump == true) { currentstateP1 = BjumpstateP1; }
+				 if (neutralJumpP1 == true) { currentstateP1 = NjumpstateP1; }
+				 if (forwardJumpP1 == true) { currentstateP1 = FjumpstateP1; }
+				 if (backwardJumpP1 == true) { currentstateP1 = BjumpstateP1; }
 				 JHPN_P1.Reset();
 			 }
 		 }
 		 if (currentstateP1 == DjumpHPP1) {
 			 if (currentP1_animation->Finished()) {
 				 deleteCollider(attackP1_collider);
-				 if (neutralJump == true) { currentstateP1 = NjumpstateP1; }
-				 if (forwardJump == true) { currentstateP1 = FjumpstateP1; }
-				 if (backwardJump == true) { currentstateP1 = BjumpstateP1; }
+				 if (neutralJumpP1 == true) { currentstateP1 = NjumpstateP1; }
+				 if (forwardJumpP1 == true) { currentstateP1 = FjumpstateP1; }
+				 if (backwardJumpP1 == true) { currentstateP1 = BjumpstateP1; }
 				 JHPFB_P1.Reset();
 			 }
 		 }
 		 if (currentstateP1 == jumpLKP1) {
 			 if (currentP1_animation->Finished()) {
 				 deleteCollider(attackP1_collider);
-				 if (neutralJump == true) { currentstateP1 = NjumpstateP1; }
-				 if (forwardJump == true) { currentstateP1 = FjumpstateP1; }
-				 if (backwardJump == true) { currentstateP1 = BjumpstateP1; }
+				 if (neutralJumpP1 == true) { currentstateP1 = NjumpstateP1; }
+				 if (forwardJumpP1 == true) { currentstateP1 = FjumpstateP1; }
+				 if (backwardJumpP1 == true) { currentstateP1 = BjumpstateP1; }
 				 JLK_P1.Reset();
 			 }
 		 }
 		 if (currentstateP1 == jumpMKP1) {
 			 if (currentP1_animation->Finished()) {
 				 deleteCollider(attackP1_collider);
-				 if (neutralJump == true) { currentstateP1 = NjumpstateP1; }
-				 if (forwardJump == true) { currentstateP1 = FjumpstateP1; }
-				 if (backwardJump == true) { currentstateP1 = BjumpstateP1; }
+				 if (neutralJumpP1 == true) { currentstateP1 = NjumpstateP1; }
+				 if (forwardJumpP1 == true) { currentstateP1 = FjumpstateP1; }
+				 if (backwardJumpP1 == true) { currentstateP1 = BjumpstateP1; }
 				 JMK_P1.Reset();
 			 }
 		 }
 		 if (currentstateP1 == jumpHKP1) {
 			 if (currentP1_animation->Finished()) {
 				 deleteCollider(attackP1_collider);
-				 if (neutralJump == true) { currentstateP1 = NjumpstateP1; }
-				 if (forwardJump == true) { currentstateP1 = FjumpstateP1; }
-				 if (backwardJump == true) { currentstateP1 = BjumpstateP1; }
+				 if (neutralJumpP1 == true) { currentstateP1 = NjumpstateP1; }
+				 if (forwardJumpP1 == true) { currentstateP1 = FjumpstateP1; }
+				 if (backwardJumpP1 == true) { currentstateP1 = BjumpstateP1; }
 				 JHK_P1.Reset();
 			 }
 		 }
@@ -994,14 +994,14 @@ update_status ModulePlayer::PreUpdate() {
 			 
 			 if (inputplayerP1.W_active) {
 				 jumping = true;
-				 neutralJump = true;
+				 neutralJumpP1 = true;
 				 
 				 currentstateP1 = NjumpstateP1;
 				 jumpstart = time;
 				 jumpTimer = 0;
 				 LOG("IDLE to JUMP");
 			 }
-			 if (!close) {
+			 if (!closeP1) {
 				 if (inputplayerP1.U_active) {
 					 currentstateP1 = standingfarLPP1;
 					 attackP1_collider = App->collision->AddCollider({ 0,0, 100, 35 }, COLLIDER_PLAYER_ATTACK,SFLP, App->player);
@@ -1036,7 +1036,7 @@ update_status ModulePlayer::PreUpdate() {
 			 }
 
 			 //close attacks
-			 if (close) {
+			 if (closeP1) {
 				 if (inputplayerP1.U_active) {
 					 currentstateP1 = standingcloseLPP1;
 					 attackP1_collider = App->collision->AddCollider({ 0,0, 100, 50 }, COLLIDER_PLAYER_ATTACK,SCLP, App->player);
@@ -1091,7 +1091,7 @@ update_status ModulePlayer::PreUpdate() {
 			 if (inputplayerP1.W_active) {
 				 
 				 jumping = true;
-				 backwardJump = true;
+				 backwardJumpP1 = true;
 				 currentstateP1 = BjumpstateP1;
 				 jumpstart = time;
 				 jumpTimer = 0;
@@ -1103,7 +1103,7 @@ update_status ModulePlayer::PreUpdate() {
 				 LOG("BACK to LP");
 			 }
 			 if (inputplayerP1.I_active) {
-				 if (!close) {
+				 if (!closeP1) {
 					 currentstateP1 = standingfarMPP1;
 					 attackP1_collider = App->collision->AddCollider({ positionP1.x - App->render->camera.x + 55, positionP1.y - 80 - App->render->camera.y * 2, 100, 35 }, COLLIDER_PLAYER_ATTACK, SFMP, App->player);
 					 LOG("IDLE to HEAVY PUNCH");
@@ -1151,7 +1151,7 @@ update_status ModulePlayer::PreUpdate() {
 			
 			
 
-			 if (inputplayerP1.I_active && !inputplayerP1.D_active && close) { //falta CONDICIO COLIDER APROP
+			 if (inputplayerP1.I_active && !inputplayerP1.D_active && closeP1) { //falta CONDICIO COLIDER APROP
 
 
 				 currentstateP1 = HeadbuttP1;
@@ -1159,14 +1159,14 @@ update_status ModulePlayer::PreUpdate() {
 
 			 }
 
-			 if (inputplayerP1.O_active && close) {
+			 if (inputplayerP1.O_active && closeP1) {
 
 
 				 currentstateP1 = throwP1;
 
 			 }
 
-			 if (inputplayerP1.L_active && close) {
+			 if (inputplayerP1.L_active && closeP1) {
 
 				 currentstateP1 = throwP1;
 			 }
@@ -1194,7 +1194,7 @@ update_status ModulePlayer::PreUpdate() {
 			 if (inputplayerP1.W_active){
 				
 				 jumping = true;
-				 forwardJump = true;
+				 forwardJumpP1 = true;
 				 currentstateP1 = FjumpstateP1;
 				 jumpstart = time;
 				 jumpTimer = 0;
@@ -1207,13 +1207,13 @@ update_status ModulePlayer::PreUpdate() {
 				 LOG("FOR to LP");
 			 }
 			 if (inputplayerP1.I_active) { //aqui falta condicio de no s'estan tocant els coliders
-				 if (!close) {
+				 if (!closeP1) {
 					 currentstateP1 = standingfarMPP1;
 					 attackP1_collider = App->collision->AddCollider({ 0,0, 100, 35 }, COLLIDER_PLAYER_ATTACK, SFMP, App->player);
 					 LOG("idle to heavy punch");
 				 }
 			 }
-			 if (inputplayerP1.O_active && !close) {
+			 if (inputplayerP1.O_active && !closeP1) {
 				 
 				 currentstateP1 = standingfarHPP1;
 				 attackP1_collider = App->collision->AddCollider({ 0,0, 80, 18 }, COLLIDER_PLAYER_ATTACK, SFHP, App->player);
@@ -1236,12 +1236,12 @@ update_status ModulePlayer::PreUpdate() {
 				 LOG("IDLE to HEAVY KICK");
 			 }
 	
-			 if (inputplayerP1.I_active && close ) { //falta CONDICIO COLIDER APROP
+			 if (inputplayerP1.I_active && closeP1) { //falta CONDICIO COLIDER APROP
 				 currentstateP1 = HeadbuttP1;
 				 LOG("FORWARD TO HEADBUT");
 
 			 }
-			 if (inputplayerP1.O_active && close) {
+			 if (inputplayerP1.O_active && closeP1) {
 				 currentstateP1 = throwP1;
 			 }
 
@@ -1315,54 +1315,54 @@ update_status ModulePlayer::PreUpdate() {
 				 JMK_P1.Reset();
 				 JHK_P1.Reset();
 				 jumping = false;
-				 airkick = true;
-				 neutralJump = false;
-				 forwardJump = false;
-				 backwardJump = false;
+				 airkickP1 = true;
+				 neutralJumpP1 = false;
+				 forwardJumpP1 = false;
+				 backwardJumpP1 = false;
 				 jumpTimer = 0;
 
 			 }
 		 }
 		 if (jumping == true) {
-			 if (airkick == true) {
+			 if (airkickP1 == true) {
 				 
 				 if (inputplayerP1.U_active) {
 					 currentstateP1 = jumpLPP1;
 					 attackP1_collider = App->collision->AddCollider({ 0,0, 57, 25 }, COLLIDER_PLAYER_ATTACK, SFLK, App->player);
-					 airkick = false;
+					 airkickP1 = false;
 				 }
 				 if (inputplayerP1.I_active) {
 					 currentstateP1 = jumpMPP1;
 					 attackP1_collider = App->collision->AddCollider({ 0,0, 57, 25 }, COLLIDER_PLAYER_ATTACK, SFLK, App->player);
-					 airkick = false;
+					 airkickP1 = false;
 				 }
 				 if (inputplayerP1.J_active) {
 					 currentstateP1 = jumpLKP1;
 					 attackP1_collider = App->collision->AddCollider({ 0,0, 57, 25 }, COLLIDER_PLAYER_ATTACK, SFLK, App->player);
-					 airkick = false;
+					 airkickP1 = false;
 				 }
 				 if (inputplayerP1.K_active) {
 					 currentstateP1 = jumpMKP1;
 					 attackP1_collider = App->collision->AddCollider({ 0,0, 57, 25 }, COLLIDER_PLAYER_ATTACK, SFLK, App->player);
-					 airkick = false;
+					 airkickP1 = false;
 				 }
 				 if (inputplayerP1.L_active) {
 					 currentstateP1 = jumpHKP1;
 					 attackP1_collider = App->collision->AddCollider({ 0,0, 57, 25 }, COLLIDER_PLAYER_ATTACK, SFLK, App->player);
-					 airkick = false;
+					 airkickP1 = false;
 				 }
 				 if (currentstateP1 == FjumpstateP1 || currentstateP1 == BjumpstateP1) {
 					 if (inputplayerP1.O_active) {
 						 currentstateP1 = DjumpHPP1;
 						 attackP1_collider = App->collision->AddCollider({ 0,0, 57, 25 }, COLLIDER_PLAYER_ATTACK, SFLK, App->player);
-						 airkick = false;
+						 airkickP1 = false;
 					 }
 				 }
 				 else {
 					 if (inputplayerP1.O_active) {
 						 currentstateP1 = NjumpHPP1;
 						 attackP1_collider = App->collision->AddCollider({ 0,0, 57, 25 }, COLLIDER_PLAYER_ATTACK, SFLK, App->player);
-						 airkick = false;
+						 airkickP1 = false;
 					 }
 				 }
 				
@@ -1376,7 +1376,7 @@ update_status ModulePlayer::PreUpdate() {
 			 if (currentP1_animation->Finished() && !inputplayerP1.U_active) {
 				 currentstateP1 = idlestateP1;
 				 deleteCollider(attackP1_collider);
-				 alreadyHit = false;
+				 alreadyHitP1 = false;
 				 SFLP_P1.Reset();
 				 LOG("LP to IDLE");
 				 ++thundertick;
@@ -1389,7 +1389,7 @@ update_status ModulePlayer::PreUpdate() {
 
 					   
 					  currentstateP1 = thunder1P1;
-					  alreadyHit = false;
+					  alreadyHitP1 = false;
 					 
 					  
 					  LOG("LP to Thunder1");
@@ -1401,7 +1401,7 @@ update_status ModulePlayer::PreUpdate() {
 		 if (currentstateP1 == thunder1P1) {
 
 			 if (currentP1_animation->Finished()&&!inputplayerP1.U_active && !inputplayerP1.I_active && !inputplayerP1.O_active) {  ////////////////// AQUI ESTA EL PROBLEMA
-				 alreadyHit = false;
+				 alreadyHitP1 = false;
 				 deleteCollider(attackP1_collider);
 				 currentstateP1 = idlestateP1;
 				 SFLP_P1.Reset();
@@ -1412,7 +1412,7 @@ update_status ModulePlayer::PreUpdate() {
 			 if (!currentP1_animation->Finished() && inputplayerP1.U_active && !inputplayerP1.D_active && !inputplayerP1.A_active) {
 
 				 currentstateP1 = thunder2P1;
-				 alreadyHit = false;
+				 alreadyHitP1 = false;
 				 SFLP_P1.Reset();
 				
 				 LOG("LP to Thunder1");
@@ -1422,7 +1422,7 @@ update_status ModulePlayer::PreUpdate() {
 			 if (!currentP1_animation->Finished() && inputplayerP1.I_active && !inputplayerP1.D_active && !inputplayerP1.A_active) {
 
 				 currentstateP1 = thunder2P1;
-				 alreadyHit = false;
+				 alreadyHitP1 = false;
 				 SFMP_P1.Reset();
 				 SFLP_P1.Reset();
 				 SFHP_P1.Reset();
@@ -1433,7 +1433,7 @@ update_status ModulePlayer::PreUpdate() {
 			 if (!currentP1_animation->Finished() && inputplayerP1.O_active && !inputplayerP1.D_active && !inputplayerP1.A_active) {
 
 				 currentstateP1 = thunder2P1;
-				 alreadyHit = false;
+				 alreadyHitP1 = false;
 				 SFHP_P1.Reset();
 				 SFLP_P1.Reset();
 				 SFMP_P1.Reset();
@@ -1479,13 +1479,13 @@ update_status ModulePlayer::PreUpdate() {
 		 if (currentstateP1 == crouchLPP1) {
 			 if (currentP1_animation->Finished() && !inputplayerP1.U_active && inputplayerP1.S_active) {
 				 currentstateP1 = crouchstateP1;
-				 alreadyHit = false;
+				 alreadyHitP1 = false;
 				 CLP_P1.Reset();
 				 LOG("LP to CROUCH");
 			 }
 			 if (currentP1_animation->Finished() && !inputplayerP1.U_active && !inputplayerP1.S_active) {
 				 currentstateP1 =idlestateP1;
-				 alreadyHit = false;
+				 alreadyHitP1 = false;
 				 CLP_P1.Reset();
 				 LOG("LP CROUCHED to IDLE");
 			 }
@@ -1976,18 +1976,18 @@ update_status ModulePlayer::Update() {
 	//close check
 	if (!flipP1) {
 		if (positionP1.x + 50 > App->player2->positionP2.x) {
-			close = true;
+			closeP1 = true;
 		}
 		else {
-			close = false;
+			closeP1 = false;
 		}
 	}
 	else {
 		if (positionP1.x - App->player2->positionP2.x - 50 < 10) {
-			close = true;
+			closeP1 = true;
 		}
 		else {
-			close = false;
+			closeP1 = false;
 		}
 	}
 	
@@ -1999,10 +1999,10 @@ update_status ModulePlayer::Update() {
 		jumpTimer = time - jumpstart;
 		playerP1_collider->SetPos(positionP1.x - App->render->camera.x / SCREEN_ADD, positionP1.y - 80 - App->render->camera.y / SCREEN_ADD);
 		positionP1.y = groundLevel - (yvel*jumpTimer) + (0.5*(gravity) * (jumpTimer*jumpTimer));
-		if (forwardJump == true) {
+		if (forwardJumpP1 == true) {
 			positionP1.x += speed;
 		}
-		if (backwardJump == true) {
+		if (backwardJumpP1 == true) {
 			positionP1.x -= speed;
 		}
 	}
@@ -2038,6 +2038,21 @@ update_status ModulePlayer::Update() {
 	{
 		positionP1.x = ((App->render->camera.x / 5) + SCREEN_WIDTH - 100) ;
 	}
+
+	//camera Dynamic
+	if (positionP1.x - 30 <= App->render->camera.x / 5 ) {
+		if(App->player2->positionP2.x <= (180 + App->render->camera.x / 5) + 120){
+		App->render->camera.x -= speed *2.5;
+		}
+	}
+	if (positionP1.x >= ((App->render->camera.x / 5) + SCREEN_WIDTH - 130)){
+		if (App->player2->positionP2.x >= (App->render->camera.x / 5 )) {
+			App->render->camera.x += speed * 2.5;
+		}
+	}
+
+
+
 
 	return UPDATE_CONTINUE;
 }
