@@ -167,7 +167,8 @@ public:
 	Animation SFHP_P1;       //Standing FAR HP (hard punch) 
 	Animation SCHP_P1;       //Standing CLOSE HP 
 	Animation CHP_P1;        //Crouch HP
-	Animation JHP_P1;        //Jumping HP
+	Animation JHPFB_P1;      //Jumping HP F and B
+	Animation JHPN_P1;       //Jumping HP Neutral
 
 	Animation SFLK_P1;       //Standing FAR LK (light kick) 
 	Animation SCLK_P1;       //Standing CLOSE LK
