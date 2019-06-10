@@ -695,6 +695,7 @@ update_status ModulePlayer::PreUpdate() {
 	time = SDL_GetTicks() / 20;
 	camx = App->render->camera.x / SCREEN_ADD;
 	camy = App->render->camera.y / SCREEN_ADD;
+
 	//MOVE BACKWARD
 	//inputplayerP1.A_active = App->input->keyboard[SDL_SCANCODE_A] == KEY_REPEAT;
 	//MOVE FORWARD
@@ -724,7 +725,7 @@ update_status ModulePlayer::PreUpdate() {
 	 inputplayerP1.K_active = App->input->keyboard[SDL_SCANCODE_K] == KEY_DOWN;
 	 inputplayerP1.L_active = App->input->keyboard[SDL_SCANCODE_L] == KEY_DOWN;
 	 {
-		 bool thundertick = 0;
+		
 		 
 		 //Standing Far Attacks Animation check
 		 if (currentstateP1 == standingfarMPP1) {
@@ -959,6 +960,7 @@ update_status ModulePlayer::PreUpdate() {
 					 currentstateP1 = standingfarLPP1;
 					 attackP1_collider = App->collision->AddCollider({ 0,0, 100, 50 }, COLLIDER_PLAYER_ATTACK,SFLP, App->player);
 					 LOG("IDLE to LP");
+					
 				 }
 				 if (inputplayerP1.I_active) {
 					 currentstateP1 = standingfarMPP1;
@@ -1318,16 +1320,17 @@ update_status ModulePlayer::PreUpdate() {
 				 alreadyHit = false;
 				 SFLP_P1.Reset();
 				 LOG("LP to IDLE");
+				 ++thundertick;
 			 }
 
 			  if ( !currentP1_animation->Finished() && inputplayerP1.U_active && !inputplayerP1.D_active && !inputplayerP1.A_active) {
-
-				 currentstateP1 = thunder1P1;
-				 alreadyHit = false;
-				 SFLP_P1.Reset();
-				 thundertick = 1;
-				 LOG("LP to Thunder1");
-
+				  if (thundertick > 3) {
+					  currentstateP1 = thunder1P1;
+					  alreadyHit = false;
+					  SFLP_P1.Reset();
+					  
+					  LOG("LP to Thunder1");
+				  }
 			  }
 			
 		 }
