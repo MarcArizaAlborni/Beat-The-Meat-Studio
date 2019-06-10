@@ -530,18 +530,18 @@ update_status ModulePlayer2::Update()
 		playerP2_collider->SetPos(positionP2.x - App->render->camera.x * 2, positionP2.y - 80 - App->render->camera.y * 2);
 	}
 
-	if (positionP2.x <= (App->render->camera.x - 10))
+	if (positionP2.x <= (App->render->camera.x/5 - 10))
 	{
-		positionP2.x = (App->render->camera.x - 10);
+		positionP2.x = (App->render->camera.x/5 - 10);
 	}
-	if (positionP2.x >= (180 + App->render->camera.x) + 127)
+	if (positionP2.x >= (180 + App->render->camera.x/5) + 127)
 	{
-		positionP2.x = (180 + App->render->camera.x) + 127;
+		positionP2.x = (180 + App->render->camera.x/5) + 127;
 	}
 
 
 
-	if (playerP2_collider->rect.x > App->player->playerP1_collider->rect.x) {
+	if (!App->player->flipP1) {
 		App->render->Blit(graphicsP2, positionP2.x + 10, App->player->groundLevel - 15, &shadowP2, 1.0f, true,SDL_FLIP_HORIZONTAL);
 		App->render->Blit(graphicsP2, positionP2.x, positionP2.y - r.h, &r, 1.0f, true, SDL_FLIP_HORIZONTAL);
 	}
