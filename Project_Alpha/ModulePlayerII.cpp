@@ -12,6 +12,7 @@
 #include "ModulePlayer.h"
 #include <stdio.h>
 #include "ModuleUI.h"
+#include "ModuleAudio.h"
 
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
@@ -689,6 +690,15 @@ bool ModulePlayer2::Start()
 	LOG("Loading player textures");
 
 	graphicsP2 = App->textures->Load("Sprites/BlankaP2.png"); // JA TE LA FOTO BONA
+
+	L_attack_sound_P2 = App->audio->LoadFx("Audios/FX/25H.wav");
+	M_attack_sound_P2 = App->audio->LoadFx("Audios/FX/37H.wav");
+	H_attack_sound_P2 = App->audio->LoadFx("Audios/FX/27H.wav");
+	L_hit_sound_P2 = App->audio->LoadFx("Audios/FX/Hit short.wav");
+	M_hit_sound_P2 = App->audio->LoadFx("Audios/FX/Mid Punch.wav");
+	H_hit_sound_P2 = App->audio->LoadFx("Audios/FX/Hard Punch.wav");
+	Block_sound_P2 = App->audio->LoadFx("Audios/FX/72H.wav");
+	Terra_sound_P2 = App->audio->LoadFx("Audios/FX/2F H.wav");
 	
 	currentstateP2 = idlestateP2;
 	comboP2[0] = ' ';
@@ -707,6 +717,15 @@ bool ModulePlayer2::CleanUp()
 	LOG("Unloading Player");
 
 	App->textures->Unload(graphicsP2);
+
+	App->audio->UnLoadFX(L_attack_sound_P2);
+	App->audio->UnLoadFX(M_attack_sound_P2);
+	App->audio->UnLoadFX(H_attack_sound_P2);
+	App->audio->UnLoadFX(L_hit_sound_P2);
+	App->audio->UnLoadFX(M_hit_sound_P2);
+	App->audio->UnLoadFX(H_hit_sound_P2);
+	App->audio->UnLoadFX(Block_sound_P2);
+	App->audio->UnLoadFX(Terra_sound_P2);
 
 	return true;
 }

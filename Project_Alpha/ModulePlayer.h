@@ -6,6 +6,7 @@
 #include "p2Point.h"
 #include "Globals.h"
 #include "ModuleParticles.h"
+#include "ModuleAudio.h"
 
 //#include "ModuleCollision.h"
 
@@ -230,6 +231,21 @@ public:
 	
 	int startcomboP1 = 0;
 	int endcomboP1 = 0;
+
+	//Effects
+
+	Mix_Chunk* L_attack_sound_P1;
+	Mix_Chunk* M_attack_sound_P1;
+	Mix_Chunk* H_attack_sound_P1;
+	Mix_Chunk* L_hit_sound_P1;
+	Mix_Chunk* M_hit_sound_P1;
+	Mix_Chunk* H_hit_sound_P1;
+	Mix_Chunk* Block_sound_P1;
+	Mix_Chunk* Terra_sound_P1;
+
+
+
+
 };
 
 
