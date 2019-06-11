@@ -1608,7 +1608,7 @@ update_status ModulePlayer::PreUpdate() {
 
 			
 
-			 if (positionP1.x + 40 == App->player2->positionP2.x) {
+			 if (positionP1.x + 40 >= App->player2->positionP2.x) {
 
 				 currentstateP1 = rollingreboundP1;
 				 RollingP1.Reset();
@@ -1629,7 +1629,7 @@ update_status ModulePlayer::PreUpdate() {
 		 if (currentstateP1 == rollingattackP1HEAVY) {
 
 
-			 if (positionP1.x + 40 == App->player2->positionP2.x) {
+			 if (positionP1.x + 40 >= App->player2->positionP2.x) {
 
 				 currentstateP1 = rollingreboundP1;
 				 RollingP1.Reset();
@@ -1660,7 +1660,7 @@ update_status ModulePlayer::PreUpdate() {
 			    // RollingP1.Reset();
 				 deleteCollider(attackP1_collider);
 				 RollingRebP1.Reset();
-			    currentstateP1 = standingfarMPP1;
+			    currentstateP1 = idlestateP1;
 			 }
 		 }
 
@@ -1671,7 +1671,7 @@ update_status ModulePlayer::PreUpdate() {
 			    // RollingP1.Reset();
 				 deleteCollider(attackP1_collider);
 				 RollingRebP1.Reset();
-				 currentstateP1 = standingfarHPP1;
+				 currentstateP1 = idlestateP1;
 			 }
 		 }
 
@@ -1680,7 +1680,7 @@ update_status ModulePlayer::PreUpdate() {
 			 if (currentP1_animation->Finished()&& inputplayerP1.D_active && !inputplayerP1.I_active && !inputplayerP1.O_active ) {
 				 deleteCollider(attackP1_collider);
 				 RollingRebP1.Reset();
-			    currentstateP1 = forwardstateP1;
+			    currentstateP1 = idlestateP1;
 			 }
 		 }
 
