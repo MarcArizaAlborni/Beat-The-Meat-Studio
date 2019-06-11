@@ -698,7 +698,7 @@ bool ModulePlayer2::Start()
 	M_hit_sound_P2 = App->audio->LoadFx("Audios/FX/Mid Punch.wav");
 	H_hit_sound_P2 = App->audio->LoadFx("Audios/FX/Hard Punch.wav");
 	Block_sound_P2 = App->audio->LoadFx("Audios/FX/72H.wav");
-	Terra_sound_P2 = App->audio->LoadFx("Audios/FX/2F H.wav");
+	Terra_sound_P2 = App->audio->LoadFx("Audios/FX/2FH.wav");
 	
 	currentstateP2 = idlestateP2;
 	comboP2[0] = ' ';
@@ -1423,6 +1423,7 @@ update_status ModulePlayer2::PreUpdate() {
 				 deleteCollider2(attackP2_collider);
 				 positionP2.y = groundLevelP2;
 				 currentstateP2 = idlestateP2;
+				 App->audio->PlayFx(Terra_sound_P2);
 				 NjumpP2.Reset();
 				 FjumpP2.Reset();
 				 BjumpP2.Reset();
@@ -2248,6 +2249,7 @@ update_status ModulePlayer2::Update()
 		playerP2_collider->SetPos(positionP2.x + 15 - App->render->camera.x / SCREEN_ADD, positionP2.y - 93 - App->render->camera.y / SCREEN_ADD);
 		positionP2.y = groundLevelP2- (yvelP2*jumpTimerP2) + (0.5*(gravityP2) * (jumpTimerP2*jumpTimerP2));
 		App->render->camera.y -= (0.2 * jumpTimerP2) + (0.5*(-0.9) * (jumpTimerP2*jumpTimerP2)) / 60;
+		
 		if (forwardJumpP2 == true) {
 			positionP2.x += speedP2;
 		}
@@ -2302,6 +2304,7 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2)
 						else {
 							SblockP2.speed = 0.45f;
 							currentstateP2 = SblockstunP2;
+							App->audio->PlayFx(Block_sound_P2);
 							alreadyHitP2 = true;
 							deleteCollider2(attackP2_collider);
 						}
@@ -2318,6 +2321,7 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2)
 							SblockP2.speed = 0.35f;
 							currentstateP2 = SblockstunP2;
 							alreadyHitP2 = true;
+							App->audio->PlayFx(Block_sound_P2);
 							deleteCollider2(attackP2_collider);
 						}
 					}
@@ -2336,6 +2340,7 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2)
 							SblockP2.speed = 0.25f;
 							currentstateP2 = SblockstunP2;
 							alreadyHitP2 = true;
+							App->audio->PlayFx(Block_sound_P2);
 							deleteCollider2(attackP2_collider);
 						}
 					}
@@ -2353,6 +2358,7 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2)
 						CblockP2.speed = 0.45f;
 						currentstateP2 = CblockstunP2;
 						alreadyHitP2 = true;
+						App->audio->PlayFx(Block_sound_P2);
 						deleteCollider2(attackP2_collider);
 					}
 				}
@@ -2369,6 +2375,7 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2)
 						currentstateP2 = CblockstunP2;
 						alreadyHitP2 = true;
 						deleteCollider2(attackP2_collider);
+						App->audio->PlayFx(Block_sound_P2);
 					}
 				}
 				else if (c2->attack == CH) {//H
@@ -2383,6 +2390,7 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2)
 						CblockP2.speed = 0.25f;
 						currentstateP2 = CblockstunP2;
 						alreadyHitP2 = true;
+						App->audio->PlayFx(Block_sound_P2);
 						deleteCollider2(attackP2_collider);
 					}
 				}
