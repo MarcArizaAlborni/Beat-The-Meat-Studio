@@ -328,7 +328,7 @@ ModulePlayer::ModulePlayer()
 	  SCLP_P1.PushBack({ 306, 1359, 135, 99 });
 	  SCLP_P1.PushBack({ 149, 1360, 149, 98 });
 	  SCLP_P1.PushBack({ 30, 1365, 110, 93 });
-	  SCLP_P1.speed = 0.2f;
+	  SCLP_P1.speed = 0.5f;
 
 	  //Crouch LP
 	  CLP_P1.PushBack({610, 709, 109, 56 });
@@ -358,7 +358,7 @@ ModulePlayer::ModulePlayer()
 	  SFMP_P1.PushBack({264, 799, 130, 97 });
 	  SFMP_P1.PushBack({ 134, 788, 120, 108 });
 	  SFMP_P1.PushBack({ 32, 766, 88, 130 });
-	  SFMP_P1.speed = 0.17f;
+	  SFMP_P1.speed = 0.25f;
 		
 	  //Standing CLOSE MP
 	  SCMP_P1.PushBack({ 30, 1365, 110, 93 });
@@ -372,7 +372,7 @@ ModulePlayer::ModulePlayer()
 	  SCMP_P1.PushBack({ 306, 1359, 135, 99 });
 	  SCMP_P1.PushBack({ 149, 1360, 149, 98 });
 	  SCMP_P1.PushBack({ 30, 1365, 110, 93 });
-	  SCMP_P1.speed = 0.2f;
+	  SCMP_P1.speed = 0.4f;
 
 	  //Crouch MP
 	  CMP_P1.PushBack({ 610, 792, 82, 64 });
@@ -395,7 +395,7 @@ ModulePlayer::ModulePlayer()
 	  JMP_P1.PushBack({ 712, 1372, 119, 80 });
 	  JMP_P1.PushBack({ 840, 1371, 84, 81 });
 	  JMP_P1.PushBack({ 610, 1369, 94, 83 });
-	  JMP_P1.speed = 0.3f;
+	  JMP_P1.speed = 0.4f;
 
 	  //Standing FAR HP
 	  SFHP_P1.PushBack({ 27, 929, 107, 95 });
@@ -2154,7 +2154,7 @@ update_status ModulePlayer::Update() {
 		
 		positionP1.y = 180;
 		positionP1.x += 7;
-		attackP1_collider->SetPos(positionP1.x  - camxP1, positionP1.y - 60 - camyP1);
+		//attackP1_collider->SetPos(positionP1.x  - camxP1, positionP1.y - 60 - camyP1);
 		currentP1_animation = &RollingP1;
 		
 		LOG("ROLLING ANIMATION ACTIVE");
@@ -2162,7 +2162,7 @@ update_status ModulePlayer::Update() {
 
 
 	case rollingattackP1MEDIUM:
-		attackP1_collider->SetPos(positionP1.x  - camxP1, positionP1.y - 60 - camyP1);
+		//attackP1_collider->SetPos(positionP1.x  - camxP1, positionP1.y - 60 - camyP1);
 		positionP1.y = 180;
 		positionP1.x += 7;
 
@@ -2173,7 +2173,7 @@ update_status ModulePlayer::Update() {
 	
 
 	case rollingattackP1HEAVY:
-		attackP1_collider->SetPos(positionP1.x - camxP1, positionP1.y - 60 - camyP1);
+		//attackP1_collider->SetPos(positionP1.x - camxP1, positionP1.y - 60 - camyP1);
 		positionP1.y = 180;
 		positionP1.x += 7;
 

@@ -204,15 +204,16 @@ bool ModuleUI::Start()
 }
 update_status ModuleUI::Update()
 {
-
-	
+	if (App->scene_guile->IsEnabled) {
+		timechar[0] = timerint / 10 + '0';
+		timechar[1] = timerint % 10 + '0';
+	}
 
 	//Blits
 	if (stage)
 	{
 		timerint = 99 - App->scene_guile->timeLimit;
-		timechar[0] = timerint / 10 + '0';
-		timechar[1] = timerint % 10 + '0';
+		
 		App->render->Blit(graphicsUI, 30, 20, &healthbar, 1.0f, false); //healthbar
 		App->render->Blit(graphicsUI, 31, 23, &health, 1.0f, false); //health
 		App->render->Blit(graphicsUI, 207, 23, &health2, 1.0f, false); //health
