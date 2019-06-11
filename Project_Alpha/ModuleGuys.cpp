@@ -235,12 +235,16 @@ update_status ModuleGuys::Update()
 	App->render->Blit(graphics, 0, 0, cur_anim, 1.75f);
 	
 	deltaTime = SDL_GetTicks() / 1000;
+	
 	timeLimit = deltaTime - startTime;
 
-	if (timeLimit == 5) {
-		App->audio->PlayFx(punch_sound);
+	if (!playedsound) {
+		
+		if (timeLimit == 6) {
+			App->audio->PlayFx(punch_sound);
+			playedsound = true;
+		}
 	}
-	
 	if (App->render->camera.y <=  -935) {
 
 		speed = 0;

@@ -36,4 +36,5 @@ public:
 	Uint32 startTime = 0;
 
 	float speed = 2.5f;
+	bool playedsound = false;
 };
