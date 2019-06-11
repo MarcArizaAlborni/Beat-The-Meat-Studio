@@ -183,6 +183,8 @@ ModuleUI::ModuleUI() : Module()
 	plane.h = 13;
 
 	Logo = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
+
+	
 }
 
 // Destructor
@@ -197,13 +199,14 @@ bool ModuleUI::Start()
 	graphicsUI = App->textures->Load("Sprites/UI_Spritesheet.png");
 	graphics = App->textures->Load("Sprites/StreetFighter.png");
 	App->fonts->Load("Fonts/numbers.png", "0123456789aaaaaaaaaa",1);
+	
 	return ret;
 }
 update_status ModuleUI::Update()
 {
+	timerint = 100 - App->scene_guile->timeLimit;
 	
 	
-	int timerint = 100 - App->scene_guile->timeLimit;
 	timechar[0] = timerint / 10 + '0';
 	timechar[1] = timerint % 10 + '0';
 

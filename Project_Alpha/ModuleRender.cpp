@@ -133,7 +133,7 @@ bool ModuleRender::CleanUp()
 }
 
 // Blit to screen
-bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, float speed, bool use_camera, SDL_RendererFlip flip , double angle, int pivot_x, int pivot_y) const
+bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, float speed, bool use_camera, SDL_RendererFlip flip , double angle, int pivot_x, int pivot_y,bool isFlipped) const
 {
 	
 		bool ret = true;
@@ -141,13 +141,25 @@ bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, f
 
 		if (use_camera)
 		{
-			rect.x = (int)(-camera.x * speed) + x * SCREEN_SIZE;
-			rect.y = (int)(-camera.y * speed) + y * SCREEN_SIZE;
+			if (isFlipped) {
+				rect.x = (int)(-camera.x * speed) + x * SCREEN_SIZE +450;
+				rect.y = (int)(-camera.y * speed) + y * SCREEN_SIZE ;
+			}
+			else {
+				rect.x = (int)(-camera.x * speed) + x * SCREEN_SIZE;
+				rect.y = (int)(-camera.y * speed) + y * SCREEN_SIZE;
+			}
 		}
 		else
 		{
-			rect.x = x * SCREEN_SIZE;
-			rect.y = y * SCREEN_SIZE;
+			if (isFlipped) {
+				rect.x = x * SCREEN_SIZE;
+				rect.y = y * SCREEN_SIZE;
+			}
+			else {
+				rect.x = x * SCREEN_SIZE;
+				rect.y = y * SCREEN_SIZE;
+			}
 		}
 
 		if (section != NULL)
@@ -160,8 +172,16 @@ bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, f
 			SDL_QueryTexture(texture, NULL, NULL, &rect.w, &rect.h);
 		}
 
-		rect.w *= SCREEN_SIZE;
-		rect.h *= SCREEN_SIZE;
+		if(!isFlipped) {
+			rect.w *= SCREEN_SIZE;
+			rect.h *= SCREEN_SIZE;
+		}
+		else {
+			rect.w *= -SCREEN_SIZE;
+			rect.h *= SCREEN_SIZE;
+	}
+		/*rect.w *= SCREEN_SIZE;
+		rect.h *= SCREEN_SIZE;*/
 
 		SDL_Point* p = NULL;
 		SDL_Point pivot;

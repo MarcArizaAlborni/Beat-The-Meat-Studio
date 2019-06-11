@@ -4,6 +4,7 @@
 #include "Module.h"
 #include "Animation.h"
 #include "Globals.h"
+#include "ModuleSceneGuile.h"
 
 struct SDL_Texture;
 
@@ -60,6 +61,8 @@ public:
 	Animation p1_pointerAnim;
 	int p1_pointerPosX = 129;
 	int p1_pointerPosY = 141;
+
+	int timerint;
 
 	Animation p2_pointerAnim;
 	int p2_pointerPosX = 129;

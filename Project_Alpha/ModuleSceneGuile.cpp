@@ -78,7 +78,7 @@ bool ModuleSceneGuile::Start()
 	graphics = App->textures->Load("Sprites/guile_stage.png");
 	background_music = App->audio->LoadMus("Audios/Music/10 U.S.A. (Guile) I.ogg");
 	App->audio->PlayMusic(background_music, 0);
-	
+	App->sounds->Disable();
 	App->player->currentstateP1 = idlestateP1;
 	App->player->positionP1.x = 50;
 	App->player->positionP1.y = 205;

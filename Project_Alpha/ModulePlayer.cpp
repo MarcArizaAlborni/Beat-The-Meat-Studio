@@ -2196,8 +2196,8 @@ update_status ModulePlayer::Update() {
 	}
 	else {
 		flipP1 = true;
-		App->render->Blit(graphicsP1, positionP1.x +7, groundLevelP1 -15, &shadowP1, 1.0f, true, SDL_FLIP_HORIZONTAL);
-		App->render->Blit(graphicsP1, positionP1.x, positionP1.y - r.h, &r, 1.0f, true, SDL_FLIP_HORIZONTAL);
+		App->render->Blit(graphicsP1, positionP1.x +7, groundLevelP1 -15, &shadowP1, 1.0f, true, SDL_FLIP_NONE,  0.0, INT_MAX, INT_MAX, true);
+		App->render->Blit(graphicsP1, positionP1.x, positionP1.y - r.h, &r, 1.0f, true, SDL_FLIP_NONE,0.0,INT_MAX,INT_MAX,true);
 	}
 	if (!jumpingP1) {
 		if (!flipP1) {
@@ -2246,18 +2246,21 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
 	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_PLAYER2_ATTACK) {
 		
-		if (c2->attack == SL ) {
+		/*if (c2->attack == SL ) {
 			currentstateP1 = SdamagedLP1;
 			deleteCollider(App->player2->attackP2_collider);
+			deleteCollider(attackP1_collider);
 		}
 		else if (c2->attack == SM ) {
 			currentstateP1 = SdamagedMP1;
 			deleteCollider(App->player2->attackP2_collider);
+			deleteCollider(attackP1_collider);
 		}
 		else if (c2->attack == SH ){
 			currentstateP1 = SdamagedHP1;
 			deleteCollider(App->player2->attackP2_collider);
-		}
+			deleteCollider(attackP1_collider);
+		}*/
 	}
 
 }
