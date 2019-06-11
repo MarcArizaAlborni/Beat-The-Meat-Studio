@@ -254,10 +254,13 @@ ModulePlayer2::ModulePlayer2()
 		JLP_P2.speed = 0.5f;
 
 		//Standing FAR MP 
-		SFMP_P2.PushBack({ 31, 765, 88, 104 });
+		SFMP_P2.PushBack({ 32, 766, 88, 130});
 		SFMP_P2.PushBack({ 134, 788, 120, 108 });
 		SFMP_P2.PushBack({ 264, 799, 130, 97 });
-		SFMP_P2.PushBack({ 403, 803, 103, 93 }); //This is not correct I think
+		SFMP_P2.PushBack({ 403, 803, 103, 93 }); 
+		SFMP_P2.PushBack({ 264, 799, 130, 97 });
+		SFMP_P2.PushBack({ 134, 788, 120, 108 });
+		SFMP_P2.PushBack({ 32, 766, 88, 130 });
 		SFMP_P2.speed = 0.17f;
 
 		//Standing CLOSE MP
@@ -486,6 +489,7 @@ ModulePlayer2::ModulePlayer2()
 		CMK_P2.PushBack({ 790, 972, 139, 68 });
 		CMK_P2.PushBack({ 702, 978, 74, 78 });
 		CMK_P2.PushBack({ 610, 980, 74, 78 });
+		CMK_P2.speed = 0.2f;
 
 		//Jump MK
 		JMK_P2.PushBack({ 610, 1690, 80, 79 });
@@ -563,7 +567,7 @@ ModulePlayer2::ModulePlayer2()
 		Headbut_P2.PushBack({ 717, 1959, 90, 95 });
 		Headbut_P2.PushBack({ 820, 1978, 106, 76 });
 		Headbut_P2.PushBack({ 820, 1978, 106, 76 });
-		Headbut_P2.PushBack({ 913, 1999, 126, 55 });
+		Headbut_P2.PushBack({ 937, 1999, 102, 56 });
 		Headbut_P2.PushBack({ 820, 1978, 106, 76 });
 		Headbut_P2.PushBack({ 820, 1978, 106, 76 });
 		Headbut_P2.PushBack({ 717, 1959, 90, 95 });

@@ -337,10 +337,13 @@ ModulePlayer::ModulePlayer()
 	  JLP_P1.speed = 0.5f;
 	   
 	  //Standing FAR MP 
-	  SFMP_P1.PushBack({31, 765, 88, 104 }); 
+	  SFMP_P1.PushBack({32, 766, 88, 130 }); 
 	  SFMP_P1.PushBack({134, 788, 120, 108 });
 	  SFMP_P1.PushBack({264, 799, 130, 97 });
-	  SFMP_P1.PushBack({403, 803, 103, 93}); //This is not correct I think
+	  SFMP_P1.PushBack({403, 803, 103, 93}); 
+	  SFMP_P1.PushBack({264, 799, 130, 97 });
+	  SFMP_P1.PushBack({ 134, 788, 120, 108 });
+	  SFMP_P1.PushBack({ 32, 766, 88, 130 });
 	  SFMP_P1.speed = 0.17f;
 		
 	  //Standing CLOSE MP
@@ -569,6 +572,7 @@ ModulePlayer::ModulePlayer()
 	  CMK_P1.PushBack({ 790, 972, 139, 68 });
 	  CMK_P1.PushBack({ 702, 978, 74, 78 });
 	  CMK_P1.PushBack({ 610, 980, 74, 78 });
+	  CMK_P1.speed = 0.2f;
 
 	  //Jump MK
 	  JMK_P1.PushBack({ 610, 1690, 80, 79 });
@@ -646,7 +650,7 @@ ModulePlayer::ModulePlayer()
 	  Headbut_P1.PushBack({ 717, 1959, 90, 95 });
 	  Headbut_P1.PushBack({ 820, 1978, 106, 76 });
 	  Headbut_P1.PushBack({ 820, 1978, 106, 76 });
-	  Headbut_P1.PushBack({ 913, 1999, 126, 55 });
+	  Headbut_P1.PushBack({ 937, 1999, 102, 56 });
 	  Headbut_P1.PushBack({ 820, 1978, 106, 76 });
 	  Headbut_P1.PushBack({ 820, 1978, 106, 76 });
 	  Headbut_P1.PushBack({ 717, 1959, 90, 95 });
@@ -1641,22 +1645,6 @@ update_status ModulePlayer::PreUpdate() {
 			 }
 		 }
 
-		 //if (currentstateP1 == rollingattackP1) {
-
-			// //if (currentP1_animation->Finished() && !inputplayerP1.D_active && inputplayerP1.I_active && !inputplayerP1.O_active) {
-
-			//	// // RollingP1.Reset();
-			//	// RollingP1.Reset();
-			//	// currentstateP1 = standingfarMPP1;
-			// //}
-
-			// if (positionP1.x+ 40 == App->player2->positionP2.x) {
-
-			//	 currentstateP1 = rollingreboundP1;
-			//	 RollingP1.Reset();
-
-			// }
-		 //}
 
 		 if (currentstateP1  == rollingreboundP1) {
 
