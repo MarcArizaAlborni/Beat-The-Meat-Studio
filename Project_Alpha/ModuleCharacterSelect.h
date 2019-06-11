@@ -26,7 +26,8 @@ public:
 	Uint32 lapseVs = 0;
 
 	bool landing = false;
-
+	bool playedplane = false;
+	bool flagplayed = false;
 	SDL_Texture* graphics = nullptr;
 	SDL_Rect character_screen;
 

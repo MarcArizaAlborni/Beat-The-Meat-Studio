@@ -252,25 +252,30 @@ update_status ModuleCharacterSelect::Update()
 		if (App->ui->planePosX <= 296.0f && App->ui->planePosY >= 66.0f)
 		{
 			
-			App->ui->planePosX += 0.3f;
-			App->ui->planePosY -= 0.55f;
-			App->audio->PlayFx(plane_sound);
+				App->ui->planePosX += 0.3f;
+				App->ui->planePosY -= 0.55f;
+				
+			if (!playedplane) {
+				App->audio->PlayFx(plane_sound);
+				playedplane = true;
+			}
 		}
-
 		else
 		{
 			landing = true;
 		}
-
 		if (landing)
 		{
-			App->audio->PlayFx(flag_sound);
+			if (!flagplayed) {
+				App->audio->PlayFx(flag_sound);
+				flagplayed = true;
+			}
+
 			App->fade->FadeToBlack(App->character_select, App->vs_screen, 3.7f);
 			App->audio->FinishMusic(2000);
 			
 		}
 	}
-
 	if (App->input->keyboard[SDL_SCANCODE_RETURN] || App->input->game_pad[SDL_CONTROLLER_BUTTON_START][GAME_PAD_1] == KEY_DOWN)
 	{
 		
