@@ -11,6 +11,7 @@
 #include "ModuleSceneRyu.h"
 #include "ModulePlayer.h"
 #include <stdio.h>
+#include "ModuleUI.h"
 
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
@@ -1712,7 +1713,12 @@ update_status ModulePlayer2::Update()
 
 	case backwardstateP2:
 		playerP2_collider->rect.h = 93;
-		currentP2_animation = &forwardP2;
+		if (!App->player->flipP1) {
+			currentP2_animation = &forwardP2;
+		}
+		else {
+			currentP2_animation = &backwardP2;
+		}
 		positionP2.x -= speedP2;
 		if (!App->player->flipP1) { SblockingP2 = false; }
 		else { SblockingP2 = true; }
@@ -1721,7 +1727,12 @@ update_status ModulePlayer2::Update()
 
 	case forwardstateP2:
 
-		currentP2_animation = &backwardP2;
+		if (!App->player->flipP1) {
+			currentP2_animation = &backwardP2;
+		}
+		else {
+			currentP2_animation = &forwardP2;
+		}
 		positionP2.x += speedP2;
 		if (!App->player->flipP1) { SblockingP2 = true; }
 		else { SblockingP2 = false; }
@@ -2214,6 +2225,7 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2)
 							currentstateP2 = SdamagedLP2;
 							alreadyHitP2 = true;
 							deleteCollider2(attackP2_collider);
+							App->ui->health.x -= 5;
 						}
 						else {
 							SblockP2.speed = 0.45f;
@@ -2227,6 +2239,7 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2)
 							currentstateP2 = SdamagedMP2;
 							alreadyHitP2 = true;
 							deleteCollider2(attackP2_collider);
+							App->ui->health.x -= 10;
 						}
 						else {
 							SblockP2.speed = 0.35f;
@@ -2243,6 +2256,7 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2)
 							currentstateP2 = SdamagedHP2;
 							alreadyHitP2 = true;
 							deleteCollider2(attackP2_collider);
+							App->ui->health.x -= 15;
 						}
 						else {
 							SblockP2.speed = 0.25f;
@@ -2258,6 +2272,7 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2)
 						currentstateP2 = SdamagedLP2;
 						alreadyHitP2 = true;
 						deleteCollider2(attackP2_collider);
+						App->ui->health.x -= 5;
 					}
 					else {
 						CblockP2.speed = 0.45f;
@@ -2270,6 +2285,7 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2)
 					if (!CblockingP2) {
 						currentstateP2 = SdamagedMP2;
 						alreadyHitP2 = true;
+						App->ui->health.x -= 10;
 						deleteCollider2(attackP2_collider);
 					}
 					else {
@@ -2284,6 +2300,7 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2)
 						currentstateP2 = SdamagedHP2;
 						alreadyHitP2 = true;
 						deleteCollider2(attackP2_collider);
+						App->ui->health.x -= 15;
 					}
 					else {
 						CblockP2.speed = 0.25f;

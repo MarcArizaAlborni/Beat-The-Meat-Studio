@@ -1764,7 +1764,12 @@ update_status ModulePlayer::Update() {
 
 	case backwardstateP1:
 		playerP1_collider->rect.h = 93;
-		currentP1_animation = &backwardP1;
+		if (!flipP1) {
+			currentP1_animation = &backwardP1;
+		}
+		else {
+			currentP1_animation = &forwardP1;
+		}
 		positionP1.x -= speedP1;
 		if (!flipP1) { SblockingP1 = true; }
 		else { SblockingP1 = false; }
@@ -1772,8 +1777,13 @@ update_status ModulePlayer::Update() {
 		break;
 
 	case forwardstateP1:
+		if (!flipP1) {
+			currentP1_animation = &forwardP1;
+		}
+		else {
+			currentP1_animation = &backwardP1;
+		}
 
-		currentP1_animation = &forwardP1;
 		if (!flipP1) { SblockingP1 = false; }
 		else { SblockingP1 = true; }
 		positionP1.x += speedP1;
@@ -2398,7 +2408,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 						currentstateP1 = SdamagedLP1;
 						alreadyHitP1 = true;
 						deleteCollider(attackP1_collider);
-						App->ui->health2.w -= 5;
+						App->ui->health.x -= 5;
 					}
 					else {
 						CblockP1.speed = 0.45f;
@@ -2412,7 +2422,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 						currentstateP1 = SdamagedMP1;
 						alreadyHitP1 = true;
 						deleteCollider(attackP1_collider);
-						App->ui->health2.w -= 10;
+						App->ui->health.x -= 10;
 					}
 					else {
 						CblockP1.speed = 0.35f;
@@ -2426,8 +2436,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 						currentstateP1 = SdamagedHP1;
 						alreadyHitP1 = true;
 						deleteCollider(attackP1_collider);
-						
-						App->ui->health2.w -= 15;
+						App->ui->health.x -= 15;
 					}
 					else {
 						CblockP1.speed = 0.25f;
