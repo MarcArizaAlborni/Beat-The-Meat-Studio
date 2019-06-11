@@ -822,7 +822,7 @@ update_status ModulePlayer2::PreUpdate() {
 				 ++thundertickP2;
 			 }
 
-			 if (!currentP2_animation->Finished() && inputplayerP2.Num8_active && !inputplayerP2.Right_active && !inputplayerP2.Left_active) {
+			/* if (!currentP2_animation->Finished() && inputplayerP2.Num8_active && !inputplayerP2.Right_active && !inputplayerP2.Left_active) {
 				 if (thundertickP2 > 3) {
 					 currentstateP2 = thunder1P2;
 					 deleteCollider2(attackP2_collider);
@@ -831,7 +831,7 @@ update_status ModulePlayer2::PreUpdate() {
 
 					 LOG("LP to Thunder1");
 				 }
-			 }
+			 }*/
 		 }
 		 if (currentstateP2 == standingfarHPP2) {
 			 /* if (currentP1_animation->Finished()) {
@@ -849,7 +849,7 @@ update_status ModulePlayer2::PreUpdate() {
 				 ++thundertickP2;
 			 }
 
-			 if (!currentP2_animation->Finished() && inputplayerP2.Num9_active && !inputplayerP2.Right_active && !inputplayerP2.Left_active) {
+			/* if (!currentP2_animation->Finished() && inputplayerP2.Num9_active && !inputplayerP2.Right_active && !inputplayerP2.Left_active) {
 				 if (thundertickP2 > 3) {
 					 currentstateP2 = thunder1P2;
 					 deleteCollider2(attackP2_collider);
@@ -858,7 +858,7 @@ update_status ModulePlayer2::PreUpdate() {
 
 					 LOG("LP to Thunder1");
 				 }
-			 }
+			 }*/
 
 		 }
 		 if (currentstateP2 == standingfarLKP2) {
@@ -1601,7 +1601,7 @@ update_status ModulePlayer2::PreUpdate() {
 		 }
 */
 //THROW
-			 if (currentstateP2 == throwP2) {
+			/* if (currentstateP2 == throwP2) {
 
 				 if (currentP2_animation->Finished())
 				 {
@@ -1611,7 +1611,7 @@ update_status ModulePlayer2::PreUpdate() {
 
 				 }
 
-			 }
+			 }*/
 
 			 //CROUCH LP
 			 if (currentstateP2 == crouchLPP2) {
