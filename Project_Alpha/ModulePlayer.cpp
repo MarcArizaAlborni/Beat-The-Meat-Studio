@@ -2216,7 +2216,7 @@ update_status ModulePlayer::Update() {
 	
 	//close check
 	if (!flipP1) {
-		if (positionP1.x + 50 > App->player2->positionP2.x) {
+		if (positionP1.x + 60 > App->player2->positionP2.x) {
 			closeP1 = true;
 		}
 		else {
@@ -2224,7 +2224,7 @@ update_status ModulePlayer::Update() {
 		}
 	}
 	else {
-		if (positionP1.x - App->player2->positionP2.x - 50 < 10) {
+		if (positionP1.x - App->player2->positionP2.x - 60 < 10) {
 			closeP1 = true;
 		}
 		else {
@@ -2257,17 +2257,23 @@ update_status ModulePlayer::Update() {
 		App->render->Blit(graphicsP1, positionP1.x +7, groundLevelP1 -15, &shadowP1, 1.0f, true, SDL_FLIP_NONE,  0.0, INT_MAX, INT_MAX, true);
 		App->render->Blit(graphicsP1, positionP1.x, positionP1.y - r.h, &r, 1.0f, true, SDL_FLIP_NONE,0.0,INT_MAX,INT_MAX,true);
 	}
-	if (!jumpingP1) {
+
+	if (!jumpingP1 && !App->player2->jumpingP2) {
 		if (!flipP1) {
 			if (positionP1.x + 35 > App->player2->positionP2.x) {
 				positionP1.x = App->player2->positionP2.x - 35;
+
 			}
 		}
 		else {
+			
 			if (App->player2->positionP2.x > positionP1.x - 35) {
 				App->player2->positionP2.x = positionP1.x - 35;
 			}
 		}
+	}
+	else {
+
 	}
 
 	if (positionP1.x <= App->render->camera.x /5)

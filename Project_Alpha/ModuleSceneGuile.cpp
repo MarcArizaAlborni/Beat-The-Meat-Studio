@@ -85,7 +85,8 @@ bool ModuleSceneGuile::Start()
 	App->player2->currentstateP2 = idlestateP2;
 	App->player2->positionP2.x = 230;
 	App->player2->positionP2.y = 205;
-
+	App->render->camera.x = 0;
+	App->render->camera.y = 0;
 
 	App->player->Enable();
 	App->player2->Enable();
