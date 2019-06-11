@@ -264,23 +264,18 @@ update_status ModuleCharacterSelect::Update()
 
 		if (landing)
 		{
+			App->audio->PlayFx(flag_sound);
+			App->fade->FadeToBlack(App->character_select, App->vs_screen, 5.0f);
+			App->audio->FinishMusic(2000);
 			
-			deltaTimeCh = SDL_GetTicks() / 1000;
-			lapseVs = deltaTimeCh - startTimeCh;
-
-			if (lapseVs >= 3)
-			{
-				App->fade->FadeToBlack(App->character_select, App->vs_screen, 5.0f);
-				App->audio->FinishMusic(2000);
-			}
 		}
 	}
-
 
 	if (App->input->keyboard[SDL_SCANCODE_RETURN] || App->input->game_pad[SDL_CONTROLLER_BUTTON_START][GAME_PAD_1] == KEY_DOWN)
 	{
 		
 		App->fade->FadeToBlack(App->character_select, App->vs_screen, 5.0f);
+		App->audio->FinishMusic(2000);
 
 	}
 	return UPDATE_CONTINUE;
