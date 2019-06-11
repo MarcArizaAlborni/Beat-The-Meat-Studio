@@ -61,7 +61,7 @@ update_status ModuleWelcomeScreen::Update()
 	deltaTimeWlcm = SDL_GetTicks() / 1000;
 	timeLimitWlcm = deltaTimeWlcm - startTimeWlcm;
 	
-	if (timeLimitWlcm > 5 || App->input->keyboard[SDL_SCANCODE_RETURN] == 1) { App->fade->FadeToBlack(App->welcome_screen, App->warning_screen, 1.5f); }
+	if (timeLimitWlcm > 2 ) { App->fade->FadeToBlack(App->welcome_screen, App->warning_screen, 1.5f); }
 	
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_1] == KEY_DOWN || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_2] == KEY_DOWN) 
 	{

@@ -116,25 +116,25 @@ update_status ModuleCharacterSelect::Update()
 	if (App->ui->p1_characterSelect == false)
 	{
 		//Pointer movement player 1
-		if (App->input->keyboard[SDL_SCANCODE_UP] == 1)
+		if (App->input->keyboard[SDL_SCANCODE_UP] || SDL_GameControllerGetButton(App->input->controller_player_1, SDL_CONTROLLER_BUTTON_DPAD_UP) || SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTY) <= -10000)
 		{
 			if (App->ui->p1_pointerPosY != 141) { App->ui->p1_pointerPosY -= 32; }
 			else { App->ui->p1_pointerPosY = 141; }
 		}
 
-		if (App->input->keyboard[SDL_SCANCODE_DOWN] == 1)
+		if (App->input->keyboard[SDL_SCANCODE_DOWN] || SDL_GameControllerGetButton(App->input->controller_player_1, SDL_CONTROLLER_BUTTON_DPAD_DOWN) || SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTY) >= 10000)
 		{
 			if (App->ui->p1_pointerPosY != 173) { App->ui->p1_pointerPosY += 32; }
 			else { App->ui->p1_pointerPosY = 173; }
 		}
 
-		if (App->input->keyboard[SDL_SCANCODE_LEFT] == 1)
+		if (App->input->keyboard[SDL_SCANCODE_LEFT] || SDL_GameControllerGetButton(App->input->controller_player_1, SDL_CONTROLLER_BUTTON_DPAD_LEFT) || SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTX) <= -10000)
 		{
 			if (App->ui->p1_pointerPosX != 129) { App->ui->p1_pointerPosX -= 32; }
 			else { App->ui->p1_pointerPosX != 129; }
 		}
 
-		if (App->input->keyboard[SDL_SCANCODE_RIGHT] == 1)
+		if (App->input->keyboard[SDL_SCANCODE_RIGHT] || SDL_GameControllerGetButton(App->input->controller_player_1, SDL_CONTROLLER_BUTTON_DPAD_RIGHT) || SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTX) >= 10000)
 		{
 			if (App->ui->p1_pointerPosX != 225) { App->ui->p1_pointerPosX += 32; }
 			else { App->ui->p1_pointerPosX = 225; }
@@ -154,25 +154,25 @@ update_status ModuleCharacterSelect::Update()
 	if (App->ui->p2_characterSelect == false)
 	{
 		//Pointer movement player 2
-		if (App->input->keyboard[SDL_SCANCODE_U] == 1)
+		if (App->input->keyboard[SDL_SCANCODE_W] || SDL_GameControllerGetButton(App->input->controller_player_2, SDL_CONTROLLER_BUTTON_DPAD_UP) || SDL_GameControllerGetAxis(App->input->controller_player_2, SDL_CONTROLLER_AXIS_LEFTY) <= -10000)
 		{
 			if (App->ui->p2_pointerPosY != 141) { App->ui->p2_pointerPosY -= 32; }
 			else { App->ui->p2_pointerPosY = 141; }
 		}
 
-		if (App->input->keyboard[SDL_SCANCODE_J] == 1)
+		if (App->input->keyboard[SDL_SCANCODE_S] || SDL_GameControllerGetButton(App->input->controller_player_2, SDL_CONTROLLER_BUTTON_DPAD_DOWN) || SDL_GameControllerGetAxis(App->input->controller_player_2, SDL_CONTROLLER_AXIS_LEFTY) >= 10000)
 		{
 			if (App->ui->p2_pointerPosY != 173) { App->ui->p2_pointerPosY += 32; }
 			else { App->ui->p2_pointerPosY = 173; }
 		}
 
-		if (App->input->keyboard[SDL_SCANCODE_H] == 1)
+		if (App->input->keyboard[SDL_SCANCODE_A] || SDL_GameControllerGetButton(App->input->controller_player_2, SDL_CONTROLLER_BUTTON_DPAD_LEFT) || SDL_GameControllerGetAxis(App->input->controller_player_2, SDL_CONTROLLER_AXIS_LEFTX) <= -10000)
 		{
 			if (App->ui->p2_pointerPosX != 129) { App->ui->p2_pointerPosX -= 32; }
 			else { App->ui->p2_pointerPosX = 129; }
 		}
 
-		if (App->input->keyboard[SDL_SCANCODE_K] == 1)
+		if (App->input->keyboard[SDL_SCANCODE_D] || SDL_GameControllerGetButton(App->input->controller_player_2, SDL_CONTROLLER_BUTTON_DPAD_RIGHT) || SDL_GameControllerGetAxis(App->input->controller_player_2, SDL_CONTROLLER_AXIS_LEFTX) >= 10000)
 		{
 			if (App->ui->p2_pointerPosX != 225) { App->ui->p2_pointerPosX += 32; }
 			else { App->ui->p2_pointerPosX = 225; }

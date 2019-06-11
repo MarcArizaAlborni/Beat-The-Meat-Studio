@@ -45,7 +45,7 @@ bool ModuleSounds::CleanUp() {
 
 update_status ModuleSounds::Update(){
 
-	if (App->input->keyboard[SDL_SCANCODE_F3]) {
+	if (App->input->keyboard[SDL_SCANCODE_F3] || App->input->game_pad[SDL_CONTROLLER_BUTTON_BACK][GAME_PAD_1] == KEY_DOWN || App->input->game_pad[SDL_CONTROLLER_BUTTON_BACK][GAME_PAD_2] == KEY_DOWN) {
 
 		App->audio->PlayMusic(coin_Music, 0);
 

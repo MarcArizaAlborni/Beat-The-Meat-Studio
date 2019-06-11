@@ -54,11 +54,11 @@ update_status ModuleWarningScreen::Update()
 	deltaTimeWrng = SDL_GetTicks() / 1000;
 	timeLimitWrng = deltaTimeWrng - startTimeWrng;
 
-	if(timeLimitWrng > 7 || App->input->keyboard[SDL_SCANCODE_RETURN] == 1) { App->fade->FadeToBlack(App->warning_screen, App->guys_screen, 1.5f); }
+	if(timeLimitWrng > 3 ) { App->fade->FadeToBlack(App->warning_screen, App->guys_screen, 1.5f); }
 
 	if (App->sounds->coin_inserted == true) {
 
-		App->fade->FadeToBlack(App->warning_screen, App->start_screen, 5.0f);
+		App->fade->FadeToBlack(App->warning_screen, App->start_screen, 3.0f);
 
 	}
 
