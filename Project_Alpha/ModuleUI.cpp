@@ -53,6 +53,28 @@ ModuleUI::ModuleUI() : Module()
 	timer.w = 28;
 	timer.h = 15;
 
+	//Round Tokens
+	roundTokenP1.x = 0;
+	roundTokenP1.y = 0;
+	roundTokenP1.w = 0;
+	roundTokenP1.h = 0;
+
+	roundTokenP1II.x = 0;
+	roundTokenP1II.y = 0;
+	roundTokenP1II.w = 0;
+	roundTokenP1II.h = 0;
+
+	roundTokenP2.x = 0;
+	roundTokenP2.y = 0;
+	roundTokenP2.w = 0;
+	roundTokenP2.h = 0;
+
+	roundTokenP2II.x = 0;
+	roundTokenP2II.y = 0;
+	roundTokenP2II.w = 0;
+	roundTokenP2II.h = 0;
+
+
 	//Character Grid
 	characterGrid.x = 225;
 	characterGrid.y = 340;
@@ -196,6 +218,8 @@ update_status ModuleUI::Update()
 		App->render->Blit(graphicsUI, 293, 35, &name2, 1.0f, false); //name p2
 		App->render->Blit(graphicsUI, 6, 1, &score, 1.0f, false); //score
 		App->fonts->BlitText(178, 36, 0, timechar); //timer
+
+		App->render->Blit(graphicsUI, 293, 35, &name2, 1.0f, false); //Round Token P1
 		//App->render->Blit(graphicsUI, 178, 34, &timer, 1.0f, false); //timer
 	}
 	

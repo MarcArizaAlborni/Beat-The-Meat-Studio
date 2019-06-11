@@ -48,6 +48,12 @@ public:
 	int damageUnit = 1;
 	float background_pos;
 	bool forward;
+	
+	//Rounds
+	int generalRoundCount = 0;
+	int roundCountP1 = 0;
+	int roundCountP2 = 0;
+	bool end = false;
 };
 
 #endif // __MODULESCENERYU_H__

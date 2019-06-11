@@ -28,6 +28,10 @@ public:
 	SDL_Rect name2;
 	SDL_Rect score;
 	SDL_Rect timer;
+	SDL_Rect roundTokenP1;
+	SDL_Rect roundTokenP1II;
+	SDL_Rect roundTokenP2;
+	SDL_Rect roundTokenP2II;
 	SDL_Rect characterGrid;
 	SDL_Rect characterIconRyuP1;
 	SDL_Rect characterIconKenP1;
