@@ -121,10 +121,21 @@ ModulePlayer2::ModulePlayer2()
 
 		//Standing Block Animation
 		SblockP2.PushBack({ 730, 2169, 100, 96 });
+		SblockP2.PushBack({ 730, 2169, 100, 96 });
+		SblockP2.PushBack({ 730, 2169, 100, 96 });
+		SblockP2.PushBack({ 630, 2169, 100, 96 });
+		SblockP2.PushBack({ 630, 2169, 100, 96 });
+		SblockP2.PushBack({ 630, 2169, 100, 96 });
+		SblockP2.PushBack({ 630, 2169, 100, 96 });
 		SblockP2.PushBack({ 630, 2169, 100, 96 });
 
 		//Crouch Block Animation
 		CblockP2.PushBack({ 730, 2100, 100, 63 });
+		CblockP2.PushBack({ 730, 2100, 100, 63 });
+		CblockP2.PushBack({ 730, 2100, 100, 63 });
+		CblockP2.PushBack({ 630, 2100, 100, 63 });
+		CblockP2.PushBack({ 630, 2100, 100, 63 });
+		CblockP2.PushBack({ 630, 2100, 100, 63 });
 		CblockP2.PushBack({ 630, 2100, 100, 63 });
 
 		//Standing Damage Light
@@ -741,8 +752,15 @@ update_status ModulePlayer2::PreUpdate() {
 			 if (currentP2_animation->Finished()) {
 				 deleteCollider2(attackP2_collider);
 				 currentstateP2 = idlestateP2;
-				 
 				 SblockP2.Reset();
+			 }
+
+		 }
+		 if (currentstateP2 == CblockstunP2) {
+			 if (currentP2_animation->Finished()) {
+				 deleteCollider2(attackP2_collider);
+				 currentstateP2 = crouchstateP2;
+				 CblockP2.Reset();
 			 }
 
 		 }
@@ -1712,6 +1730,14 @@ update_status ModulePlayer2::Update()
 		playerP2_collider->rect.h = 65;
 		playerP2_collider->SetPos(positionP2.x + 15 - camxP2, positionP2.y - 65 - camyP2);
 
+		if (!App->player->flipP1) {
+			if (inputplayerP2.Left_active) { CblockingP2 = false; }
+			else { CblockingP2 = true; }
+		}
+		else {
+			if (inputplayerP2.Right_active) { CblockingP2 = true; }
+			else { CblockingP2 = false; }
+		}
 		LOG("CROUCHED ANIMATION ACTIVE");
 		break;
 
@@ -2055,14 +2081,14 @@ update_status ModulePlayer2::Update()
 		break;
 	case SblockstunP2:
 		currentP2_animation = &SblockP2;
-		if (App->player->flipP1) { positionP2.x += 0.5; }
-		else { positionP2.x -= 0.5; }
+		if (App->player->flipP1) { positionP2.x -= 1; }
+		else { positionP2.x += 1; }
 		
 		break;
 	case CblockstunP2:
 		currentP2_animation = &CblockP2;
-		if (App->player->flipP1) { positionP2.x += 0.5; }
-		else { positionP2.x -= 0.5; }
+		if (App->player->flipP1) { positionP2.x -= 1; }
+		else { positionP2.x += 1; }
 		break;
 		
 	
@@ -2173,7 +2199,7 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2)
 {
 	if (c1->type == COLLIDER_PLAYER2 && c2->type == COLLIDER_PLAYER_ATTACK) {
 		
-		if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_PLAYER2_ATTACK) {
+		
 			if (!alreadyHitP2) {
 				if (currentstateP2 != crouchstateP2 && currentstateP2 != crouchLPP2 && currentstateP2 != crouchMPP2 && currentstateP2 != crouchHPP2 && currentstateP2 != crouchLKP2 && currentstateP2 != crouchMKP2 && currentstateP2 != crouchHKP2) {
 					//standing if not crouching
@@ -2261,7 +2287,7 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2)
 					}
 				}
 			}
-		}
+		
 		
 	}
 
