@@ -216,12 +216,13 @@ public:
 	Collider* attackP1_collider = nullptr;
 	Collider* blockP1_collider = nullptr;
 
-	uint windup = 0;
-
+	uint attackstartTime;
+	bool attackStart=false;
+	bool attTimeStarted = false;
 	int attackstarttime = 0;
 
 	bool attackActive = false;
-	void attackTime( uint windUp, int x, int y, ATTACK_TYPE attackTtype);
+	//void attackTime( uint windUp, int x, int y, ATTACK_TYPE attackTtype);
 		
 		
 	void comboInputP1(char comboInput);

@@ -941,6 +941,7 @@ update_status ModulePlayer::PreUpdate() {
 		 }
 		 if (currentstateP1 == standingcloseHPP1) {
 			 if (currentP1_animation->Finished()) {
+				 positionP1.y = groundLevelP1;
 				 App->player2->alreadyHitP2 = false;
 				 deleteCollider(attackP1_collider);
 				 currentstateP1 = idlestateP1;
@@ -1291,7 +1292,7 @@ update_status ModulePlayer::PreUpdate() {
 
 			 if (inputplayerP1.I_active && !inputplayerP1.D_active && closeP1) { //falta CONDICIO COLIDER APROP
 
-
+				 attackP1_collider = App->collision->AddCollider({ 0,0, 75, 15 }, COLLIDER_PLAYER_ATTACK, SH, App->player2);
 				 currentstateP1 = HeadbuttP1;
 				 LOG("BACKWARD TO HEADBUT");
 
@@ -1375,6 +1376,7 @@ update_status ModulePlayer::PreUpdate() {
 			 }
 	
 			 if (inputplayerP1.I_active && closeP1) { //falta CONDICIO COLIDER APROP
+				 attackP1_collider = App->collision->AddCollider({ 0,0, 75, 15 }, COLLIDER_PLAYER_ATTACK, SH, App->player2);
 				 currentstateP1 = HeadbuttP1;
 				 LOG("FORWARD TO HEADBUT");
 
@@ -1431,8 +1433,9 @@ update_status ModulePlayer::PreUpdate() {
 			 }
 			 if (inputplayerP1.L_active) {
 				 currentstateP1 = crouchHKP1;
-				 //attackP1_collider = App->collision->AddCollider({ 0,0, 100, 22 }, COLLIDER_PLAYER_ATTACK,CH, App->player);
-				 attackTime(10, 100, 22, CH);
+				
+				 attackP1_collider = App->collision->AddCollider({ 0,0, 100, 22 }, COLLIDER_PLAYER_ATTACK,CH, App->player);
+				 
 				 LOG("IDLE to HEAVY KICK");
 			 }
 		 }
@@ -1639,32 +1642,32 @@ update_status ModulePlayer::PreUpdate() {
 
 			
 			 if (currentP1_animation->Finished() && inputplayerP1.I_active && !inputplayerP1.A_active && !inputplayerP1.D_active) {
-
+				 App->player2->alreadyHitP2 = false;
 				 Headbut_P1.Reset();
-
+				 deleteCollider(attackP1_collider);
 				 currentstateP1 = standingfarMPP1;
 
 			 }
 
 			 if (currentP1_animation->Finished() && !inputplayerP1.I_active && !inputplayerP1.A_active && !inputplayerP1.D_active) {
-
+				 App->player2->alreadyHitP2 = false;
 				 Headbut_P1.Reset();
-
+				 deleteCollider(attackP1_collider);
 				 currentstateP1 = idlestateP1;
 
 			 }
 			  
 			 if (currentP1_animation->Finished() && !inputplayerP1.I_active && !inputplayerP1.A_active && inputplayerP1.D_active) {
-
+				 App->player2->alreadyHitP2 = false;
 				 Headbut_P1.Reset();
-
+				 deleteCollider(attackP1_collider);
 				 currentstateP1 = forwardstateP1;
 
 			 }
 			 if (currentP1_animation->Finished() && !inputplayerP1.I_active && inputplayerP1.A_active && !inputplayerP1.D_active) {
-
+				 deleteCollider(attackP1_collider);
 				 Headbut_P1.Reset();
-
+				 App->player2->alreadyHitP2 = false;
 				 currentstateP1 = backwardstateP1;
 
 			 }
@@ -2160,6 +2163,12 @@ update_status ModulePlayer::Update() {
 
 	case HeadbuttP1:
 		currentP1_animation = &Headbut_P1; // falta ANIMACIO HEADBUTT
+		if (!flipP1) {
+			attackP1_collider->SetPos(positionP1.x + 60 - camxP1, positionP1.y - 45 - camyP1);
+		}
+		else{
+			attackP1_collider->SetPos(positionP1.x  -20 - camxP1, positionP1.y - 45 - camyP1);
+		}
 		LOG("HEADBUTT ANIMATION ACTIVE");
 		break;
 
@@ -2240,7 +2249,7 @@ update_status ModulePlayer::Update() {
 		}
 	}
 	else {
-		if (positionP1.x - App->player2->positionP2.x - 60 < 10) {
+		if (positionP1.x - App->player2->positionP2.x - 55 < 10) {
 			closeP1 = true;
 		}
 		else {
@@ -2328,20 +2337,20 @@ update_status ModulePlayer::Update() {
 			App->render->camera.x -= speedP1 * 2.5; // Move camera right
 		}
 	}
-
+	
 	//collider attack eliminaar
-	//if (attackActive) {
-		//if  (st == 25 )
-		//if (timeP1-attackstarttime > windup) {
-			
-		//	attackActive = false;
-		//}
-		//if (st == 90)
-		//{
-		//	atta =
-		//}
-	//}
-
+	/*if (attackStart) {
+		App->player2->alreadyHitP2 = true;
+		attackstartTime = timeP1;
+		attTimeStarted = true;
+		
+	}
+	if (attTimeStarted) {
+		if (attTimeStarted -timeP1 > 10000) {
+			App->player2->alreadyHitP2 = false;
+			attTimeStarted = false;
+		}
+	}*/
 	//punch
 		//st = 0;
 
@@ -2489,12 +2498,12 @@ bool ModulePlayer::comboActiveP1() {
 
 	return false;
 }
-void ModulePlayer::attackTime( uint windUp, int x, int y,ATTACK_TYPE attackTtype) {
-	uint windup = windUp;
-	attackP1_collider = App->collision->AddCollider({0,0,x,y}, COLLIDER_PLAYER_ATTACK, attackTtype, App->player2);
-	attackstarttime = timeP1;
-	attackActive = true;
-}
+//void ModulePlayer::attackTime( uint windUp, int x, int y,ATTACK_TYPE attackTtype) {
+//	uint windup = windUp;
+//	attackP1_collider = App->collision->AddCollider({0,0,x,y}, COLLIDER_PLAYER_ATTACK, attackTtype, App->player2);
+//	attackstarttime = timeP1;
+//	attackActive = true;
+//}
 
 void ModulePlayer::comboInputP1(char comboInput) {
 	comboP1[*finishCP1] = comboInput; //We add the newInput to the last inputs array

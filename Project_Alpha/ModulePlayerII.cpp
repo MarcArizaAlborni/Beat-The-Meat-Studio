@@ -876,6 +876,7 @@ update_status ModulePlayer2::PreUpdate() {
 		 }
 		 if (currentstateP2 == standingcloseHPP2) {
 			 if (currentP2_animation->Finished()) {
+				 positionP2.y = groundLevelP2 ;
 				 App->player->alreadyHitP1 = false;
 				 deleteCollider2(attackP2_collider);
 				 currentstateP2 = idlestateP2;
@@ -1221,7 +1222,7 @@ update_status ModulePlayer2::PreUpdate() {
 			 }
 
 			 if (inputplayerP2.Num8_active && !inputplayerP2.Right_active && App->player->closeP1) { //falta CONDICIO COLIDER APROP
-
+				 attackP2_collider = App->collision->AddCollider({ 0,-100, 75, 15 }, COLLIDER_PLAYER2_ATTACK, SH, App->player);
 				 currentstateP2 = HeadbuttP2;
 				 LOG("BACKWARD TO HEADBUT");
 			 }
@@ -1303,6 +1304,7 @@ update_status ModulePlayer2::PreUpdate() {
 			 }
 
 			 if (inputplayerP2.Num8_active && App->player->closeP1) { //falta CONDICIO COLIDER APROP
+				 attackP2_collider = App->collision->AddCollider({ 0,-100, 75, 15 }, COLLIDER_PLAYER2_ATTACK, SH, App->player);
 				 currentstateP2 = HeadbuttP2;
 				 LOG("FORWARD TO HEADBUT");
 
@@ -1570,7 +1572,8 @@ update_status ModulePlayer2::PreUpdate() {
 
 
 			 if (currentP2_animation->Finished() && inputplayerP2.Num8_active && !inputplayerP2.Left_active && !inputplayerP2.Right_active) {
-
+				 deleteCollider2(attackP2_collider);
+				 App->player->alreadyHitP1 = false;
 				 Headbut_P2.Reset();
 
 				 currentstateP2 = standingfarMPP2;
@@ -1578,7 +1581,8 @@ update_status ModulePlayer2::PreUpdate() {
 			 }
 
 			 if (currentP2_animation->Finished() && !inputplayerP2.Num8_active && !inputplayerP2.Left_active && !inputplayerP2.Right_active) {
-
+				 deleteCollider2(attackP2_collider);
+				 App->player->alreadyHitP1 = false;
 				 Headbut_P2.Reset();
 
 				 currentstateP2 = idlestateP2;
@@ -1586,16 +1590,15 @@ update_status ModulePlayer2::PreUpdate() {
 			 }
 
 			 if (currentP2_animation->Finished() && !inputplayerP2.Num8_active && !inputplayerP2.Left_active && inputplayerP2.Right_active) {
-
+				 deleteCollider2(attackP2_collider);
+				 App->player->alreadyHitP1 = false;
 				 Headbut_P2.Reset();
-
 				 currentstateP2 = forwardstateP2;
-
 			 }
 			 if (currentP2_animation->Finished() && !inputplayerP2.Num8_active && inputplayerP2.Left_active && !inputplayerP2.Right_active) {
-
+				 deleteCollider2(attackP2_collider);
+				 App->player->alreadyHitP1 = false;
 				 Headbut_P2.Reset();
-
 				 currentstateP2 = backwardstateP2;
 
 			 }
@@ -2109,6 +2112,12 @@ update_status ModulePlayer2::Update()
 	
 	case HeadbuttP2:
 		currentP2_animation = &Headbut_P2; // falta ANIMACIO HEADBUTT
+		if (App->player->flipP1) {
+			attackP2_collider->SetPos(positionP2.x + 60 - camxP2, positionP2.y - 45 - camyP2);
+		}
+		else {
+			attackP2_collider->SetPos(positionP2.x - 20 - camxP2, positionP2.y - 45 - camyP2);
+		}
 		LOG("HEADBUTT ANIMATION ACTIVE");
 		break;
 
