@@ -28,7 +28,9 @@ bool ModuleVsScreen::Start()
 {
 	LOG("Loading Vs screen");
 	graphics = App->textures->Load("Sprites/BlankaVsBlanka.png");
+	vs_sound = App->audio->LoadMus("Audios/Music/04 VS.ogg");
 
+	App->audio->PlayMusic(vs_sound, 0);
 	deltaTimeVs = SDL_GetTicks() / 1000;
 	startTimeVs = deltaTimeVs;
 
@@ -40,6 +42,7 @@ bool ModuleVsScreen::CleanUp()
 {
 	LOG("Unloading Vs Screen");
 	App->textures->Unload(graphics);
+	App->audio->UnLoadMusic(vs_sound);
 	return true;
 }
 
@@ -52,6 +55,6 @@ update_status ModuleVsScreen::Update()
 	deltaTimeVs = SDL_GetTicks() / 1000; //GetTicks counts the amount of milliseconds that have elapsed since the SDL_library has been executed. Milliseconds to seconds.
 	timeLimitVs = deltaTimeVs - startTimeVs;
 
-	if (timeLimitVs > 3 || App->input->keyboard[SDL_SCANCODE_RETURN] == 1) { App->fade->FadeToBlack(App->vs_screen, App->scene_guile, 1.0f); }
+	if (timeLimitVs >= 1 || App->input->keyboard[SDL_SCANCODE_RETURN] == 1) { App->fade->FadeToBlack(App->vs_screen, App->scene_guile, 1.0f);  }
 	return UPDATE_CONTINUE;
 }

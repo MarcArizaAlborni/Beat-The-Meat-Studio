@@ -5,6 +5,7 @@
 #include "Module.h"
 #include "Animation.h"
 #include "Globals.h"
+#include "ModuleAudio.h"
 
 struct SDL_Texture;
 
@@ -25,6 +26,8 @@ public:
 
 	SDL_Texture* graphics = nullptr;
 	SDL_Rect vs_screen;
+
+	Mix_Music* vs_sound;
 
 };
 

@@ -265,7 +265,7 @@ update_status ModuleCharacterSelect::Update()
 		if (landing)
 		{
 			App->audio->PlayFx(flag_sound);
-			App->fade->FadeToBlack(App->character_select, App->vs_screen, 5.0f);
+			App->fade->FadeToBlack(App->character_select, App->vs_screen, 3.7f);
 			App->audio->FinishMusic(2000);
 			
 		}
@@ -274,7 +274,7 @@ update_status ModuleCharacterSelect::Update()
 	if (App->input->keyboard[SDL_SCANCODE_RETURN] || App->input->game_pad[SDL_CONTROLLER_BUTTON_START][GAME_PAD_1] == KEY_DOWN)
 	{
 		
-		App->fade->FadeToBlack(App->character_select, App->vs_screen, 5.0f);
+		App->fade->FadeToBlack(App->character_select, App->vs_screen, 3.7f);
 		App->audio->FinishMusic(2000);
 
 	}

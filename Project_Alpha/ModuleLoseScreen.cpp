@@ -29,7 +29,8 @@ bool ModuleLoseScreen::Start()
 {
 	LOG("Loading Win screen");
 	graphics = App->textures->Load("Sprites/Player2_Wins.png");
-
+	lose_sound = App->audio->LoadMus("Audios/Music/07 Stage End.ogg");
+	App->audio->PlayMusic(lose_sound, 0);
 	deltaTimeL = SDL_GetTicks() / 1000;
 	startTimeL = deltaTimeL;
 
@@ -41,6 +42,7 @@ bool ModuleLoseScreen::CleanUp()
 {
 	LOG("Unloading Win Screen");
 	App->textures->Unload(graphics);
+	App->audio->UnLoadMusic(lose_sound);
 	return true;
 }
 
@@ -53,6 +55,7 @@ update_status ModuleLoseScreen::Update()
 	deltaTimeL = SDL_GetTicks() / 1000;
 	timeLimitL = deltaTimeL - startTimeL;
 
-	if (timeLimitL > 4 || App->input->keyboard[SDL_SCANCODE_SPACE] == 1) { App->fade->FadeToBlack(App->lose_screen, App->start_screen, 1.0f); }
+	if (timeLimitL > 4 || App->input->keyboard[SDL_SCANCODE_SPACE] == 1) { App->fade->FadeToBlack(App->lose_screen, App->start_screen, 1.0f); App->audio->FinishMusic(1000);
+	}
 	return UPDATE_CONTINUE;
 }
