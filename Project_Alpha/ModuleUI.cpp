@@ -210,7 +210,7 @@ update_status ModuleUI::Update()
 	//Blits
 	if (stage)
 	{
-		timerint = 100 - App->scene_guile->timeLimit;
+		timerint = 99 - App->scene_guile->timeLimit;
 		timechar[0] = timerint / 10 + '0';
 		timechar[1] = timerint % 10 + '0';
 		App->render->Blit(graphicsUI, 30, 20, &healthbar, 1.0f, false); //healthbar

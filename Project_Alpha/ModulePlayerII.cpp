@@ -2162,6 +2162,7 @@ update_status ModulePlayer2::Update()
 		jumpTimerP2 = timeP2 - jumpstartP2;
 		playerP2_collider->SetPos(positionP2.x + 15 - App->render->camera.x / SCREEN_ADD, positionP2.y - 93 - App->render->camera.y / SCREEN_ADD);
 		positionP2.y = groundLevelP2- (yvelP2*jumpTimerP2) + (0.5*(gravityP2) * (jumpTimerP2*jumpTimerP2));
+		App->render->camera.y -= (0.2 * jumpTimerP2) + (0.5*(-0.9) * (jumpTimerP2*jumpTimerP2)) / 60;
 		if (forwardJumpP2 == true) {
 			positionP2.x += speedP2;
 		}
