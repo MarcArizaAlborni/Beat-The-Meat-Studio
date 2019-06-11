@@ -190,8 +190,7 @@ update_status ModuleSceneRyu::Update()
 	}
 	if (App->input->keyboard[SDL_SCANCODE_F3] == 1) //Insta-Win Input Button
 	{
-		App->fade->FadeToBlack(App->scene_ryu, App->win_screen, 1.0f);
-		
+		App->fade->FadeToBlack(App->scene_ryu, App->win_screen, 1.0f);	
 	}
 	 
 	if (App->input->keyboard[SDL_SCANCODE_F4] == 1) //Insta-Lose Input Button
