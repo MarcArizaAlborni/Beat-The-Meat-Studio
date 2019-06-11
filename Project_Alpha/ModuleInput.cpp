@@ -39,7 +39,11 @@ bool ModuleInput::Init()
 		LOG("SDL_EVENTS could not initialize! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
 	}
-	SDL_Init(SDL_INIT_GAMECONTROLLER);
+	if (SDL_Init(SDL_INIT_GAMECONTROLLER) < 0) {
+
+		LOG("SDL_EVENTS could not initialize! SDL_Error: %s\n", SDL_GetError());
+		ret = false;
+	}
 	return ret;
 }
 
