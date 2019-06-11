@@ -233,6 +233,6 @@ The game consists in a 1 vs 1 duel between two characters, each with the same mo
 
 ## Project's GitHub Page:
 
-Click [this link](<https://github.com/OuEsquerra/Beat-The-Meat-Studio>) to access our GitHub Repository.
+Click [this link](<https://github.com/MarcArizaAlborni/Hit-The-Meat-Studio>) to access our GitHub Repository.
 
 Click [this other link](<https://marcarizaalborni.github.io/Hit-The-Meat-Studio/>) to access our GitHub Web.
