@@ -62,7 +62,25 @@ bool ModuleCharacterSelect::CleanUp()
 	LOG("Unloading Character Select Screen");
 	App->textures->Unload(graphics);
 	App->ui->character_select = false;
+
+	App->ui->p1_characterSelect = false;
+	App->ui->p2_characterSelect = false;
+	App->ui->brazilP1 = false;
+	App->ui->brazilP2 = false;
+	App->ui->stageFlag = false;
+	App->ui->ryuIconP1 = false;
+	App->ui->kenIconP1 = false;
+	App->ui->blankaIconP1 = false;
+	App->ui->ryuIconP2 = false;
+	App->ui->kenIconP2 = false;
+	App->ui->blankaIconP2 = false;
+	landing = false;
+	playedplane = false;
+	flagplayed = false;
+	App->ui->planePosX = 269.0f;
+	App->ui->planePosY = 96.0f;
 	App->ui->Disable();
+
 	App->audio->UnLoadMusic(CS_sound);
 	App->audio->UnLoadFX(cursor_sound);
 	App->audio->UnLoadFX(accept_sound);
@@ -208,7 +226,7 @@ update_status ModuleCharacterSelect::Update()
 	deltaTimeCh = SDL_GetTicks() / 1000;
 	timeLimitCh = deltaTimeCh - startTimeCh;
 
-	if (timeLimitCh >= 40)
+	if (timeLimitCh >= 30)
 	{
 		//Putting both cursors on Blanka's space in the character grid
 		App->ui->p1_pointerPosX = 193;
@@ -228,21 +246,7 @@ update_status ModuleCharacterSelect::Update()
 		App->ui->p1_characterSelect = true;
 		App->ui->p2_characterSelect = true;
 
-
-		//if (App->ui->blankaIconP1 = false)
-		//{
-		//	if (App->ui->ryuIconP1 = true) { App->ui->ryuIconP1 = false; App->ui->blankaIconP1 = true;}
-		//	else { App->ui->blankaIconP1 = true; }
-		//}
-
-		//if (App->ui->blankaIconP2 = false)
-		//{
-		//	if (App->ui->ryuIconP2 = true) { App->ui->ryuIconP2 = false; App->ui->blankaIconP2 = true; }
-		//	else { App->ui->blankaIconP2 = true; }
-		//}
-
 		App->ui->stageFlag = true;
-		
 	}
 	
 	

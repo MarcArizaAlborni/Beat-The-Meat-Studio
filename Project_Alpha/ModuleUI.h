@@ -94,6 +94,21 @@ public:
 	bool ryuIconP2 = false;
 	bool kenIconP2 = false;
 	bool blankaIconP2 = false;
+
+	//Round
+	//Rounds
+	int generalRoundCount = 0;
+	int roundCountP1 = 0;
+	int roundCountP2 = 0;
+	bool generalRoundCountI = false;
+	bool generalRoundCountII = false;
+	bool generalRoundCountIII = false;
+	bool roundCountP1I = false;
+	bool roundCountP1II = false;
+	bool roundCountP2I = false;
+	bool roundCountP2II = false;
+	bool end = false;
+	bool endII = false;
 	
 
 	bool StreetLogo = false;

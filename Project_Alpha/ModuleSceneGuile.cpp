@@ -171,90 +171,17 @@ update_status ModuleSceneGuile::Update()
 		App->audio->FinishMusic(1000);
 	}
 
-	//Rounds
-	if (App->input->keyboard[SDL_SCANCODE_E] == 1) //Round testing button
-	{
-		if (generalRoundCount != 3 && roundCountP1 != 2 /*&& roundCountP2 != 2*/) { generalRoundCount++; roundCountP1++; App->fade->FadeToBlack(App->scene_guile, App->scene_guile, 1.0f); }
-		else { end = true; }
-	}
-
-	if (App->input->keyboard[SDL_SCANCODE_Q] == 1) //Round testing button
-	{
-		if (generalRoundCount != 3 /*&& roundCountP1 != 2*/ && roundCountP2 != 2) { generalRoundCount++; roundCountP2++; App->fade->FadeToBlack(App->scene_guile, App->scene_guile, 1.0f); }
-		else { end = true; }
-	}
-
-	//if (generalRoundCount == 3 || roundCountP1 == 2 || roundCountP2 == 2) { end = true; }
-
-	if (end || roundCountP1 == 2) { App->fade->FadeToBlack(App->scene_guile, App->win_screen, 1.0f); }
-	if (end || roundCountP2 == 2) { App->fade->FadeToBlack(App->scene_guile, App->lose_screen, 1.0f); }
-
-	/*if (!end)
-	{
-		//Win/Lose condition taking into account the remaining health.
-		if (App->ui->health.x <= 45) //45 instead of 0 because it doesnt exactly fit.
-		{
-			generalRoundCount++;
-			roundCountP2++;
-			App->fade->FadeToBlack(App->scene_guile, App->scene_guile, 1.0f);
-			App->audio->FinishMusic(1000);
-		}
-
-		if (App->ui->health2.w <= 0)
-		{
-			generalRoundCount++;
-			roundCountP1++;
-			App->fade->FadeToBlack(App->scene_guile, App->scene_guile, 1.0f);
-			App->audio->FinishMusic(1000);
-		}
-
-		//Win/lose condition using time:
-		deltaTime = SDL_GetTicks() / 1000; //GetTicks counts the amount of milliseconds that have elapsed since the SDL_library has been executed. Milliseconds to seconds.
-		timeLimit = deltaTime - startTime;
-
-		if (timeLimit >= 99)
-		{
-			if (App->ui->health.x == App->ui->health2.w + 45) //Tie Case, p1 and p2 have the same amount of hp.
-			{
-				App->fade->FadeToBlack(App->scene_guile, App->scene_guile, 1.0f);
-				App->audio->FinishMusic(1000);
-			}
-
-			if (App->ui->health.x - 45 != App->ui->health2.w)
-			{
-				if (App->ui->health.x > App->ui->health2.w + 45) //p1 has more  health than p2
-				{
-					generalRoundCount++;
-					roundCountP1++;
-					App->fade->FadeToBlack(App->scene_guile, App->scene_guile, 1.0f);
-					App->audio->FinishMusic(1000);
-				}
-
-				if (App->ui->health.x < App->ui->health2.w + 45)//p2 has more  health than p1
-				{
-					generalRoundCount++;
-					roundCountP2++;
-					App->fade->FadeToBlack(App->scene_guile, App->scene_guile, 1.0f);
-					App->audio->FinishMusic(1000);
-				}
-			}
-		}
-	}*/
 	
 	//Win/Lose condition taking into account the remaining health.
 	if (App->ui->health.x <= 45) //45 instead of 0 because it doesnt exactly fit.
 	{
-		generalRoundCount++;
-		roundCountP2++;
-		App->fade->FadeToBlack(App->scene_guile, App->scene_guile, 1.0f);
+		App->fade->FadeToBlack(App->scene_guile, App->lose_screen, 1.0f);
 		App->audio->FinishMusic(1000);
 	}
 
 	if (App->ui->health2.w <= 0)
 	{
-		generalRoundCount++;
-		roundCountP1++;
-		App->fade->FadeToBlack(App->scene_guile, App->scene_guile, 1.0f);
+		App->fade->FadeToBlack(App->scene_guile, App->win_screen, 1.0f);
 		App->audio->FinishMusic(1000);
 	}
 
@@ -274,17 +201,13 @@ update_status ModuleSceneGuile::Update()
 		{
 			if (App->ui->health.x > App->ui->health2.w + 45) //p1 has more  health than p2
 			{
-				generalRoundCount++;
-				roundCountP1++;
-				App->fade->FadeToBlack(App->scene_guile, App->scene_guile, 1.0f);
+				App->fade->FadeToBlack(App->scene_guile, App->win_screen, 1.0f);
 				App->audio->FinishMusic(1000);
 			}
 
 			if (App->ui->health.x < App->ui->health2.w + 45)//p2 has more  health than p1
 			{
-				generalRoundCount++;
-				roundCountP2++;
-				App->fade->FadeToBlack(App->scene_guile, App->scene_guile, 1.0f);
+				App->fade->FadeToBlack(App->scene_guile, App->lose_screen, 1.0f);
 				App->audio->FinishMusic(1000);
 			}
 		}
