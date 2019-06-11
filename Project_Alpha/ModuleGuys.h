@@ -31,5 +31,9 @@ public:
 	Mix_Music* Title_sound;
 	Mix_Chunk* punch_sound;
 
+	Uint32 timeLimit = 0;
+	Uint32 deltaTime = SDL_GetTicks() / 1000;;
+	Uint32 startTime = 0;
+
 	float speed = 2.5f;
 };

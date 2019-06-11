@@ -179,8 +179,11 @@ bool ModuleGuys::Start()
 	LOG("Loading Building Screen");
 	graphics = App->textures->Load("Sprites/Guys.png");
 	Title_sound = App->audio->LoadMus("Audios/Music/01 Title.ogg");
-	punch_sound = App->audio->LoadFx("Audios/FX/Hard Punch.wav");
+	punch_sound = App->audio->LoadFx("Audios/FX/Hard Hit.wav");
 	App->audio->PlayMusic(Title_sound, 0);
+	deltaTime = SDL_GetTicks() / 1000;
+	startTime = deltaTime;
+
 	App->ui->Enable();
 	App->ui->StreetLogo = true;
 	return true;
@@ -198,15 +201,18 @@ bool ModuleGuys::CleanUp()
 
 update_status ModuleGuys::PreUpdate() 
 {
+
 	cur_anim = &punch.GetCurrentFrame();
 
 	if (punch.Finished()) {
+
 		cur_anim = &punch2.GetCurrentFrame();
-		App->audio->PlayFx(punch_sound);
+		
 	}
 	
 	if(punch2.Finished())
 	{ 
+		
 		cur_anim = &punch3.GetCurrentFrame();
 		App->render->camera.y -= speed;
 	}
@@ -228,7 +234,13 @@ update_status ModuleGuys::Update()
 	App->render->Blit(graphics, 0, 0, &r, 1.75f);
 	App->render->Blit(graphics, 0, 0, cur_anim, 1.75f);
 	
+	deltaTime = SDL_GetTicks() / 1000;
+	timeLimit = deltaTime - startTime;
 
+	if (timeLimit == 5) {
+		App->audio->PlayFx(punch_sound);
+	}
+	
 	if (App->render->camera.y <=  -935) {
 
 		speed = 0;
