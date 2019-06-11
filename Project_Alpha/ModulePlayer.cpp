@@ -122,11 +122,23 @@ ModulePlayer::ModulePlayer()
 
 		//Standing Block Animation
 		SblockP1.PushBack({ 730, 2169, 100, 96 });
+		SblockP1.PushBack({ 730, 2169, 100, 96 });
+		SblockP1.PushBack({ 730, 2169, 100, 96 });
 		SblockP1.PushBack({ 630, 2169, 100, 96 });
-		
+		SblockP1.PushBack({ 630, 2169, 100, 96 });
+		SblockP1.PushBack({ 630, 2169, 100, 96 });
+		SblockP1.PushBack({ 630, 2169, 100, 96 });
+		SblockP1.speed = 0.3;
+
 		//Crouch Block Animation
 		CblockP1.PushBack({ 730, 2100, 100, 63 });
+		CblockP1.PushBack({ 730, 2100, 100, 63 });
+		CblockP1.PushBack({ 730, 2100, 100, 63 });
 		CblockP1.PushBack({ 630, 2100, 100, 63 });
+		CblockP1.PushBack({ 630, 2100, 100, 63 });
+		CblockP1.PushBack({ 630, 2100, 100, 63 });
+		CblockP1.PushBack({ 630, 2100, 100, 63 });
+		SblockP1.speed = 0.3;
 
 	    //Standing Damage Light
 		SdamageLP1.PushBack({ 170, 2451, 88, 101 });
@@ -799,7 +811,20 @@ update_status ModulePlayer::PreUpdate() {
 	 }
 
 	 {
-	 
+		 if (currentstateP1 == SblockstunP1) {
+			 if (currentP1_animation->Finished()) {
+				 deleteCollider(attackP1_collider);
+				 currentstateP1 = idlestateP1;
+				 SblockP1.Reset();
+			 }
+		 }
+		 if (currentstateP1 == CblockstunP1) {
+			 if (currentP1_animation->Finished()) {
+				 deleteCollider(attackP1_collider);
+				 currentstateP1 = crouchstateP1;
+				 CblockP1.Reset();
+			 }
+		 }
 		 
 		 //Standing Far Attacks Animation check
 		 /*if (currentstateP1 == standingfarLPP1) {
@@ -1727,12 +1752,13 @@ update_status ModulePlayer::Update() {
 		currentP1_animation = &crouchP1;
 		playerP1_collider->rect.h = 65;
 		playerP1_collider->SetPos(positionP1.x + 15 - camxP1, positionP1.y - 65 - camyP1);
+		
 		if (!flipP1) {
-			if (inputplayerP1.A_active) { SblockingP1 = true; }
+			if (inputplayerP1.A_active) { CblockingP1 = true; }
 			else { CblockingP1 = false; }
 		}
 		else {
-			if (inputplayerP1.D_active) { SblockingP1 = true; }
+			if (inputplayerP1.D_active) { CblockingP1 = true; }
 			else { CblockingP1 = false; }
 		}
 
@@ -1760,7 +1786,7 @@ update_status ModulePlayer::Update() {
 	case standingfarLPP1:
 		currentP1_animation = &SFLP_P1;         //&SFLP_P1
 		if (!flipP1) {
-			attackP1_collider->SetPos(positionP1.x + 40 - camxP1, positionP1.y - 90 - camyP1);
+			attackP1_collider->SetPos(positionP1.x + 60 - camxP1, positionP1.y - 90 - camyP1);
 		}
 		else{
 			attackP1_collider->SetPos(positionP1.x - extradisP1 - camxP1, positionP1.y - 90 - camyP1);
@@ -2058,11 +2084,9 @@ update_status ModulePlayer::Update() {
 			attackP1_collider->SetPos(positionP1.x - extradisP1 - camxP1, positionP1.y - 25 - camyP1);
 		}
 		break;
-
-	//damaged
+	//Damaged
 	case SdamagedLP1:
 		currentP1_animation = &SdamageLP1;
-		
 		if (flipP1) {
 			positionP1.x += 1;
 		}
@@ -2082,7 +2106,15 @@ update_status ModulePlayer::Update() {
 		break;
 	case SblockstunP1:
 		currentP1_animation = &SblockP1;
+		if (flipP1) { positionP1.x += 0.5; }
+		else { positionP1.x -= 0.5; }
 		break;
+	case CblockstunP1:
+		currentP1_animation = &CblockP1;
+		if (flipP1) { positionP1.x += 0.5; }
+		else { positionP1.x -= 0.5; }
+		break;
+
 	case HeadbuttP1:
 		currentP1_animation = &Headbut_P1; // falta ANIMACIO HEADBUTT
 		LOG("HEADBUTT ANIMATION ACTIVE");
@@ -2237,17 +2269,17 @@ update_status ModulePlayer::Update() {
 	}
 
 	//collider attack eliminaar
-	if (attackActive) {
+	//if (attackActive) {
 		//if  (st == 25 )
-		if (timeP1-attackstarttime > windup) {
+		//if (timeP1-attackstarttime > windup) {
 			
-			attackActive = false;
-		}
+		//	attackActive = false;
+		//}
 		//if (st == 90)
 		//{
 		//	atta =
 		//}
-	}
+	//}
 
 	//punch
 		//st = 0;
@@ -2264,31 +2296,91 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
 	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_PLAYER2_ATTACK) {
 		if (!alreadyHitP1) {
-			if (c2->attack == SL) {
-				currentstateP1 = SdamagedLP1;
-				alreadyHitP1 = true;
-				//App->player2->CalldelAtackP2 = true;
-				//delAtackP1 = true;
-				//deleteCollider(App->player2->attackP2_collider);
-				deleteCollider(attackP1_collider);
+			if (currentstateP1 != crouchstateP1 && currentstateP1 != crouchLPP1 && currentstateP1 != crouchMPP1 && currentstateP1 != crouchHPP1 && currentstateP1 != crouchLKP1 && currentstateP1 != crouchMKP1 && currentstateP1 != crouchHKP1) {
+				//standing if not crouching
+				if (c2->attack == SL) { //L
+					if (!SblockingP1) {
+						currentstateP1 = SdamagedLP1;
+						alreadyHitP1 = true;
+						deleteCollider(attackP1_collider);
+					}
+					else {
+						SblockP1.speed = 0.45f;
+						currentstateP1 = SblockstunP1;
+						alreadyHitP1 = true;
+						deleteCollider(attackP1_collider);
+					}
+				}
+				else if (c2->attack == SM) {//M
+					if (!SblockingP1) {
+						currentstateP1 = SdamagedMP1;
+						alreadyHitP1 = true;
+						deleteCollider(attackP1_collider);
+					}
+					else {
+						SblockP1.speed = 0.35f;
+						currentstateP1 = SblockstunP1;
+						alreadyHitP1 = true;
+						deleteCollider(attackP1_collider);
+					}
+				}
+				else if (c2->attack == SH) {//H
+					if (!SblockingP1) {
+						/*if (currentstateP1 = SdamagedHP1) {
+							SblockP1.Reset();
+						}*/
+						currentstateP1 = SdamagedHP1;
+						alreadyHitP1 = true;
+						deleteCollider(attackP1_collider);
+					}
+					else {
+						SblockP1.speed = 0.25f;
+						currentstateP1 = SblockstunP1;
+						alreadyHitP1 = true;
+						deleteCollider(attackP1_collider);
+					}
+				}
 			}
-			else if (c2->attack == SM) {
-				currentstateP1 = SdamagedMP1;
-				alreadyHitP1 = true;
-
-				//App->player2->CalldelAtackP2 = true;
-				//delAtackP1 = true;
-				//deleteCollider(App->player2->attackP2_collider);
-				deleteCollider(attackP1_collider);
-			}
-			else if (c2->attack == SH) {
-				currentstateP1 = SdamagedHP1;
-				alreadyHitP1 = true;
-				
-				//App->player2->CalldelAtackP2 = true;
-				//deleteCollider(App->player2->attackP2_collider);
-				deleteCollider(attackP1_collider);
-			}
+				//Crouching
+				if (c2->attack == CL) {//L
+					if (!CblockingP1) {
+						currentstateP1 = SdamagedLP1;
+						alreadyHitP1 = true;
+						deleteCollider(attackP1_collider);
+					}
+					else {
+						CblockP1.speed = 0.45f;
+						currentstateP1 = CblockstunP1;
+						alreadyHitP1 = true;
+						deleteCollider(attackP1_collider);
+					}
+				}
+				else if (c2->attack == CM) {//M
+					if (!CblockingP1) {
+						currentstateP1 = SdamagedMP1;
+						alreadyHitP1 = true;
+						deleteCollider(attackP1_collider);
+					}
+					else {
+						CblockP1.speed = 0.35f;
+						currentstateP1 = CblockstunP1;
+						alreadyHitP1 = true;
+						deleteCollider(attackP1_collider);
+					}
+				}
+				else if (c2->attack == CH) {//H
+					if (!CblockingP1) {
+						currentstateP1 = SdamagedHP1;
+						alreadyHitP1 = true;
+						deleteCollider(attackP1_collider);
+					}
+					else {
+						CblockP1.speed = 0.25f;
+						currentstateP1 = CblockstunP1;
+						alreadyHitP1 = true;
+						deleteCollider(attackP1_collider);
+					}
+				}
 		}
 	}
 

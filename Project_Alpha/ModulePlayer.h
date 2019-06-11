@@ -58,6 +58,7 @@ enum STATEP1 {
 	
 	SdamagedP1,
 	SblockstunP1,
+	CblockstunP1,
 
 	//COMBO
 	thunder1P1,
@@ -105,7 +106,7 @@ public:
 	bool CalldelAtackP1 = false;
 	bool delAtackP1 = false;
 	Uint8 alphakaP1 = 255;
-	int extradisP1 = 40;
+	int extradisP1 = 60;
 	int speedP1 = 3;
 	float camxP1, camyP1;
 	int groundLevelP1 = 205;
