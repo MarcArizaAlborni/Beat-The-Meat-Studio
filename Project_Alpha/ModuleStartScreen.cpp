@@ -50,7 +50,7 @@ update_status ModuleStartScreen::Update()
 
 	App->sounds->coin_inserted = true;
 
-	if (App->input->keyboard[SDL_SCANCODE_F2] || App->input->game_pad[SDL_CONTROLLER_BUTTON_START][GAME_PAD_1] == KEY_DOWN || App->input->game_pad[SDL_CONTROLLER_BUTTON_START][GAME_PAD_2] == KEY_DOWN) {
+	if (App->input->keyboard[SDL_SCANCODE_RETURN] || App->input->game_pad[SDL_CONTROLLER_BUTTON_START][GAME_PAD_1] == KEY_DOWN || App->input->game_pad[SDL_CONTROLLER_BUTTON_START][GAME_PAD_2] == KEY_DOWN) {
 
 		App->fade->FadeToBlack(App->start_screen, App->character_select, 1.0f );
 
