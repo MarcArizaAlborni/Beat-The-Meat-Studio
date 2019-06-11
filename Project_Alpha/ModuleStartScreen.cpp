@@ -31,6 +31,7 @@ bool ModuleStartScreen::Start()
 	LOG("Loading Welcome screen");
 	graphics = App->textures->Load("Sprites/Start_GameII.png");
 	App->render->camera.y = 0;
+	App->sounds->Enable();
 	
 	return true;
 }

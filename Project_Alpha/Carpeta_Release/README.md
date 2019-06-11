@@ -30,15 +30,7 @@ The game consists in a 1 vs 1 duel between two characters, each with the same mo
 
 **Kick Input Keys:** J Key (LK), K Key (MK), L Key (HK)
 
-**Grab Input:**  "_Wild Fang_": A or D + HP
 
-**Special Attack Inputs:**  
-
-- "_Electric Thunder_": Repeatedly press in a short time span any punch input key.  
-
-- "_Rolling Attack_":  (Left side) Holding A + D + Any Punch Input (D and punch input need to be simultaneous). (Right side is the same but with LEFT and RIGHT switched)
-
-  
 
 #### Gamepad Control Scheme (XBOX controller):
 
@@ -53,15 +45,7 @@ The game consists in a 1 vs 1 duel between two characters, each with the same mo
 
 **Kick Input Button:** A Button (LP), B Button (MK), RB Button (HK)
 
-**Grab Input:**  "_Wild Fang_": D-pad LEFT / Joystick LEFT or  D-pad RIGHT / Joystick RIGHT + HP
 
-**Special Attack Inputs:** 
-
-- "_Electric Thunder_": Repeatedly press in a short time span any punch input button.  
-
-- "_Rolling Attack_":  (Left side) Holding D-pad LEFT or Joystick LEFT + D-pad RIGHT or Joystick RIGHT + Any Punch Input (D-pad RIGHT / Joystick RIGHT and punch input need to be simultaneous). (Right side is the same but with LEFT and RIGHT switched)
-
-  
 
 #### Character Select Screen:
 
@@ -91,13 +75,7 @@ The game consists in a 1 vs 1 duel between two characters, each with the same mo
 
 **Kick Input Keys:** (Numeric Keyboard) Num_4 Key (LK), Num_5 Key (MK), Num_6 (HK)
 
-**Special Attack Inputs:** 
 
-- "_Electric Thunder_": Repeatedly press in a short time span any punch input key.  
-
-- "_Rolling Attack_":  (Right side) Holding RIGHT + LEFT + Any Punch Input (LEFT and punch input need to be simultaneous). (Left side is the same but with LEFT and RIGHT switched)
-
-  
 
 #### Gamepad Control Scheme (XBOX controller):
 
@@ -112,12 +90,7 @@ The game consists in a 1 vs 1 duel between two characters, each with the same mo
 
 **Kick Input Keys:** (Numeric Keyboard) Num_4 Key (LK), Num_5 Key (MK), Num_6 (HK)
 
-**Grab Input:**  "_Wild Fang_": D-pad LEFT / Joystick LEFT or  D-pad RIGHT / Joystick RIGHT + HP
 
-**Special Attack Inputs:** 
-
-- "_Electric Thunder_": Repeatedly press in a short time span any punch input key.  
-- "_Rolling Attack_":  (Right side) Holding D-pad RIGHT or Joystick RIGHT + D-pad LEFT or Joystick LEFT  + Any Punch Input (D-pad LEFT / Joystick LEFT and punch input need to be simultaneous). (Right side is the same but with LEFT and RIGHT switched)
 
 
 
@@ -149,6 +122,8 @@ The game consists in a 1 vs 1 duel between two characters, each with the same mo
 **Input to reduce Player 2's health:** F6 Key
 
 **Introduce Coin Input:** SPACE Key or BACK Button (Select)
+
+**Go To Next Screen: **RETURN Key (Enter) or START Button
 
 
 

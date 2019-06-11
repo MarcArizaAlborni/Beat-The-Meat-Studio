@@ -286,18 +286,11 @@
 
     
 
-- **Actualization of scenes implemented in v0.5 and transition according to timer.**
+- **Actualization of scenes implemented in v0.5 and transition according to timer.** (Date of Completion: 11/06/2019)
 
   -  Time estimated: 30 min
+
   -  Time taken: 20 min
-
-
-
-- **Implementation of the Round system for the duel.**
-
-  -  Time estimated: 
-
-  -  Time taken: 
 
     
 
