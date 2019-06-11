@@ -109,7 +109,7 @@ update_status ModuleCharacterSelect::Update()
 	}
 	
 	//Pointer Flags
-	if (App->ui->p1_pointerPosX == 193 && App->ui->p1_pointerPosY == 141 && App->input->keyboard[SDL_SCANCODE_I] == 1 || App->input->game_pad[SDL_CONTROLLER_BUTTON_X][GAME_PAD_1] == KEY_DOWN)
+	if (App->ui->p1_pointerPosX == 193 && App->ui->p1_pointerPosY == 141 && App->input->keyboard[SDL_SCANCODE_U] == 1 || App->input->game_pad[SDL_CONTROLLER_BUTTON_X][GAME_PAD_1] == KEY_DOWN)
 	{
 		App->audio->PlayFx(accept_sound);
 		App->ui->p1_characterSelect = true;
