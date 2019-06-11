@@ -2170,13 +2170,14 @@ update_status ModulePlayer2::Update()
 			positionP2.x -= speedP2;
 		}
 	}
+
 	if (positionP2.x <= (App->render->camera.x/5 - 10))
 	{
 		positionP2.x = (App->render->camera.x/5 - 10);
 	}
-	if (positionP2.x >= (180 + App->render->camera.x/5) + 127)
+	if (positionP2.x >= (180 + App->render->camera.x/5) + 115)
 	{
-		positionP2.x = (180 + App->render->camera.x/5) + 127;
+		positionP2.x = (180 + App->render->camera.x/5) + 115;
 	}
 
 

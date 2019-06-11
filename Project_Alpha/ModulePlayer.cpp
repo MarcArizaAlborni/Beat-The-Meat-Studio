@@ -2282,17 +2282,28 @@ update_status ModulePlayer::Update() {
 	//camera Dynamic
 	if (positionP1.x - 30 <= App->render->camera.x / 5 ) { // player1 is left screen 
 
-		if(App->player2->positionP2.x <= (180 + App->render->camera.x / 5) + 120){ // player2 is close right camera
+		if(App->player2->positionP2.x <= (180 + App->render->camera.x / 5) +75){ // player2 is close right camera
 
 			App->render->camera.x -= speedP1 *2.5; //Move screen left
 		}
 	}
+	else {
+		if(App->player2->positionP2.x >= (180 + App->render->camera.x / 5) +100) { // player2 is close right camera
 
+			App->render->camera.x += speedP1 * 2.5; //Move screen left
+		}
+	}
 	if (positionP1.x >= ((App->render->camera.x / 5) + SCREEN_WIDTH - 130)){ // player1 is right screen
 
 		if (App->player2->positionP2.x >= (App->render->camera.x / 5 )) { //player2 is close to left camera
 
 			App->render->camera.x += speedP1 * 2.5; // Move camera right
+		}
+	}
+	else {
+		if (App->player2->positionP2.x <= (App->render->camera.x / 5)) { //player2 is close to left camera
+
+			App->render->camera.x -= speedP1 * 2.5; // Move camera right
 		}
 	}
 
