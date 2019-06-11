@@ -369,7 +369,7 @@ ModulePlayer2::ModulePlayer2()
 		SCHP_P2.PushBack({ 30, 1560, 118, 68 });
 		SCHP_P2.PushBack({ 155, 1553, 75, 74 });
 		SCHP_P2.PushBack({ 155, 1553, 75, 74 });
-		SCHP_P2.speed = 0.3f;
+		SCHP_P2.speed = 0.7f;
 
 		//Crouch HP
 		CHP_P2.PushBack({ 612, 895, 84, 58 });
@@ -399,7 +399,7 @@ ModulePlayer2::ModulePlayer2()
 		JHPFB_P2.PushBack({ 925, 1491, 72, 89 });
 		JHPFB_P2.PushBack({ 925, 1491, 72, 89 });
 		JHPFB_P2.PushBack({ 925, 1491, 72, 89 });
-		JHPFB_P2.speed = 0.2f;
+		JHPFB_P2.speed = 0.5f;
 
 		//Jump Hp N
 		JHPN_P2.PushBack({ 610, 1587, 136, 84 });
@@ -407,7 +407,7 @@ ModulePlayer2::ModulePlayer2()
 		JHPN_P2.PushBack({ 857, 1589, 65, 82 });
 		JHPN_P2.PushBack({ 753, 1591, 78, 80 });
 		JHPN_P2.PushBack({ 610, 1587, 136, 84 });
-		JHPN_P2.speed = 0.1f;
+		JHPN_P2.speed = 0.25f;
 
 
 		//Standing FAR LK
@@ -417,7 +417,7 @@ ModulePlayer2::ModulePlayer2()
 		SFLK_P2.PushBack({ 230, 1032, 137, 93 });
 		SFLK_P2.PushBack({ 124, 1031, 97, 94 });
 		SFLK_P2.PushBack({ 33, 1028, 81, 96 });
-		SFLK_P2.speed = 0.2f;
+		SFLK_P2.speed = 0.3f;
 		SFLK_P2.loop = false;
 
 		//Standing CLOSE LK
@@ -448,7 +448,7 @@ ModulePlayer2::ModulePlayer2()
 		CLK_P2.PushBack({ 790, 972, 139, 68 });
 		CLK_P2.PushBack({ 702, 978, 74, 78 });
 		CLK_P2.PushBack({ 610, 980, 74, 78 });
-		CLK_P2.speed = 0.2f;
+		CLK_P2.speed = 0.3f;
 
 		//Jump LK
 		JLK_P2.PushBack({ 610, 1690, 80, 79 });
@@ -456,7 +456,7 @@ ModulePlayer2::ModulePlayer2()
 		JLK_P2.PushBack({ 816, 1680, 127, 85 });
 		JLK_P2.PushBack({ 816, 1680, 127, 85 });
 		JLK_P2.PushBack({ 816, 1680, 127, 85 });
-		JLK_P2.speed = 0.2f;
+		JLK_P2.speed = 0.27f;
 
 		//Standing FAR MK
 		SFMK_P2.PushBack({ 28, 1135, 92, 85 });
@@ -465,7 +465,7 @@ ModulePlayer2::ModulePlayer2()
 		SFMK_P2.PushBack({ 236, 1135, 124, 85 });
 		SFMK_P2.PushBack({ 129, 1135, 101, 85 });
 		SFMK_P2.PushBack({ 28, 1135, 92, 85 });
-		SFMK_P2.speed = 0.2f;
+		SFMK_P2.speed = 0.23f;
 		SFMK_P2.loop = false;
 
 		//Standing CLOSE MK
@@ -491,7 +491,7 @@ ModulePlayer2::ModulePlayer2()
 		SCMK_P2.PushBack({ 122, 1644, 66, 104 });
 		SCMK_P2.PushBack({ 30, 1637, 79, 111 });
 		SCMK_P2.PushBack({ 30, 1637, 79, 111 });
-		SCMK_P2.speed = 0.5f;
+		SCMK_P2.speed = 0.7f;
 
 		//Crouch MK
 		CMK_P2.PushBack({ 610, 980, 74, 78 });
@@ -500,7 +500,7 @@ ModulePlayer2::ModulePlayer2()
 		CMK_P2.PushBack({ 790, 972, 139, 68 });
 		CMK_P2.PushBack({ 702, 978, 74, 78 });
 		CMK_P2.PushBack({ 610, 980, 74, 78 });
-		CMK_P2.speed = 0.2f;
+		CMK_P2.speed = 0.22f;
 
 		//Jump MK
 		JMK_P2.PushBack({ 610, 1690, 80, 79 });
@@ -510,7 +510,7 @@ ModulePlayer2::ModulePlayer2()
 		JMK_P2.PushBack({ 816, 1680, 127, 85 });
 		JMK_P2.PushBack({ 702, 1679, 102, 86 });
 		JMK_P2.PushBack({ 610, 1690, 80, 79 });
-		JMK_P2.speed = 0.2f;
+		JMK_P2.speed = 0.3f;
 
 
 		//Standing FAR HK
@@ -542,19 +542,22 @@ ModulePlayer2::ModulePlayer2()
 		SCHK_P2.speed = 0.4f;
 
 		//Crouch HK
-		CHK_P2.PushBack({ 610, 1078, 72, 80 });
-		CHK_P2.PushBack({ 698, 1083, 91, 76 });
-		CHK_P2.PushBack({ 799, 1090, 161, 69 });
-		CHK_P2.PushBack({ 799, 1090, 161, 69 });
-		CHK_P2.PushBack({ 698, 1083, 91, 76 });
-		CHK_P2.PushBack({ 698, 1083, 91, 76 });
-		CHK_P2.PushBack({ 698, 1083, 91, 76 });
-		CHK_P2.PushBack({ 698, 1083, 91, 76 });
-		CHK_P2.PushBack({ 610, 1078, 72, 80 });
-		CHK_P2.PushBack({ 610, 1078, 72, 80 });
-		CHK_P2.PushBack({ 610, 1078, 72, 80 });
-		CHK_P2.PushBack({ 610, 1078, 72, 80 });
-		CHK_P2.speed = 0.2f;
+		CHK_P2.PushBack({ 30, 1752, 72, 81 });
+		CHK_P2.PushBack({ 30, 1752, 72, 81 });
+		CHK_P2.PushBack({ 117, 1757, 91, 76 });
+		CHK_P2.PushBack({ 117, 1757, 91, 76 });
+		CHK_P2.PushBack({ 214, 1764, 161, 69 });
+		CHK_P2.PushBack({ 214, 1764, 161, 69 });
+		CHK_P2.PushBack({ 214, 1764, 161, 69 });
+		CHK_P2.PushBack({ 214, 1764, 161, 69 });
+		CHK_P2.PushBack({ 214, 1764, 161, 69 });
+		CHK_P2.PushBack({ 117, 1757, 91, 76 });
+		CHK_P2.PushBack({ 117, 1757, 91, 76 });
+		CHK_P2.PushBack({ 117, 1757, 91, 76 });
+		CHK_P2.PushBack({ 30, 1752, 72, 81 });
+		CHK_P2.PushBack({ 30, 1752, 72, 81 });
+		CHK_P2.PushBack({ 30, 1752, 72, 81 });
+		CHK_P2.speed = 0.4f;
 
 		//Jump HK
 		JHK_P2.PushBack({ 610, 1787, 96, 79 });
@@ -585,7 +588,7 @@ ModulePlayer2::ModulePlayer2()
 		Headbut_P2.PushBack({ 717, 1959, 90, 95 });
 		Headbut_P2.PushBack({ 616, 1954, 90, 100 });
 		Headbut_P2.PushBack({ 616, 1954, 90, 100 });
-		Headbut_P2.speed = 0.2f;
+		Headbut_P2.speed = 0.4f;
 
 		//Throw
 		Throw_P2.PushBack({ 27, 2141, 89, 104 });

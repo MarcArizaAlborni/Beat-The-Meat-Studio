@@ -207,6 +207,7 @@ update_status ModuleUI::Update()
 	if (App->scene_guile->IsEnabled()) {
 		timechar[0] = timerint / 10 + '0';
 		timechar[1] = timerint % 10 + '0';
+		timeer = timechar;
 	}
 
 	//Blits
@@ -221,7 +222,7 @@ update_status ModuleUI::Update()
 		App->render->Blit(graphicsUI, 31, 35, &name, 1.0f, false); //name p1
 		App->render->Blit(graphicsUI, 293, 35, &name2, 1.0f, false); //name p2
 		App->render->Blit(graphicsUI, 6, 1, &score, 1.0f, false); //score
-		App->fonts->BlitText(178, 36, 0, timechar); //timer
+		App->fonts->BlitText(178, 36, 0, timeer); //timer
 
 		App->render->Blit(graphicsUI, 293, 35, &name2, 1.0f, false); //Round Token P1
 		//App->render->Blit(graphicsUI, 178, 34, &timer, 1.0f, false); //timer

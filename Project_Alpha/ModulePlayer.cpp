@@ -455,7 +455,7 @@ ModulePlayer::ModulePlayer()
 	  SCHP_P1.PushBack({ 30, 1560, 118, 68 });
 	  SCHP_P1.PushBack({ 155, 1553, 75, 74 });
 	  SCHP_P1.PushBack({ 155, 1553, 75, 74 });
-	  SCHP_P1.speed = 0.3f;   
+	  SCHP_P1.speed = 0.7f;   
 
 	  //Crouch HP
 	  CHP_P1.PushBack({ 612, 895, 84, 58 });
@@ -485,7 +485,7 @@ ModulePlayer::ModulePlayer()
 	  JHPFB_P1.PushBack({ 925, 1491, 72, 89 });
 	  JHPFB_P1.PushBack({ 925, 1491, 72, 89 });
 	  JHPFB_P1.PushBack({ 925, 1491, 72, 89 });
-	  JHPFB_P1.speed = 0.2f;
+	  JHPFB_P1.speed = 0.5f;
 
 	  //Jump Hp N
 	  JHPN_P1.PushBack({ 610, 1587, 136, 84 });
@@ -493,7 +493,7 @@ ModulePlayer::ModulePlayer()
 	  JHPN_P1.PushBack({ 857, 1589, 65, 82 });
 	  JHPN_P1.PushBack({ 753, 1591, 78, 80 });
 	  JHPN_P1.PushBack({ 610, 1587, 136, 84 });
-	  JHPN_P1.speed = 0.1f;
+	  JHPN_P1.speed = 0.25f;
 
 
 	  //Standing FAR LK
@@ -503,7 +503,7 @@ ModulePlayer::ModulePlayer()
 	  SFLK_P1.PushBack({ 230, 1032, 137, 93 });
 	  SFLK_P1.PushBack({ 124, 1031, 97, 94 });
 	  SFLK_P1.PushBack({ 33, 1028, 81, 96 });
-	  SFLK_P1.speed = 0.2f;
+	  SFLK_P1.speed = 0.3f;
 	  SFLK_P1.loop = false;
 
 	  //Standing CLOSE LK
@@ -534,7 +534,7 @@ ModulePlayer::ModulePlayer()
 	  CLK_P1.PushBack({ 790, 972, 139, 68 });
 	  CLK_P1.PushBack({ 702, 978, 74, 78 });
 	  CLK_P1.PushBack({ 610, 980, 74, 78 });
-	  CLK_P1.speed = 0.2f;
+	  CLK_P1.speed = 0.3f;
 
 	  //Jump LK
 	  JLK_P1.PushBack({ 610, 1690, 80, 79 });
@@ -542,7 +542,7 @@ ModulePlayer::ModulePlayer()
 	  JLK_P1.PushBack({ 816, 1680, 127, 85 });
 	  JLK_P1.PushBack({ 816, 1680, 127, 85 });
 	  JLK_P1.PushBack({ 816, 1680, 127, 85 });
-	  JLK_P1.speed = 0.2f;
+	  JLK_P1.speed = 0.27f;
 
 	  //Standing FAR MK
 	  SFMK_P1.PushBack({28, 1135, 92, 85 });
@@ -551,7 +551,7 @@ ModulePlayer::ModulePlayer()
 	  SFMK_P1.PushBack({ 236, 1135, 124, 85 });
 	  SFMK_P1.PushBack({ 129, 1135, 101, 85 });
 	  SFMK_P1.PushBack({ 28, 1135, 92, 85 });
-	  SFMK_P1.speed = 0.2f;
+	  SFMK_P1.speed = 0.23f;
 	  SFMK_P1.loop = false;
 
 	  //Standing CLOSE MK
@@ -577,7 +577,7 @@ ModulePlayer::ModulePlayer()
 	  SCMK_P1.PushBack({ 122, 1644, 66, 104 });
 	  SCMK_P1.PushBack({ 30, 1637, 79, 111 });
 	  SCMK_P1.PushBack({ 30, 1637, 79, 111 });
-	  SCMK_P1.speed = 0.5f;
+	  SCMK_P1.speed = 0.7f;
 	
 	  //Crouch MK
 	  CMK_P1.PushBack({ 610, 980, 74, 78 });
@@ -586,7 +586,7 @@ ModulePlayer::ModulePlayer()
 	  CMK_P1.PushBack({ 790, 972, 139, 68 });
 	  CMK_P1.PushBack({ 702, 978, 74, 78 });
 	  CMK_P1.PushBack({ 610, 980, 74, 78 });
-	  CMK_P1.speed = 0.2f;
+	  CMK_P1.speed = 0.22f;
 
 	  //Jump MK
 	  JMK_P1.PushBack({ 610, 1690, 80, 79 });
@@ -596,7 +596,7 @@ ModulePlayer::ModulePlayer()
 	  JMK_P1.PushBack({ 816, 1680, 127, 85 });
 	  JMK_P1.PushBack({ 702, 1679, 102, 86 });
 	  JMK_P1.PushBack({ 610, 1690, 80, 79 });
-	  JMK_P1.speed = 0.2f;
+	  JMK_P1.speed = 0.3f;
 
 
 	  //Standing FAR HK
@@ -628,19 +628,22 @@ ModulePlayer::ModulePlayer()
 	  SCHK_P1.speed = 0.4f;
 
 	  //Crouch HK
-	  CHK_P1.PushBack({610, 1078, 72, 80 });
-	  CHK_P1.PushBack({698, 1083, 91, 76 });
-	  CHK_P1.PushBack({ 799, 1090, 161, 69 });
-	  CHK_P1.PushBack({ 799, 1090, 161, 69 });
-	  CHK_P1.PushBack({ 698, 1083, 91, 76 });
-	  CHK_P1.PushBack({ 698, 1083, 91, 76 });
-	  CHK_P1.PushBack({ 698, 1083, 91, 76 });
-	  CHK_P1.PushBack({ 698, 1083, 91, 76 });
-	  CHK_P1.PushBack({ 610, 1078, 72, 80 });
-	  CHK_P1.PushBack({ 610, 1078, 72, 80 });
-	  CHK_P1.PushBack({ 610, 1078, 72, 80 });
-	  CHK_P1.PushBack({ 610, 1078, 72, 80 });
-	  CHK_P1.speed = 0.2f;
+	  CHK_P1.PushBack({ 30, 1752, 72, 81 });
+	  CHK_P1.PushBack({ 30, 1752, 72, 81 });
+	  CHK_P1.PushBack({ 117, 1757, 91, 76 });
+	  CHK_P1.PushBack({ 117, 1757, 91, 76 });
+	  CHK_P1.PushBack({ 214, 1764, 161, 69 });
+	  CHK_P1.PushBack({ 214, 1764, 161, 69 });
+	  CHK_P1.PushBack({ 214, 1764, 161, 69 });
+	  CHK_P1.PushBack({ 214, 1764, 161, 69 });
+	  CHK_P1.PushBack({ 214, 1764, 161, 69 });
+	  CHK_P1.PushBack({ 117, 1757, 91, 76 });
+	  CHK_P1.PushBack({ 117, 1757, 91, 76 });
+	  CHK_P1.PushBack({ 117, 1757, 91, 76 });
+	  CHK_P1.PushBack({ 30, 1752, 72, 81 });
+	  CHK_P1.PushBack({ 30, 1752, 72, 81 });
+	  CHK_P1.PushBack({ 30, 1752, 72, 81 });
+	  CHK_P1.speed = 0.4f;
 
 	  //Jump HK
 	  JHK_P1.PushBack({ 610, 1787, 96, 79 });
@@ -671,7 +674,7 @@ ModulePlayer::ModulePlayer()
 	  Headbut_P1.PushBack({ 717, 1959, 90, 95 });
 	  Headbut_P1.PushBack({ 616, 1954, 90, 100 });
 	  Headbut_P1.PushBack({ 616, 1954, 90, 100 });
-	  Headbut_P1.speed = 0.2f;
+	  Headbut_P1.speed = 0.4f;
 
 	  //Throw
 	  Throw_P1.PushBack({ 27, 2141, 89, 104 });
@@ -1202,7 +1205,7 @@ update_status ModulePlayer::PreUpdate() {
 
 				 if (inputplayerP1.L_active) {
 					 currentstateP1 = standingcloseHKP1;
-					 attackP1_collider = App->collision->AddCollider({ 0,-100, 100, 22 }, COLLIDER_PLAYER_ATTACK,SH, App->player2);
+					 attackP1_collider = App->collision->AddCollider({ 0,-100, 100, 22 }, COLLIDER_PLAYER_ATTACK, CH, App->player2);
 					 LOG("IDLE to HEAVY KICK");
 				 }
 

@@ -72,7 +72,7 @@ public:
 
 	float planePosX = 269.0f;
 	float planePosY = 96.0f;
-
+	const char* timeer = nullptr;
 	bool stage;
 	bool character_select;
 	char timechar[2];
