@@ -8,8 +8,8 @@
 #define MAX_BUTTONS 15
 #define MAX_KEYS 300
 
-#define GAME_PAD_1 0
-#define GAME_PAD_2 1
+#define GAME_PAD_1 1
+#define GAME_PAD_2 2
 #define MAX_GAME_PAD 2
 
 enum KEY_STATE

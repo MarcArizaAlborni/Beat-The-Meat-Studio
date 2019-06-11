@@ -52,6 +52,24 @@ update_status ModuleInput::PreUpdate()
 {
 	SDL_PumpEvents();
 
+	if (SDL_NumJoysticks() >= 1)
+	{
+		controller_player_1 = SDL_GameControllerOpen(0);
+		if (controller_player_1 == NULL)
+		{
+			LOG("Game controller 1 wasn't initialized")
+		}
+	}
+
+	if (SDL_NumJoysticks() >= 2)
+	{
+		controller_player_2 = SDL_GameControllerOpen(1);
+		if (controller_player_2 == NULL)
+		{
+			LOG("Game controller 2 wasn't initialized")
+		}
+	}
+
 	const Uint8* keys = SDL_GetKeyboardState(NULL);
 
 	for (int i = 0; i < MAX_KEYS; ++i)
@@ -137,7 +155,7 @@ update_status ModuleInput::PreUpdate()
 		}
 	}
 
-	if (keyboard[SDL_SCANCODE_ESCAPE])
+	if (keyboard[SDL_SCANCODE_ESCAPE] || Events.type == SDL_QUIT)
 		return update_status::UPDATE_STOP;
 	
 

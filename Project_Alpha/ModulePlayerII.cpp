@@ -708,30 +708,30 @@ update_status ModulePlayer2::PreUpdate() {
 	//inputplayerP2.Down_active = App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_REPEAT;
 
 	
-	App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_2] = KEY_DOWN;
-	App->input->game_pad[SDL_CONTROLLER_BUTTON_B][GAME_PAD_2] = KEY_DOWN;
-	App->input->game_pad[SDL_CONTROLLER_BUTTON_X][GAME_PAD_2] = KEY_DOWN;
+	
+	timeP2 = SDL_GetTicks() / 20;
+	camxP2 = App->render->camera.x / SCREEN_ADD;
+	camyP2 = App->render->camera.y / SCREEN_ADD;
+	
 
 	 inputplayerP2.Right_active = App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_REPEAT || SDL_GameControllerGetButton(App->input->controller_player_2, SDL_CONTROLLER_BUTTON_DPAD_RIGHT)|| SDL_GameControllerGetAxis(App->input->controller_player_2, SDL_CONTROLLER_AXIS_LEFTX) >= 10000;
 	 inputplayerP2.Left_active = App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_REPEAT || SDL_GameControllerGetButton(App->input->controller_player_2, SDL_CONTROLLER_BUTTON_DPAD_LEFT)|| SDL_GameControllerGetAxis(App->input->controller_player_2, SDL_CONTROLLER_AXIS_LEFTX) <= -10000;
 	 inputplayerP2.Down_active = App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_REPEAT || SDL_GameControllerGetButton(App->input->controller_player_2, SDL_CONTROLLER_BUTTON_DPAD_DOWN) || SDL_GameControllerGetAxis(App->input->controller_player_2, SDL_CONTROLLER_AXIS_LEFTY) >= 10000;
 	 inputplayerP2.Up_active = App->input->keyboard[SDL_SCANCODE_UP] == KEY_REPEAT  || SDL_GameControllerGetButton(App->input->controller_player_2, SDL_CONTROLLER_BUTTON_DPAD_UP) || SDL_GameControllerGetAxis(App->input->controller_player_2, SDL_CONTROLLER_AXIS_LEFTY) <= -10000;
+
+	 inputplayerP2.Num7_active = App->input->keyboard[SDL_SCANCODE_KP_7] == KEY_DOWN || App->input->game_pad[SDL_CONTROLLER_BUTTON_X][GAME_PAD_2] == KEY_DOWN;
+	 inputplayerP2.Num8_active = App->input->keyboard[SDL_SCANCODE_KP_8] == KEY_DOWN || App->input->game_pad[SDL_CONTROLLER_BUTTON_Y][GAME_PAD_2] == KEY_DOWN;
+	 inputplayerP2.Num9_active = App->input->keyboard[SDL_SCANCODE_KP_9] == KEY_DOWN || App->input->game_pad[SDL_CONTROLLER_BUTTON_LEFTSHOULDER][GAME_PAD_2] == KEY_DOWN;
+	 inputplayerP2.Num4_active = App->input->keyboard[SDL_SCANCODE_KP_4] == KEY_DOWN || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_2] == KEY_DOWN;
+	 inputplayerP2.Num5_active = App->input->keyboard[SDL_SCANCODE_KP_5] == KEY_DOWN || App->input->game_pad[SDL_CONTROLLER_BUTTON_B][GAME_PAD_2] == KEY_DOWN;
+	 inputplayerP2.Num6_active = App->input->keyboard[SDL_SCANCODE_KP_6] == KEY_DOWN || App->input->game_pad[SDL_CONTROLLER_BUTTON_RIGHTSHOULDER][GAME_PAD_2] == KEY_DOWN;
+
 	 if (inputplayerP2.Left_active && inputplayerP2.Right_active) {
 		 inputplayerP2.Left_active = false;
 		 inputplayerP2.Right_active = false;
 	 }
-	 inputplayerP2.Num7_active = App->input->keyboard[SDL_SCANCODE_KP_7] == KEY_DOWN;
-	 inputplayerP2.Num8_active = App->input->keyboard[SDL_SCANCODE_KP_8] == KEY_DOWN;
-	 inputplayerP2.Num9_active = App->input->keyboard[SDL_SCANCODE_KP_9] == KEY_DOWN;
-	 inputplayerP2.Num4_active = App->input->keyboard[SDL_SCANCODE_KP_4] == KEY_DOWN;
-	 inputplayerP2.Num5_active = App->input->keyboard[SDL_SCANCODE_KP_5] == KEY_DOWN;
-	 inputplayerP2.Num6_active = App->input->keyboard[SDL_SCANCODE_KP_6] == KEY_DOWN;
 
-	 timeP2 = SDL_GetTicks() / 20;
-	 camxP2 = App->render->camera.x / SCREEN_ADD;
-	 camyP2 = App->render->camera.y / SCREEN_ADD;
-
-	 
+	
 	 {
 
 
