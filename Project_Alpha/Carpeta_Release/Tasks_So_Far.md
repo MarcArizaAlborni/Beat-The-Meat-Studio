@@ -173,7 +173,7 @@
 - **Deploying the Players (Blanka vs Blanka): Animations, Colliders, State Machine** (Date of Completion: 11/06/2019)
   
   - Time estimated: 50 hours
-  - Time taken: 30 hours (There are unimplemented things)
+  - Time taken: 40 hours (There are unimplemented things)
 
 
 

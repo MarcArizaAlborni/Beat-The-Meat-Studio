@@ -58,7 +58,21 @@ The game consists in a 1 vs 1 duel between two characters, each with the same mo
 **Special Attack Inputs:** 
 
 - "_Electric Thunder_": Repeatedly press in a short time span any punch input button.  
+
 - "_Rolling Attack_":  (Left side) Holding D-pad LEFT or Joystick LEFT + D-pad RIGHT or Joystick RIGHT + Any Punch Input (D-pad RIGHT / Joystick RIGHT and punch input need to be simultaneous). (Right side is the same but with LEFT and RIGHT switched)
+
+  
+
+#### Character Select Screen:
+
+**Pointer Movement inputs:** 
+
+- Left: A Key or D-pad LEFT / Joystick LEFT
+- Right: D Key or D-pad RIGHT / Joystick RIGHT
+- Up: W Key or D-pad UP / Joystick UP
+- Down: S Key or  D-pad DOWN / Joystick DOWN
+
+**Character Select Input:** U Key or X Button
 
 
 
@@ -107,7 +121,20 @@ The game consists in a 1 vs 1 duel between two characters, each with the same mo
 
 
 
-## Game Debug Keys:
+#### Character Select Screen:
+
+**Pointer Movement inputs:** 
+
+- Left: LEFT Key or D-pad LEFT / Joystick LEFT
+- Right: RIGHT Key or D-pad RIGHT / Joystick RIGHT
+- Up: UP Key or D-pad UP / Joystick UP
+- Down: DOWN Key or  D-pad DOWN / Joystick DOWN
+
+**Character Select Input:** (Numeric Keyboard) Num_7 Key or X Button
+
+
+
+## Game Debug Keys and Other Relevant Inputs:
 
 **God Mode(player becomes invincible):** F1 Key
 
@@ -120,6 +147,8 @@ The game consists in a 1 vs 1 duel between two characters, each with the same mo
 **Input to reduce reduce Player 1's health:** F5 Key
 
 **Input to reduce Player 2's health:** F6 Key
+
+**Introduce Coin Input:** RETURN (Enter) Key
 
 
 
