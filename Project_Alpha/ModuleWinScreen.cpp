@@ -30,6 +30,8 @@ bool ModuleWinScreen::Start()
 {
 	LOG("Loading Win screen");
 	graphics = App->textures->Load("Sprites/Player1_Wins.png");
+	win_sound = App->audio->LoadMus("Audios/Music/07 Stage End.ogg");
+	App->audio->PlayMusic(win_sound, 0);
 
 	deltaTimeW = SDL_GetTicks() / 1000;
 	startTimeW = deltaTimeW;
@@ -42,6 +44,7 @@ bool ModuleWinScreen::CleanUp()
 {
 	LOG("Unloading Win Screen");
 	App->textures->Unload(graphics);
+	App->audio->UnLoadMusic(win_sound);
 	return true;
 }
 
@@ -54,6 +57,6 @@ update_status ModuleWinScreen::Update()
 	deltaTimeW = SDL_GetTicks() / 1000;
 	timeLimitW = deltaTimeW - startTimeW;
 
-	if (timeLimitW > 4 || App->input->keyboard[SDL_SCANCODE_SPACE] == 1) { App->fade->FadeToBlack(App->win_screen, App->start_screen, 1.0f); }
+	if (timeLimitW > 4 || App->input->keyboard[SDL_SCANCODE_RETURN] == 1) { App->fade->FadeToBlack(App->win_screen, App->start_screen, 1.0f); App->audio->FinishMusic(1000); }
 	return UPDATE_CONTINUE;
 }
