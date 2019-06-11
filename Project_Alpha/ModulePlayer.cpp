@@ -1371,7 +1371,8 @@ update_status ModulePlayer::PreUpdate() {
 			 }
 			 if (inputplayerP1.L_active) {
 				 currentstateP1 = crouchHKP1;
-				 attackP1_collider = App->collision->AddCollider({ 0,0, 100, 22 }, COLLIDER_PLAYER_ATTACK,CH, App->player);
+				 //attackP1_collider = App->collision->AddCollider({ 0,0, 100, 22 }, COLLIDER_PLAYER_ATTACK,CH, App->player);
+				 attackTime(10, 100, 22, CH);
 				 LOG("IDLE to HEAVY KICK");
 			 }
 		 }
@@ -1705,6 +1706,8 @@ update_status ModulePlayer::PreUpdate() {
 update_status ModulePlayer::Update() {
 	SblockingP1 = false;
 	CblockingP1 = false;
+
+	
 	switch (currentstateP1)
 	{
 	case idlestateP1:
@@ -1992,7 +1995,7 @@ update_status ModulePlayer::Update() {
 		playerP1_collider->SetPos(positionP1.x + 15 - camxP1, positionP1.y - 65 - camyP1);
 		
 		if (!flipP1) {
-			attackP1_collider->SetPos(positionP1.x + 60 - camxP1, positionP1.y - 25 - camyP1);
+			if (!attackP1_collider->to_delete ) { attackP1_collider->SetPos(positionP1.x + 60 - camxP1, positionP1.y - 25 - camyP1); }
 		}
 		else {
 			attackP1_collider->SetPos(positionP1.x - extradisP1 - camxP1, positionP1.y - 25 - camyP1);
@@ -2071,6 +2074,7 @@ update_status ModulePlayer::Update() {
 	//damaged
 	case SdamagedLP1:
 		currentP1_animation = &SdamageLP1;
+		
 		if (flipP1) {
 			positionP1.x += 1;
 		}
@@ -2078,11 +2082,13 @@ update_status ModulePlayer::Update() {
 		break;
 	case SdamagedMP1:
 		currentP1_animation = &SdamageMP1;
+		
 		if (flipP1) {	positionP1.x += 1;}
 		else {positionP1.x -= 1;}
 		break;
 	case SdamagedHP1:
 		currentP1_animation = &SdamageHP1;
+		
 		if (flipP1) {positionP1.x += 1;}
 		else {positionP1.x -= 1;}
 		break;
@@ -2242,6 +2248,26 @@ update_status ModulePlayer::Update() {
 		}
 	}
 
+	//collider attack eliminaar
+	if (attackActive) {
+		//if  (st == 25 )
+		if (timeP1-attackstarttime > windup) {
+			
+			attackActive = false;
+		}
+		//if (st == 90)
+		//{
+		//	atta =
+		//}
+	}
+
+	//punch
+		//st = 0;
+
+
+
+
+
 	return UPDATE_CONTINUE;
 }
 
@@ -2249,22 +2275,33 @@ update_status ModulePlayer::Update() {
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
 	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_PLAYER2_ATTACK) {
-		
-		/*if (c2->attack == SL ) {
-			currentstateP1 = SdamagedLP1;
-			deleteCollider(App->player2->attackP2_collider);
-			deleteCollider(attackP1_collider);
+		if (!alreadyHitP1) {
+			if (c2->attack == SL) {
+				currentstateP1 = SdamagedLP1;
+				alreadyHitP1 = true;
+				//App->player2->CalldelAtackP2 = true;
+				//delAtackP1 = true;
+				//deleteCollider(App->player2->attackP2_collider);
+				deleteCollider(attackP1_collider);
+			}
+			else if (c2->attack == SM) {
+				currentstateP1 = SdamagedMP1;
+				alreadyHitP1 = true;
+
+				//App->player2->CalldelAtackP2 = true;
+				//delAtackP1 = true;
+				//deleteCollider(App->player2->attackP2_collider);
+				deleteCollider(attackP1_collider);
+			}
+			else if (c2->attack == SH) {
+				currentstateP1 = SdamagedHP1;
+				alreadyHitP1 = true;
+				
+				//App->player2->CalldelAtackP2 = true;
+				//deleteCollider(App->player2->attackP2_collider);
+				deleteCollider(attackP1_collider);
+			}
 		}
-		else if (c2->attack == SM ) {
-			currentstateP1 = SdamagedMP1;
-			deleteCollider(App->player2->attackP2_collider);
-			deleteCollider(attackP1_collider);
-		}
-		else if (c2->attack == SH ){
-			currentstateP1 = SdamagedHP1;
-			deleteCollider(App->player2->attackP2_collider);
-			deleteCollider(attackP1_collider);
-		}*/
 	}
 
 }
@@ -2307,7 +2344,12 @@ bool ModulePlayer::comboActiveP1() {
 
 	return false;
 }
-
+void ModulePlayer::attackTime( uint windUp, int x, int y,ATTACK_TYPE attackTtype) {
+	uint windup = windUp;
+	attackP1_collider = App->collision->AddCollider({0,0,x,y}, COLLIDER_PLAYER_ATTACK, attackTtype, App->player2);
+	attackstarttime = timeP1;
+	attackActive = true;
+}
 
 void ModulePlayer::comboInputP1(char comboInput) {
 	comboP1[*finishCP1] = comboInput; //We add the newInput to the last inputs array

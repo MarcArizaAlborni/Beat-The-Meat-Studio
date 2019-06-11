@@ -103,6 +103,8 @@ public:
 	update_status PreUpdate();
 
 public:
+	bool CalldelAtackP2 = false;
+	bool delAtackP2 = false;
 	Uint8 alphakaP2 = 255;
 	int extradisP2 = 40;
 	int speedP2 = 3;

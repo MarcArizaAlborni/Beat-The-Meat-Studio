@@ -694,8 +694,7 @@ bool ModulePlayer2::CleanUp()
 
 
 update_status ModulePlayer2::PreUpdate() {
-
-
+	
 	
 
 	//MOVE BACKWARD
@@ -748,6 +747,7 @@ update_status ModulePlayer2::PreUpdate() {
 			 if (currentP2_animation->Finished()) {
 				 deleteCollider2(attackP2_collider);
 				 currentstateP2 = idlestateP2;
+				 App->player->alreadyHitP1 = false;
 				 SFMP_P2.Reset();
 			 }
 
@@ -780,6 +780,7 @@ update_status ModulePlayer2::PreUpdate() {
 			 if (currentP2_animation->Finished() && !inputplayerP2.Num9_active) {
 				 currentstateP2 = idlestateP2;
 				 deleteCollider2(attackP2_collider);
+				 App->player->alreadyHitP1 = false;
 				 SFHP_P2.Reset();
 				 LOG("LP to IDLE");
 				 ++thundertickP2;
@@ -801,6 +802,7 @@ update_status ModulePlayer2::PreUpdate() {
 			 if (currentP2_animation->Finished()) {
 				 deleteCollider2(attackP2_collider);
 				 currentstateP2 = idlestateP2;
+				 App->player->alreadyHitP1 = false;
 				 SFLK_P2.Reset();
 			 }
 		 }
@@ -808,6 +810,7 @@ update_status ModulePlayer2::PreUpdate() {
 			 if (currentP2_animation->Finished()) {
 				 deleteCollider2(attackP2_collider);
 				 currentstateP2 = idlestateP2;
+				 App->player->alreadyHitP1 = false;
 				 SFMK_P2.Reset();
 			 }
 		 }
@@ -815,6 +818,7 @@ update_status ModulePlayer2::PreUpdate() {
 			 if (currentP2_animation->Finished()) {
 				 deleteCollider2(attackP2_collider);
 				 currentstateP2 = idlestateP2;
+				 App->player->alreadyHitP1 = false;
 				 SFHK_P2.Reset();
 			 }
 		 }
@@ -823,12 +827,13 @@ update_status ModulePlayer2::PreUpdate() {
 			 if (currentP2_animation->Finished()) {
 				 deleteCollider2(attackP2_collider);
 				 currentstateP2 = idlestateP2;
+				 App->player->alreadyHitP1 = false;
 				 SCMP_P2.Reset();
 			 }
 		 }
 		 if (currentstateP2 == standingcloseLPP2) {
 			 if (currentP2_animation->Finished()) {
-
+				 App->player->alreadyHitP1 = false;
 				 deleteCollider2(attackP2_collider);
 				 currentstateP2 = idlestateP2;
 				 SCLP_P2.Reset();
@@ -836,6 +841,7 @@ update_status ModulePlayer2::PreUpdate() {
 		 }
 		 if (currentstateP2 == standingcloseHPP2) {
 			 if (currentP2_animation->Finished()) {
+				 App->player->alreadyHitP1 = false;
 				 deleteCollider2(attackP2_collider);
 				 currentstateP2 = idlestateP2;
 				 SCHP_P2.Reset();
@@ -843,6 +849,7 @@ update_status ModulePlayer2::PreUpdate() {
 		 }
 		 if (currentstateP2 == standingcloseLKP2) {
 			 if (currentP2_animation->Finished()) {
+				 App->player->alreadyHitP1 = false;
 				 deleteCollider2(attackP2_collider);
 				 currentstateP2 = idlestateP2;
 				 SCLK_P2.Reset();
@@ -850,6 +857,7 @@ update_status ModulePlayer2::PreUpdate() {
 		 }
 		 if (currentstateP2 == standingcloseMKP2) {
 			 if (currentP2_animation->Finished()) {
+				 App->player->alreadyHitP1 = false;
 				 deleteCollider2(attackP2_collider);
 				 currentstateP2 = idlestateP2;
 				 SCMK_P2.Reset();
@@ -857,6 +865,7 @@ update_status ModulePlayer2::PreUpdate() {
 		 }
 		 if (currentstateP2 == standingcloseHKP2) {
 			 if (currentP2_animation->Finished()) {
+				 App->player->alreadyHitP1 = false;
 				 deleteCollider2(attackP2_collider);
 				 currentstateP2 = idlestateP2;
 				 SCHK_P2.Reset();
@@ -865,6 +874,7 @@ update_status ModulePlayer2::PreUpdate() {
 		 //Crouch attack checks
 		 if (currentstateP2 == crouchLPP2) {
 			 if (currentP2_animation->Finished()) {
+				 App->player->alreadyHitP1 = false;
 				 deleteCollider2(attackP2_collider);
 				 currentstateP2 = crouchstateP2;
 				 CLP_P2.Reset();
@@ -872,6 +882,7 @@ update_status ModulePlayer2::PreUpdate() {
 		 }
 		 if (currentstateP2 == crouchMPP2) {
 			 if (currentP2_animation->Finished()) {
+				 App->player->alreadyHitP1 = false;
 				 deleteCollider2(attackP2_collider);
 				 currentstateP2 = crouchstateP2;
 				 CMP_P2.Reset();
@@ -879,6 +890,7 @@ update_status ModulePlayer2::PreUpdate() {
 		 }
 		 if (currentstateP2== crouchHPP2) {
 			 if (currentP2_animation->Finished()) {
+				 App->player->alreadyHitP1 = false;
 				 deleteCollider2(attackP2_collider);
 				 currentstateP2 = crouchstateP2;
 				 CHP_P2.Reset();
@@ -886,6 +898,7 @@ update_status ModulePlayer2::PreUpdate() {
 		 }
 		 if (currentstateP2 == crouchLKP2) {
 			 if (currentP2_animation->Finished()) {
+				 App->player->alreadyHitP1 = false;
 				 deleteCollider2(attackP2_collider);
 				 currentstateP2 = crouchstateP2;
 				 CLK_P2.Reset();
@@ -893,6 +906,7 @@ update_status ModulePlayer2::PreUpdate() {
 		 }
 		 if (currentstateP2 == crouchMKP2) {
 			 if (currentP2_animation->Finished()) {
+				 App->player->alreadyHitP1 = false;
 				 deleteCollider2(attackP2_collider);
 				 currentstateP2 = crouchstateP2;
 				 CMK_P2.Reset();
@@ -900,6 +914,7 @@ update_status ModulePlayer2::PreUpdate() {
 		 }
 		 if (currentstateP2 == crouchHKP2) {
 			 if (currentP2_animation->Finished()) {
+				 App->player->alreadyHitP1 = false;
 				 deleteCollider2(attackP2_collider);
 				 currentstateP2 = crouchstateP2;
 				 CHK_P2.Reset();
@@ -909,6 +924,7 @@ update_status ModulePlayer2::PreUpdate() {
 		 if (currentstateP2 == jumpLPP2) {
 			 if (currentP2_animation->Finished()) {
 				 deleteCollider2(attackP2_collider);
+				 App->player->alreadyHitP1 = false;
 				 if (neutralJumpP2 == true) { currentstateP2 = NjumpstateP2; }
 				 if (forwardJumpP2 == true) { currentstateP2 = FjumpstateP2; }
 				 if (backwardJumpP2 == true) { currentstateP2 = BjumpstateP2; }
@@ -918,6 +934,7 @@ update_status ModulePlayer2::PreUpdate() {
 		 if (currentstateP2 == jumpMPP2) {
 			 if (currentP2_animation->Finished()) {
 				 deleteCollider2(attackP2_collider);
+				 App->player->alreadyHitP1 = false;
 				 if (neutralJumpP2 == true) { currentstateP2 = NjumpstateP2; }
 				 if (forwardJumpP2 == true) { currentstateP2 = FjumpstateP2; }
 				 if (backwardJumpP2 == true) { currentstateP2 = BjumpstateP2; }
@@ -926,7 +943,7 @@ update_status ModulePlayer2::PreUpdate() {
 		 }
 		 if (currentstateP2 == NjumpHPP2) {
 			 if (currentP2_animation->Finished()) {
-
+				 App->player->alreadyHitP1 = false;
 				 deleteCollider2(attackP2_collider);
 				 if (neutralJumpP2 == true) { currentstateP2 = NjumpstateP2; }
 				 if (forwardJumpP2 == true) { currentstateP2 = FjumpstateP2; }
@@ -936,6 +953,7 @@ update_status ModulePlayer2::PreUpdate() {
 		 }
 		 if (currentstateP2 == DjumpHPP2) {
 			 if (currentP2_animation->Finished()) {
+				 App->player->alreadyHitP1 = false;
 				 deleteCollider2(attackP2_collider);
 				 if (neutralJumpP2 == true) { currentstateP2 = NjumpstateP2; }
 				 if (forwardJumpP2 == true) { currentstateP2 = FjumpstateP2; }
@@ -945,6 +963,7 @@ update_status ModulePlayer2::PreUpdate() {
 		 }
 		 if (currentstateP2 == jumpLKP2) {
 			 if (currentP2_animation->Finished()) {
+				 App->player->alreadyHitP1 = false;
 				 deleteCollider2(attackP2_collider);
 				 if (neutralJumpP2 == true) { currentstateP2 = NjumpstateP2; }
 				 if (forwardJumpP2 == true) { currentstateP2 = FjumpstateP2; }
@@ -954,6 +973,7 @@ update_status ModulePlayer2::PreUpdate() {
 		 }
 		 if (currentstateP2 == jumpMKP2) {
 			 if (currentP2_animation->Finished()) {
+				 App->player->alreadyHitP1 = false;
 				 deleteCollider2(attackP2_collider);
 				 if (neutralJumpP2 == true) { currentstateP2 = NjumpstateP2; }
 				 if (forwardJumpP2 == true) { currentstateP2 = FjumpstateP2; }
@@ -963,6 +983,7 @@ update_status ModulePlayer2::PreUpdate() {
 		 }
 		 if (currentstateP2 == jumpHKP2) {
 			 if (currentP2_animation->Finished()) {
+				 App->player->alreadyHitP1 = false;
 				 deleteCollider2(attackP2_collider);
 				 if (neutralJumpP2 == true) { currentstateP2 = NjumpstateP2; }
 				 if (forwardJumpP2 == true) { currentstateP2 = FjumpstateP2; }
@@ -1387,6 +1408,7 @@ update_status ModulePlayer2::PreUpdate() {
 				 currentstateP2 = idlestateP2;
 				 deleteCollider2(attackP2_collider);
 				 alreadyHitP2 = false;
+				 App->player->alreadyHitP1 = false;
 				 SFLP_P2.Reset();
 				 LOG("LP to IDLE");
 				 ++thundertickP2;
@@ -1396,7 +1418,7 @@ update_status ModulePlayer2::PreUpdate() {
 				 if (thundertickP2 > 3) {
 					 deleteCollider2(attackP2_collider);
 					 SFLP_P2.Reset();
-
+					 App->player->alreadyHitP1 = false;
 
 					 currentstateP2 = thunder1P2;
 					 alreadyHitP2 = false;
@@ -1414,13 +1436,14 @@ update_status ModulePlayer2::PreUpdate() {
 				 alreadyHitP2 = false;
 				 deleteCollider2(attackP2_collider);
 				 currentstateP2 = idlestateP2;
+				 
 				 SFLP_P2.Reset();
 				 Ethunder_P2.Reset();
 				 LOG("Thunder 1 to IDLE");
 			 }
 
 			 if (!currentP2_animation->Finished() && inputplayerP2.Num7_active && !inputplayerP2.Right_active && !inputplayerP2.Left_active) {
-
+				
 				 currentstateP2 = thunder2P2;
 				 alreadyHitP2 = false;
 				 SFLP_P2.Reset();
@@ -1430,7 +1453,7 @@ update_status ModulePlayer2::PreUpdate() {
 			 }
 
 			 if (!currentP2_animation->Finished() && inputplayerP2.Num8_active && !inputplayerP2.Right_active && !inputplayerP2.Left_active) {
-
+				 
 				 currentstateP2 = thunder2P2;
 				 alreadyHitP2 = false;
 				 SFMP_P2.Reset();
@@ -1441,7 +1464,7 @@ update_status ModulePlayer2::PreUpdate() {
 			 }
 
 			 if (!currentP2_animation->Finished() && inputplayerP2.Num9_active && !inputplayerP2.Right_active && !inputplayerP2.Left_active) {
-
+				 
 				 currentstateP2 = thunder2P2;
 				 alreadyHitP2 = false;
 				 SFHP_P2.Reset();
@@ -1455,6 +1478,7 @@ update_status ModulePlayer2::PreUpdate() {
 
 
 			 if (currentP2_animation->Finished()) {
+				 App->player->alreadyHitP1 = false;
 				 currentstateP2 = idlestateP2;
 				 deleteCollider2(attackP2_collider);
 				 Ethunder_P2.Reset();
@@ -1486,6 +1510,7 @@ update_status ModulePlayer2::PreUpdate() {
 		 if (currentstateP2 == crouchLPP2) {
 			 if (currentP2_animation->Finished() && !inputplayerP2.Num7_active && inputplayerP2.Down_active) {
 				 currentstateP2 = crouchstateP2;
+
 				 alreadyHitP2 = false;
 				 CLP_P2.Reset();
 				 LOG("LP to CROUCH");

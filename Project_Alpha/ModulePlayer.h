@@ -102,6 +102,8 @@ public:
 	update_status PreUpdate();
 
 public:
+	bool CalldelAtackP1 = false;
+	bool delAtackP1 = false;
 	Uint8 alphakaP1 = 255;
 	int extradisP1 = 40;
 	int speedP1 = 3;
@@ -213,8 +215,14 @@ public:
 	Collider* attackP1_collider = nullptr;
 	Collider* blockP1_collider = nullptr;
 
+	uint windup = 0;
 
+	int attackstarttime = 0;
 
+	bool attackActive = false;
+	void attackTime( uint windUp, int x, int y, ATTACK_TYPE attackTtype);
+		
+		
 	void comboInputP1(char comboInput);
 	bool comboActiveP1();
 	
