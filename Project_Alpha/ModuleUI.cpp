@@ -204,7 +204,7 @@ bool ModuleUI::Start()
 }
 update_status ModuleUI::Update()
 {
-	if (App->scene_guile->IsEnabled) {
+	if (App->scene_guile->IsEnabled()) {
 		timechar[0] = timerint / 10 + '0';
 		timechar[1] = timerint % 10 + '0';
 	}
