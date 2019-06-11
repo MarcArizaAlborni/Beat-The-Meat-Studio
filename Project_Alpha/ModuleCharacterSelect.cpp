@@ -271,6 +271,7 @@ update_status ModuleCharacterSelect::Update()
 			if (lapseVs >= 3)
 			{
 				App->fade->FadeToBlack(App->character_select, App->vs_screen, 5.0f);
+				App->audio->FinishMusic(2000);
 			}
 		}
 	}
