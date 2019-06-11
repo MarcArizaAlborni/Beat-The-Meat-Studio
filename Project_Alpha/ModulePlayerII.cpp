@@ -1097,32 +1097,38 @@ update_status ModulePlayer2::PreUpdate() {
 				 if (inputplayerP2.Num7_active) {
 					 currentstateP2 = standingfarLPP2;
 					 attackP2_collider = App->collision->AddCollider({ 0,-100, 70, 20 }, COLLIDER_PLAYER2_ATTACK, SL, App->player);
+					 App->audio->PlayFx(L_attack_sound_P2);
 					 LOG("IDLE to LP");
 
 				 }
 				 if (inputplayerP2.Num8_active) {
 					 currentstateP2 = standingfarMPP2;
 					 attackP2_collider = App->collision->AddCollider({ 0,-100, 100, 35 }, COLLIDER_PLAYER2_ATTACK, SM, App->player);
+					 App->audio->PlayFx(M_attack_sound_P2);
 					 LOG("IDLE to HEAVY PUNCH");
 				 }
 				 if (inputplayerP2.Num9_active) {
 					 currentstateP2 = standingfarHPP2;
 					 attackP2_collider = App->collision->AddCollider({ 0,-100, 80, 18 }, COLLIDER_PLAYER2_ATTACK, SH, App->player);
+					 App->audio->PlayFx(H_attack_sound_P2);
 					 LOG("IDLE to HEAVY PUNCH");
 				 }
 				 if (inputplayerP2.Num4_active) {
 					 currentstateP2 = standingfarLKP2;
 					 attackP2_collider = App->collision->AddCollider({ 0,-100, 57, 25 }, COLLIDER_PLAYER2_ATTACK, SL, App->player);
+					 App->audio->PlayFx(L_attack_sound_P2);
 					 LOG("IDLE to HEAVY PUNCH");
 				 }
 				 if (inputplayerP2.Num5_active) {
 					 currentstateP2 = standingfarMKP2;
 					 attackP2_collider = App->collision->AddCollider({ 0,-100, 75, 15 }, COLLIDER_PLAYER2_ATTACK, SM, App->player);
+					 App->audio->PlayFx(M_attack_sound_P2);
 					 LOG("IDLE to HEAVY PUNCH");
 				 }
 				 if (inputplayerP2.Num6_active) {
 					 currentstateP2 = standingfarHKP2;
 					 attackP2_collider = App->collision->AddCollider({ 0,-100, 75, 15 }, COLLIDER_PLAYER2_ATTACK, SH, App->player);
+					 App->audio->PlayFx(H_attack_sound_P2);
 					 LOG("IDLE to HEAVY KICK");
 				 }
 			 }
@@ -1132,34 +1138,40 @@ update_status ModulePlayer2::PreUpdate() {
 				 if (inputplayerP2.Num7_active) {
 					 currentstateP2 = standingcloseLPP2;
 					 attackP2_collider = App->collision->AddCollider({ 0,-100, 100, 50 }, COLLIDER_PLAYER2_ATTACK, SL, App->player);
+					 App->audio->PlayFx(L_attack_sound_P2);
 					 LOG("IDLE to LP");
 				 }
 				 if (inputplayerP2.Num8_active) {
 					 currentstateP2 = standingcloseMPP2;
 					 attackP2_collider = App->collision->AddCollider({ 0,-100, 100, 30 }, COLLIDER_PLAYER2_ATTACK, SM, App->player);
+					 App->audio->PlayFx(M_attack_sound_P2);
 					 LOG("IDLE to HEAVY PUNCH");
 				 }
 				 if (inputplayerP2.Num9_active) {
 					 currentstateP2 = standingcloseHPP2;
 					 attackP2_collider = App->collision->AddCollider({ 0,-100, 60, 25 }, COLLIDER_PLAYER2_ATTACK, SH, App->player);
+					 App->audio->PlayFx(H_attack_sound_P2);
 					 LOG("IDLE to HEAVY PUNCH");
 				 }
 
 				 if (inputplayerP2.Num4_active) {
 					 currentstateP2 = standingcloseLKP2;
 					 attackP2_collider = App->collision->AddCollider({ 0,-100, 57, 25 }, COLLIDER_PLAYER2_ATTACK, SL, App->player);
+					 App->audio->PlayFx(L_attack_sound_P2);
 					 LOG("IDLE to HEAVY PUNCH");
 				 }
 
 				 if (inputplayerP2.Num5_active) {
 					 currentstateP2 = standingcloseMKP2;
 					 attackP2_collider = App->collision->AddCollider({ 0,-100, 57, 25 }, COLLIDER_PLAYER2_ATTACK, SM, App->player);
+					 App->audio->PlayFx(M_attack_sound_P2);
 					 LOG("IDLE to HEAVY PUNCH");
 				 }
 
 				 if (inputplayerP2.Num6_active) {
 					 currentstateP2 = standingcloseHKP2;
 					 attackP2_collider = App->collision->AddCollider({ 0,-100, 100, 22 }, COLLIDER_PLAYER2_ATTACK, CH, App->player);
+					 App->audio->PlayFx(H_attack_sound_P2);
 					 LOG("IDLE to HEAVY KICK");
 				 }
 
@@ -1192,33 +1204,39 @@ update_status ModulePlayer2::PreUpdate() {
 			 if (inputplayerP2.Num7_active) {
 				 currentstateP2 = standingfarLPP2;
 				 attackP2_collider = App->collision->AddCollider({ 0,-100, 70, 20 }, COLLIDER_PLAYER2_ATTACK, SL, App->player);
+				 App->audio->PlayFx(L_attack_sound_P2);
 				 LOG("BACK to LP");
 			 }
 			 if (inputplayerP2.Num8_active) {
 				 if (!App->player->closeP1) {
 					 currentstateP2 = standingfarMPP2;
 					 attackP2_collider = App->collision->AddCollider({0, -100, 100, 35 }, COLLIDER_PLAYER2_ATTACK, SM, App->player);
+					 App->audio->PlayFx(M_attack_sound_P2);
 					 LOG("IDLE to HEAVY PUNCH");
 				 }
 			 }
 			 if (inputplayerP2.Num9_active) {
 				 currentstateP2 = standingfarHPP2;
 				 attackP2_collider = App->collision->AddCollider({ 0,-100, 80, 18 }, COLLIDER_PLAYER2_ATTACK, SH, App->player);
+				 App->audio->PlayFx(H_attack_sound_P2);
 				 LOG("IDLE to HEAVY PUNCH");
 			 }
 			 if (inputplayerP2.Num4_active) {
 				 currentstateP2 = standingfarLKP2;
 				 attackP2_collider = App->collision->AddCollider({ 0,-100, 57, 25 }, COLLIDER_PLAYER2_ATTACK, SL, App->player);
+					App->audio->PlayFx(L_attack_sound_P2);
 				 LOG("IDLE to HEAVY PUNCH");
 			 }
 			 if (inputplayerP2.Num5_active) {
 				 currentstateP2 = standingfarMKP2;
 				 attackP2_collider = App->collision->AddCollider({ 0,-100, 75, 15 }, COLLIDER_PLAYER2_ATTACK, SM, App->player);
+				 App->audio->PlayFx(M_attack_sound_P2);
 				 LOG("IDLE to HEAVY PUNCH");
 			 }
 			 if (inputplayerP2.Num6_active) {
 				 currentstateP2 = standingfarHKP2;
 				 attackP2_collider = App->collision->AddCollider({ 0,-100, 75, 15 }, COLLIDER_PLAYER2_ATTACK, SH, App->player);
+				 App->audio->PlayFx(H_attack_sound_P2);
 				 LOG("IDLE to HEAVY KICK");
 			 }
 
@@ -1242,6 +1260,7 @@ update_status ModulePlayer2::PreUpdate() {
 
 			 if (inputplayerP2.Num8_active && !inputplayerP2.Right_active && App->player->closeP1) { //falta CONDICIO COLIDER APROP
 				 attackP2_collider = App->collision->AddCollider({ 0,-100, 75, 15 }, COLLIDER_PLAYER2_ATTACK, SH, App->player);
+				 App->audio->PlayFx(H_attack_sound_P2);
 				 currentstateP2 = HeadbuttP2;
 				 LOG("BACKWARD TO HEADBUT");
 			 }
@@ -1290,12 +1309,14 @@ update_status ModulePlayer2::PreUpdate() {
 
 				 currentstateP2 = standingfarLPP2;
 				 attackP2_collider = App->collision->AddCollider({ 0,-100, 70, 20 }, COLLIDER_PLAYER2_ATTACK, SL, App->player);
+				 App->audio->PlayFx(L_attack_sound_P2);
 				 LOG("FOR to LP");
 			 }
 			 if (inputplayerP2.Num8_active) { //aqui falta condicio de no s'estan tocant els coliders
 				 if (!App->player->closeP1) {
 					 currentstateP2 = standingfarMPP2;
 					 attackP2_collider = App->collision->AddCollider({ 0,-100, 100, 35 }, COLLIDER_PLAYER2_ATTACK, SM, App->player);
+					 App->audio->PlayFx(M_attack_sound_P2);
 					 LOG("idle to heavy punch");
 				 }
 			 }
@@ -1303,27 +1324,32 @@ update_status ModulePlayer2::PreUpdate() {
 
 				 currentstateP2 = standingfarHPP2;
 				 attackP2_collider = App->collision->AddCollider({ 0,-100, 80, 18 }, COLLIDER_PLAYER2_ATTACK, SH, App->player);
+				 App->audio->PlayFx(H_attack_sound_P2);
 				 LOG("IDLE to HEAVY PUNCH");
 
 			 }
 			 if (inputplayerP2.Num4_active) {
 				 currentstateP2 = standingfarLKP2;
 				 attackP2_collider = App->collision->AddCollider({ 0,-100, 57, 25 }, COLLIDER_PLAYER2_ATTACK, SL, App->player);
+				 App->audio->PlayFx(L_attack_sound_P2);
 				 LOG("IDLE to HEAVY PUNCH");
 			 }
 			 if (inputplayerP2.Num5_active) {
 				 currentstateP2 = standingfarMKP2;
 				 attackP2_collider = App->collision->AddCollider({ 0,-100, 75, 15 }, COLLIDER_PLAYER2_ATTACK, SM, App->player);
+				 App->audio->PlayFx(M_attack_sound_P2);
 				 LOG("IDLE to HEAVY PUNCH");
 			 }
 			 if (inputplayerP2.Num6_active) {
 				 currentstateP2 = standingfarHKP2;
 				 attackP2_collider = App->collision->AddCollider({ 0,-100, 75, 15 }, COLLIDER_PLAYER2_ATTACK, SH, App->player);
+				 App->audio->PlayFx(H_attack_sound_P2);
 				 LOG("IDLE to HEAVY KICK");
 			 }
 
 			 if (inputplayerP2.Num8_active && App->player->closeP1) { //falta CONDICIO COLIDER APROP
 				 attackP2_collider = App->collision->AddCollider({ 0,-100, 75, 15 }, COLLIDER_PLAYER2_ATTACK, SH, App->player);
+				 App->audio->PlayFx(H_attack_sound_P2);
 				 currentstateP2 = HeadbuttP2;
 				 LOG("FORWARD TO HEADBUT");
 
@@ -1356,31 +1382,37 @@ update_status ModulePlayer2::PreUpdate() {
 			 if (inputplayerP2.Num7_active) {
 				 currentstateP2 = crouchLPP2;
 				 attackP2_collider = App->collision->AddCollider({ 0,-100, 93, 20 }, COLLIDER_PLAYER2_ATTACK, CL, App->player);
+				 App->audio->PlayFx(L_attack_sound_P2);
 				 LOG("IDLE to LP");
 			 }
 			 if (inputplayerP2.Num8_active) {
 				 currentstateP2 = crouchMPP2;
 				 attackP2_collider = App->collision->AddCollider({ 0,-100, 93, 20 }, COLLIDER_PLAYER2_ATTACK, CM, App->player);
+				 App->audio->PlayFx(M_attack_sound_P2);
 				 LOG("IDLE to HEAVY PUNCH");
 			 }
 			 if (inputplayerP2.Num9_active) {
 				 currentstateP2 = crouchHPP2;
 				 attackP2_collider = App->collision->AddCollider({ 0,-100, 100, 20 }, COLLIDER_PLAYER2_ATTACK, CH, App->player);
+				 App->audio->PlayFx(H_attack_sound_P2);
 				 LOG("IDLE to HEAVY PUNCH");
 			 }
 			 if (inputplayerP2.Num4_active) {
 				 currentstateP2 = crouchLKP2;
 				 attackP2_collider = App->collision->AddCollider({ 0,-100, 79, 22 }, COLLIDER_PLAYER2_ATTACK, CL, App->player);
+				 App->audio->PlayFx(L_attack_sound_P2);
 				 LOG("IDLE to HEAVY PUNCH");
 			 }
 			 if (inputplayerP2.Num5_active) {
 				 currentstateP2 = crouchMKP2;
 				 attackP2_collider = App->collision->AddCollider({ 0,-100, 100, 22 }, COLLIDER_PLAYER2_ATTACK, CM, App->player);
+				 App->audio->PlayFx(M_attack_sound_P2);
 				 LOG("IDLE to HEAVY PUNCH");
 			 }
 			 if (inputplayerP2.Num6_active) {
 				 currentstateP2 = crouchHKP2;
 				 attackP2_collider = App->collision->AddCollider({ 0,-100, 100, 22 }, COLLIDER_PLAYER2_ATTACK, CH, App->player);
+				 App->audio->PlayFx(H_attack_sound_P2);
 				 LOG("IDLE to HEAVY KICK");
 			 }
 		 }
@@ -1417,32 +1449,41 @@ update_status ModulePlayer2::PreUpdate() {
 				 if (inputplayerP2.Num7_active) {
 					 currentstateP2 = jumpLPP2;
 					 attackP2_collider = App->collision->AddCollider({ 0,-100, 55, 23 }, COLLIDER_PLAYER2_ATTACK, SL, App->player);
+					 App->audio->PlayFx(L_attack_sound_P2);
 					 airkickP2 = false;
 				 }
 				 if (inputplayerP2.Num8_active) {
 					 currentstateP2 = jumpMPP2;
 					 attackP2_collider = App->collision->AddCollider({ 0,-100, 65, 33 }, COLLIDER_PLAYER2_ATTACK, SM, App->player);
+					 App->audio->PlayFx(M_attack_sound_P2);
 					 airkickP2 = false;
 				 }
 				 if (inputplayerP2.Num4_active) {
 					 currentstateP2 = jumpLKP2;
 					 attackP2_collider = App->collision->AddCollider({ 0,-100, 70, 23 }, COLLIDER_PLAYER2_ATTACK, SL, App->player);
+					 App->audio->PlayFx(H_attack_sound_P2);
+
+					 App->audio->PlayFx(L_attack_sound_P2);
 					 airkickP2 = false;
 				 }
 				 if (inputplayerP2.Num5_active) {
 					 currentstateP2 = jumpMKP2;
 					 attackP2_collider = App->collision->AddCollider({ 0,-100, 57, 25 }, COLLIDER_PLAYER2_ATTACK, SM, App->player);
+					 App->audio->PlayFx(M_attack_sound_P2);
 					 airkickP2 = false;
 				 }
 				 if (inputplayerP2.Num6_active) {
 					 currentstateP2 = jumpHKP2;
 					 attackP2_collider = App->collision->AddCollider({ 0,-100, 70, 33 }, COLLIDER_PLAYER2_ATTACK, SH, App->player);
+					 App->audio->PlayFx(H_attack_sound_P2);
 					 airkickP2 = false;
 				 }
 				 if (currentstateP2 == FjumpstateP2 || currentstateP2 == BjumpstateP2) {
 					 if (inputplayerP2.Num9_active) {
 						 currentstateP2 = DjumpHPP2;
 						 attackP2_collider = App->collision->AddCollider({ 0,-100, 70, 50 }, COLLIDER_PLAYER2_ATTACK, SH, App->player);
+
+						 App->audio->PlayFx(H_attack_sound_P2);
 						 airkickP2 = false;
 					 }
 				 }
@@ -1451,6 +1492,7 @@ update_status ModulePlayer2::PreUpdate() {
 						 currentstateP2 = NjumpHPP2;
 						 attackP2_collider = App->collision->AddCollider({ 0,-100, 100, 25 }, COLLIDER_PLAYER2_ATTACK, SH, App->player);
 						 airkickP2 = false;
+						 App->audio->PlayFx(H_attack_sound_P2);
 					 }
 				 }
 
@@ -2254,6 +2296,7 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2)
 							currentstateP2 = SdamagedLP2;
 							alreadyHitP2 = true;
 							deleteCollider2(attackP2_collider);
+							App->audio->PlayFx(L_hit_sound_P2);
 							App->ui->health2.w -= 5;
 						}
 						else {
@@ -2267,6 +2310,7 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2)
 						if (!SblockingP2) {
 							currentstateP2 = SdamagedMP2;
 							alreadyHitP2 = true;
+							App->audio->PlayFx(M_hit_sound_P2);
 							deleteCollider2(attackP2_collider);
 							App->ui->health2.w -= 10;
 						}
@@ -2285,6 +2329,7 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2)
 							currentstateP2 = SdamagedHP2;
 							alreadyHitP2 = true;
 							deleteCollider2(attackP2_collider);
+							App->audio->PlayFx(H_hit_sound_P2);
 							App->ui->health2.w -= 15;
 						}
 						else {
@@ -2301,6 +2346,7 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2)
 						currentstateP2 = SdamagedLP2;
 						alreadyHitP2 = true;
 						deleteCollider2(attackP2_collider);
+						App->audio->PlayFx(L_hit_sound_P2);
 						App->ui->health2.w -= 5;
 					}
 					else {
@@ -2313,6 +2359,7 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2)
 				else if (c2->attack == CM) {//M
 					if (!CblockingP2) {
 						currentstateP2 = SdamagedMP2;
+						App->audio->PlayFx(M_hit_sound_P2);
 						alreadyHitP2 = true;
 						App->ui->health2.w -= 10;
 						deleteCollider2(attackP2_collider);
@@ -2327,6 +2374,7 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2)
 				else if (c2->attack == CH) {//H
 					if (!CblockingP2) {
 						currentstateP2 = SdamagedHP2;
+						App->audio->PlayFx(H_hit_sound_P2);
 						alreadyHitP2 = true;
 						deleteCollider2(attackP2_collider);
 						App->ui->health2.w -= 15;
