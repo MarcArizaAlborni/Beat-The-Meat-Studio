@@ -12,6 +12,8 @@
 #include "ModulePlayerII.h"
 #include <stdio.h>
 #include <iostream>
+#include "ModuleSceneGuile.h"
+#include "ModuleUI.h"
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
@@ -2329,10 +2331,6 @@ update_status ModulePlayer::Update() {
 	//punch
 		//st = 0;
 
-
-
-
-
 	return UPDATE_CONTINUE;
 }
 
@@ -2348,7 +2346,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 						currentstateP1 = SdamagedLP1;
 						alreadyHitP1 = true;
 						deleteCollider(attackP1_collider);
-						
+						App->ui->health.x -= 5;
 					}
 					else {
 						SblockP1.speed = 0.45f;
@@ -2362,6 +2360,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 						currentstateP1 = SdamagedMP1;
 						alreadyHitP1 = true;
 						deleteCollider(attackP1_collider);
+						App->ui->health.x -= 10;
 					}
 					else {
 						SblockP1.speed = 0.35f;
@@ -2375,6 +2374,9 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 						/*if (currentstateP1 = SdamagedHP1) {
 							SblockP1.Reset();
 						}*/
+						
+						App->ui->health.x -= 15;
+						
 						currentstateP1 = SdamagedHP1;
 						alreadyHitP1 = true;
 						deleteCollider(attackP1_collider);
@@ -2393,6 +2395,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 						currentstateP1 = SdamagedLP1;
 						alreadyHitP1 = true;
 						deleteCollider(attackP1_collider);
+						App->ui->health2.w -= 5;
 					}
 					else {
 						CblockP1.speed = 0.45f;
@@ -2406,6 +2409,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 						currentstateP1 = SdamagedMP1;
 						alreadyHitP1 = true;
 						deleteCollider(attackP1_collider);
+						App->ui->health2.w -= 10;
 					}
 					else {
 						CblockP1.speed = 0.35f;
@@ -2419,6 +2423,8 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 						currentstateP1 = SdamagedHP1;
 						alreadyHitP1 = true;
 						deleteCollider(attackP1_collider);
+						
+						App->ui->health2.w -= 15;
 					}
 					else {
 						CblockP1.speed = 0.25f;
