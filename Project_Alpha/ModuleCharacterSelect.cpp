@@ -13,6 +13,7 @@
 #include "Animation.h"
 #include "ModuleVsScreen.h"
 #include "ModuleUI.h"
+#include "ModuleSounds.h"
 
 ModuleCharacterSelect::ModuleCharacterSelect()
 {
@@ -38,6 +39,7 @@ bool ModuleCharacterSelect::Start()
 	accept_sound = App->audio->LoadFx("Audios/FX/22H.wav");
 	plane_sound = App->audio->LoadFx("Audios/FX/Enviroment/Plane.wav");
 	flag_sound = App->audio->LoadFx("Audios/Voices/USA.wav");
+	App->sounds->Disable();
 
 	App->ui->Enable();
 	App->ui->character_select = true;
@@ -280,12 +282,11 @@ update_status ModuleCharacterSelect::Update()
 			
 		}
 	}
-	if (App->input->keyboard[SDL_SCANCODE_RETURN] || App->input->game_pad[SDL_CONTROLLER_BUTTON_START][GAME_PAD_1] == KEY_DOWN)
+
+	/*if (App->input->keyboard[SDL_SCANCODE_RETURN] || App->input->game_pad[SDL_CONTROLLER_BUTTON_START][GAME_PAD_1] == KEY_DOWN)
 	{
-		
 		App->fade->FadeToBlack(App->character_select, App->vs_screen, 3.7f);
 		App->audio->FinishMusic(2000);
-
-	}
+	}*/
 	return UPDATE_CONTINUE;
 }
