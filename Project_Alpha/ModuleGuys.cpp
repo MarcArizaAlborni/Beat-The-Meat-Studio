@@ -240,7 +240,7 @@ update_status ModuleGuys::Update()
 
 	if (!playedsound) {
 		
-		if (timeLimit == 6) {
+		if (timeLimit == 5) {
 			App->audio->PlayFx(punch_sound);
 			playedsound = true;
 		}
