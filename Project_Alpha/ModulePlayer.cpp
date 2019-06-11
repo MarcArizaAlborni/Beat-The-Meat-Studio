@@ -1920,6 +1920,7 @@ update_status ModulePlayer::Update() {
 
 	case standingcloseHPP1:
 		currentP1_animation = &SCHP_P1;
+		positionP1.y = groundLevelP1 - 25;
 		if (!flipP1) {
 			attackP1_collider->SetPos(positionP1.x + 60 - camxP1, positionP1.y - 85 - camyP1);
 		}
