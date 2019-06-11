@@ -73,22 +73,29 @@ update_status ModuleCharacterSelect::Update()
 		App->render->Blit(App->ui->graphicsUI, App->ui->p1_pointerPosX, App->ui->p1_pointerPosY, &(App->ui->p1_pointerAnim.GetCurrentFrame())); //Character Pointer 1.
 		App->render->Blit(App->ui->graphicsUI, App->ui->p2_pointerPosX, App->ui->p2_pointerPosY, &(App->ui->p2_pointerAnim.GetCurrentFrame())); //Character Pointer 2.
 
+		if (App->ui->p1_characterSelect) { App->render->Blit(App->ui->graphicsUI, App->ui->p1_pointerPosX, App->ui->p1_pointerPosY, &App->ui->p1_pointer, 1.0f, false); } //Pointer P1 remains no longer blinks once a character is selected.
+		if (App->ui->p2_characterSelect) { App->render->Blit(App->ui->graphicsUI, App->ui->p2_pointerPosX, App->ui->p2_pointerPosY, &App->ui->p2_pointer, 1.0f, false); } //Pointer P2 remains no longer blinks once a character is selected.
+
 		if (App->ui->brazilP1) { App->render->Blit(App->ui->graphicsUI, 264, 95, &App->ui->countryFlagP1, 1.0f, false); } //Country Flag
 		if (App->ui->brazilP2) { App->render->Blit(App->ui->graphicsUI, 264, 95, &App->ui->countryFlagP2, 1.0f, false); } //Country Flag
 
 		if (App->ui->stageFlag)
 		{
-			App->render->Blit(App->ui->graphicsUI, 282, 59, &App->ui->countryFlagStage, 1.0f, false); //Stage Flag
+			//App->render->Blit(App->ui->graphicsUI, 282, 59, &App->ui->countryFlagStage, 1.0f, false); //Stage Flag
+			App->render->Blit(App->ui->graphicsUI, 282, 59, &(App->ui->stageFlagAnimation.GetCurrentFrame()));
 			App->render->Blit(App->ui->graphicsUI, App->ui->planePosX, App->ui->planePosY, &App->ui->plane, 1.0f, false); //Plane
 		}
 
 		if (App->ui->p1_characterSelect) { App->render->Blit(App->ui->graphicsUI, 264, 87, &App->ui->p1_pointer, 1.0f, false); } //Flag Marker P1
 		if (App->ui->p2_characterSelect) { App->render->Blit(App->ui->graphicsUI, 264, 87, &App->ui->p2_pointer, 1.0f, false); } //Flag Marker P2
 
-		if (App->ui->ryuIconP1) { App->render->Blit(App->ui->graphicsUI, 0, 113, &App->ui->characterIconP1, 1.0f, false); } // P1 Ryu Icon
-		if (App->ui->blankaIconP1) { App->render->Blit(App->ui->graphicsUI, 0, 113, &App->ui->characterIconP1II, 1.0f, false); } //P1 Blanka Icon
-		if (App->ui->ryuIconP2) { App->render->Blit(App->ui->graphicsUI, 288, 113, &App->ui->characterIconP2, 1.0f, false); } //P2 Ryu Icon
-		if (App->ui->blankaIconP2) { App->render->Blit(App->ui->graphicsUI, 288, 113, &App->ui->characterIconP2II, 1.0f, false); } //P2 Blanka Icon
+		if (App->ui->ryuIconP1) { App->render->Blit(App->ui->graphicsUI, 0, 113, &App->ui->characterIconRyuP1, 1.0f, false); } // P1 Ryu Icon
+		if (App->ui->kenIconP1) { App->render->Blit(App->ui->graphicsUI, 0, 113, &App->ui->characterIconKenP1, 1.0f, false); } // P1 Ken Icon
+		if (App->ui->blankaIconP1) { App->render->Blit(App->ui->graphicsUI, 0, 113, &App->ui->characterIconBlankaP1, 1.0f, false); } //P1 Blanka Icon
+
+		if (App->ui->ryuIconP2) { App->render->Blit(App->ui->graphicsUI, 288, 113, &App->ui->characterIconRyuP2, 1.0f, false); } //P2 Ryu Icon
+		if (App->ui->kenIconP2) { App->render->Blit(App->ui->graphicsUI, 288, 113, &App->ui->characterIconKenP2, 1.0f, false); } // P2 Ken Icon
+		if (App->ui->blankaIconP2) { App->render->Blit(App->ui->graphicsUI, 288, 113, &App->ui->characterIconBlankaP2, 1.0f, false); } //P2 Blanka Icon
 	}
 	
 	//Pointer Flags
@@ -102,7 +109,7 @@ update_status ModuleCharacterSelect::Update()
 		App->ui->p2_characterSelect = true;
 	}
 
-	if (App->ui->p1_characterSelect == true && App->ui->p2_characterSelect == true) { App->ui->stageFlag = true; }
+	if (App->ui->p1_characterSelect == true && App->ui->p2_characterSelect == true) { App->ui->stageFlag = true; } //Enables the flag Animation
 
 
 
@@ -133,10 +140,13 @@ update_status ModuleCharacterSelect::Update()
 			else { App->ui->p1_pointerPosX = 225; }
 		}
 
-		if (App->ui->p1_pointerPosX == 129) { App->ui->ryuIconP1 = true; }
+		if (App->ui->p1_pointerPosX == 129 && App->ui->p1_pointerPosY == 141) { App->ui->ryuIconP1 = true; }
 		else { App->ui->ryuIconP1 = false; }
 
-		if (App->ui->p1_pointerPosX == 193) { App->ui->blankaIconP1 = true; App->ui->brazilP1 = true; }
+		if (App->ui->p1_pointerPosX == 129 && App->ui->p1_pointerPosY == 173) { App->ui->kenIconP1 = true; }
+		else { App->ui->kenIconP1 = false; }
+
+		if (App->ui->p1_pointerPosX == 193 && App->ui->p1_pointerPosY == 141) { App->ui->blankaIconP1 = true; App->ui->brazilP1 = true; }
 		else { App->ui->blankaIconP1 = false; App->ui->brazilP1 = false; }
 	}
 	
@@ -167,10 +177,13 @@ update_status ModuleCharacterSelect::Update()
 			else { App->ui->p2_pointerPosX = 225; }
 		}
 
-		if (App->ui->p2_pointerPosX == 129) { App->ui->ryuIconP2 = true; }
+		if (App->ui->p2_pointerPosX == 129 && App->ui->p2_pointerPosY == 141) { App->ui->ryuIconP2 = true; }
 		else { App->ui->ryuIconP2 = false; }
 
-		if (App->ui->p2_pointerPosX == 193) { App->ui->blankaIconP2 = true; App->ui->brazilP2 = true; }
+		if (App->ui->p2_pointerPosX == 129 && App->ui->p2_pointerPosY == 173) { App->ui->kenIconP2 = true; }
+		else { App->ui->kenIconP2 = false; }
+
+		if (App->ui->p2_pointerPosX == 193 && App->ui->p2_pointerPosY == 141) { App->ui->blankaIconP2 = true; App->ui->brazilP2 = true; }
 		else { App->ui->blankaIconP2 = false; App->ui->brazilP2 = false; }
 	}
 	
@@ -184,8 +197,29 @@ update_status ModuleCharacterSelect::Update()
 		App->ui->p2_pointerPosX = 193;
 		App->ui->p2_pointerPosY = 141;
 
+		App->ui->ryuIconP1 = false;
+		App->ui->ryuIconP2 = false;
+		App->ui->kenIconP1 = false;
+		App->ui->kenIconP2 = false;
+		App->ui->blankaIconP1 = true;
+		App->ui->blankaIconP2 = true;
+
 		App->ui->p1_characterSelect = true;
 		App->ui->p2_characterSelect = true;
+
+
+		//if (App->ui->blankaIconP1 = false)
+		//{
+		//	if (App->ui->ryuIconP1 = true) { App->ui->ryuIconP1 = false; App->ui->blankaIconP1 = true;}
+		//	else { App->ui->blankaIconP1 = true; }
+		//}
+
+		//if (App->ui->blankaIconP2 = false)
+		//{
+		//	if (App->ui->ryuIconP2 = true) { App->ui->ryuIconP2 = false; App->ui->blankaIconP2 = true; }
+		//	else { App->ui->blankaIconP2 = true; }
+		//}
+
 		App->ui->stageFlag = true;
 	}
 	

@@ -33,18 +33,18 @@ ModuleUI::ModuleUI() : Module()
 	//Names
 	name.x = 226;
 	name.y = 292;
-	name.w = 28;
+	name.w = 57;
 	name.h = 9;
 
 	name2.x = 226;
 	name2.y = 292;
-	name2.w = 28;
+	name2.w = 57;
 	name2.h = 9;
 
 	//Score
-	score.x = 226;
-	score.y = 313;
-	score.w = 241;
+	score.x = 149;
+	score.y = 314;
+	score.w = 370;
 	score.h = 10;
 
 	//Timer
@@ -72,42 +72,52 @@ ModuleUI::ModuleUI() : Module()
 
 	p1_pointerAnim.PushBack({ 226, 84, 32, 36 });
 	p1_pointerAnim.PushBack({ 226, 84, 32, 36 });
-	p1_pointerAnim.PushBack({ 226, 84, 32, 36 });
 	p1_pointerAnim.PushBack({ 302, 84 ,32, 36 });
-	p1_pointerAnim.PushBack({ 302, 84 ,32, 36 });
+	p1_pointerAnim.PushBack({ 378 , 84 ,32, 36 });
 	
 
 	p2_pointerAnim.PushBack({ 265, 84, 32, 36 });
 	p2_pointerAnim.PushBack({ 265, 84, 32, 36 });
-	p2_pointerAnim.PushBack({ 265, 84, 32, 36 });
 	p2_pointerAnim.PushBack({ 340, 84, 32, 36 });
-	p2_pointerAnim.PushBack({ 340, 84, 32, 36 });
+	p2_pointerAnim.PushBack({ 416, 84, 32, 36 });
 
 	//Character Icons
-
 	//Ryu P1
-	characterIconP1.x = 28;
-	characterIconP1.y = 474;
-	characterIconP1.w = 96;
-	characterIconP1.h = 111;
+	characterIconRyuP1.x = 28;
+	characterIconRyuP1.y = 458;
+	characterIconRyuP1.w = 96;
+	characterIconRyuP1.h = 126;
 	
+	//Ken P1
+	characterIconKenP1.x = 28;
+	characterIconKenP1.y = 734;
+	characterIconKenP1.w = 96;
+	characterIconKenP1.h = 126;
+
 	//Blanka P1
-	characterIconP1II.x = 28;
-	characterIconP1II.y = 611;
-	characterIconP1II.w = 96;
-	characterIconP1II.h = 111;
+	characterIconBlankaP1.x = 28;
+	characterIconBlankaP1.y = 595;
+	characterIconBlankaP1.w = 96;
+	characterIconBlankaP1.h = 126;
 
 	//Ryu P2
-	characterIconP2.x = 126;
-	characterIconP2.y = 474;
-	characterIconP2.w = 96;
-	characterIconP2.h = 111;
+	characterIconRyuP2.x = 126;
+	characterIconRyuP2.y = 458;
+	characterIconRyuP2.w = 96;
+	characterIconRyuP2.h = 126;
+
+	//Ken P2
+	characterIconKenP2.x = 126;
+	characterIconKenP2.y = 734;
+	characterIconKenP2.w = 96;
+	characterIconKenP2.h = 126;
+
 
 	//Blanka P2
-	characterIconP2II.x = 126;
-	characterIconP2II.y = 611;
-	characterIconP2II.w = 96;
-	characterIconP2II.h = 111;
+	characterIconBlankaP2.x = 126;
+	characterIconBlankaP2.y = 595;
+	characterIconBlankaP2.w = 96;
+	characterIconBlankaP2.h = 126;
 
 	//CountryFlag
 	countryFlagP1.x = 364;
@@ -125,6 +135,17 @@ ModuleUI::ModuleUI() : Module()
 	countryFlagStage.y = 431;
 	countryFlagStage.w = 30;
 	countryFlagStage.h = 24;
+	
+	//Stage Flag Animation
+	for (int i = 0; i < 10; i++)
+	{
+		stageFlagAnimation.PushBack({ 400, 431, 30, 24 });
+	}
+
+	for (int i = 0; i < 10; i++)
+	{
+		stageFlagAnimation.PushBack({ 400, 400, 30, 24 });
+	}
 
 	//Plane
 	//Vertical
@@ -171,8 +192,8 @@ update_status ModuleUI::Update()
 		App->render->Blit(graphicsUI, 31, 23, &health, 1.0f, false); //health
 		App->render->Blit(graphicsUI, 207, 23, &health2, 1.0f, false); //health
 
-		App->render->Blit(graphicsUI, 32, 34, &name, 1.0f, false); //name p1
-		App->render->Blit(graphicsUI, 322, 34, &name2, 1.0f, false); //name p2
+		App->render->Blit(graphicsUI, 31, 35, &name, 1.0f, false); //name p1
+		App->render->Blit(graphicsUI, 293, 35, &name2, 1.0f, false); //name p2
 		App->render->Blit(graphicsUI, 6, 1, &score, 1.0f, false); //score
 		App->fonts->BlitText(178, 36, 0, timechar); //timer
 		//App->render->Blit(graphicsUI, 178, 34, &timer, 1.0f, false); //timer

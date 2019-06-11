@@ -17,6 +17,7 @@
 #include "MemLeaks.h"
 #include "ModuleAudio.h"
 #include "ModuleSounds.h"
+#include "ModuleFonts.h"
 
 
 
@@ -127,7 +128,7 @@ bool ModuleSceneGuile::CleanUp()
 
 update_status ModuleSceneGuile::Update()
 { 
-	
+	//Render
 	App->render->Blit(graphics, -146, -13, &background); //background
 	App->render->Blit(graphics, -146, -13, &sky); //sky
 	App->render->Blit(graphics, -146, -13, &plane_ground); //plane_ground

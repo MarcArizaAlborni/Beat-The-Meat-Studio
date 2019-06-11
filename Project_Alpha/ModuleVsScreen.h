@@ -19,6 +19,9 @@ public:
 	bool CleanUp();
 
 public:
+	Uint32 timeLimitVs = 0;
+	Uint32 deltaTimeVs = SDL_GetTicks() / 1000;;
+	Uint32 startTimeVs = 0;
 
 	SDL_Texture* graphics = nullptr;
 	SDL_Rect vs_screen;

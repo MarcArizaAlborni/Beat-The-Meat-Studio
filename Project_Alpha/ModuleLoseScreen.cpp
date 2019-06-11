@@ -29,6 +29,10 @@ bool ModuleLoseScreen::Start()
 {
 	LOG("Loading Win screen");
 	graphics = App->textures->Load("Sprites/Player2_Wins.png");
+
+	deltaTimeL = SDL_GetTicks() / 1000;
+	startTimeL = deltaTimeL;
+
 	return true;
 }
 
@@ -45,10 +49,10 @@ update_status ModuleLoseScreen::Update()
 {
 	App->render->camera.x = 0;
 	App->render->Blit(graphics, 0, 0, &lose_screen, 0.75f);
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 
-		App->fade->FadeToBlack(App->lose_screen, App->start_screen, 1.0f);
+	deltaTimeL = SDL_GetTicks() / 1000;
+	timeLimitL = deltaTimeL - startTimeL;
 
-	}
+	if (timeLimitL > 4 || App->input->keyboard[SDL_SCANCODE_SPACE] == 1) { App->fade->FadeToBlack(App->lose_screen, App->start_screen, 1.0f); }
 	return UPDATE_CONTINUE;
 }

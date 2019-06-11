@@ -30,6 +30,10 @@ bool ModuleWinScreen::Start()
 {
 	LOG("Loading Win screen");
 	graphics = App->textures->Load("Sprites/Player1_Wins.png");
+
+	deltaTimeW = SDL_GetTicks() / 1000;
+	startTimeW = deltaTimeW;
+
 	return true;
 }
 
@@ -46,10 +50,10 @@ update_status ModuleWinScreen::Update()
 {
 	App->render->camera.x = 0;
 	App->render->Blit(graphics, 0, 0, &win_screen, 0.75f);
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 
-		App->fade->FadeToBlack(App->win_screen, App->start_screen, 1.0f);
+	deltaTimeW = SDL_GetTicks() / 1000;
+	timeLimitW = deltaTimeW - startTimeW;
 
-	}
+	if (timeLimitW > 4 || App->input->keyboard[SDL_SCANCODE_SPACE] == 1) { App->fade->FadeToBlack(App->win_screen, App->start_screen, 1.0f); }
 	return UPDATE_CONTINUE;
 }

@@ -29,10 +29,14 @@ public:
 	SDL_Rect score;
 	SDL_Rect timer;
 	SDL_Rect characterGrid;
-	SDL_Rect characterIconP1;
-	SDL_Rect characterIconP1II;
-	SDL_Rect characterIconP2;
-	SDL_Rect characterIconP2II;
+	SDL_Rect characterIconRyuP1;
+	SDL_Rect characterIconKenP1;
+	SDL_Rect characterIconBlankaP1;
+	SDL_Rect characterIconRyuP2;
+	SDL_Rect characterIconKenP2;
+	SDL_Rect characterIconBlankaP2;
+	SDL_Rect p1Indicator;
+	SDL_Rect p2Indicator;
 	SDL_Rect countryFlagP1;
 	SDL_Rect countryFlagP2;
 	SDL_Rect countryFlagStage;
@@ -57,6 +61,8 @@ public:
 	int p2_pointerPosX = 129;
 	int p2_pointerPosY = 173;
 
+	Animation stageFlagAnimation;
+
 	float planePosX = 269.0f;
 	float planePosY = 96.0f;
 
@@ -75,8 +81,11 @@ public:
 
 	//Character Icons
 	bool ryuIconP1 = false;
+	bool kenIconP1 = false;
 	bool blankaIconP1 = false;
+
 	bool ryuIconP2 = false;
+	bool kenIconP2 = false;
 	bool blankaIconP2 = false;
 	
 

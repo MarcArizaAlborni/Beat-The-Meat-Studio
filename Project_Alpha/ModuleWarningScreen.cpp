@@ -29,7 +29,10 @@ ModuleWarningScreen::~ModuleWarningScreen()
 bool ModuleWarningScreen::Start()
 {
 	LOG("Loading Warning screen");
-	graphics = App->textures->Load("Sprites/StartScreenII.png");
+	graphics = App->textures->Load("Sprites/Warning_Screen.png");
+
+	deltaTimeWrng = SDL_GetTicks() / 1000;
+	startTimeWrng = deltaTimeWrng;
 	return true;
 }
 
@@ -48,7 +51,10 @@ update_status ModuleWarningScreen::Update()
 	
 	App->render->Blit(graphics, 0, 0, &warning_screen, 0.75f);
 
-	App->fade->FadeToBlack(App->warning_screen, App->guys_screen, 5.0f);
+	deltaTimeWrng = SDL_GetTicks() / 1000;
+	timeLimitWrng = deltaTimeWrng - startTimeWrng;
+
+	if(timeLimitWrng > 7 || App->input->keyboard[SDL_SCANCODE_RETURN] == 1) { App->fade->FadeToBlack(App->warning_screen, App->guys_screen, 1.5f); }
 
 	if (App->sounds->coin_inserted == true) {
 
