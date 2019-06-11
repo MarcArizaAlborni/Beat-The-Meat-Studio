@@ -115,7 +115,7 @@ update_status ModuleCharacterSelect::Update()
 
 	if (App->ui->p1_characterSelect == false)
 	{
-		//Pointer player 1
+		//Pointer movement player 1
 		if (App->input->keyboard[SDL_SCANCODE_UP] == 1)
 		{
 			if (App->ui->p1_pointerPosY != 141) { App->ui->p1_pointerPosY -= 32; }
@@ -140,6 +140,7 @@ update_status ModuleCharacterSelect::Update()
 			else { App->ui->p1_pointerPosX = 225; }
 		}
 
+		//Activation or deactivation of the character icons depending on where the p1's cursor is
 		if (App->ui->p1_pointerPosX == 129 && App->ui->p1_pointerPosY == 141) { App->ui->ryuIconP1 = true; }
 		else { App->ui->ryuIconP1 = false; }
 
@@ -152,7 +153,7 @@ update_status ModuleCharacterSelect::Update()
 	
 	if (App->ui->p2_characterSelect == false)
 	{
-		//Pointer player 2
+		//Pointer movement player 2
 		if (App->input->keyboard[SDL_SCANCODE_U] == 1)
 		{
 			if (App->ui->p2_pointerPosY != 141) { App->ui->p2_pointerPosY -= 32; }
@@ -177,6 +178,7 @@ update_status ModuleCharacterSelect::Update()
 			else { App->ui->p2_pointerPosX = 225; }
 		}
 
+		//Activation or deactivation of the character icons depending on where the p2's cursor is
 		if (App->ui->p2_pointerPosX == 129 && App->ui->p2_pointerPosY == 141) { App->ui->ryuIconP2 = true; }
 		else { App->ui->ryuIconP2 = false; }
 
@@ -187,16 +189,19 @@ update_status ModuleCharacterSelect::Update()
 		else { App->ui->blankaIconP2 = false; App->ui->brazilP2 = false; }
 	}
 	
+	//Puts a time limit to the character selection screen
 	deltaTimeCh = SDL_GetTicks() / 1000;
 	timeLimitCh = deltaTimeCh - startTimeCh;
 
 	if (timeLimitCh >= 40)
 	{
+		//Putting both cursors on Blanka's space in the character grid
 		App->ui->p1_pointerPosX = 193;
 		App->ui->p1_pointerPosY = 141;
 		App->ui->p2_pointerPosX = 193;
 		App->ui->p2_pointerPosY = 141;
 
+		//Deactivation of all icons and activation of the Blanka Icons
 		App->ui->ryuIconP1 = false;
 		App->ui->ryuIconP2 = false;
 		App->ui->kenIconP1 = false;
@@ -204,6 +209,7 @@ update_status ModuleCharacterSelect::Update()
 		App->ui->blankaIconP1 = true;
 		App->ui->blankaIconP2 = true;
 
+		//The character/s is/are selected
 		App->ui->p1_characterSelect = true;
 		App->ui->p2_characterSelect = true;
 
@@ -224,7 +230,7 @@ update_status ModuleCharacterSelect::Update()
 	}
 	
 	
-	
+	//Plane Movement
 	if (App->ui->stageFlag == true)
 	{
 		if (App->ui->planePosX <= 296.0f && App->ui->planePosY >= 66.0f)
@@ -250,12 +256,10 @@ update_status ModuleCharacterSelect::Update()
 		}
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_1] == KEY_DOWN)
+	if (App->input->keyboard[SDL_SCANCODE_RETURN] || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_1] == KEY_DOWN)
 	{
 		App->fade->FadeToBlack(App->character_select, App->vs_screen, 5.0f);
 
 	}
-
-
 	return UPDATE_CONTINUE;
 }
