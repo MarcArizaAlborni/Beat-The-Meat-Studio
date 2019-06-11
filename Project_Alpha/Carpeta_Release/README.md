@@ -148,7 +148,7 @@ The game consists in a 1 vs 1 duel between two characters, each with the same mo
 
 **Input to reduce Player 2's health:** F6 Key
 
-**Introduce Coin Input:** RETURN (Enter) Key
+**Introduce Coin Input:** SPACE Key or BACK Button (Select)
 
 
 
