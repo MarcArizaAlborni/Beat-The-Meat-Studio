@@ -770,6 +770,15 @@ update_status ModulePlayer2::PreUpdate() {
 
 	
 	 {
+		 if (currentstateP2 == HeadbuttP2) {
+			 if (currentP2_animation->Finished()) {
+				 deleteCollider2(attackP2_collider);
+				 App->player->alreadyHitP1 = false;
+				 currentstateP2 = idlestateP2;
+				 Headbut_P2.Reset();
+			 }
+
+		 }
 		 //STUNBLOCK CHECK
 		 if (currentstateP2 == SblockstunP2) {
 			 if (currentP2_animation->Finished()) {
@@ -1240,7 +1249,7 @@ update_status ModulePlayer2::PreUpdate() {
 				 LOG("IDLE to HEAVY KICK");
 			 }
 
-			 if (inputplayerP2.Right_active && inputplayerP2.Num7_active) {
+			/* if (inputplayerP2.Right_active && inputplayerP2.Num7_active) {
 
 				 currentstateP2 = rollingattackP2LIGHT;
 
@@ -1256,7 +1265,7 @@ update_status ModulePlayer2::PreUpdate() {
 
 				 currentstateP2 = rollingattackP2HEAVY;
 
-			 }
+			 }*/
 
 			 if (inputplayerP2.Num8_active && !inputplayerP2.Right_active && App->player->closeP1) { //falta CONDICIO COLIDER APROP
 				 attackP2_collider = App->collision->AddCollider({ 0,-100, 75, 15 }, COLLIDER_PLAYER2_ATTACK, SH, App->player);
@@ -1265,7 +1274,7 @@ update_status ModulePlayer2::PreUpdate() {
 				 LOG("BACKWARD TO HEADBUT");
 			 }
 
-			 if (inputplayerP2.Num9_active && App->player->closeP1) {
+			 /*if (inputplayerP2.Num9_active && App->player->closeP1) {
 
 				 currentstateP2 = throwP2;
 
@@ -1274,7 +1283,7 @@ update_status ModulePlayer2::PreUpdate() {
 			 if (inputplayerP2.Num6_active && App->player->closeP1) {
 
 				 currentstateP2 = throwP2;
-			 }
+			 }*/
 
 		 }
 		 //FORWARD STATE
@@ -1354,9 +1363,7 @@ update_status ModulePlayer2::PreUpdate() {
 				 LOG("FORWARD TO HEADBUT");
 
 			 }
-			 if (inputplayerP2.Num9_active && App->player->closeP1) {
-				 currentstateP2 = throwP2;
-			 }
+			 
 
 		 }
 		 //CROUCH STATE
@@ -1514,7 +1521,7 @@ update_status ModulePlayer2::PreUpdate() {
 				 ++thundertickP2;
 			 }
 
-			 if (!currentP2_animation->Finished() && inputplayerP2.Num7_active && !inputplayerP2.Right_active && !inputplayerP2.Left_active) {
+			/* if (!currentP2_animation->Finished() && inputplayerP2.Num7_active && !inputplayerP2.Right_active && !inputplayerP2.Left_active) {
 				 if (thundertickP2 > 3) {
 					 deleteCollider2(attackP2_collider);
 					 SFLP_P2.Reset();
@@ -1526,7 +1533,7 @@ update_status ModulePlayer2::PreUpdate() {
 
 					 LOG("LP to Thunder1");
 				 }
-			 }
+			 }*/
 
 		 }
 		 //THUNDER
@@ -1536,14 +1543,14 @@ update_status ModulePlayer2::PreUpdate() {
 				 alreadyHitP2 = false;
 				 deleteCollider2(attackP2_collider);
 				 currentstateP2 = idlestateP2;
-				 
+
 				 SFLP_P2.Reset();
 				 Ethunder_P2.Reset();
 				 LOG("Thunder 1 to IDLE");
 			 }
 
-			 if (!currentP2_animation->Finished() && inputplayerP2.Num7_active && !inputplayerP2.Right_active && !inputplayerP2.Left_active) {
-				
+			 /*if (!currentP2_animation->Finished() && inputplayerP2.Num7_active && !inputplayerP2.Right_active && !inputplayerP2.Left_active) {
+
 				 currentstateP2 = thunder2P2;
 				 alreadyHitP2 = false;
 				 SFLP_P2.Reset();
@@ -1553,7 +1560,7 @@ update_status ModulePlayer2::PreUpdate() {
 			 }
 
 			 if (!currentP2_animation->Finished() && inputplayerP2.Num8_active && !inputplayerP2.Right_active && !inputplayerP2.Left_active) {
-				 
+
 				 currentstateP2 = thunder2P2;
 				 alreadyHitP2 = false;
 				 SFMP_P2.Reset();
@@ -1564,7 +1571,7 @@ update_status ModulePlayer2::PreUpdate() {
 			 }
 
 			 if (!currentP2_animation->Finished() && inputplayerP2.Num9_active && !inputplayerP2.Right_active && !inputplayerP2.Left_active) {
-				 
+
 				 currentstateP2 = thunder2P2;
 				 alreadyHitP2 = false;
 				 SFHP_P2.Reset();
@@ -1584,7 +1591,7 @@ update_status ModulePlayer2::PreUpdate() {
 				 Ethunder_P2.Reset();
 				 LOG("GOING BACK TO IDLE ");
 			 }
-		 }
+		 }*/
 
 		 /*if (currentstateP1 == standingfarHPP1) {
 
@@ -1594,168 +1601,168 @@ update_status ModulePlayer2::PreUpdate() {
 		 }
 */
 //THROW
-		 if (currentstateP2 == throwP2) {
+			 if (currentstateP2 == throwP2) {
 
-			 if (currentP2_animation->Finished())
-			 {
-				 Throw_P2.Reset();
+				 if (currentP2_animation->Finished())
+				 {
+					 Throw_P2.Reset();
 
-				 currentstateP2 = idlestateP2;
+					 currentstateP2 = idlestateP2;
+
+				 }
 
 			 }
 
+			 //CROUCH LP
+			 if (currentstateP2 == crouchLPP2) {
+				 if (currentP2_animation->Finished() && !inputplayerP2.Num7_active && inputplayerP2.Down_active) {
+					 currentstateP2 = crouchstateP2;
+
+					 alreadyHitP2 = false;
+					 CLP_P2.Reset();
+					 LOG("LP to CROUCH");
+				 }
+				 if (currentP2_animation->Finished() && !inputplayerP2.Num7_active && !inputplayerP2.Down_active) {
+					 currentstateP2 = idlestateP2;
+					 alreadyHitP2 = false;
+					 CLP_P2.Reset();
+					 LOG("LP CROUCHED to IDLE");
+				 }
+			 }
+			 if (currentstateP2 == SdamagedP2) {
+				 if (currentP2_animation->Finished()) {
+					 currentstateP2 = idlestateP2;
+					 SdamageLP2.Reset();
+				 }
+			 }
+
+			 //HEADBUTT
+			 if (currentstateP2 == HeadbuttP2) {
+
+
+				 if (currentP2_animation->Finished() && inputplayerP2.Num8_active && !inputplayerP2.Left_active && !inputplayerP2.Right_active) {
+					 deleteCollider2(attackP2_collider);
+					 App->player->alreadyHitP1 = false;
+					 Headbut_P2.Reset();
+
+					 currentstateP2 = standingfarMPP2;
+
+				 }
+
+				 if (currentP2_animation->Finished() && !inputplayerP2.Num8_active && !inputplayerP2.Left_active && !inputplayerP2.Right_active) {
+					 deleteCollider2(attackP2_collider);
+					 App->player->alreadyHitP1 = false;
+					 Headbut_P2.Reset();
+
+					 currentstateP2 = idlestateP2;
+
+				 }
+
+				 if (currentP2_animation->Finished() && !inputplayerP2.Num8_active && !inputplayerP2.Left_active && inputplayerP2.Right_active) {
+					 deleteCollider2(attackP2_collider);
+					 App->player->alreadyHitP1 = false;
+					 Headbut_P2.Reset();
+					 currentstateP2 = forwardstateP2;
+				 }
+				 if (currentP2_animation->Finished() && !inputplayerP2.Num8_active && inputplayerP2.Left_active && !inputplayerP2.Right_active) {
+					 deleteCollider2(attackP2_collider);
+					 App->player->alreadyHitP1 = false;
+					 Headbut_P2.Reset();
+					 currentstateP2 = backwardstateP2;
+
+				 }
+			 }
+
+			 /*if (currentstateP2 == rollingattackP2LIGHT) {
+
+
+
+				 if (positionP2.x + 40 == App->player2->positionP2.x) {
+
+					 currentstateP2 = rollingreboundP2;
+					 RollingP2.Reset();
+
+				 }
+			 }
+
+			 if (currentstateP2 == rollingattackP2MEDIUM) {
+
+				 if (positionP2.x + 40 >= App->player2->positionP2.x) {
+
+					 currentstateP2 = rollingreboundP2;
+					 RollingP2.Reset();
+
+				 }
+			 }
+
+			 if (currentstateP2 == rollingattackP2HEAVY) {
+
+
+				 if (positionP2.x + 40 == App->player2->positionP2.x) {
+
+					 currentstateP2 = rollingreboundP2;
+					 RollingP2.Reset();
+				 }
+			 }*/
+
+			 //if (currentstateP1 == rollingattackP1) {
+
+				// //if (currentP1_animation->Finished() && !inputplayerP1.D_active && inputplayerP1.I_active && !inputplayerP1.O_active) {
+
+				//	// // RollingP1.Reset();
+				//	// RollingP1.Reset();
+				//	// currentstateP1 = standingfarMPP1;
+				// //}
+
+				// if (positionP1.x+ 40 == App->player2->positionP2.x) {
+
+				//	 currentstateP1 = rollingreboundP1;
+				//	 RollingP1.Reset();
+
+				// }
+			 //}
+
+			 //if (currentstateP2 == rollingreboundP2) {
+
+				// if (currentP2_animation->Finished() && !inputplayerP2.Right_active && inputplayerP2.Num8_active && !inputplayerP2.Num9_active) {
+
+				//	 // RollingP1.Reset();
+				//	 deleteCollider2(attackP2_collider);
+				//	 RollingRebP2.Reset();
+				//	 currentstateP2 = standingfarMPP2;
+				// }
+			 //}
+
+			 //if (currentstateP2 == rollingreboundP2) {
+
+				// if (currentP2_animation->Finished() && !inputplayerP2.Right_active && !inputplayerP2.Num8_active && inputplayerP2.Num9_active) {
+
+				//	 // RollingP1.Reset();
+				//	 deleteCollider2(attackP2_collider);
+				//	 RollingRebP2.Reset();
+				//	 currentstateP2 = standingfarHPP2;
+				// }
+			 //}
+
+			 //if (currentstateP2 == rollingreboundP2) {
+
+				// if (currentP2_animation->Finished() && inputplayerP2.Right_active && !inputplayerP2.Num8_active && !inputplayerP2.Num9_active) {
+				//	 deleteCollider2(attackP2_collider);
+				//	 RollingRebP2.Reset();
+				//	 currentstateP2 = forwardstateP2;
+				// }
+			 //}
+
+			 //if (currentstateP2 == rollingreboundP1) {
+
+				// if (currentP2_animation->Finished() && !inputplayerP2.Right_active && !inputplayerP2.Num8_active && !inputplayerP2.Num9_active) {
+				//	 deleteCollider2(attackP2_collider);
+				//	 // RollingP1.Reset();
+				//	 RollingRebP2.Reset();
+				//	 currentstateP2 = idlestateP2;
+				// }
+			 //}
 		 }
-
-		 //CROUCH LP
-		 if (currentstateP2 == crouchLPP2) {
-			 if (currentP2_animation->Finished() && !inputplayerP2.Num7_active && inputplayerP2.Down_active) {
-				 currentstateP2 = crouchstateP2;
-
-				 alreadyHitP2 = false;
-				 CLP_P2.Reset();
-				 LOG("LP to CROUCH");
-			 }
-			 if (currentP2_animation->Finished() && !inputplayerP2.Num7_active && !inputplayerP2.Down_active) {
-				 currentstateP2 = idlestateP2;
-				 alreadyHitP2 = false;
-				 CLP_P2.Reset();
-				 LOG("LP CROUCHED to IDLE");
-			 }
-		 }
-		 if (currentstateP2 == SdamagedP2) {
-			 if (currentP2_animation->Finished()) {
-				 currentstateP2 = idlestateP2;
-				 SdamageLP2.Reset();
-			 }
-		 }
-
-		 //HEADBUTT
-		 if (currentstateP2 == HeadbuttP2) {
-
-
-			 if (currentP2_animation->Finished() && inputplayerP2.Num8_active && !inputplayerP2.Left_active && !inputplayerP2.Right_active) {
-				 deleteCollider2(attackP2_collider);
-				 App->player->alreadyHitP1 = false;
-				 Headbut_P2.Reset();
-
-				 currentstateP2 = standingfarMPP2;
-
-			 }
-
-			 if (currentP2_animation->Finished() && !inputplayerP2.Num8_active && !inputplayerP2.Left_active && !inputplayerP2.Right_active) {
-				 deleteCollider2(attackP2_collider);
-				 App->player->alreadyHitP1 = false;
-				 Headbut_P2.Reset();
-
-				 currentstateP2 = idlestateP2;
-
-			 }
-
-			 if (currentP2_animation->Finished() && !inputplayerP2.Num8_active && !inputplayerP2.Left_active && inputplayerP2.Right_active) {
-				 deleteCollider2(attackP2_collider);
-				 App->player->alreadyHitP1 = false;
-				 Headbut_P2.Reset();
-				 currentstateP2 = forwardstateP2;
-			 }
-			 if (currentP2_animation->Finished() && !inputplayerP2.Num8_active && inputplayerP2.Left_active && !inputplayerP2.Right_active) {
-				 deleteCollider2(attackP2_collider);
-				 App->player->alreadyHitP1 = false;
-				 Headbut_P2.Reset();
-				 currentstateP2 = backwardstateP2;
-
-			 }
-		 }
-
-		 if (currentstateP2 == rollingattackP2LIGHT) {
-
-
-
-			 if (positionP2.x + 40 == App->player2->positionP2.x) {
-
-				 currentstateP2 = rollingreboundP2;
-				 RollingP2.Reset();
-
-			 }
-		 }
-
-		 if (currentstateP2 == rollingattackP2MEDIUM) {
-
-			 if (positionP2.x + 40 >= App->player2->positionP2.x) {
-
-				 currentstateP2 = rollingreboundP2;
-				 RollingP2.Reset();
-
-			 }
-		 }
-
-		 if (currentstateP2 == rollingattackP2HEAVY) {
-
-
-			 if (positionP2.x + 40 == App->player2->positionP2.x) {
-
-				 currentstateP2 = rollingreboundP2;
-				 RollingP2.Reset();
-			 }
-		 }
-
-		 //if (currentstateP1 == rollingattackP1) {
-
-			// //if (currentP1_animation->Finished() && !inputplayerP1.D_active && inputplayerP1.I_active && !inputplayerP1.O_active) {
-
-			//	// // RollingP1.Reset();
-			//	// RollingP1.Reset();
-			//	// currentstateP1 = standingfarMPP1;
-			// //}
-
-			// if (positionP1.x+ 40 == App->player2->positionP2.x) {
-
-			//	 currentstateP1 = rollingreboundP1;
-			//	 RollingP1.Reset();
-
-			// }
-		 //}
-
-		 if (currentstateP2 == rollingreboundP2) {
-
-			 if (currentP2_animation->Finished() && !inputplayerP2.Right_active && inputplayerP2.Num8_active && !inputplayerP2.Num9_active) {
-
-				 // RollingP1.Reset();
-				 deleteCollider2(attackP2_collider);
-				 RollingRebP2.Reset();
-				 currentstateP2 = standingfarMPP2;
-			 }
-		 }
-
-		 if (currentstateP2 == rollingreboundP2) {
-
-			 if (currentP2_animation->Finished() && !inputplayerP2.Right_active && !inputplayerP2.Num8_active && inputplayerP2.Num9_active) {
-
-				 // RollingP1.Reset();
-				 deleteCollider2(attackP2_collider);
-				 RollingRebP2.Reset();
-				 currentstateP2 = standingfarHPP2;
-			 }
-		 }
-
-		 if (currentstateP2 == rollingreboundP2) {
-
-			 if (currentP2_animation->Finished() && inputplayerP2.Right_active && !inputplayerP2.Num8_active && !inputplayerP2.Num9_active) {
-				 deleteCollider2(attackP2_collider);
-				 RollingRebP2.Reset();
-				 currentstateP2 = forwardstateP2;
-			 }
-		 }
-
-		 if (currentstateP2 == rollingreboundP1) {
-
-			 if (currentP2_animation->Finished() && !inputplayerP2.Right_active && !inputplayerP2.Num8_active && !inputplayerP2.Num9_active) {
-				 deleteCollider2(attackP2_collider);
-				 // RollingP1.Reset();
-				 RollingRebP2.Reset();
-				 currentstateP2 = idlestateP2;
-			 }
-		 }
-
 		 return UPDATE_CONTINUE;
 	 }
 }
