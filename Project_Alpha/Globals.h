@@ -25,11 +25,11 @@ typedef unsigned int uint;
 // Configuration -----------
 #define SCREEN_ADD 2.5
 
-#define SCREEN_SIZE 5 /// poseu 2 si voleu NO FULLSCREN ----- 1 SI VOLEU FULLSCREEN
+#define SCREEN_SIZE 1 /// poseu 2 si voleu NO FULLSCREN ----- 1 SI VOLEU FULLSCREEN
 #define SCREEN_WIDTH  384  //384
-#define SCREEN_HEIGHT  224 //224
-#define WIN_FULLSCREEN 0
-#define WIN_FULLSCREEN_DESKTOP 1
+#define SCREEN_HEIGHT  280 //224
+#define WIN_FULLSCREEN 1
+#define WIN_FULLSCREEN_DESKTOP 0
 #define WIN_BORDERLESS 0
 #define WIN_RESIZABLE 0
 #define REN_VSYNC 1

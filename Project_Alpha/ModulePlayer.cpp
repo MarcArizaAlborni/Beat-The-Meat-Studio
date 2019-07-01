@@ -2342,7 +2342,7 @@ update_status ModulePlayer::Update() {
 	else {
 		flipP1 = true;
 		App->render->Blit(graphicsP1, positionP1.x +7, groundLevelP1 -15, &shadowP1, 1.0f, true, SDL_FLIP_NONE,  0.0, INT_MAX, INT_MAX, true);
-		App->render->Blit(graphicsP1, positionP1.x, positionP1.y - r.h, &r, 1.0f, true, SDL_FLIP_NONE,0.0,INT_MAX,INT_MAX,true);
+		App->render->Blit(graphicsP1, positionP1.x, positionP1.y - r.h, &r, 1.0f, true, SDL_FLIP_NONE,0.0,0.0,0.0,true);
 	}
 
 	if (!jumpingP1 && !App->player2->jumpingP2) {
