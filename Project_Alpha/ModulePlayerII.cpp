@@ -749,8 +749,8 @@ update_status ModulePlayer2::PreUpdate() {
 	timeP2 = SDL_GetTicks() / 20;
 	/*camxP2 = App->render->camera.x / SCREEN_ADD;
 	camyP2 = App->render->camera.y / SCREEN_ADD;*/
-	camxP2 = App->render->camera.x;
-	camyP2 = App->render->camera.y;
+	camxP2 = App->render->camera.x *2;
+	camyP2 = App->render->camera.y*2;
 	
 
 	 inputplayerP2.Right_active = App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_REPEAT || SDL_GameControllerGetButton(App->input->controller_player_2, SDL_CONTROLLER_BUTTON_DPAD_RIGHT)|| SDL_GameControllerGetAxis(App->input->controller_player_2, SDL_CONTROLLER_AXIS_LEFTX) >= 10000;
@@ -2242,10 +2242,10 @@ update_status ModulePlayer2::Update()
 
 	if (currentstateP2 != crouchstateP2 && currentstateP2 != crouchLPP2 && currentstateP2 != crouchMPP1 && currentstateP2 != crouchHPP2 && currentstateP2 != crouchLKP2 && currentstateP2 != crouchMKP2 && currentstateP2 != crouchHKP2) {
 		if (!App->player->flipP1) {
-			playerP2_collider->SetPos(positionP2.x +30 - App->render->camera.x , positionP2.y - 93 - App->render->camera.y );
+			playerP2_collider->SetPos(positionP2.x +30 - App->render->camera.x*2 , positionP2.y - 93 - App->render->camera.y *2);
 		}
 		else {
-			playerP2_collider->SetPos(positionP2.x + 15 - App->render->camera.x , positionP2.y - 93 - App->render->camera.y );
+			playerP2_collider->SetPos(positionP2.x + 15 - App->render->camera.x *2, positionP2.y - 93 - App->render->camera.y *2);
 		}
 	}
 	SDL_Rect r = currentP2_animation->GetCurrentFrame();
