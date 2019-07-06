@@ -747,8 +747,10 @@ update_status ModulePlayer2::PreUpdate() {
 	
 	
 	timeP2 = SDL_GetTicks() / 20;
-	camxP2 = App->render->camera.x / SCREEN_ADD;
-	camyP2 = App->render->camera.y / SCREEN_ADD;
+	/*camxP2 = App->render->camera.x / SCREEN_ADD;
+	camyP2 = App->render->camera.y / SCREEN_ADD;*/
+	camxP2 = App->render->camera.x;
+	camyP2 = App->render->camera.y;
 	
 
 	 inputplayerP2.Right_active = App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_REPEAT || SDL_GameControllerGetButton(App->input->controller_player_2, SDL_CONTROLLER_BUTTON_DPAD_RIGHT)|| SDL_GameControllerGetAxis(App->input->controller_player_2, SDL_CONTROLLER_AXIS_LEFTX) >= 10000;
@@ -2240,10 +2242,10 @@ update_status ModulePlayer2::Update()
 
 	if (currentstateP2 != crouchstateP2 && currentstateP2 != crouchLPP2 && currentstateP2 != crouchMPP1 && currentstateP2 != crouchHPP2 && currentstateP2 != crouchLKP2 && currentstateP2 != crouchMKP2 && currentstateP2 != crouchHKP2) {
 		if (!App->player->flipP1) {
-			playerP2_collider->SetPos(positionP2.x +30 - App->render->camera.x / SCREEN_ADD, positionP2.y - 93 - App->render->camera.y / SCREEN_ADD);
+			playerP2_collider->SetPos(positionP2.x +30 - App->render->camera.x , positionP2.y - 93 - App->render->camera.y );
 		}
 		else {
-			playerP2_collider->SetPos(positionP2.x + 15 - App->render->camera.x / SCREEN_ADD, positionP2.y - 93 - App->render->camera.y / SCREEN_ADD);
+			playerP2_collider->SetPos(positionP2.x + 15 - App->render->camera.x , positionP2.y - 93 - App->render->camera.y );
 		}
 	}
 	SDL_Rect r = currentP2_animation->GetCurrentFrame();
@@ -2278,8 +2280,8 @@ update_status ModulePlayer2::Update()
 
 
 	if (!App->player->flipP1) {
-		App->render->Blit(graphicsP2, positionP2.x + 10, App->player->groundLevelP1 - 15, &shadowP2, 1.0f, true,SDL_FLIP_NONE, 0.0, INT_MAX, INT_MAX, true);
-		App->render->Blit(graphicsP2, positionP2.x, positionP2.y - r.h, &r, 1.0f, true, SDL_FLIP_NONE, 0.0, INT_MAX, INT_MAX, true);
+		App->render->Blit(graphicsP2, positionP2.x + 10, App->player->groundLevelP1 - 15, &shadowP2, 1.0f, true,SDL_FLIP_NONE,true, 0.0, 0.0, 0.0);
+		App->render->Blit(graphicsP2, positionP2.x, positionP2.y - r.h, &r, 1.0f, true, SDL_FLIP_NONE, true, 0.0, 0.0, 0.0);
 	}
 	else
 	{

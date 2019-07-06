@@ -816,8 +816,10 @@ bool ModulePlayer::CleanUp()
 update_status ModulePlayer::PreUpdate() {
 
 	timeP1 = SDL_GetTicks() / 20;
-	camxP1 = App->render->camera.x / SCREEN_ADD;
-	camyP1 = App->render->camera.y / SCREEN_ADD;
+	/*camxP1 = App->render->camera.x / SCREEN_ADD;
+	camyP1 = App->render->camera.y / SCREEN_ADD;*/
+	camxP1 = App->render->camera.x;
+	camyP1 = App->render->camera.y;
 	
 	
 	 inputplayerP1.D_active = App->input->keyboard[SDL_SCANCODE_D] == KEY_REPEAT || SDL_GameControllerGetButton(App->input->controller_player_1, SDL_CONTROLLER_BUTTON_DPAD_RIGHT)|| SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTX) >= 10000;
@@ -2290,10 +2292,10 @@ update_status ModulePlayer::Update() {
 
 	if ( currentstateP1 != crouchstateP1 && currentstateP1 != crouchLPP1 && currentstateP1 != crouchMPP1 && currentstateP1 != crouchHPP1 && currentstateP1 != crouchLKP1 && currentstateP1 != crouchMKP1 && currentstateP1 != crouchHKP1 ) {
 		if (!flipP1) {
-			playerP1_collider->SetPos(positionP1.x + 15 - App->render->camera.x / SCREEN_ADD, positionP1.y - 93 - App->render->camera.y / SCREEN_ADD);
+			playerP1_collider->SetPos(positionP1.x + 15 -App->render->camera.x, positionP1.y - 93 -App->render->camera.y);
 		}
 		else {
-			playerP1_collider->SetPos(positionP1.x + 30 - App->render->camera.x / SCREEN_ADD, positionP1.y - 93 - App->render->camera.y / SCREEN_ADD);
+			playerP1_collider->SetPos(positionP1.x + 30 -App->render->camera.x, positionP1.y - 93 -App->render->camera.y);
 		}
 	}
 
@@ -2341,8 +2343,8 @@ update_status ModulePlayer::Update() {
 	}
 	else {
 		flipP1 = true;
-		App->render->Blit(graphicsP1, positionP1.x +7, groundLevelP1 -15, &shadowP1, 1.0f, true, SDL_FLIP_NONE,  0.0, INT_MAX, INT_MAX, true);
-		App->render->Blit(graphicsP1, positionP1.x, positionP1.y - r.h, &r, 1.0f, true, SDL_FLIP_NONE,0.0,0.0,0.0,true);
+		App->render->Blit(graphicsP1, positionP1.x +7, groundLevelP1 -15, &shadowP1, 1.0f, true, SDL_FLIP_NONE, true,0,0,0);
+		App->render->Blit(graphicsP1, positionP1.x, positionP1.y - r.h, &r, 1.0f, true, SDL_FLIP_NONE, true,0,0,0);
 	}
 
 	if (!jumpingP1 && !App->player2->jumpingP2) {
