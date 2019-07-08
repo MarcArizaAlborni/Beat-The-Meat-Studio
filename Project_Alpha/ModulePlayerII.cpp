@@ -2255,7 +2255,7 @@ update_status ModulePlayer2::Update()
 	
 	if (jumpingP2) {
 		jumpTimerP2 = timeP2 - jumpstartP2;
-		playerP2_collider->SetPos(positionP2.x + 15 - App->render->camera.x / SCREEN_ADD, positionP2.y - 93 - App->render->camera.y / SCREEN_ADD);
+		playerP2_collider->SetPos(positionP2.x + 15 - App->render->camera.x *2, positionP2.y - 93 - App->render->camera.y *2);
 		positionP2.y = groundLevelP2- (yvelP2*jumpTimerP2) + (0.5*(gravityP2) * (jumpTimerP2*jumpTimerP2));
 		App->render->camera.y -= (0.2 * jumpTimerP2) + (0.5*(-0.9) * (jumpTimerP2*jumpTimerP2)) / 60;
 		
@@ -2268,13 +2268,13 @@ update_status ModulePlayer2::Update()
 	}
 
 	
-		if (positionP2.x <= (App->render->camera.x / 5 - 10))
+		if (positionP2.x <= App->render->camera.x)
 		{
-			positionP2.x = (App->render->camera.x / 5 - 10);
+			positionP2.x = App->render->camera.x;
 		}
-		if (positionP2.x >= (180 + App->render->camera.x / 5) + 115)
+		if (positionP2.x >=  App->render->camera.x + SCREEN_WIDTH -100)
 		{
-			positionP2.x = (180 + App->render->camera.x / 5) + 115;
+			positionP2.x = App->render->camera.x + SCREEN_WIDTH -100;
 		}
 	
 

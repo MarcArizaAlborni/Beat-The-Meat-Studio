@@ -130,6 +130,7 @@ bool ModuleSceneGuile::CleanUp()
 update_status ModuleSceneGuile::Update()
 { 
 	//Render
+	App->render->DrawQuad(blackBackground, 0, 0, 0, 255);
 	App->render->Blit(graphics, -146, -13, &background); //background
 	App->render->Blit(graphics, -146, -13, &sky); //sky
 	App->render->Blit(graphics, -146, -13, &plane_ground); //plane_ground
@@ -137,7 +138,7 @@ update_status ModuleSceneGuile::Update()
 	App->render->Blit(graphics, 44, 79, &(left_guys.GetCurrentFrame())); //left_guys
 	App->render->Blit(graphics, 150, 110, &(mid_guys.GetCurrentFrame())); //mid_guys
 	App->render->Blit(graphics, 310, 101, &(right_guys.GetCurrentFrame())); //right_guys
-
+	
 	//Debug mode
 	if (App->input->keyboard[SDL_SCANCODE_F5] == 1) //Health-substracting button
 	{

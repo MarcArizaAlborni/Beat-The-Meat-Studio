@@ -37,7 +37,7 @@ public:
 	Animation left_guys;
 	Animation mid_guys;
 	Animation right_guys;
-	
+	SDL_Rect blackBackground;
 	Mix_Music* background_music;
 
 	Uint32 timeLimit = 0;

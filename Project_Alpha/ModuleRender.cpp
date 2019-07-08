@@ -225,7 +225,7 @@ bool ModuleRender::DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uin
 		LOG("Cannot draw quad to screen. SDL_RenderFillRect error: %s", SDL_GetError());
 		ret = false;
 	}
-
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	return ret;
 }
 

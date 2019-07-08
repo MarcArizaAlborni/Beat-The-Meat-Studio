@@ -2295,7 +2295,7 @@ update_status ModulePlayer::Update() {
 			playerP1_collider->SetPos(positionP1.x + 15 -App->render->camera.x * 2, positionP1.y - 93 -App->render->camera.y*2);
 		}
 		else {
-			playerP1_collider->SetPos(positionP1.x + 30 -App->render->camera.x*2, positionP1.y - 93 -App->render->camera.y*2);
+			playerP1_collider->SetPos(positionP1.x + 30 -App->render->camera.x * 2, positionP1.y - 93 -App->render->camera.y*2);
 		}
 	}
 
@@ -2324,7 +2324,7 @@ update_status ModulePlayer::Update() {
 	//Jumping boolean
 	if (jumpingP1) {
 		jumpTimerP1 = timeP1 - jumpstartP1;
-		playerP1_collider->SetPos(positionP1.x + 15 - App->render->camera.x / SCREEN_ADD, positionP1.y - 93 - App->render->camera.y / SCREEN_ADD);
+		playerP1_collider->SetPos(positionP1.x + 15 - App->render->camera.x *2, positionP1.y - 93 - App->render->camera.y *2);
 		positionP1.y = groundLevelP1 - (yvelP1*jumpTimerP1) + (0.5*(gravityP1) * (jumpTimerP1*jumpTimerP1));
 		App->render->camera.y -=   (0.2 * jumpTimerP1) + (0.5*(-0.9) * (jumpTimerP1*jumpTimerP1) )/60;
 		if (forwardJumpP1 == true) {
@@ -2365,40 +2365,40 @@ update_status ModulePlayer::Update() {
 
 	}
 
-	if (positionP1.x <= App->render->camera.x /5)
+	if (positionP1.x <= App->render->camera.x )
 	{
-		positionP1.x = App->render->camera.x /5;
+		positionP1.x = App->render->camera.x ;
 	}
-	if (positionP1.x >= ((App->render->camera.x / 5) + SCREEN_WIDTH -100) )
+	if (positionP1.x >= App->render->camera.x + SCREEN_WIDTH -100)
 	{
-		positionP1.x = ((App->render->camera.x / 5) + SCREEN_WIDTH - 100) ;
+		positionP1.x = App->render->camera.x  + SCREEN_WIDTH - 100;
 	}
 
 	//camera Dynamic
-	if (positionP1.x - 30 <= App->render->camera.x / 5 ) { // player1 is left screen 
+	if (positionP1.x - 30 <= App->render->camera.x ) { // player1 is left screen 
 
-		if(App->player2->positionP2.x <= (180 + App->render->camera.x / 5) +75){ // player2 is close right camera
+		if(App->player2->positionP2.x <= (180 + App->render->camera.x ) +75){ // player2 is close right camera
 
-			App->render->camera.x -= speedP1 *2.5; //Move screen left
+			App->render->camera.x -= speedP1 ; //Move screen left
 		}
 	}
 	else {
-		if(App->player2->positionP2.x >= (180 + App->render->camera.x / 5) +100) { // player2 is close right camera
+		if(App->player2->positionP2.x >= (180 + App->render->camera.x ) +100) { // player2 is close right camera
 
-			App->render->camera.x += speedP1 * 2.5; //Move screen left
+			App->render->camera.x += speedP1 ; //Move screen left
 		}
 	}
-	if (positionP1.x >= ((App->render->camera.x / 5) + SCREEN_WIDTH - 130)){ // player1 is right screen
+	if (positionP1.x >= ((App->render->camera.x ) + SCREEN_WIDTH - 130)){ // player1 is right screen
 
-		if (App->player2->positionP2.x >= (App->render->camera.x / 5 )) { //player2 is close to left camera
+		if (App->player2->positionP2.x >= (App->render->camera.x )) { //player2 is close to left camera
 
-			App->render->camera.x += speedP1 * 2.5; // Move camera right
+			App->render->camera.x += speedP1 ; // Move camera right
 		}
 	}
 	else {
-		if (App->player2->positionP2.x <= (App->render->camera.x / 5)) { //player2 is close to left camera
+		if (App->player2->positionP2.x <= (App->render->camera.x )) { //player2 is close to left camera
 
-			App->render->camera.x -= speedP1 * 2.5; // Move camera right
+			App->render->camera.x -= speedP1 ; // Move camera right
 		}
 	}
 	
